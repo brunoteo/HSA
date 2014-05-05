@@ -17,7 +17,7 @@ public class MainActivity extends ActionBarActivity implements
 	ViewPager mViewPager;
 	private String[] tabs = { "News", "Search", "Decks" };
 
-	//Fantaghirò
+	//blblblbl
 	//caccha
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
