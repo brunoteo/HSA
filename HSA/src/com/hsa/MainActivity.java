@@ -10,7 +10,6 @@ import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuItem;
 
-//first
 public class MainActivity extends ActionBarActivity implements
 		ActionBar.TabListener {
 
