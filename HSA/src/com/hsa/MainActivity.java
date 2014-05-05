@@ -48,8 +48,13 @@ public class MainActivity extends ActionBarActivity implements
 
 		// Adding Tabs
         for (String tab_name : tabs) {
-            actionBar.addTab(actionBar.newTab().setText(tab_name)
-                    .setTabListener(this));
+        	if(tab_name.equals("Search")) {
+        		actionBar.addTab(actionBar.newTab().setText(tab_name)
+                        .setTabListener(this), true);
+        	}else {
+                actionBar.addTab(actionBar.newTab().setText(tab_name)
+                        .setTabListener(this));
+        	}
         }
 	}
 
