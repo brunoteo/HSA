@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.hsa.bean.Card;
+import com.hsa.bean.SearchCriterion;
 import com.hsa.database.HSADatabaseHelper;
 
 import android.content.Context;
@@ -39,7 +40,7 @@ public class SearchManager {
 	    dbHelper.close();
 	}
 	
-	public void ricerca() {
+	public List<Card> search(SearchCriterion searchCriterion) {
 		List<Card> cards = new ArrayList<Card>();
 		
 		Cursor cursor = database.query(HSADatabaseHelper.TABLE_CARD,
@@ -53,6 +54,8 @@ public class SearchManager {
 		}
 		// make sure to close the cursor
 		cursor.close();
+		
+		return cards;
 	}
 	
 	private Card cursorToCard(Cursor cursor) {
