@@ -1,6 +1,11 @@
 package com.hsa;
 
+import java.util.List;
+
 import com.hsa.adapter.TabsPagerAdapter;
+import com.hsa.bean.Card;
+import com.hsa.manager.SaveManager;
+import com.hsa.manager.SearchManager;
 
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
@@ -9,6 +14,7 @@ import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.EditText;
 
 public class MainActivity extends ActionBarActivity implements
 		ActionBar.TabListener {
@@ -56,6 +62,15 @@ public class MainActivity extends ActionBarActivity implements
                         .setTabListener(this));
         	}
         }
+        
+      //PROVA DATABASE
+        SaveManager saveManager = new SaveManager(this);
+        saveManager.fillDB();
+        SearchManager searchManager = new SearchManager(this);
+        searchManager.open();
+        List<Card> cards = searchManager.search(null);
+        EditText editText = (EditText) findViewById(R.id.editText1);
+        editText.setText(cards.get(0).getName());
 	}
 
 	@Override

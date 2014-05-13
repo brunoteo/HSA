@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.hsa.bean.Card;
 import com.hsa.bean.SearchCriterion;
+import com.hsa.contract.CardEntry;
 import com.hsa.database.HSADatabaseHelper;
 
 import android.content.Context;
@@ -14,37 +15,38 @@ import android.database.sqlite.SQLiteDatabase;
 
 public class SearchManager {
 
-	private SQLiteDatabase database;
+	private SQLiteDatabase db;
 	private HSADatabaseHelper dbHelper;
-	private String[] allColumns = {	HSADatabaseHelper.COLUMN_NAME, 
-									HSADatabaseHelper.COLUMN_TYPE, 
-									HSADatabaseHelper.COLUMN_COST, 
-									HSADatabaseHelper.COLUMN_RARITY, 
-									HSADatabaseHelper.COLUMN_EFFECT, 
-									HSADatabaseHelper.COLUMN_CLASSNAME, 
-									HSADatabaseHelper.COLUMN_ATTACK, 
-									HSADatabaseHelper.COLUMN_HEALTH, 
-									HSADatabaseHelper.COLUMN_DURABILITY, 
-									HSADatabaseHelper.COLUMN_RACE, 
-									HSADatabaseHelper.COLUMN_PATH};
+	private String[] cardProjection = {	CardEntry.COLUMN_NAME_NAME, 
+			CardEntry.COLUMN_NAME_TYPE, 
+			CardEntry.COLUMN_NAME_COST, 
+			CardEntry.COLUMN_NAME_RARITY, 
+			CardEntry.COLUMN_NAME_EFFECT, 
+			CardEntry.COLUMN_NAME_CLASS, 
+			CardEntry.COLUMN_NAME_ATTACK, 
+			CardEntry.COLUMN_NAME_HEALTH, 
+			CardEntry.COLUMN_NAME_DURABILITY, 
+			CardEntry.COLUMN_NAME_RACE, 
+			CardEntry.COLUMN_NAME_PATH};
 	
 	public SearchManager(Context context) {
 		dbHelper = new HSADatabaseHelper(context);
 	}
 	
 	public void open() throws SQLException {
-	    database = dbHelper.getWritableDatabase();
+	    db = dbHelper.getReadableDatabase();
 	}
 	
 	public void close() {
-	    dbHelper.close();
+	    //dbHelper.close();
 	}
 	
 	public List<Card> search(SearchCriterion searchCriterion) {
 		List<Card> cards = new ArrayList<Card>();
-		
-		Cursor cursor = database.query(HSADatabaseHelper.TABLE_CARD,
-		        allColumns, null, null, null, null, null);
+		int i1 = db.getVersion();
+		String s1 = db.getPath();
+		Cursor cursor = db.query(CardEntry.TABLE_NAME,
+				cardProjection, null, null, null, null, null);
 
 		cursor.moveToFirst();
 		while (!cursor.isAfterLast()) {
@@ -60,17 +62,17 @@ public class SearchManager {
 	
 	private Card cursorToCard(Cursor cursor) {
 	    Card card = new Card();
-	    card.setName(cursor.getString(cursor.getColumnIndex(HSADatabaseHelper.COLUMN_NAME)));
-	    card.setType(cursor.getString(cursor.getColumnIndex(HSADatabaseHelper.COLUMN_TYPE)));
-	    card.setCost(Integer.parseInt(cursor.getString(cursor.getColumnIndex(HSADatabaseHelper.COLUMN_COST))));
-	    card.setRarity(cursor.getString(cursor.getColumnIndex(HSADatabaseHelper.COLUMN_RARITY)));
-	    card.setEffect(cursor.getString(cursor.getColumnIndex(HSADatabaseHelper.COLUMN_EFFECT)));
-	    card.setClassName(cursor.getString(cursor.getColumnIndex(HSADatabaseHelper.COLUMN_CLASSNAME)));
-	    card.setAttack(Integer.parseInt(cursor.getString(cursor.getColumnIndex(HSADatabaseHelper.COLUMN_ATTACK))));
-	    card.setHealth(Integer.parseInt(cursor.getString(cursor.getColumnIndex(HSADatabaseHelper.COLUMN_HEALTH))));
-	    card.setDurability(Integer.parseInt(cursor.getString(cursor.getColumnIndex(HSADatabaseHelper.COLUMN_DURABILITY))));
-	    card.setRace(cursor.getString(cursor.getColumnIndex(HSADatabaseHelper.COLUMN_RACE)));
-	    card.setPath(cursor.getString(cursor.getColumnIndex(HSADatabaseHelper.COLUMN_PATH)));
+	    card.setName(cursor.getString(cursor.getColumnIndex(CardEntry.COLUMN_NAME_NAME)));
+	    card.setType(cursor.getString(cursor.getColumnIndex(CardEntry.COLUMN_NAME_TYPE)));
+	    card.setCost(Integer.parseInt(cursor.getString(cursor.getColumnIndex(CardEntry.COLUMN_NAME_COST))));
+	    card.setRarity(cursor.getString(cursor.getColumnIndex(CardEntry.COLUMN_NAME_RARITY)));
+	    card.setEffect(cursor.getString(cursor.getColumnIndex(CardEntry.COLUMN_NAME_EFFECT)));
+	    card.setClassName(cursor.getString(cursor.getColumnIndex(CardEntry.COLUMN_NAME_CLASS)));
+	    card.setAttack(Integer.parseInt(cursor.getString(cursor.getColumnIndex(CardEntry.COLUMN_NAME_ATTACK))));
+	    card.setHealth(Integer.parseInt(cursor.getString(cursor.getColumnIndex(CardEntry.COLUMN_NAME_HEALTH))));
+	    card.setDurability(Integer.parseInt(cursor.getString(cursor.getColumnIndex(CardEntry.COLUMN_NAME_DURABILITY))));
+	    card.setRace(cursor.getString(cursor.getColumnIndex(CardEntry.COLUMN_NAME_RACE)));
+	    card.setPath(cursor.getString(cursor.getColumnIndex(CardEntry.COLUMN_NAME_PATH)));
 	    return card;
 	}
 	
