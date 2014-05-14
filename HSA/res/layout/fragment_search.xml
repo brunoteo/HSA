@@ -4,5 +4,13 @@
     android:layout_height="match_parent"
     android:orientation="vertical" 
     android:background="#17df0d" >
+    
+    <TextView   
+    android:layout_width="wrap_content"  
+    android:layout_height="wrap_content"   
+    android:textAlignment="center"  
+    android:textSize="20sp"  
+    android:id="@+id/pippo"  
+    android:text=""/>  
 
 </LinearLayout>

@@ -22,6 +22,7 @@ import android.widget.TextView;
 public class MainActivity extends ActionBarActivity implements
 		ActionBar.TabListener {
 
+	HSADatabaseHelper dbHelper;
 	TabsPagerAdapter tabsPagerAdapter;
 	ViewPager mViewPager;
 	private String[] tabs = { "News", "Search", "Decks" };
@@ -67,20 +68,20 @@ public class MainActivity extends ActionBarActivity implements
         }
         
       //PROVA DATABASE
-        HSADatabaseHelper dbHelper = new HSADatabaseHelper(this);
-        SearchManager searchManager = new SearchManager(dbHelper);
-        int emptyDB = searchManager.search(null).size();
-        if(emptyDB==0) {
-            SaveManager saveManager = new SaveManager(dbHelper);
-            saveManager.fillDB();
-        }
-        List<Card> cards = searchManager.search(null);
-        TextView textView = new TextView(this);
-        textView.setTextSize(40);       
-        textView.setText(Integer.toString(cards.size()));
-
-        // Set the text view as the activity layout
-        setContentView(textView);
+//        dbHelper = new HSADatabaseHelper(this);
+//        SearchManager searchManager = new SearchManager(dbHelper);
+//        int emptyDB = searchManager.search(null).size();
+//        if(emptyDB==0) {
+//            SaveManager saveManager = new SaveManager(dbHelper);
+//            saveManager.fillDB();
+//        }
+//        List<Card> cards = searchManager.search(null);
+//        TextView textView = new TextView(this);
+//        textView.setTextSize(40);       
+//        textView.setText(Integer.toString(cards.size()));
+//
+//        // Set the text view as the activity layout
+//        setContentView(textView);
 
 	}
 
