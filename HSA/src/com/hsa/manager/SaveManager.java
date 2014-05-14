@@ -15,10 +15,18 @@ public class SaveManager {
 
 	private HSADatabaseHelper dbHelper;
 	
-	private final Card card1 = new Card("Goldshire Footman", "Minion", 1, "Basic", "Taunt.", "Neutral", 1, 2, null, "", "");
+	private final Card card1 = new Card("Goldshire Footman", "Minion", 1, "Basic", "Taunt.", "Neutral", 1, 2, null, null, null);
 	private final Card card2 = new Card("Inner Fire", "Spell", 1, "Common", "Change a minion's Attack to be equal to its Health.", "Priest", null, null, null, null, null);
+	private final Card card3 = new Card("Frost Nova", "Spell", 3, "Basic", "Freeze all enemy Minions.", "Mage", null, null, null, null, null);
+	private final Card card4 = new Card("Ancestral Spirit", "Spell", 2, "Rare", "Chose a minion. When that minion is destroyed, return it to the battlefield.", "Shaman", null, null, null, null, null);
+	private final Card card5 = new Card("Blood Imp", "Minion", 1, "Common", "Stealth. At the end of your turn, give another random friendly minion +1 Health.", "Warlock", 0, 1, null, "Demon", null);
+	private final Card card6 = new Card("Gladiator's Longbow", "Weapon", 7, "Epic", "Your hero is Immune while attacking.", "Hunter", 5, null, 2, null, null);
+	private final Card card7 = new Card("Perdition's Blade", "Weapon", 3, "Rare", "Battlecry: Deal 1 damage. Combo: Deal 2 instead.", "Rogue", 2, null, 2, null, null);
+	private final Card card8 = new Card("Ancient of War", "Minion", 7, "Epic", "Choose one - +5 Attack; or +5 Health and Taunt.", "Druid", 5, 5, null, null, null);
+	private final Card card9 = new Card("Tirion Fordring", "Minion", 8, "Legendary", "Divine Shield. Taunt. Deathrattle: Equip a 5/3 Ashbringer.", "Paladin", 6, 6, null, null, null);
+	private final Card card10 = new Card("Grommash Hellscream", "Minion", 8, "Legendary", "Charge. Enrage: +6 Attack", "Warrior", 4, 9, null, null, null);
 	
-	private List<Card> cards = Arrays.asList(card1, card2);
+	private List<Card> cards = Arrays.asList(card1, card2, card3, card4, card5, card6, card7, card8, card9, card10);
 	
 	
 	public SaveManager(HSADatabaseHelper dbHelper) {
