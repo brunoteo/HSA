@@ -65,12 +65,12 @@ public class MainActivity extends ActionBarActivity implements
         
       //PROVA DATABASE
         SaveManager saveManager = new SaveManager(this);
+        //TODO spostare in onCreate()
         saveManager.fillDB();
         SearchManager searchManager = new SearchManager(this);
-        searchManager.open();
         List<Card> cards = searchManager.search(null);
-        EditText editText = (EditText) findViewById(R.id.editText1);
-        editText.setText(cards.get(0).getName());
+//        EditText editText = (EditText) findViewById(R.id.editText1);
+//        editText.setText(cards.get(0).getName());
 	}
 
 	@Override

@@ -15,7 +15,6 @@ import android.database.sqlite.SQLiteDatabase;
 
 public class SearchManager {
 
-	private SQLiteDatabase db;
 	private HSADatabaseHelper dbHelper;
 	private String[] cardProjection = {	
 			CardEntry.COLUMN_NAME_ENTRY_ID,
@@ -35,16 +34,9 @@ public class SearchManager {
 		dbHelper = new HSADatabaseHelper(context);
 	}
 	
-	public void open() throws SQLException {
-	    db = dbHelper.getReadableDatabase();
-	}
-	
-	public void close() {
-	    //dbHelper.close();
-	}
-	
 	public List<Card> search(SearchCriterion searchCriterion) {
 		List<Card> cards = new ArrayList<Card>();
+		SQLiteDatabase db = dbHelper.getWritableDatabase();
 		Cursor cursor = db.query(CardEntry.TABLE_NAME,
 				cardProjection, null, null, null, null, null);
 
@@ -54,8 +46,9 @@ public class SearchManager {
 			cards.add(card);
 			cursor.moveToNext();
 		}
-		// make sure to close the cursor
+
 		cursor.close();
+		db.close();
 		
 		return cards;
 	}
