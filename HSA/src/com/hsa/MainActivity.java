@@ -11,6 +11,7 @@ import com.hsa.manager.SearchManager;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.FragmentTransaction;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.view.Menu;
@@ -67,14 +68,16 @@ public class MainActivity extends ActionBarActivity implements
         
       //PROVA DATABASE
         HSADatabaseHelper dbHelper = new HSADatabaseHelper(this);
-        SaveManager saveManager = new SaveManager(dbHelper);
-        saveManager.fillDB();
         SearchManager searchManager = new SearchManager(dbHelper);
+        int emptyDB = searchManager.search(null).size();
+        if(emptyDB==0) {
+            SaveManager saveManager = new SaveManager(dbHelper);
+            saveManager.fillDB();
+        }
         List<Card> cards = searchManager.search(null);
-        
         TextView textView = new TextView(this);
-        textView.setTextSize(40);
-        textView.setText(cards.get(0).getName());
+        textView.setTextSize(40);       
+        textView.setText(Integer.toString(cards.size()));
 
         // Set the text view as the activity layout
         setContentView(textView);
