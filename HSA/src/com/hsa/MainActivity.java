@@ -22,9 +22,18 @@ import android.widget.TextView;
 public class MainActivity extends ActionBarActivity implements
 		ActionBar.TabListener {
 
-	HSADatabaseHelper dbHelper;
-	TabsPagerAdapter tabsPagerAdapter;
-	ViewPager mViewPager;
+	private HSADatabaseHelper dbHelper;
+	private TabsPagerAdapter tabsPagerAdapter;
+	private ViewPager mViewPager;
+	
+	public HSADatabaseHelper getDbHelper() {
+		return dbHelper;
+	}
+
+	public void setDbHelper(HSADatabaseHelper dbHelper) {
+		this.dbHelper = dbHelper;
+	}
+
 	private String[] tabs = { "News", "Search", "Decks" };
 
 	@Override
