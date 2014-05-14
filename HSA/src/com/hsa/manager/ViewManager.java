@@ -28,7 +28,6 @@ public class ViewManager {
 	}
 	
 	private GraphicalAggregation createGraphicalAggregation(Card card, Context context) {
-//		String uri = "@drawable/ancestral_spirit";
 		String uri = "@drawable/" + card.getPath();
 		int image = context.getResources().getIdentifier(uri, "drawable", context.getPackageName());
 		GraphicalAggregation ga = new GraphicalAggregation();
