@@ -17,7 +17,9 @@ public class SearchManager {
 
 	private SQLiteDatabase db;
 	private HSADatabaseHelper dbHelper;
-	private String[] cardProjection = {	CardEntry.COLUMN_NAME_NAME, 
+	private String[] cardProjection = {	
+			CardEntry.COLUMN_NAME_ENTRY_ID,
+			CardEntry.COLUMN_NAME_NAME, 
 			CardEntry.COLUMN_NAME_TYPE, 
 			CardEntry.COLUMN_NAME_COST, 
 			CardEntry.COLUMN_NAME_RARITY, 
@@ -43,8 +45,6 @@ public class SearchManager {
 	
 	public List<Card> search(SearchCriterion searchCriterion) {
 		List<Card> cards = new ArrayList<Card>();
-		int i1 = db.getVersion();
-		String s1 = db.getPath();
 		Cursor cursor = db.query(CardEntry.TABLE_NAME,
 				cardProjection, null, null, null, null, null);
 
@@ -62,6 +62,7 @@ public class SearchManager {
 	
 	private Card cursorToCard(Cursor cursor) {
 	    Card card = new Card();
+	    card.set_id(Integer.parseInt(cursor.getString(cursor.getColumnIndex(CardEntry.COLUMN_NAME_ENTRY_ID))));
 	    card.setName(cursor.getString(cursor.getColumnIndex(CardEntry.COLUMN_NAME_NAME)));
 	    card.setType(cursor.getString(cursor.getColumnIndex(CardEntry.COLUMN_NAME_TYPE)));
 	    card.setCost(Integer.parseInt(cursor.getString(cursor.getColumnIndex(CardEntry.COLUMN_NAME_COST))));

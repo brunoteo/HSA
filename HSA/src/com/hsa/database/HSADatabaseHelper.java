@@ -13,7 +13,8 @@ public class HSADatabaseHelper extends SQLiteOpenHelper {
 	private static final String COMMA_SEP = ",";
 	private static final String SQL_CREATE_ENTRIES =
 	    "CREATE TABLE " + CardEntry.TABLE_NAME + " (" +
-	    		CardEntry.COLUMN_NAME_NAME + TEXT_TYPE + " PRIMARY KEY," +
+	    		CardEntry.COLUMN_NAME_ENTRY_ID + " INTEGER PRIMARY KEY," +
+	    		CardEntry.COLUMN_NAME_NAME + TEXT_TYPE + COMMA_SEP +
 	    		CardEntry.COLUMN_NAME_TYPE + TEXT_TYPE + COMMA_SEP +
 	    		CardEntry.COLUMN_NAME_COST + INT_TYPE + COMMA_SEP +
 	    		CardEntry.COLUMN_NAME_RARITY + TEXT_TYPE + COMMA_SEP +

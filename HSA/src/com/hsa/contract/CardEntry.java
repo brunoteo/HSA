@@ -1,7 +1,10 @@
 package com.hsa.contract;
 
-public abstract class CardEntry {
+import android.provider.BaseColumns;
+
+public abstract class CardEntry implements BaseColumns{
 	public static final String TABLE_NAME = "CARD";
+	public static final String COLUMN_NAME_ENTRY_ID = "_id";
 	public static final String COLUMN_NAME_NAME = "name";
 	public static final String COLUMN_NAME_TYPE = "type";
 	public static final String COLUMN_NAME_COST = "cost";

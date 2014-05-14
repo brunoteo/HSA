@@ -31,6 +31,7 @@ public class SaveManager {
 		for (int i=0; i<cards.size(); i++){
 			
 			ContentValues values = new ContentValues();
+			//values.put(CardEntry.COLUMN_NAME_ENTRY_ID, cards.get(i).get_id());
 			values.put(CardEntry.COLUMN_NAME_NAME, cards.get(i).getName());
 			values.put(CardEntry.COLUMN_NAME_TYPE, cards.get(i).getType());
 			values.put(CardEntry.COLUMN_NAME_COST, cards.get(i).getCost());
@@ -43,7 +44,8 @@ public class SaveManager {
 			values.put(CardEntry.COLUMN_NAME_RACE, cards.get(i).getRace());
 			values.put(CardEntry.COLUMN_NAME_PATH, cards.get(i).getPath());
 			
-			db.insert(CardEntry.TABLE_NAME, null, values);
+			//db.insert(CardEntry.TABLE_NAME, null, values);
+			db.close();
 		}
 		
 	}

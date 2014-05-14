@@ -1,6 +1,7 @@
 package com.hsa.bean;
 
 public class Card {
+	private int _id;
 	private String name;
 	private String type;
 	private Integer cost;
@@ -15,9 +16,10 @@ public class Card {
 	
 	public Card(){}
 	
-	public Card(String name, String type, Integer cost, String rarity,
+	public Card(/*int _id,*/ String name, String type, Integer cost, String rarity,
 			String effect, String className, Integer attack, Integer health,
 			Integer durability, String race, String path){
+		//this._id = _id;
 		this.name = name;
 		this.type = type;
 		this.cost = cost;
@@ -29,6 +31,14 @@ public class Card {
 		this.durability = durability;
 		this.race = race;
 		this.path = path;
+	}
+	
+	public int get_id() {
+		return _id;
+	}
+
+	public void set_id(int _id) {
+		this._id = _id;
 	}
 
 	public String getName() {
