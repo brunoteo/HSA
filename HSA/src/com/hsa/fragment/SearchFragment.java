@@ -43,11 +43,11 @@ public class SearchFragment extends Fragment{
 //            SaveManager saveManager = new SaveManager(dbHelper);
 //            saveManager.fillDB(); // TODO spostare il fill nel MainActivity
 //        }
-        List<Card> cards = searchManager.search(null);
-        ViewManager viewManager = new ViewManager(dbHelper);
-        List<GraphicalAggregation> graphicalsAggregations = viewManager.generateGraphicalsAggregations(cards, this.getActivity());
-        gridView = (GridView) getView().findViewById(R.id.gridView1);
-        gridView.setAdapter(new GraphicalAggregationAdapter(this.getActivity(), graphicalsAggregations));
+//        List<Card> cards = searchManager.search(null);
+//        ViewManager viewManager = new ViewManager(dbHelper);
+//        List<GraphicalAggregation> graphicalsAggregations = viewManager.generateGraphicalsAggregations(cards, this.getActivity());
+//        gridView = (GridView) getView().findViewById(R.id.gridView1);
+//        gridView.setAdapter(new GraphicalAggregationAdapter(this.getActivity(), graphicalsAggregations));
         
 //        
 //        TextView txt=(TextView) getView().findViewById(R.id.pippo);  
