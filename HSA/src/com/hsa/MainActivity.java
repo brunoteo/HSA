@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.hsa.adapter.TabsPagerAdapter;
 import com.hsa.bean.Card;
+import com.hsa.database.HSADatabaseHelper;
 import com.hsa.manager.SaveManager;
 import com.hsa.manager.SearchManager;
 
@@ -15,6 +16,7 @@ import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
+import android.widget.TextView;
 
 public class MainActivity extends ActionBarActivity implements
 		ActionBar.TabListener {
@@ -64,10 +66,19 @@ public class MainActivity extends ActionBarActivity implements
         }
         
       //PROVA DATABASE
-        SearchManager searchManager = new SearchManager(this);
+        HSADatabaseHelper dbHelper = new HSADatabaseHelper(this);
+        SaveManager saveManager = new SaveManager(dbHelper);
+        saveManager.fillDB();
+        SearchManager searchManager = new SearchManager(dbHelper);
         List<Card> cards = searchManager.search(null);
-        EditText editText = (EditText) findViewById(R.id.editText1);
-        editText.setText(cards.get(0).getName());
+        
+        TextView textView = new TextView(this);
+        textView.setTextSize(40);
+        textView.setText(cards.get(0).getName());
+
+        // Set the text view as the activity layout
+        setContentView(textView);
+
 	}
 
 	@Override

@@ -20,8 +20,6 @@ public class HSADatabaseHelper extends SQLiteOpenHelper {
 
 	public void onCreate(SQLiteDatabase db) {
         db.execSQL(CardEntry.SQL_CREATE_ENTRIES);    
-        SaveManager saveManager = new SaveManager(context);
-        saveManager.fillDB();
     }
 
 	@Override

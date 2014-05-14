@@ -30,8 +30,8 @@ public class SearchManager {
 			CardEntry.COLUMN_NAME_RACE, 
 			CardEntry.COLUMN_NAME_PATH};
 	
-	public SearchManager(Context context) {
-		dbHelper = new HSADatabaseHelper(context);
+	public SearchManager(HSADatabaseHelper dbHelper) {
+		this.dbHelper = dbHelper;
 	}
 	
 	public List<Card> search(SearchCriterion searchCriterion) {
@@ -52,8 +52,7 @@ public class SearchManager {
 //			cursor.moveToNext();
 //		}
 
-		//cursor.close();
-		
+		cursor.close();
 		return cards;
 	}
 	

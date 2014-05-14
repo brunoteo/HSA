@@ -21,8 +21,8 @@ public class SaveManager {
 	private List<Card> cards = Arrays.asList(card1, card2);
 	
 	
-	public SaveManager(Context context) {
-		dbHelper = new HSADatabaseHelper(context);
+	public SaveManager(HSADatabaseHelper dbHelper) {
+		this.dbHelper = dbHelper;
 	}
 	
 	public void fillDB(){
@@ -45,8 +45,8 @@ public class SaveManager {
 			values.put(CardEntry.COLUMN_NAME_PATH, cards.get(i).getPath());
 			
 			db.insert(CardEntry.TABLE_NAME, null, values);
-			db.close();
 		}
+		db.close();
 		
 	}
 	
