@@ -34,7 +34,7 @@ public class SearchFragment extends Fragment{
         int emptyDB = searchManager.search(null).size();
         if(emptyDB==0) {
             SaveManager saveManager = new SaveManager(dbHelper);
-            saveManager.fillDB();
+            saveManager.fillDB(); // TODO spostare il fill nel MainActivity
         }
         List<Card> cards = searchManager.search(null);
         TextView txt=(TextView) getView().findViewById(R.id.pippo);  

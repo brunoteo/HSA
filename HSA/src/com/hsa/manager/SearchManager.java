@@ -61,7 +61,9 @@ public class SearchManager {
 	    card.set_id(Integer.parseInt(cursor.getString(cursor.getColumnIndex(CardEntry.COLUMN_NAME_ENTRY_ID))));
 	    card.setName(cursor.getString(cursor.getColumnIndex(CardEntry.COLUMN_NAME_NAME)));
 	    card.setType(cursor.getString(cursor.getColumnIndex(CardEntry.COLUMN_NAME_TYPE)));
-	    if (controlNull(cursor.getString(cursor.getColumnIndex(CardEntry.COLUMN_NAME_COST)))){
+	    String gigi;
+	    gigi = cursor.getString(cursor.getColumnIndex(CardEntry.COLUMN_NAME_COST));
+	    if (controlNull(gigi)){
 	    	card.setCost(null);
 	    }else{
 	    	card.setCost(Integer.valueOf(Integer.parseInt(cursor.getString(cursor.getColumnIndex(CardEntry.COLUMN_NAME_COST)))));
@@ -69,17 +71,20 @@ public class SearchManager {
 	    card.setRarity(cursor.getString(cursor.getColumnIndex(CardEntry.COLUMN_NAME_RARITY)));
 	    card.setEffect(cursor.getString(cursor.getColumnIndex(CardEntry.COLUMN_NAME_EFFECT)));
 	    card.setClassName(cursor.getString(cursor.getColumnIndex(CardEntry.COLUMN_NAME_CLASS)));
-	    if(controlNull(cursor.getString(cursor.getColumnIndex(CardEntry.COLUMN_NAME_ATTACK)))){
+	    gigi = cursor.getString(cursor.getColumnIndex(CardEntry.COLUMN_NAME_ATTACK));
+	    if(controlNull(gigi)){
 	    	card.setAttack(null);
 	    }else{
 	    	card.setAttack(Integer.valueOf(Integer.parseInt(cursor.getString(cursor.getColumnIndex(CardEntry.COLUMN_NAME_ATTACK)))));
 	    }
-	    if(controlNull(cursor.getString(cursor.getColumnIndex(CardEntry.COLUMN_NAME_HEALTH)))){
+	    gigi = cursor.getString(cursor.getColumnIndex(CardEntry.COLUMN_NAME_HEALTH));
+	    if(controlNull(gigi)){
 	    	card.setHealth(null);
 	    }else{
 	    	card.setHealth(Integer.valueOf(Integer.parseInt(cursor.getString(cursor.getColumnIndex(CardEntry.COLUMN_NAME_HEALTH)))));
 	    }
-	    if(controlNull(cursor.getString(cursor.getColumnIndex(CardEntry.COLUMN_NAME_DURABILITY)))){
+	    gigi = cursor.getString(cursor.getColumnIndex(CardEntry.COLUMN_NAME_DURABILITY));
+	    if(controlNull(gigi)){
 	    	card.setDurability(null);
 	    }else{
 	    	card.setDurability(Integer.valueOf(Integer.parseInt(cursor.getString(cursor.getColumnIndex(CardEntry.COLUMN_NAME_DURABILITY)))));
@@ -90,7 +95,7 @@ public class SearchManager {
 	}
 	
 	private boolean controlNull(String s){
-		if(s.equals(null)){
+		if(s == null){
 			return true;
 		}else{
 			return false;
