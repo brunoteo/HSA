@@ -44,7 +44,7 @@ public class SaveManager {
 			values.put(CardEntry.COLUMN_NAME_RACE, cards.get(i).getRace());
 			values.put(CardEntry.COLUMN_NAME_PATH, cards.get(i).getPath());
 			
-			//db.insert(CardEntry.TABLE_NAME, null, values);
+			db.insert(CardEntry.TABLE_NAME, null, values);
 			db.close();
 		}
 		
