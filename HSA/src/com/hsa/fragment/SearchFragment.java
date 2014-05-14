@@ -7,6 +7,7 @@ import com.hsa.bean.Card;
 import com.hsa.database.HSADatabaseHelper;
 import com.hsa.manager.SaveManager;
 import com.hsa.manager.SearchManager;
+import com.hsa.manager.ViewManager;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -37,6 +38,9 @@ public class SearchFragment extends Fragment{
             saveManager.fillDB();
         }
         List<Card> cards = searchManager.search(null);
+//        ViewManager viewManager = new ViewManager(dbHelper);
+//        viewManager.generateGraphicalsAggregations(cards, this.getActivity());
+        
         TextView txt=(TextView) getView().findViewById(R.id.pippo);  
         txt.setText(Integer.toString(cards.size())); 
 	}
