@@ -5,7 +5,7 @@ import android.graphics.drawable.Drawable;
 public class GraphicalAggregation {
 	
 	private String name;
-	private String occurence;
+	private int occurence;
 	private Drawable image;
 	
 	public String getName() {
@@ -14,10 +14,10 @@ public class GraphicalAggregation {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getOccurence() {
+	public int getOccurence() {
 		return occurence;
 	}
-	public void setOccurence(String occurence) {
+	public void setOccurence(int occurence) {
 		this.occurence = occurence;
 	}
 	public Drawable getImage() {

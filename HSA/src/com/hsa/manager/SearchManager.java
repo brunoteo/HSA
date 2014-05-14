@@ -46,11 +46,6 @@ public class SearchManager {
 				cards.add(card);
 			}while(cursor.moveToNext());
 		}
-//		while (!cursor.isAfterLast()) {
-//			Card card = cursorToCard(cursor);
-//			cards.add(card);
-//			cursor.moveToNext();
-//		}
 
 		cursor.close();
 		return cards;
