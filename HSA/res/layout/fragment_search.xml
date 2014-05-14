@@ -11,6 +11,11 @@
     android:textAlignment="center"  
     android:textSize="20sp"  
     android:id="@+id/pippo"  
-    android:text=""/>  
+    android:text=""/>
+
+   	<ImageView
+        android:id="@+id/theImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
 </LinearLayout>

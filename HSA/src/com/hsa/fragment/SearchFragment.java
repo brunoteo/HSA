@@ -3,6 +3,7 @@ package com.hsa.fragment;
 import java.util.List;
 
 import com.hsa.R;
+import com.hsa.aggregation.GraphicalAggregation;
 import com.hsa.bean.Card;
 import com.hsa.database.HSADatabaseHelper;
 import com.hsa.manager.SaveManager;
@@ -14,6 +15,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class SearchFragment extends Fragment{
@@ -37,9 +39,13 @@ public class SearchFragment extends Fragment{
             SaveManager saveManager = new SaveManager(dbHelper);
             saveManager.fillDB(); // TODO spostare il fill nel MainActivity
         }
+        
         List<Card> cards = searchManager.search(null);
-//        ViewManager viewManager = new ViewManager(dbHelper);
-//        viewManager.generateGraphicalsAggregations(cards, this.getActivity());
+        ViewManager viewManager = new ViewManager(dbHelper);
+        List<GraphicalAggregation> graphicalsAggregations = viewManager.generateGraphicalsAggregations(cards, this.getActivity());
+        
+        ImageView imageView = (ImageView) getView().findViewById(R.id.theImage);
+		imageView.setImageResource(graphicalsAggregations.get(0).getImage());
         
         TextView txt=(TextView) getView().findViewById(R.id.pippo);  
         txt.setText(Integer.toString(cards.size())); 
