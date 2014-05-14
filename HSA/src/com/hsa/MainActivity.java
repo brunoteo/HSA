@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.hsa.adapter.TabsPagerAdapter;
 import com.hsa.bean.Card;
+import com.hsa.bean.SearchCriterion;
 import com.hsa.database.HSADatabaseHelper;
 import com.hsa.manager.SaveManager;
 import com.hsa.manager.SearchManager;
@@ -75,7 +76,18 @@ public class MainActivity extends ActionBarActivity implements
                         .setTabListener(this));
         	}
         }
-
+        HSADatabaseHelper dbHelper = new HSADatabaseHelper(this);
+        SearchManager searchManager = new SearchManager(dbHelper);
+        /*int emptyDB = searchManager.search(null).size();
+        if(emptyDB==0) {
+            SaveManager saveManager = new SaveManager(dbHelper);
+            saveManager.fillDB();
+        }*/
+        SearchCriterion criterion = new SearchCriterion("imp", null);
+        List<Card> cards = searchManager.search(criterion);
+        for(int i= 0; i< cards.size();i++){
+        	System.out.println("NAME == " + cards.get(i).getName());
+        } // TODO ORDERBY COSTO, NOME
 	}
 
 	@Override

@@ -7,6 +7,13 @@ public class SearchCriterion {
 	private String name;
 	private Map<String, String> filters;
 	
+	public SearchCriterion(){}
+	
+	public SearchCriterion(String name, Map<String, String> filters){
+		this.name=name;
+		this.filters=filters;
+	}
+	
 	public String getName() {
 		return name;
 	}

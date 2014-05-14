@@ -30,18 +30,18 @@ public class SearchFragment extends Fragment{
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        HSADatabaseHelper dbHelper = new HSADatabaseHelper(this.getActivity());
-        SearchManager searchManager = new SearchManager(dbHelper);
-        int emptyDB = searchManager.search(null).size();
-        if(emptyDB==0) {
-            SaveManager saveManager = new SaveManager(dbHelper);
-            saveManager.fillDB(); // TODO spostare il fill nel MainActivity
-        }
-        List<Card> cards = searchManager.search(null);
+//        HSADatabaseHelper dbHelper = new HSADatabaseHelper(this.getActivity());
+//        SearchManager searchManager = new SearchManager(dbHelper);
+//        int emptyDB = searchManager.search(null).size();
+//        if(emptyDB==0) {
+//            SaveManager saveManager = new SaveManager(dbHelper);
+//            saveManager.fillDB(); // TODO spostare il fill nel MainActivity
+//        }
+//        List<Card> cards = searchManager.search(null);
 //        ViewManager viewManager = new ViewManager(dbHelper);
 //        viewManager.generateGraphicalsAggregations(cards, this.getActivity());
-        
-        TextView txt=(TextView) getView().findViewById(R.id.pippo);  
-        txt.setText(Integer.toString(cards.size())); 
+//        
+//        TextView txt=(TextView) getView().findViewById(R.id.pippo);  
+//        txt.setText(Integer.toString(cards.size())); 
 	}
 }

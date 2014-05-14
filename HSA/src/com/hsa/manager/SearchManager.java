@@ -2,6 +2,7 @@ package com.hsa.manager;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import com.hsa.bean.Card;
 import com.hsa.bean.SearchCriterion;
@@ -33,11 +34,41 @@ public class SearchManager {
 	}
 	
 	public List<Card> search(SearchCriterion searchCriterion) {
+		String sql = "SELECT * FROM CARD";
+		List<String> sqlArgs = new ArrayList<String>();
+		int i = 0;
+		if(searchCriterion.getFilters()!=null){
+			for (Map.Entry<String, String> entry : searchCriterion.getFilters().entrySet()){
+				if (i == 0){
+					sql = sql + " WHERE " +  entry.getKey() + " = ? ";
+					sqlArgs.add(entry.getValue());
+					i++;
+				}else{
+					sql = sql + "AND " + entry.getKey() + " = ? ";
+					sqlArgs.add(entry.getValue());
+				}
+			}
+			if (searchCriterion.getName() != null) {
+				sql = sql + "AND name LIKE ? ";
+				sqlArgs.add("%"+searchCriterion.getName()+"%");
+			}
+		}else{
+			if (searchCriterion.getName() != null) {
+				sql = sql + " WHERE name LIKE ? ";
+				sqlArgs.add("%"+searchCriterion.getName()+"%");
+			}
+		}
+		
+		
+		String [] selectionArgs = new String[sqlArgs.size()];
+		sqlArgs.toArray(selectionArgs);
 		List<Card> cards = new ArrayList<Card>();
 		SQLiteDatabase db = dbHelper.getWritableDatabase();
-		Cursor cursor = db.query(CardEntry.TABLE_NAME,
-				cardProjection, null, null, null, null, null);
+//		Cursor cursor = db.query(CardEntry.TABLE_NAME,
+//				cardProjection, null, null, null, null, null);
 
+		Cursor cursor = db.rawQuery(sql, selectionArgs);
+		
 		if(cursor.moveToFirst()) {
 			do {
 				Card card = cursorToCard(cursor);
@@ -88,7 +119,5 @@ public class SearchManager {
 		}else{
 			return false;
 		}
-		
 	}
-	
 }
