@@ -70,7 +70,16 @@ public class SearchManager {
 					}
 				}
 			}
+			if(searchCriterion.getName()!=null){
+				if (first){
+					sql = sql + " WHERE name LIKE ?";
+				}else{
+					sql = sql + " AND name LIKE ?";
+				}
+				sqlArgs.add("%"+searchCriterion.getName()+"%");
+			}
 		}
+		sql = sql + " ORDER BY cost, name";
 // =============================================VERSIONE 1===============================================
 //				if (i == 0){
 //					sql = sql + " WHERE " +  entry.getKey() + " = ? ";
@@ -107,14 +116,8 @@ public class SearchManager {
 		sqlArgs.toArray(selectionArgs);
 		List<Card> cards = new ArrayList<Card>();
 		SQLiteDatabase db = dbHelper.getWritableDatabase();
-//		Cursor cursor = db.query(CardEntry.TABLE_NAME,
-//				cardProjection, null, null, null, null, null);
-		
-//		Cursor cursor = db.query(CardEntry.TABLE_NAME,
-//		null, "class = ?", new String[]{"Hunter"}, null, null, null);
 
 		Cursor cursor = db.rawQuery(sql, selectionArgs);
-		
 		if(cursor.moveToFirst()) {
 			do {
 				Card card = cursorToCard(cursor);

@@ -92,6 +92,7 @@ public class MainActivity extends ActionBarActivity implements
             SaveManager saveManager = new SaveManager(dbHelper);
             saveManager.fillDB();
         }
+        
 	}
 	
 
