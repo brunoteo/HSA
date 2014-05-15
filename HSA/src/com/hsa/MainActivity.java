@@ -86,8 +86,7 @@ public class MainActivity extends ActionBarActivity implements
         }
         dbHelper = new HSADatabaseHelper(this);
         SearchManager searchManager = new SearchManager(dbHelper);
-        
-
+       //Riempimento database
         int emptyDB = searchManager.search(null).size();
         if(emptyDB==0) {
             SaveManager saveManager = new SaveManager(dbHelper);
