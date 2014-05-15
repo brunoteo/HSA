@@ -13,7 +13,6 @@ import com.hsa.database.HSADatabaseHelper;
 public class SaveManager {
 
 	private HSADatabaseHelper dbHelper;
-	
 
 	private final Card card1 = new Card("goldshire footman", "Minion", 1, "Basic", "Taunt.", "Neutral", 1, 2, null, null, "goldshire_footman");
 	private final Card card2 = new Card("inner fire", "Spell", 1, "Common", "Change a minion's Attack to be equal to its Health.", "Priest", null, null, null, null, "inner_fire");

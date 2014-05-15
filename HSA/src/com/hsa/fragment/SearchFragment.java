@@ -53,7 +53,19 @@ public class SearchFragment extends Fragment{
 //        List<GraphicalAggregation> graphicalsAggregations = viewManager.generateGraphicalsAggregations(cards, this.getActivity());
 //        gridView = (GridView) getView().findViewById(R.id.gridView1);
 //        gridView.setAdapter(new GraphicalAggregationAdapter(this.getActivity(), graphicalsAggregations));
-        ViewManager viewManager = new ViewManager(((MainActivity) getActivity()).getDbHelper());
+          ViewManager viewManager = new ViewManager(((MainActivity) getActivity()).getDbHelper());
+          
+//	    Map<String, ArrayList<String>> filters = new HashMap<String, ArrayList<String>>();
+//	    ArrayList<String> typeValues = new ArrayList<String>();
+//	    typeValues.add("Spell");
+//	    filters.put("type", typeValues);
+//	    SearchCriterion sc = new SearchCriterion(null, filters);
+	    
+//      classValues.add("Paladin");
+//      ArrayList<String> rarityValues = new ArrayList<String>();
+//      rarityValues.add("Epic");
+//      filters.put("class", classValues);
+//      filters.put("rarity", rarityValues);z
         List<GraphicalAggregation> graphicalsAggregations = viewManager.searchRequest(null, this.getActivity());
         gridView = (GridView) getView().findViewById(R.id.gridview1);
         gridView.setAdapter(new GraphicalAggregationAdapter(this.getActivity(), graphicalsAggregations));
@@ -65,9 +77,9 @@ public class SearchFragment extends Fragment{
 //        rarityValues.add("Epic");
 //        filters.put("class", classValues);
 //        filters.put("rarity", rarityValues);
-        String name = "imp";
-        SearchCriterion criterion = new SearchCriterion(name, null);
-        List<GraphicalAggregation> graphicalsAggregations2 = viewManager.searchRequest(criterion, this.getActivity());
+//        String name = "imp";
+//        SearchCriterion criterion = new SearchCriterion(name, null);
+//        List<GraphicalAggregation> graphicalsAggregations2 = viewManager.searchRequest(criterion, this.getActivity());
 //        gridView = (GridView) getView().findViewById(R.id.gridView1);
 //        gridView.setAdapter(new GraphicalAggregationAdapter(this.getActivity(), graphicalsAggregations));
         
