@@ -12,7 +12,6 @@ public abstract class FormationEntry implements BaseColumns{
 
 	
 	private static final String TEXT_TYPE = " TEXT";
-	private static final String INT_TYPE = " INTEGER";
 	private static final String COMMA_SEP = ",";
 	
 	public static final String SQL_CREATE_ENTRIES =

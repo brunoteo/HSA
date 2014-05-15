@@ -1,19 +1,11 @@
 package com.hsa.fragment;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import com.hsa.MainActivity;
 import com.hsa.R;
 import com.hsa.adapter.GraphicalAggregationAdapter;
 import com.hsa.aggregation.GraphicalAggregation;
-import com.hsa.bean.Card;
-import com.hsa.bean.SearchCriterion;
-import com.hsa.database.HSADatabaseHelper;
-import com.hsa.manager.SaveManager;
-import com.hsa.manager.SearchManager;
 import com.hsa.manager.ViewManager;
 
 import android.os.Bundle;
@@ -24,8 +16,6 @@ import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 public class SearchFragment extends Fragment{
 	

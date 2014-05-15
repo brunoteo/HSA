@@ -3,7 +3,6 @@ package com.hsa.database;
 import com.hsa.contract.CardEntry;
 import com.hsa.contract.DeckEntry;
 import com.hsa.contract.FormationEntry;
-import com.hsa.manager.SaveManager;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;

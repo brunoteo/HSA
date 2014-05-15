@@ -3,14 +3,9 @@ package com.hsa.manager;
 import java.util.ArrayList;
 import java.util.List;
 
-import android.app.Fragment;
 import android.content.Context;
 import android.support.v4.app.FragmentActivity;
-import android.widget.GridView;
 
-import com.hsa.MainActivity;
-import com.hsa.R;
-import com.hsa.adapter.GraphicalAggregationAdapter;
 import com.hsa.aggregation.GraphicalAggregation;
 import com.hsa.bean.Card;
 import com.hsa.bean.SearchCriterion;

@@ -1,6 +1,5 @@
 package com.hsa.aggregation;
 
-import android.graphics.drawable.Drawable;
 
 public class GraphicalAggregation {
 	
