@@ -21,7 +21,7 @@ public class SearchManager {
 	}
 	
 	public List<Card> search(SearchCriterion searchCriterion) {
-		String sql = "SELECT * FROM CARD";
+		String sql = "SELECT * FROM " + CardEntry.TABLE_NAME;
 		List<String> sqlArgs = new ArrayList<String>();
 //=====================================================VERSIONE2=======================================================
 		boolean first = true;
@@ -37,16 +37,16 @@ public class SearchManager {
 							for (String entry2 : entry.getValue()){
 								if (first1){
 									first1 = false;
-									sql = sql + entry.getKey() + " = ?";// + entry2;
+									sql = sql + entry.getKey() + " = ?";
 									sqlArgs.add(entry2);
 								}else{
-									sql = sql + " OR " + entry.getKey() + " = ?";// + entry2;
+									sql = sql + " OR " + entry.getKey() + " = ?";
 									sqlArgs.add(entry2);
 								}
 							}
 							sql = sql + ")";
 						}else{
-							sql = sql + " " + entry.getKey() + " = ?";// + entry.getValue().get(0);
+							sql = sql + " " + entry.getKey() + " = ?";
 							sqlArgs.add(entry.getValue().get(0));
 						}
 					}else{
@@ -57,29 +57,29 @@ public class SearchManager {
 							for (String entry2 : entry.getValue()){
 								if (first1){
 									first1 = false;
-									sql = sql + entry.getKey() + " = ?";// + entry2;
+									sql = sql + entry.getKey() + " = ?";
 									sqlArgs.add(entry2);
 								}else{
-									sql = sql + " OR " + entry.getKey() + " = ?";// + entry2;
+									sql = sql + " OR " + entry.getKey() + " = ?";
 									sqlArgs.add(entry2);							}
 							}
 							sql = sql + ")";
 						}else{
-							sql = sql + " " + entry.getKey() + " = ?";// + entry.getValue().get(0);
+							sql = sql + " " + entry.getKey() + " = ?";
 							sqlArgs.add(entry.getValue().get(0));					}
 					}
 				}
 			}
 			if(searchCriterion.getName()!=null){
 				if (first){
-					sql = sql + " WHERE name LIKE ?";
+					sql = sql + " WHERE " + CardEntry.COLUMN_NAME_NAME + " LIKE ?";
 				}else{
-					sql = sql + " AND name LIKE ?";
+					sql = sql + " AND " + CardEntry.COLUMN_NAME_NAME + " LIKE ?";
 				}
 				sqlArgs.add("%"+searchCriterion.getName()+"%");
 			}
 		}
-		sql = sql + " ORDER BY cost, name";
+		sql = sql + " ORDER BY " + CardEntry.COLUMN_NAME_COST + ", " + CardEntry.COLUMN_NAME_NAME;
 // =============================================VERSIONE 1===============================================
 //				if (i == 0){
 //					sql = sql + " WHERE " +  entry.getKey() + " = ? ";

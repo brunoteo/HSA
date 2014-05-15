@@ -1,6 +1,7 @@
 package com.hsa.database;
 
 import com.hsa.contract.CardEntry;
+import com.hsa.contract.DeckEntry;
 import com.hsa.manager.SaveManager;
 
 import android.content.Context;
@@ -19,7 +20,8 @@ public class HSADatabaseHelper extends SQLiteOpenHelper {
 	}
 
 	public void onCreate(SQLiteDatabase db) {
-        db.execSQL(CardEntry.SQL_CREATE_ENTRIES);    
+        db.execSQL(CardEntry.SQL_CREATE_ENTRIES);
+        db.execSQL(DeckEntry.SQL_CREATE_ENTRIES);
     }
 
 	@Override
