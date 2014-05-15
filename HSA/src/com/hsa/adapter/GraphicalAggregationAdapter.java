@@ -108,4 +108,13 @@ public class GraphicalAggregationAdapter extends BaseAdapter{
 //        //imageView.setLayoutParams(new GridView.LayoutParams((int)context.getResources().getDimension(R.dimen.width),(int)context.getResources().getDimension(R.dimen.width)));
 //        return imageView;
 //    }
+
+//    public View getView(int position, View convertView, ViewGroup parent) {
+//        ImageView imageView = new ImageView(context);
+//        imageView.setImageResource(grapichalsAggregations.get(position).getImage());
+//        imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+//        imageView.setLayoutParams(new GridView.LayoutParams(200, 150));
+//        return imageView;
+//    }
+
 }
