@@ -1,7 +1,7 @@
 package com.hsa.contract;
 
-import android.provider.BaseColumns;
 
+import android.provider.BaseColumns;
 public abstract class DeckEntry implements BaseColumns{
 	
 	public static final String TABLE_NAME = "DECK";
@@ -25,3 +25,4 @@ public abstract class DeckEntry implements BaseColumns{
 	    		")";
 	
 }
+

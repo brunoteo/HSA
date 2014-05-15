@@ -1,5 +1,6 @@
 package com.hsa.contract;
 
+
 import android.provider.BaseColumns;
 
 public abstract class FormationEntry implements BaseColumns{
