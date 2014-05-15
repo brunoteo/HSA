@@ -1,25 +1,17 @@
 package com.hsa.fragment;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
 import com.hsa.MainActivity;
 import com.hsa.R;
 import com.hsa.adapter.GraphicalAggregationAdapter;
 import com.hsa.aggregation.CompleteTextualAggregation;
 import com.hsa.aggregation.GraphicalAggregation;
-import com.hsa.bean.Card;
-import com.hsa.bean.SearchCriterion;
-import com.hsa.database.HSADatabaseHelper;
-import com.hsa.manager.SaveManager;
-import com.hsa.manager.SearchManager;
 import com.hsa.manager.ViewManager;
 
-import android.content.Context;
+
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -28,9 +20,6 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.GridView;
-import android.widget.ImageView;
-import android.widget.SearchView;
-import android.widget.TextView;
 
 public class SearchFragment extends Fragment{
 	
@@ -72,6 +61,11 @@ public class SearchFragment extends Fragment{
 			@Override
 			public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
 				CompleteTextualAggregation completeTextualAggregation = viewManager.completeInfoRequest(graphicalsAggregations.get(position));
+				CompleteInformationFragment completeFragment = new CompleteInformationFragment();
+				
+				FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();	
+				fragmentTransaction.replace(R.id.fragment_complete_information, completeFragment);
+			    fragmentTransaction.commit();
 				return true;
 			}
         	
