@@ -2,6 +2,7 @@ package com.hsa.fragment;
 
 import java.util.List;
 
+import com.hsa.MainActivity;
 import com.hsa.R;
 import com.hsa.adapter.GraphicalAggregationAdapter;
 import com.hsa.aggregation.GraphicalAggregation;
@@ -49,8 +50,7 @@ public class SearchFragment extends Fragment{
         List<GraphicalAggregation> graphicalsAggregations = viewManager.generateGraphicalsAggregations(cards, this.getActivity());
         gridView = (GridView) getView().findViewById(R.id.gridView1);
         gridView.setAdapter(new GraphicalAggregationAdapter(this.getActivity(), graphicalsAggregations));
-        
-        
+        HSADatabaseHelper db = ((MainActivity) getActivity()).getDbHelper();
 //        ImageView imageView = (ImageView) getView().findViewById(R.id.theImage);
 //		imageView.setImageResource(graphicalsAggregations.get(0).getImage());
 //		

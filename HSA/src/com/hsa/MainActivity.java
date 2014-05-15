@@ -33,6 +33,10 @@ public class MainActivity extends ActionBarActivity implements
 	public void setDbHelper(HSADatabaseHelper dbHelper) {
 		this.dbHelper = dbHelper;
 	}
+	
+	public HSADatabaseHelper getHSADatabaseHelper() {
+		return this.dbHelper;
+	}
 
 	private String[] tabs = { "News", "Search", "Decks" };
 
