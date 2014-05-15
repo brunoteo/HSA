@@ -5,11 +5,10 @@ import android.provider.BaseColumns;
 public abstract class FormationEntry implements BaseColumns{
 	
 	public static final String TABLE_NAME = "FORMATION";
-	public static final String COLUMN_NAME_ENTRY_ID = "_id";
-	public static final String COLUMN_NAME_NAME = "name";
-	public static final String COLUMN_NAME_CLASS = "class";
-	public static final String COLUMN_NAME_NOTE = "note";
-	public static final String COLUMN_NAME_DATE = "date";
+	public static final String COLUMN_NAME_CARD = "card";
+	public static final String COLUMN_NAME_DECK = "deck";
+	public static final String COLUMN_NAME_OCCURRENCE = "occurrence";
+
 	
 	private static final String TEXT_TYPE = " TEXT";
 	private static final String INT_TYPE = " INTEGER";
@@ -17,11 +16,10 @@ public abstract class FormationEntry implements BaseColumns{
 	
 	public static final String SQL_CREATE_ENTRIES =
 	    "CREATE TABLE " + FormationEntry.TABLE_NAME + "(" +
-	    		FormationEntry.COLUMN_NAME_ENTRY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
-	    		DeckEntry.COLUMN_NAME_NAME + TEXT_TYPE + COMMA_SEP +
-	    		DeckEntry.COLUMN_NAME_CLASS + TEXT_TYPE + COMMA_SEP +
-	    		DeckEntry.COLUMN_NAME_NOTE + INT_TYPE + COMMA_SEP +
-	    		DeckEntry.COLUMN_NAME_DATE + TEXT_TYPE + 
+	    		FormationEntry.COLUMN_NAME_CARD + TEXT_TYPE + " REFERENCES " + CardEntry.TABLE_NAME + "(" + CardEntry.COLUMN_NAME_NAME  + ")" + COMMA_SEP +
+	    		FormationEntry.COLUMN_NAME_DECK + TEXT_TYPE + " REFERENCES " + DeckEntry.TABLE_NAME + "(" + DeckEntry.COLUMN_NAME_NAME + ")" + " ON UPDATE CASCADE" + COMMA_SEP +
+	    		FormationEntry.COLUMN_NAME_OCCURRENCE + TEXT_TYPE + COMMA_SEP +
+	    		"PRIMARY KEY (" + FormationEntry.COLUMN_NAME_CARD + COMMA_SEP + " " + FormationEntry.COLUMN_NAME_DECK + ")" + 
 	    		")";
 	
 }
