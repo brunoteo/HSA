@@ -1,6 +1,9 @@
 package com.hsa;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.hsa.adapter.TabsPagerAdapter;
 import com.hsa.bean.Card;
@@ -78,17 +81,21 @@ public class MainActivity extends ActionBarActivity implements
         }
         HSADatabaseHelper dbHelper = new HSADatabaseHelper(this);
         SearchManager searchManager = new SearchManager(dbHelper);
-        /*int emptyDB = searchManager.search(null).size();
+//        SearchCriterion sc = new SearchCriterion(null, null);
+        int emptyDB = searchManager.search(null).size();
         if(emptyDB==0) {
             SaveManager saveManager = new SaveManager(dbHelper);
             saveManager.fillDB();
-        }*/
-        SearchCriterion criterion = new SearchCriterion("imp", null);
+        }
+        Map<String,ArrayList<String>> filter = new HashMap<String,ArrayList<String>>();
+        ArrayList<String> filterArgs = new ArrayList<String>();
+        filterArgs.add("Hunter");
+        filter.put("class", filterArgs);
+        SearchCriterion criterion = new SearchCriterion(null, filter);
         List<Card> cards = searchManager.search(criterion);
-        for(int i= 0; i< cards.size();i++){
-        	System.out.println("NAME == " + cards.get(i).getName());
-        } // TODO ORDERBY COSTO, NOME
+        //TODO ORDERBY COSTO, NOME
 	}
+	
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
