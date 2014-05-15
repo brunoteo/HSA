@@ -87,7 +87,8 @@ public class GraphicalAggregationAdapter extends BaseAdapter{
          name = (TextView)v.getTag(R.id.text);
 
          GraphicalAggregation graphicalAggregation = (GraphicalAggregation)getItem(i);
-
+         //GraphicalAggregation graphicalAggregation = grapichalsAggregations.get(i);
+         
          picture.setImageResource(graphicalAggregation.getImage());
          if(graphicalAggregation.getOccurence()==0) {
         	 name.setBackgroundColor(Color.parseColor("#07000000"));
