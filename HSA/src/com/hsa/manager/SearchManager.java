@@ -20,6 +20,12 @@ public class SearchManager {
 		this.dbHelper = dbHelper;
 	}
 	
+	public Card cardRetrievalRequest(String name) {
+		SearchCriterion criterion = new SearchCriterion(name, null);
+		Card card = search(criterion).get(0);
+		return card;
+	}
+	
 	public List<Card> search(SearchCriterion searchCriterion) {
 		String sql = "SELECT * FROM " + CardEntry.TABLE_NAME;
 		List<String> sqlArgs = new ArrayList<String>();
