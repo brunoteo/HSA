@@ -37,20 +37,23 @@ public class SearchFragment extends Fragment{
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        HSADatabaseHelper dbHelper = new HSADatabaseHelper(this.getActivity());
-        SearchManager searchManager = new SearchManager(dbHelper);
-        int emptyDB = searchManager.search(null).size();
-        if(emptyDB==0) {
-            SaveManager saveManager = new SaveManager(dbHelper);
-            saveManager.fillDB(); // TODO spostare il fill nel MainActivity
-        }
-        
-        List<Card> cards = searchManager.search(null);
-        ViewManager viewManager = new ViewManager(dbHelper);
-        List<GraphicalAggregation> graphicalsAggregations = viewManager.generateGraphicalsAggregations(cards, this.getActivity());
+//        HSADatabaseHelper dbHelper = new HSADatabaseHelper(this.getActivity());
+//        SearchManager searchManager = new SearchManager(dbHelper);
+//        int emptyDB = searchManager.search(null).size();
+//        if(emptyDB==0) {
+//            SaveManager saveManager = new SaveManager(dbHelper);
+//            saveManager.fillDB(); // TODO spostare il fill nel MainActivity
+//        }
+//        List<Card> cards = searchManager.search(null);
+//        ViewManager viewManager = new ViewManager(dbHelper);
+//        List<GraphicalAggregation> graphicalsAggregations = viewManager.generateGraphicalsAggregations(cards, this.getActivity());
+//        gridView = (GridView) getView().findViewById(R.id.gridView1);
+//        gridView.setAdapter(new GraphicalAggregationAdapter(this.getActivity(), graphicalsAggregations));
+        ViewManager viewManager = new ViewManager(((MainActivity) getActivity()).getDbHelper());
+        List<GraphicalAggregation> graphicalsAggregations = viewManager.searchRequest(null, this.getActivity());
         gridView = (GridView) getView().findViewById(R.id.gridView1);
         gridView.setAdapter(new GraphicalAggregationAdapter(this.getActivity(), graphicalsAggregations));
-        HSADatabaseHelper db = ((MainActivity) getActivity()).getDbHelper();
+        
 //        ImageView imageView = (ImageView) getView().findViewById(R.id.theImage);
 //		imageView.setImageResource(graphicalsAggregations.get(0).getImage());
 //		
@@ -59,6 +62,7 @@ public class SearchFragment extends Fragment{
 //		
 //		ImageView imageView3 = (ImageView) getView().findViewById(R.id.theImage3);
 //		imageView3.setImageResource(graphicalsAggregations.get(2).getImage());
+
 //        
 //        TextView txt=(TextView) getView().findViewById(R.id.pippo);  
 //        txt.setText(Integer.toString(cards.size())); 

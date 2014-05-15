@@ -2,6 +2,7 @@ package com.hsa.manager;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map.Entry;
 
 import com.hsa.bean.Card;
 import com.hsa.bean.SearchCriterion;
@@ -14,30 +15,106 @@ import android.database.sqlite.SQLiteDatabase;
 public class SearchManager {
 
 	private HSADatabaseHelper dbHelper;
-	private String[] cardProjection = {	
-			CardEntry.COLUMN_NAME_ENTRY_ID,
-			CardEntry.COLUMN_NAME_NAME, 
-			CardEntry.COLUMN_NAME_TYPE, 
-			CardEntry.COLUMN_NAME_COST, 
-			CardEntry.COLUMN_NAME_RARITY, 
-			CardEntry.COLUMN_NAME_EFFECT, 
-			CardEntry.COLUMN_NAME_CLASS, 
-			CardEntry.COLUMN_NAME_ATTACK, 
-			CardEntry.COLUMN_NAME_HEALTH, 
-			CardEntry.COLUMN_NAME_DURABILITY, 
-			CardEntry.COLUMN_NAME_RACE, 
-			CardEntry.COLUMN_NAME_PATH};
 	
 	public SearchManager(HSADatabaseHelper dbHelper) {
 		this.dbHelper = dbHelper;
 	}
 	
 	public List<Card> search(SearchCriterion searchCriterion) {
+		String sql = "SELECT * FROM CARD";
+		List<String> sqlArgs = new ArrayList<String>();
+//=====================================================VERSIONE2=======================================================
+		boolean first = true;
+		if(searchCriterion!=null){
+			if(searchCriterion.getFilters()!=null){
+				for (Entry<String, ArrayList<String>> entry : searchCriterion.getFilters().entrySet()){
+					if (first){
+						sql = sql + " WHERE";
+						first = false;
+						if(entry.getValue().size()>1){
+							sql = sql + " (";
+							boolean first1 = true;
+							for (String entry2 : entry.getValue()){
+								if (first1){
+									first1 = false;
+									sql = sql + entry.getKey() + " = ?";// + entry2;
+									sqlArgs.add(entry2);
+								}else{
+									sql = sql + " OR " + entry.getKey() + " = ?";// + entry2;
+									sqlArgs.add(entry2);
+								}
+							}
+							sql = sql + ")";
+						}else{
+							sql = sql + " " + entry.getKey() + " = ?";// + entry.getValue().get(0);
+							sqlArgs.add(entry.getValue().get(0));
+						}
+					}else{
+						sql = sql + " AND";
+						if(entry.getValue().size()>1){
+							sql = sql + " (";
+							boolean first1 = true;
+							for (String entry2 : entry.getValue()){
+								if (first1){
+									first1 = false;
+									sql = sql + entry.getKey() + " = ?";// + entry2;
+									sqlArgs.add(entry2);
+								}else{
+									sql = sql + " OR " + entry.getKey() + " = ?";// + entry2;
+									sqlArgs.add(entry2);							}
+							}
+							sql = sql + ")";
+						}else{
+							sql = sql + " " + entry.getKey() + " = ?";// + entry.getValue().get(0);
+							sqlArgs.add(entry.getValue().get(0));					}
+					}
+				}
+			}
+		}
+// =============================================VERSIONE 1===============================================
+//				if (i == 0){
+//					sql = sql + " WHERE " +  entry.getKey() + " = ? ";
+//					sqlArgs.add(entry.getValue());
+//					i++;
+//				}else{
+//					sql = sql + "AND " + entry.getKey() + " = ? ";
+//					sqlArgs.add(entry.getValue());
+//				}
+//			}
+//		if(searchCriterion.getFilters()!=null){
+//			for (Map.Entry<String, String> entry : searchCriterion.getFilters().entrySet()){
+//				if (i == 0){
+//					sql = sql + " WHERE " +  entry.getKey() + " = ? ";
+//					sqlArgs.add(entry.getValue());
+//					i++;
+//				}else{
+//					sql = sql + "AND " + entry.getKey() + " = ? ";
+//					sqlArgs.add(entry.getValue());
+//				}
+//			}
+//			if (searchCriterion.getName() != null) {
+//				sql = sql + "AND name LIKE ? ;";
+//				sqlArgs.add("'%"+searchCriterion.getName()+"%'");
+//			}
+//		}else{
+//			if (searchCriterion.getName() != null) {
+//				sql = sql + " WHERE name LIKE ?;";
+//				sqlArgs.add("'%"+searchCriterion.getName()+"%'");
+//			}
+//		}
+		
+		String [] selectionArgs = new String[sqlArgs.size()];
+		sqlArgs.toArray(selectionArgs);
 		List<Card> cards = new ArrayList<Card>();
 		SQLiteDatabase db = dbHelper.getWritableDatabase();
-		Cursor cursor = db.query(CardEntry.TABLE_NAME,
-				cardProjection, null, null, null, null, null);
+//		Cursor cursor = db.query(CardEntry.TABLE_NAME,
+//				cardProjection, null, null, null, null, null);
+		
+//		Cursor cursor = db.query(CardEntry.TABLE_NAME,
+//		null, "class = ?", new String[]{"Hunter"}, null, null, null);
 
+		Cursor cursor = db.rawQuery(sql, selectionArgs);
+		
 		if(cursor.moveToFirst()) {
 			do {
 				Card card = cursorToCard(cursor);
@@ -88,7 +165,5 @@ public class SearchManager {
 		}else{
 			return false;
 		}
-		
 	}
-	
 }
