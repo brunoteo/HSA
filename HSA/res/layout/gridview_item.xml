@@ -2,23 +2,25 @@
 
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <com.hsa.widget.SquareImageView
+    android:layout_height="match_parent" >
+    
+    <ImageView
         android:id="@+id/picture"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:scaleType="centerCrop"
+
         />
     <TextView
         android:id="@+id/text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingLeft="5dp"
-        android:paddingRight="5dp"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
+        android:paddingLeft="1dp"
+        android:paddingRight="1dp"
+        android:paddingTop="1dp"
+        android:paddingBottom="1dp"
         android:layout_gravity="bottom"
-        android:textColor="@android:color/white"
+        android:textColor="#ff0000"
         android:background="#55000000"
         />
 </FrameLayout>
