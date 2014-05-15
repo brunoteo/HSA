@@ -51,7 +51,7 @@ public class SearchFragment extends Fragment{
 //        gridView.setAdapter(new GraphicalAggregationAdapter(this.getActivity(), graphicalsAggregations));
         ViewManager viewManager = new ViewManager(((MainActivity) getActivity()).getDbHelper());
         List<GraphicalAggregation> graphicalsAggregations = viewManager.searchRequest(null, this.getActivity());
-        gridView = (GridView) getView().findViewById(R.id.gridView1);
+        gridView = (GridView) getView().findViewById(R.id.gridview1);
         gridView.setAdapter(new GraphicalAggregationAdapter(this.getActivity(), graphicalsAggregations));
         
 //        ImageView imageView = (ImageView) getView().findViewById(R.id.theImage);
