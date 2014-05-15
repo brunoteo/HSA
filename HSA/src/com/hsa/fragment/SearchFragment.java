@@ -43,6 +43,7 @@ public class SearchFragment extends Fragment{
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        setHasOptionsMenu(true);
 //        HSADatabaseHelper dbHelper = new HSADatabaseHelper(this.getActivity());
 //        SearchManager searchManager = new SearchManager(dbHelper);
 //        int emptyDB = searchManager.search(null).size();
