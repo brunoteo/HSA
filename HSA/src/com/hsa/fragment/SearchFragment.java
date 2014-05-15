@@ -1,12 +1,16 @@
 package com.hsa.fragment;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.hsa.MainActivity;
 import com.hsa.R;
 import com.hsa.adapter.GraphicalAggregationAdapter;
 import com.hsa.aggregation.GraphicalAggregation;
 import com.hsa.bean.Card;
+import com.hsa.bean.SearchCriterion;
 import com.hsa.database.HSADatabaseHelper;
 import com.hsa.manager.SaveManager;
 import com.hsa.manager.SearchManager;
@@ -50,9 +54,19 @@ public class SearchFragment extends Fragment{
 //        gridView = (GridView) getView().findViewById(R.id.gridView1);
 //        gridView.setAdapter(new GraphicalAggregationAdapter(this.getActivity(), graphicalsAggregations));
         ViewManager viewManager = new ViewManager(((MainActivity) getActivity()).getDbHelper());
-        List<GraphicalAggregation> graphicalsAggregations = viewManager.searchRequest(null, this.getActivity());
-        gridView = (GridView) getView().findViewById(R.id.gridView1);
-        gridView.setAdapter(new GraphicalAggregationAdapter(this.getActivity(), graphicalsAggregations));
+//        Map<String, ArrayList<String>> filters = new HashMap<String, ArrayList<String>>();
+//        ArrayList<String> classValues = new ArrayList<String>();
+//        classValues.add("Hunter");
+//        classValues.add("Paladin");
+//        ArrayList<String> rarityValues = new ArrayList<String>();
+//        rarityValues.add("Epic");
+//        filters.put("class", classValues);
+//        filters.put("rarity", rarityValues);
+        String name = "imp";
+        SearchCriterion criterion = new SearchCriterion(name, null);
+        List<GraphicalAggregation> graphicalsAggregations = viewManager.searchRequest(criterion, this.getActivity());
+//        gridView = (GridView) getView().findViewById(R.id.gridView1);
+//        gridView.setAdapter(new GraphicalAggregationAdapter(this.getActivity(), graphicalsAggregations));
         
 //        ImageView imageView = (ImageView) getView().findViewById(R.id.theImage);
 //		imageView.setImageResource(graphicalsAggregations.get(0).getImage());
