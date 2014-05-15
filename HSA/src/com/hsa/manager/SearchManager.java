@@ -131,7 +131,7 @@ public class SearchManager {
 	
 	private Card cursorToCard(Cursor cursor) {
 	    Card card = new Card();
-	    card.set_id(Integer.parseInt(cursor.getString(cursor.getColumnIndex(CardEntry.COLUMN_NAME_ENTRY_ID))));
+//	    card.set_id(Integer.parseInt(cursor.getString(cursor.getColumnIndex(CardEntry.COLUMN_NAME_ENTRY_ID))));
 	   	card.setName(cursor.getString(cursor.getColumnIndex(CardEntry.COLUMN_NAME_NAME)));
 	   	card.setType(cursor.getString(cursor.getColumnIndex(CardEntry.COLUMN_NAME_TYPE)));
 	    if (controlNull(cursor.getString(cursor.getColumnIndex(CardEntry.COLUMN_NAME_COST)))){

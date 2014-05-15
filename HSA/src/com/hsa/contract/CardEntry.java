@@ -4,7 +4,7 @@ import android.provider.BaseColumns;
 
 public abstract class CardEntry implements BaseColumns{
 	public static final String TABLE_NAME = "CARD";
-	public static final String COLUMN_NAME_ENTRY_ID = "_id";
+//	public static final String COLUMN_NAME_ENTRY_ID = "_id";
 	public static final String COLUMN_NAME_NAME = "name";
 	public static final String COLUMN_NAME_TYPE = "type";
 	public static final String COLUMN_NAME_COST = "cost";
@@ -22,8 +22,8 @@ public abstract class CardEntry implements BaseColumns{
 	private static final String COMMA_SEP = ",";
 	public static final String SQL_CREATE_ENTRIES =
 	    "CREATE TABLE " + CardEntry.TABLE_NAME + "(" +
-	    		CardEntry.COLUMN_NAME_ENTRY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
-	    		CardEntry.COLUMN_NAME_NAME + TEXT_TYPE + COMMA_SEP +
+//	    		CardEntry.COLUMN_NAME_ENTRY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+	    		CardEntry.COLUMN_NAME_NAME + TEXT_TYPE + " PRIMARY KEY" + COMMA_SEP +
 	    		CardEntry.COLUMN_NAME_TYPE + TEXT_TYPE + COMMA_SEP +
 	    		CardEntry.COLUMN_NAME_COST + INT_TYPE + COMMA_SEP +
 	    		CardEntry.COLUMN_NAME_RARITY + TEXT_TYPE + COMMA_SEP +
