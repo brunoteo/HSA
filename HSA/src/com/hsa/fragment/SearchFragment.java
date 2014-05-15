@@ -19,6 +19,8 @@ import com.hsa.manager.ViewManager;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
@@ -95,5 +97,13 @@ public class SearchFragment extends Fragment{
 //        
 //        TextView txt=(TextView) getView().findViewById(R.id.pippo);  
 //        txt.setText(Integer.toString(cards.size())); 
+	}
+	
+	@Override
+	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		inflater.inflate(R.menu.search_menu, menu);
+		super.onCreateOptionsMenu(menu, inflater);
+		
 	}
 }
