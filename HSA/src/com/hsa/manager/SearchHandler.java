@@ -5,8 +5,12 @@ import java.util.List;
 import java.util.Map.Entry;
 
 import com.hsa.bean.Card;
+import com.hsa.bean.Deck;
+import com.hsa.bean.Formation;
 import com.hsa.bean.SearchCriterion;
 import com.hsa.contract.CardEntry;
+import com.hsa.contract.DeckEntry;
+import com.hsa.contract.FormationEntry;
 import com.hsa.database.HSADatabaseHelper;
 
 import android.database.Cursor;
@@ -137,7 +141,6 @@ public class SearchHandler {
 	
 	private Card cursorToCard(Cursor cursor) {
 	    Card card = new Card();
-//	    card.set_id(Integer.parseInt(cursor.getString(cursor.getColumnIndex(CardEntry.COLUMN_NAME_ENTRY_ID))));
 	   	card.setName(cursor.getString(cursor.getColumnIndex(CardEntry.COLUMN_NAME_NAME)));
 	   	card.setType(cursor.getString(cursor.getColumnIndex(CardEntry.COLUMN_NAME_TYPE)));
 	    if (controlNull(cursor.getString(cursor.getColumnIndex(CardEntry.COLUMN_NAME_COST)))){
@@ -174,5 +177,60 @@ public class SearchHandler {
 		}else{
 			return false;
 		}
+	}
+
+	public List<Deck> decksRequest() {
+		String sql = "SELECT * FROM " + DeckEntry.TABLE_NAME;
+		List<Deck> decks = new ArrayList<Deck>();
+		SQLiteDatabase db = dbHelper.getWritableDatabase();
+		Cursor cursor = db.rawQuery(sql, null);
+		if(cursor.moveToFirst()) {
+			do {
+				Deck deck = cursorToDeck(cursor);
+				decks.add(deck);
+			}while(cursor.moveToNext());
+		}
+
+		cursor.close();
+		return decks;
+	}
+	
+	private Deck cursorToDeck(Cursor cursor) {
+	    Deck deck = new Deck();
+	    deck.setName(cursor.getString(cursor.getColumnIndex(DeckEntry.COLUMN_NAME_NAME)));
+	    deck.setClassName(cursor.getString(cursor.getColumnIndex(DeckEntry.COLUMN_NAME_CLASS)));
+	    deck.setNote(cursor.getString(cursor.getColumnIndex(DeckEntry.COLUMN_NAME_NOTE)));
+	    deck.setDate(cursor.getString(cursor.getColumnIndex(DeckEntry.COLUMN_NAME_DATE)));
+	    
+	    return deck;
+	}
+
+	public List<Formation> formationsRequest(String deckName) {
+		String sql = "SELECT * FROM " + FormationEntry.TABLE_NAME + " WHERE deck = ?";
+		List<Formation> formations = new ArrayList<Formation>();
+		SQLiteDatabase db = dbHelper.getWritableDatabase();
+		String [] selectionArgs = new String[]{deckName};
+		Cursor cursor = db.rawQuery(sql, selectionArgs);
+		if(cursor.moveToFirst()) {
+			do {
+				Formation formation = cursorToFormation(cursor);
+				formations.add(formation);
+			}while(cursor.moveToNext());
+		}
+
+		cursor.close();
+		return formations;
+	}
+
+	private Formation cursorToFormation(Cursor cursor) {
+	    Formation formation = new Formation();
+	    formation.setCard(cursor.getString(cursor.getColumnIndex(FormationEntry.COLUMN_NAME_CARD)));
+	    formation.setDeck(cursor.getString(cursor.getColumnIndex(FormationEntry.COLUMN_NAME_DECK)));
+	    if(controlNull(cursor.getString(cursor.getColumnIndex(FormationEntry.COLUMN_NAME_OCCURRENCE)))){
+	    	formation.setOccurrence(null);
+	    }else{
+	    	formation.setOccurrence(Integer.valueOf(Integer.parseInt(cursor.getString(cursor.getColumnIndex(FormationEntry.COLUMN_NAME_OCCURRENCE)))));
+	    }  
+	    return formation;
 	}
 }
