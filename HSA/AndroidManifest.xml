@@ -28,6 +28,11 @@
             android:resource="@xml/searchable" />
             
         </activity>
+        <activity
+            android:name="com.hsa.CompleteInformationActivity"
+            android:label="@string/app_name" 
+            android:screenOrientation="portrait" >           
+        </activity>
     </application>
 
 </manifest>
