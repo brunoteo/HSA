@@ -5,11 +5,11 @@ import com.hsa.aggregation.CompleteTextualAggregation;
 import com.hsa.database.HSADatabaseHelper;
 import com.hsa.manager.SaveManager;
 import com.hsa.manager.SearchManager;
-import com.hsa.fragment.CompleteInformationFragment;
 import com.hsa.fragment.SearchFragment;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.FragmentTransaction;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.view.Menu;
@@ -72,6 +72,10 @@ public class MainActivity extends ActionBarActivity implements
         	}
         }
         
+//        SearchFragment firstFragment = new SearchFragment();
+//        getSupportFragmentManager().beginTransaction()
+//        .add(R.id.pager, firstFragment).commit();
+        
         dbHelper = new HSADatabaseHelper(this);
         SearchManager searchManager = new SearchManager(dbHelper);
        //Riempimento database
@@ -124,11 +128,15 @@ public class MainActivity extends ActionBarActivity implements
 
 	@Override
 	public void onCardSelected(CompleteTextualAggregation completeAggregation) {
-		CompleteInformationFragment newFragment = new CompleteInformationFragment();
-		FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-			
-		transaction.replace(R.id.fragment_container, newFragment);
-		transaction.addToBackStack(null);
-		transaction.commit();
+		
+//		CompleteInformationFragment newFragment = new CompleteInformationFragment();
+//		FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();		
+//		transaction.replace(R.id.fragment_container, newFragment);
+//		transaction.addToBackStack(null);
+//		transaction.commit();
+		Intent intent = new Intent(this, CompleteInformationActivity.class);
+		intent.putExtra("completeAggregation", completeAggregation);
+		startActivity(intent);
+
 	}
 }

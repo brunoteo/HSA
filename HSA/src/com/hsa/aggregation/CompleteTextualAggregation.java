@@ -1,8 +1,11 @@
 package com.hsa.aggregation;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.hsa.bean.Card;
 
-public class CompleteTextualAggregation {
+public class CompleteTextualAggregation implements Parcelable{
 
 	private String name;
 	private String type;
@@ -28,6 +31,19 @@ public class CompleteTextualAggregation {
 		this.health = card.getHealth();
 		this.durability = card.getDurability();
 		this.race = card.getRace();
+	}
+	
+	public CompleteTextualAggregation(Parcel parcel) {
+        name = parcel.readString();
+        type = parcel.readString();
+        cost = parcel.readInt();
+        className = parcel.readString();
+        rarity = parcel.readString();
+        effect = parcel.readString();
+        attack = parcel.readInt();
+        health = parcel.readInt();
+        durability = parcel.readInt();
+        race = parcel.readString();        
 	}
 	
 	public String getName() {
@@ -90,4 +106,44 @@ public class CompleteTextualAggregation {
 	public void setRace(String race) {
 		this.race = race;
 	}
+
+	@Override
+	public int describeContents() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public void writeToParcel(Parcel parcel, int flags) {
+		// TODO Auto-generated method stub
+		parcel.writeString(name);
+		parcel.writeString(type);
+		parcel.writeInt(cost);
+		parcel.writeString(className);
+		parcel.writeString(rarity);
+		parcel.writeString(effect);
+		if(attack!=null)
+			parcel.writeInt(attack);
+		else
+			parcel.writeString(null);
+		if(health!=null)
+			parcel.writeInt(health);
+		else
+			parcel.writeString(null);
+		if(durability!=null)
+			parcel.writeInt(durability);
+		else
+			parcel.writeString(null);
+		parcel.writeString(race);	
+	}
+	
+	public static final Creator<CompleteTextualAggregation> CREATOR = new Creator<CompleteTextualAggregation>() {
+        public CompleteTextualAggregation createFromParcel(Parcel in) {
+            return new CompleteTextualAggregation(in); 
+        }
+
+        public CompleteTextualAggregation[] newArray(int size) {
+            return new CompleteTextualAggregation[size];
+        }
+    };
 }

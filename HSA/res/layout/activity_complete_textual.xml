@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/container_complete_textual"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+	 <TextView
+	     android:id="@+id/textviewName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="1dp"
+        android:paddingRight="1dp"
+        android:paddingTop="1dp"
+        android:paddingBottom="1dp"
+        android:layout_gravity="bottom"
+        android:textSize="20sp"
+        android:background="#55000000"
+        />
+	 
+	 <TextView
+	     android:id="@+id/textviewType"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="1dp"
+        android:paddingRight="1dp"
+        android:paddingTop="1dp"
+        android:paddingBottom="1dp"
+        android:layout_gravity="bottom"
+        android:textSize="20sp"
+        android:background="#55000000"
+        />
+	 
+	 <TextView
+	     android:id="@+id/textviewCost"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="1dp"
+        android:paddingRight="1dp"
+        android:paddingTop="1dp"
+        android:paddingBottom="1dp"
+        android:layout_gravity="bottom"
+        android:textSize="20sp"
+        android:background="#55000000"
+        />
+	 
+	 <TextView
+	     android:id="@+id/textviewClassName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="1dp"
+        android:paddingRight="1dp"
+        android:paddingTop="1dp"
+        android:paddingBottom="1dp"
+        android:layout_gravity="bottom"
+        android:textSize="20sp"
+        android:background="#55000000"
+        />
+	 
+	 <TextView
+	     android:id="@+id/textviewRarity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="1dp"
+        android:paddingRight="1dp"
+        android:paddingTop="1dp"
+        android:paddingBottom="1dp"
+        android:layout_gravity="bottom"
+        android:textSize="20sp"
+        android:background="#55000000"
+        />
+	 
+	 <TextView
+	     android:id="@+id/textviewEffect"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="1dp"
+        android:paddingRight="1dp"
+        android:paddingTop="1dp"
+        android:paddingBottom="1dp"
+        android:layout_gravity="bottom"
+        android:textSize="20sp"
+        android:background="#55000000"
+        />
+	 
+	 <TextView
+	     android:id="@+id/textviewAttack"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="1dp"
+        android:paddingRight="1dp"
+        android:paddingTop="1dp"
+        android:paddingBottom="1dp"
+        android:layout_gravity="bottom"
+        android:textSize="20sp"
+        android:background="#55000000"
+        />
+	 
+	 <TextView
+	     android:id="@+id/textviewHealth"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="1dp"
+        android:paddingRight="1dp"
+        android:paddingTop="1dp"
+        android:paddingBottom="1dp"
+        android:layout_gravity="bottom"
+        android:textSize="20sp"
+        android:background="#55000000"
+        />
+	 
+	 <TextView
+	     android:id="@+id/textviewDurability"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="1dp"
+        android:paddingRight="1dp"
+        android:paddingTop="1dp"
+        android:paddingBottom="1dp"
+        android:layout_gravity="bottom"
+        android:textSize="20sp"
+        android:background="#55000000"
+        />
+	 
+	 <TextView
+	     android:id="@+id/textviewRace"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="1dp"
+        android:paddingRight="1dp"
+        android:paddingTop="1dp"
+        android:paddingBottom="1dp"
+        android:layout_gravity="bottom"
+        android:textSize="20sp"
+        android:background="#55000000"
+        />
+	 
+	 
+</LinearLayout>
