@@ -14,7 +14,7 @@ import com.hsa.contract.DeckEntry;
 import com.hsa.contract.FormationEntry;
 import com.hsa.database.HSADatabaseHelper;
 
-public class SaveManager {
+public class SaveHandler {
 
 	private HSADatabaseHelper dbHelper;
 
@@ -43,7 +43,7 @@ public class SaveManager {
 	
 	private List<Formation> formations = Arrays.asList(formation1, formation2, formation3, formation4);
 	
-	public SaveManager(HSADatabaseHelper dbHelper) {
+	public SaveHandler(HSADatabaseHelper dbHelper) {
 		this.dbHelper = dbHelper;
 	}
 	

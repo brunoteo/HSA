@@ -1,19 +1,21 @@
 package com.hsa;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.ViewPager;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarActivity;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+
 import com.hsa.adapter.TabsPagerAdapter;
 import com.hsa.aggregation.CompleteTextualAggregation;
 import com.hsa.database.HSADatabaseHelper;
-import com.hsa.manager.SaveManager;
-import com.hsa.manager.SearchManager;
 import com.hsa.fragment.SearchFragment;
-import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.ActionBar;
-import android.support.v4.app.FragmentTransaction;
-import android.content.Intent;
-import android.os.Bundle;
-import android.support.v4.view.ViewPager;
-import android.view.Menu;
-import android.view.MenuItem;
+import com.hsa.manager.SaveHandler;
+import com.hsa.manager.SearchHandler;
 
 public class MainActivity extends ActionBarActivity implements
 		ActionBar.TabListener, SearchFragment.OnSearchListener{
@@ -72,17 +74,13 @@ public class MainActivity extends ActionBarActivity implements
         	}
         }
         
-//        SearchFragment firstFragment = new SearchFragment();
-//        getSupportFragmentManager().beginTransaction()
-//        .add(R.id.pager, firstFragment).commit();
-        
         dbHelper = new HSADatabaseHelper(this);
-        SearchManager searchManager = new SearchManager(dbHelper);
+        SearchHandler searchHandler = new SearchHandler(dbHelper);
        //Riempimento database
-        int emptyDB = searchManager.search(null).size();
+        int emptyDB = searchHandler.search(null).size();
         if(emptyDB==0) {
-            SaveManager saveManager = new SaveManager(dbHelper);
-            saveManager.fillDB();
+            SaveHandler saveHandler = new SaveHandler(dbHelper);
+            saveHandler.fillDB();
         }
         
 	}
@@ -92,8 +90,12 @@ public class MainActivity extends ActionBarActivity implements
 	public boolean onCreateOptionsMenu(Menu menu) {
 
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.main, menu);
-		return super.onCreateOptionsMenu(menu);
+//		getMenuInflater().inflate(R.menu.main, menu);
+//		return super.onCreateOptionsMenu(menu);
+		MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main, menu);
+        return super.onCreateOptionsMenu(menu);
+
 	}
 
 	@Override
