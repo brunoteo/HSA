@@ -22,5 +22,7 @@
     <string name="enter_a_name">Enter a name...</string>
     <string name="confirm">Confirm</string>
     <string name="create">Create</string>
-
+	<string name="accept_filter">OK</string>
+	<string name="cancel_filter">Reset</string>
+	
 </resources>
