@@ -1,6 +1,9 @@
-package com.hsa.manager;
+package com.hsa.handler;
 
+import java.security.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map.Entry;
 
@@ -19,9 +22,19 @@ import android.database.sqlite.SQLiteDatabase;
 public class SearchHandler {
 
 	private HSADatabaseHelper dbHelper;
+	private SaveHandler saveHandler;
 	
+	public SaveHandler getSaveHandler() {
+		return saveHandler;
+	}
+
+	public void setSaveHandler(SaveHandler saveHandler) {
+		this.saveHandler = saveHandler;
+	}
+
 	public SearchHandler(HSADatabaseHelper dbHelper) {
 		this.dbHelper = dbHelper;
+		saveHandler = null;
 	}
 	
 	public Card cardRetrievalRequest(String name) {
@@ -232,5 +245,18 @@ public class SearchHandler {
 	    	formation.setOccurrence(Integer.valueOf(Integer.parseInt(cursor.getString(cursor.getColumnIndex(FormationEntry.COLUMN_NAME_OCCURRENCE)))));
 	    }  
 	    return formation;
+	}
+
+	public Deck dataCheck(String name, String className) {
+		
+		if(className != null){
+			List<Deck> decks = decksRequest();
+			for (Deck deck : decks){
+				if(deck.getName()==name) return null;
+			}
+			Deck deck = saveHandler.createNewDeck(name, className);
+			return deck;
+		}
+		return null;
 	}
 }

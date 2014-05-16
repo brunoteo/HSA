@@ -7,7 +7,7 @@ import com.hsa.R;
 import com.hsa.adapter.GraphicalAggregationAdapter;
 import com.hsa.aggregation.CompleteTextualAggregation;
 import com.hsa.aggregation.GraphicalAggregation;
-import com.hsa.manager.ViewHandler;
+import com.hsa.handler.ViewHandler;
 
 import android.app.Activity;
 import android.app.SearchManager;

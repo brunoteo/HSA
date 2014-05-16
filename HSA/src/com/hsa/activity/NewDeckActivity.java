@@ -1,9 +1,14 @@
 package com.hsa.activity;
 
+import com.hsa.MainActivity;
 import com.hsa.R;
+import com.hsa.aggregation.DeckDataAggregation;
+import com.hsa.database.HSADatabaseHelper;
+import com.hsa.handler.ViewHandler;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -23,7 +28,8 @@ public class NewDeckActivity extends ActionBarActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_new_deck); 
+		setContentView(R.layout.activity_new_deck);
+		className = null;
 	}
 	
 	public void onRadioButtonClicked(View view){
@@ -60,8 +66,19 @@ public class NewDeckActivity extends ActionBarActivity {
 	}
 	
 	public void onClickConfirm(View view){
-		Intent intent = new Intent(this, ModifyDeckActivity.class);
-	    EditText editText = (EditText) findViewById(R.id.deck_name);
+	    @SuppressWarnings("unused")
+		EditText editText = (EditText) findViewById(R.id.deck_name);
+	    HSADatabaseHelper dbh = new HSADatabaseHelper(this);
+	    ViewHandler viewHandler = new ViewHandler(dbh);
+	    DeckDataAggregation dda = viewHandler.deckCreationRequest(editText.getText().toString(), className);
+	    	
+	    if(dda != null){
+	    	Intent intent = new Intent(this, ModifyDeckActivity.class);
+	    	intent.putExtra("NewDeck", (Parcelable) dda);
+		    startActivity(intent);
+	    }else{
+	    	
+	    }
 	    //fare i controlli
 //	    String message = editText.getText().toString();
 //	    intent.putExtra(EXTRA_MESSAGE, message);

@@ -27,9 +27,9 @@ import com.hsa.aggregation.GraphicalAggregation;
 import com.hsa.bean.SearchCriterion;
 import com.hsa.database.HSADatabaseHelper;
 import com.hsa.fragment.SearchFragment;
-import com.hsa.manager.SaveHandler;
-import com.hsa.manager.SearchHandler;
-import com.hsa.manager.ViewHandler;
+import com.hsa.handler.SaveHandler;
+import com.hsa.handler.SearchHandler;
+import com.hsa.handler.ViewHandler;
 
 public class MainActivity extends ActionBarActivity implements
 		ActionBar.TabListener, SearchFragment.OnSearchListener{
@@ -90,10 +90,11 @@ public class MainActivity extends ActionBarActivity implements
         
         dbHelper = new HSADatabaseHelper(this);
         SearchHandler searchHandler = new SearchHandler(dbHelper);
+        SaveHandler saveHandler = new SaveHandler(dbHelper);
+        searchHandler.setSaveHandler(saveHandler);
        //Riempimento database
         int emptyDB = searchHandler.search(null).size();
         if(emptyDB==0) {
-            SaveHandler saveHandler = new SaveHandler(dbHelper);
             saveHandler.fillDB();
         }
         
