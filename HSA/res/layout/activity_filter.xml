@@ -18,60 +18,62 @@
 	        android:layout_height="wrap_content"
 	        android:textSize="20sp"
 	        android:textColor="#ff0000"
+	        android:layout_marginTop="3dp"
+	        android:layout_marginLeft="3dp"
 	        android:text="Class:"
 	        />
 	    
 	    <CheckBox
 	        android:id="@+id/chkDruid"
-	        android:layout_width="wrap_content"
+	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
 	        android:text="Druido" />
 	    
 	    <CheckBox
 	        android:id="@+id/chkHunter"
-	        android:layout_width="wrap_content"
+	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
 	        android:text="Hunter" />
 	    
 	    <CheckBox
 	        android:id="@+id/chkMage"
-	        android:layout_width="wrap_content"
+	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
 	        android:text="Mage" />
 	    
 	    <CheckBox
 	        android:id="@+id/chkPaladin"
-	        android:layout_width="wrap_content"
+	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
 	        android:text="Paladin" />
 	    
 	    <CheckBox
 	        android:id="@+id/chkPriest"
-	        android:layout_width="wrap_content"
+	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
 	        android:text="Priest" />
 	    
 	    <CheckBox
 	        android:id="@+id/chkRogue"
-	        android:layout_width="wrap_content"
+	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
 	        android:text="Rogue" />
 	    
 	    <CheckBox
 	        android:id="@+id/chkShaman"
-	        android:layout_width="wrap_content"
+	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
 	        android:text="Shaman" />
 	    
 	    <CheckBox
 	        android:id="@+id/chkWarlock"
-	        android:layout_width="wrap_content"
+	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
 	        android:text="Warlock" />
 	    
 	    <CheckBox
 	        android:id="@+id/chkWarrior"
-	        android:layout_width="wrap_content"
+	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
 	        android:text="Warrior" />
 	    
@@ -83,71 +85,73 @@
 	        android:textSize="20sp"
 	        android:textColor="#ff0000"
 	        android:text="Cost:"
+	        android:layout_marginTop="3dp"
+	        android:layout_marginLeft="3dp"
 	        />
 	    
-	        <CheckBox
+	    <CheckBox
 	        android:id="@+id/chkZero"
-	        android:layout_width="wrap_content"
+	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
 	        android:text="0" />
 	    
 	    <CheckBox
 	        android:id="@+id/chkOne"
-	        android:layout_width="wrap_content"
+	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
-	        android:text="One" />
+	        android:text="1" />
 	    
 	    <CheckBox
 	        android:id="@+id/chkTwo"
-	        android:layout_width="wrap_content"
+	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
 	        android:text="2" />
 	    
 	    <CheckBox
 	        android:id="@+id/chkThree"
-	        android:layout_width="wrap_content"
+	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
 	        android:text="3" />
 	    
 	    <CheckBox
 	        android:id="@+id/chkFour"
-	        android:layout_width="wrap_content"
+	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
 	        android:text="4" />
 	    
 	    <CheckBox
 	        android:id="@+id/chkFive"
-	        android:layout_width="wrap_content"
+	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
 	        android:text="5" />
 	    
 	    <CheckBox
 	        android:id="@+id/chkSix"
-	        android:layout_width="wrap_content"
+	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
-	        android:text="six" />
+	        android:text="6" />
 	    
 	    <CheckBox
 	        android:id="@+id/chkSeven"
-	        android:layout_width="wrap_content"
+	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
-	        android:text="Seven" />
+	        android:text="7" />
 	    
 	    <CheckBox
 	        android:id="@+id/chkEight"
-	        android:layout_width="wrap_content"
+	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
 	        android:text="8" />
 	    
 	    <CheckBox
 	        android:id="@+id/chkNine"
-	        android:layout_width="wrap_content"
+	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
 	        android:text="9" />
 	    
 	    <CheckBox
 	        android:id="@+id/chkTen"
-	        android:layout_width="wrap_content"
+	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
 	        android:text="10" />
 	    
@@ -158,7 +162,39 @@
 	        android:textSize="20sp"
 	        android:textColor="#ff0000"
 	        android:text="Rarity:"
+	        android:layout_marginTop="3dp"
+	        android:layout_marginLeft="3dp"
 	        />
+	    
+	    <CheckBox
+	        android:id="@+id/chkBasic"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:text="Basic" />
+	    
+	    <CheckBox
+	        android:id="@+id/chkCommon"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="Common" />
+	    
+	    <CheckBox
+	        android:id="@+id/chkRare"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="Rare" />
+	    
+	    <CheckBox
+	        android:id="@+id/chkEpic"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:text="Epic" />
+	    
+	    <CheckBox
+	        android:id="@+id/chkLegendary"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:text="Legendary" />
 	    
 	    <TextView 
 	        android:id="@+id/textFilterType"
@@ -167,7 +203,27 @@
 	        android:textSize="20sp"
 	        android:textColor="#ff0000"
 	        android:text="Type:"
+	        android:layout_marginTop="3dp"
+	        android:layout_marginLeft="3dp"
 	        />
+	    
+	    <CheckBox
+	        android:id="@+id/chkMinion"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:text="Minion" />
+	    
+	    <CheckBox
+	        android:id="@+id/chkSpell"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:text="Spell" />
+	    
+	    <CheckBox
+	        android:id="@+id/chkWeapon"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:text="Weapon" />
 	    
 	</LinearLayout>
 </ScrollView>
