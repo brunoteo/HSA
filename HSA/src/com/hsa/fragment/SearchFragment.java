@@ -7,14 +7,19 @@ import com.hsa.R;
 import com.hsa.adapter.GraphicalAggregationAdapter;
 import com.hsa.aggregation.CompleteTextualAggregation;
 import com.hsa.aggregation.GraphicalAggregation;
-import com.hsa.manager.ViewManager;
+import com.hsa.manager.ViewHandler;
 
 import android.app.Activity;
+import android.app.SearchManager;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.MenuItemCompat;
+import android.support.v7.widget.SearchView;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -24,7 +29,7 @@ import android.widget.GridView;
 public class SearchFragment extends Fragment{
 	
 	private OnSearchListener onSearchListener;
-	private ViewManager viewManager;
+	private ViewHandler viewHandler;
 	
 	GridView gridView;
 	
@@ -55,8 +60,8 @@ public class SearchFragment extends Fragment{
 	public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         setHasOptionsMenu(true);
-        viewManager = new ViewManager(((MainActivity) getActivity()).getDbHelper());
-        List<GraphicalAggregation> graphicalsAggregations = viewManager.searchRequest(null, this.getActivity());
+        viewHandler = new ViewHandler(((MainActivity) getActivity()).getDbHelper());
+        List<GraphicalAggregation> graphicalsAggregations = viewHandler.searchRequest(null, this.getActivity());
         viewGraphicsAggregations(graphicalsAggregations);
         
 	}
@@ -66,6 +71,10 @@ public class SearchFragment extends Fragment{
 		// Inflate the menu; this adds items to the action bar if it is present.
 		inflater.inflate(R.menu.search_menu, menu);
 		super.onCreateOptionsMenu(menu, inflater);
+		SearchManager SManager =  (SearchManager) getActivity().getSystemService(Context.SEARCH_SERVICE);
+        MenuItem searchMenuItem = menu.findItem(R.id.search);
+        SearchView searchViewAction = (SearchView) MenuItemCompat.getActionView(searchMenuItem);
+        searchViewAction.setSearchableInfo(SManager.getSearchableInfo(getActivity().getComponentName()));
 		
 	}
 	
@@ -76,7 +85,7 @@ public class SearchFragment extends Fragment{
 
 			@Override
 			public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-				CompleteTextualAggregation completeTextualAggregation = viewManager.completeInfoRequest(graphicalsAggregations.get(position));			
+				CompleteTextualAggregation completeTextualAggregation = viewHandler.completeInfoRequest(graphicalsAggregations.get(position));			
 				onSearchListener.onCardSelected(completeTextualAggregation);
 				return true;
 			}

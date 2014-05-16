@@ -12,20 +12,20 @@ import com.hsa.bean.Card;
 import com.hsa.bean.SearchCriterion;
 import com.hsa.database.HSADatabaseHelper;
 
-public class ViewManager {
+public class ViewHandler {
 	
 	private HSADatabaseHelper dbHelper;
-	private SearchManager searchManager;
+	private SearchHandler searchHandler;
 	private List<GraphicalAggregation> graphicalsAggregations;
 	
-	public ViewManager(HSADatabaseHelper dbHelper) {
+	public ViewHandler(HSADatabaseHelper dbHelper) {
 		this.dbHelper = dbHelper;
 		graphicalsAggregations = new ArrayList<GraphicalAggregation>();
 	}
 	
 	public List<GraphicalAggregation> searchRequest(SearchCriterion criterion, FragmentActivity fragment) {
-		searchManager = new SearchManager(this.dbHelper);	
-		List<Card> cards = searchManager.search(criterion);
+		searchHandler = new SearchHandler(this.dbHelper);	
+		List<Card> cards = searchHandler.search(criterion);
 		for(Card card : cards) {
 			graphicalsAggregations.add(createGraphicalAggregation(card, fragment));
 		}
@@ -34,7 +34,7 @@ public class ViewManager {
 	}
 	
 	public CompleteTextualAggregation completeInfoRequest(GraphicalAggregation graphicalAggregation) {
-		Card card = searchManager.cardRetrievalRequest(graphicalAggregation.getName());
+		Card card = searchHandler.cardRetrievalRequest(graphicalAggregation.getName());
 		CompleteTextualAggregation completeTextualAggregation;
 		completeTextualAggregation = createCompleteTextualAggregation(card);
 		return completeTextualAggregation;

@@ -12,11 +12,11 @@ import com.hsa.database.HSADatabaseHelper;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-public class SearchManager {
+public class SearchHandler {
 
 	private HSADatabaseHelper dbHelper;
 	
-	public SearchManager(HSADatabaseHelper dbHelper) {
+	public SearchHandler(HSADatabaseHelper dbHelper) {
 		this.dbHelper = dbHelper;
 	}
 	
