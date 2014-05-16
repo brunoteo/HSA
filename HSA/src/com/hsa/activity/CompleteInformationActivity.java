@@ -1,5 +1,8 @@
-package com.hsa;
+package com.hsa.activity;
 
+import com.hsa.R;
+import com.hsa.R.id;
+import com.hsa.R.layout;
 import com.hsa.aggregation.CompleteTextualAggregation;
 
 import android.content.Intent;
