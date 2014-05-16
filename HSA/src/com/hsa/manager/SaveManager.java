@@ -7,7 +7,11 @@ import android.content.ContentValues;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.hsa.bean.Card;
+import com.hsa.bean.Deck;
+import com.hsa.bean.Formation;
 import com.hsa.contract.CardEntry;
+import com.hsa.contract.DeckEntry;
+import com.hsa.contract.FormationEntry;
 import com.hsa.database.HSADatabaseHelper;
 
 public class SaveManager {
@@ -27,6 +31,17 @@ public class SaveManager {
 	
 	private List<Card> cards = Arrays.asList(card1, card2, card3, card4, card5, card6, card7, card8, card9, card10);
 	
+	private final Deck deck1 = new Deck("MyDruid", "Druid", "", "2014-05-16 11:30:00");
+	private final Deck deck2 = new Deck("MyHunter", "Hunter", "", "2014-05-16 11:33:26");
+	
+	private List<Deck> decks = Arrays.asList(deck1, deck2);
+	
+	private final Formation formation1 = new Formation("goldshire footman", "MyDruid", 1);
+	private final Formation formation2 = new Formation("ancient of war", "MyDruid", 2);
+	private final Formation formation3 = new Formation("gladiator's longbow", "MyHunter", 1);
+	private final Formation formation4 = new Formation("goldshire footman", "MyHunter", 2);
+	
+	private List<Formation> formations = Arrays.asList(formation1, formation2, formation3, formation4);
 	
 	public SaveManager(HSADatabaseHelper dbHelper) {
 		this.dbHelper = dbHelper;
@@ -35,7 +50,7 @@ public class SaveManager {
 	public void fillDB(){
 		SQLiteDatabase db = dbHelper.getWritableDatabase();
 		
-		for (int i=0; i<cards.size(); i++){
+		for (int i = 0; i < cards.size(); i++){
 			
 			ContentValues values = new ContentValues();
 			//values.put(CardEntry.COLUMN_NAME_ENTRY_ID, cards.get(i).get_id());
@@ -52,6 +67,25 @@ public class SaveManager {
 			values.put(CardEntry.COLUMN_NAME_PATH, cards.get(i).getPath());
 			
 			db.insert(CardEntry.TABLE_NAME, null, values);
+		}
+		
+		for (int i = 0; i < decks.size(); i++){
+			ContentValues values = new ContentValues();
+			values.put(DeckEntry.COLUMN_NAME_NAME, decks.get(i).getName());
+			values.put(DeckEntry.COLUMN_NAME_CLASS, decks.get(i).getClassName());
+			values.put(DeckEntry.COLUMN_NAME_NOTE, decks.get(i).getNote());
+			values.put(DeckEntry.COLUMN_NAME_DATE, decks.get(i).getDate());
+			
+			db.insert(DeckEntry.TABLE_NAME, null, values);
+		}
+		
+		for (int i = 0; i < formations.size(); i++){
+			ContentValues values = new ContentValues();
+			values.put(FormationEntry.COLUMN_NAME_CARD, formations.get(i).getCard());
+			values.put(FormationEntry.COLUMN_NAME_DECK, formations.get(i).getDeck());
+			values.put(FormationEntry.COLUMN_NAME_OCCURRENCE, formations.get(i).getOccurrence());
+			
+			db.insert(FormationEntry.TABLE_NAME, null, values);
 		}
 		db.close();
 		

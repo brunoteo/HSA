@@ -5,5 +5,25 @@
     android:orientation="vertical"
     android:background="#fa6a6a" >
     
+	<LinearLayout
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:background="#fa6a6a"
+	    android:orientation="horizontal" >
+
+	    <Button
+	        android:id="@+id/button1"
+	        android:layout_weight="1"
+	        android:layout_width="0dp"
+	        android:layout_height="wrap_content"
+	        android:text="@string/new_deck" />
+
+	    <Button
+	        android:id="@+id/button2"
+	        android:layout_weight="1"
+	        android:layout_width="0dp"
+	        android:layout_height="wrap_content"
+	        android:text="@string/import_deck" />
+	</LinearLayout>
 
 </LinearLayout>
