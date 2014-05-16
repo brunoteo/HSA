@@ -65,7 +65,7 @@ public class DeckDataAggregationAdapter extends BaseAdapter{
         DeckDataAggregation deckDataAggregation = (DeckDataAggregation)getItem(i);
         
         deckname.setText(deckDataAggregation.getName());
-        deckNumber.setText(Integer.toString(deckDataAggregation.getCardNumber()));
+        deckNumber.setText(Integer.toString(deckDataAggregation.getCardNumber()) + "/30\n");
         deckDate.setText(deckDataAggregation.getDate());
         deckClass.setText(deckDataAggregation.getClassName());
         
