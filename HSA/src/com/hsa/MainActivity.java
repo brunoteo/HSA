@@ -1,5 +1,7 @@
 package com.hsa;
 
+import java.util.List;
+
 import android.app.SearchManager;
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,9 +12,12 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.GridView;
 
+import com.hsa.adapter.GraphicalAggregationAdapter;
 import com.hsa.adapter.TabsPagerAdapter;
 import com.hsa.aggregation.CompleteTextualAggregation;
+import com.hsa.aggregation.GraphicalAggregation;
 import com.hsa.bean.SearchCriterion;
 import com.hsa.database.HSADatabaseHelper;
 import com.hsa.fragment.SearchFragment;
@@ -97,10 +102,23 @@ public class MainActivity extends ActionBarActivity implements
 
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
             String query = intent.getStringExtra(SearchManager.QUERY);
-            //SearchFragment searchFragment = getFragmentManager().findFragmentById(R.id.fragment_container);
+            SearchFragment searchFragment = (SearchFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager + ":" + mViewPager.getCurrentItem());
             ViewHandler viewHandler = new ViewHandler(dbHelper);
             SearchCriterion criterion = new SearchCriterion(query, null);
-            viewHandler.searchRequest(criterion, this);
+            List<GraphicalAggregation> graphicalsAggregations = viewHandler.searchRequest(criterion, this);
+            searchFragment.viewGraphicsAggregations(graphicalsAggregations);
+//            GridView gridView = (GridView) findViewById(R.id.gridview1);
+//            gridView.setAdapter(new GraphicalAggregationAdapter(this, graphicalsAggregations));
+//            String query = intent.getStringExtra(SearchManager.QUERY);
+//            Bundle bundle = new Bundle();
+//            bundle.putString("query", query);
+//            SearchFragment searchFragment = new SearchFragment();
+//            searchFragment.setArguments(bundle);
+//            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+//            transaction.replace(R.id.fragment_container, searchFragment);
+//    		transaction.addToBackStack(null);
+//    		transaction.commit();
+            
         }
     }
 
@@ -108,9 +126,6 @@ public class MainActivity extends ActionBarActivity implements
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 
-		// Inflate the menu; this adds items to the action bar if it is present.
-//		getMenuInflater().inflate(R.menu.main, menu);
-//		return super.onCreateOptionsMenu(menu);
 		MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.main, menu);
         return super.onCreateOptionsMenu(menu);
