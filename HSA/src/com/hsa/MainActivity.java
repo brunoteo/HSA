@@ -4,6 +4,8 @@ import com.hsa.adapter.TabsPagerAdapter;
 import com.hsa.database.HSADatabaseHelper;
 import com.hsa.manager.SaveManager;
 import com.hsa.manager.SearchManager;
+import com.hsa.fragment.CompleteInformationFragment;
+import com.hsa.fragment.SearchFragment;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.FragmentTransaction;
@@ -13,7 +15,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 public class MainActivity extends ActionBarActivity implements
-		ActionBar.TabListener {
+		ActionBar.TabListener, SearchFragment.OnSearchListener{
 
 	private HSADatabaseHelper dbHelper;
 	private TabsPagerAdapter tabsPagerAdapter;
@@ -120,5 +122,20 @@ public class MainActivity extends ActionBarActivity implements
 	@Override
 	public void onTabReselected(ActionBar.Tab tab,
 			FragmentTransaction fragmentTransaction) {
+	}
+
+	@Override
+	public void onCardSelected(int position) {
+//		CompleteInformationFragment completeFragment = (CompleteInformationFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_complete_information);
+//		if (completeFragment != null){
+//			
+//		}else{
+			CompleteInformationFragment newFragment = new CompleteInformationFragment();
+			FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+			
+			transaction.replace(R.id.fragment_complete_information, newFragment);
+			transaction.addToBackStack(null);
+			transaction.commit();
+//		}
 	}
 }

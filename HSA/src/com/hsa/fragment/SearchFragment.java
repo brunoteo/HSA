@@ -9,6 +9,7 @@ import com.hsa.aggregation.CompleteTextualAggregation;
 import com.hsa.aggregation.GraphicalAggregation;
 import com.hsa.manager.ViewManager;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -25,6 +26,8 @@ public class SearchFragment extends Fragment{
 	
 	GridView gridView;
 	private ViewManager viewManager;
+	
+	OnSearchListener onSearchListener;
 
 	@Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -36,13 +39,23 @@ public class SearchFragment extends Fragment{
     }
 	
 	@Override
+	public void onAttach(Activity activity){
+		super.onAttach(activity);
+		try{
+			onSearchListener = (OnSearchListener) activity;
+		}catch(ClassCastException e){
+			throw new ClassCastException(activity.toString());
+		}
+	}
+	
+	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         setHasOptionsMenu(true);
         viewManager = new ViewManager(((MainActivity) getActivity()).getDbHelper());
         List<GraphicalAggregation> graphicalsAggregations = viewManager.searchRequest(null, this.getActivity());
         viewGraphicsAggregations(graphicalsAggregations);
-
+        
 	}
 	
 	@Override
@@ -63,12 +76,17 @@ public class SearchFragment extends Fragment{
 				CompleteTextualAggregation completeTextualAggregation = viewManager.completeInfoRequest(graphicalsAggregations.get(position));
 				CompleteInformationFragment completeFragment = new CompleteInformationFragment();
 				
-				FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();	
-				fragmentTransaction.replace(R.id.fragment_complete_information, completeFragment);
-			    fragmentTransaction.commit();
+				onSearchListener.onCardSelected(position);
+//				FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();	
+//				fragmentTransaction.replace(R.id.fragment_complete_information, completeFragment);
+//			    fragmentTransaction.commit();
 				return true;
 			}
         	
 		});
+	}
+	
+	public interface OnSearchListener{
+		public void onCardSelected(int position);
 	}
 }
