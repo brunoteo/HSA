@@ -28,19 +28,17 @@ public class GraphicalAggregationAdapter extends BaseAdapter{
 	
 	@Override
 	public int getCount() {
-		// TODO Auto-generated method stub
 		return grapichalsAggregations.size();
 	}
 
 	@Override
 	public Object getItem(int i) {
-		// TODO Auto-generated method stub
+
 		return grapichalsAggregations.get(i);
 	}
 
 	@Override
 	public long getItemId(int i) {
-		// TODO Auto-generated method stub
 		return grapichalsAggregations.get(i).getImage();
 	}
 

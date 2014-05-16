@@ -7,5 +7,10 @@
           android:showAsAction="collapseActionView|ifRoom"
           hsa:actionViewClass="android.support.v7.widget.SearchView"
           hsa:showAsAction="always" />
+    
+    <item android:id="@+id/filter"
+          android:title="@string/filter_title"
+          android:icon="@drawable/filter"
+          hsa:showAsAction="always" />
 
 </menu>

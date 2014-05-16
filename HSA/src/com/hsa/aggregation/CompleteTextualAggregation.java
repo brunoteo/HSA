@@ -109,13 +109,11 @@ public class CompleteTextualAggregation implements Parcelable{
 
 	@Override
 	public int describeContents() {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
 	public void writeToParcel(Parcel parcel, int flags) {
-		// TODO Auto-generated method stub
 		parcel.writeString(name);
 		parcel.writeString(type);
 		parcel.writeInt(cost);

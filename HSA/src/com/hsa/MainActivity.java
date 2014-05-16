@@ -107,17 +107,6 @@ public class MainActivity extends ActionBarActivity implements
             SearchCriterion criterion = new SearchCriterion(query, null);
             List<GraphicalAggregation> graphicalsAggregations = viewHandler.searchRequest(criterion, this);
             searchFragment.viewGraphicsAggregations(graphicalsAggregations);
-//            GridView gridView = (GridView) findViewById(R.id.gridview1);
-//            gridView.setAdapter(new GraphicalAggregationAdapter(this, graphicalsAggregations));
-//            String query = intent.getStringExtra(SearchManager.QUERY);
-//            Bundle bundle = new Bundle();
-//            bundle.putString("query", query);
-//            SearchFragment searchFragment = new SearchFragment();
-//            searchFragment.setArguments(bundle);
-//            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-//            transaction.replace(R.id.fragment_container, searchFragment);
-//    		transaction.addToBackStack(null);
-//    		transaction.commit();
             
         }
     }
@@ -138,10 +127,15 @@ public class MainActivity extends ActionBarActivity implements
 		// automatically handle clicks on the Home/Up button, so long
 		// as you specify a parent activity in AndroidManifest.xml.
 		int id = item.getItemId();
-		if (id == R.id.action_settings) {
-			return true;
+		switch(id) {
+			case R.id.action_settings : 
+				return true;
+			case R.id.filter :
+				//TODO chiamare activity
+				return true;
+			default:
+	            return super.onOptionsItemSelected(item);
 		}
-		return super.onOptionsItemSelected(item);
 	}
 
 	@Override

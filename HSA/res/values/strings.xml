@@ -8,6 +8,6 @@
     <string name="search_hint">Enter name</string>
     <string name="new_deck">New Deck</string>
     <string name="import_deck">Import Deck</string>
-    
+    <string name="filter_title">Filter</string>
     
 </resources>
