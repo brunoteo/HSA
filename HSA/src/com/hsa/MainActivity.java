@@ -12,10 +12,14 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.GridView;
 
 import com.hsa.activity.CompleteInformationActivity;
 import com.hsa.activity.FilterActivity;
+import com.hsa.activity.NewDeckActivity;
 import com.hsa.adapter.GraphicalAggregationAdapter;
 import com.hsa.adapter.TabsPagerAdapter;
 import com.hsa.aggregation.CompleteTextualAggregation;
@@ -93,6 +97,20 @@ public class MainActivity extends ActionBarActivity implements
             saveHandler.fillDB();
         }
         
+//        Button button = (Button) findViewById(R.id.buttonNewDeck);
+//
+//        button.setOnClickListener(new OnClickListener() {
+//			@Override
+//			public void onClick(View v) {
+//				Intent intent = new Intent(getApplicationContext(), NewDeckActivity.class); 
+//				startActivity(intent);
+//			}
+//        });
+	}
+	
+	public void onClickND(View v) {
+		Intent intent = new Intent(MainActivity.this, NewDeckActivity.class);
+	    startActivity(intent);
 	}
 	
 	@Override
