@@ -1,0 +1,48 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.hsa.activity.FilterActivity"
+    tools:ignore="MergeRootFrame" >
+    
+    <TextView 
+        android:id="@+id/textFilterClass"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:textColor="#ff0000"
+        android:text="Class"
+        />
+    
+    <TextView 
+        android:id="@+id/textFilterCost"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:textColor="#ff0000"
+        android:text="Cost"
+
+        />
+    
+    <TextView 
+        android:id="@+id/textFilterRarity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:textColor="#ff0000"
+        android:text="Rarity"
+        />
+    
+    <TextView 
+        android:id="@+id/textFilterType"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:textColor="#ff0000"
+        android:text="Type"
+        />
+    
+</LinearLayout>
+

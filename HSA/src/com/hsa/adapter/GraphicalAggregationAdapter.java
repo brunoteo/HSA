@@ -86,10 +86,9 @@ public class GraphicalAggregationAdapter extends BaseAdapter{
          //GraphicalAggregation graphicalAggregation = grapichalsAggregations.get(i);
          
          picture.setImageResource(graphicalAggregation.getImage());
-         if(graphicalAggregation.getOccurence()==0) {
-        	 name.setBackgroundColor(Color.parseColor("#07000000"));
-         } else {
+         if(graphicalAggregation.getOccurence()!=0) {
         	 name.setText(Integer.toString(graphicalAggregation.getOccurence()));
+             name.setBackgroundColor(Color.parseColor("#55000000"));
          }
          
          return v;
