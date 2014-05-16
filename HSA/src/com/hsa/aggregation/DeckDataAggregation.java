@@ -2,16 +2,16 @@ package com.hsa.aggregation;
 
 public class DeckDataAggregation {
 
-	private String nome;
+	private String name;
 	private String className;
 	private int cardNumber;
 	private String date;
 	
-	public String getNome() {
-		return nome;
+	public String getName() {
+		return name;
 	}
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setName(String name) {
+		this.name = name;
 	}
 	public String getClassName() {
 		return className;
