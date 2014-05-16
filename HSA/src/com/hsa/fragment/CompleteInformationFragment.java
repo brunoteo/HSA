@@ -1,6 +1,7 @@
 package com.hsa.fragment;
 
 import com.hsa.R;
+import com.hsa.aggregation.CompleteTextualAggregation;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -14,8 +15,11 @@ public class CompleteInformationFragment extends Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
  
-        View rootView = inflater.inflate(R.layout.fragment_complete_information, container, false);
-               
+        View rootView = inflater.inflate(R.layout.fragment_complete_information, container, false);              
         return rootView;
     }
+	
+	public void setText(CompleteTextualAggregation completeAggregation) {
+		
+	}
 }

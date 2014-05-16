@@ -12,7 +12,6 @@ import com.hsa.manager.ViewManager;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -24,11 +23,15 @@ import android.widget.GridView;
 
 public class SearchFragment extends Fragment{
 	
-	GridView gridView;
+	private OnSearchListener onSearchListener;
 	private ViewManager viewManager;
 	
-	OnSearchListener onSearchListener;
-
+	GridView gridView;
+	
+	public interface OnSearchListener{
+		public void onCardSelected(CompleteTextualAggregation completeAggregation);
+	}
+	
 	@Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
@@ -73,20 +76,12 @@ public class SearchFragment extends Fragment{
 
 			@Override
 			public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-				CompleteTextualAggregation completeTextualAggregation = viewManager.completeInfoRequest(graphicalsAggregations.get(position));
-				CompleteInformationFragment completeFragment = new CompleteInformationFragment();
-				
-				onSearchListener.onCardSelected(position);
-//				FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();	
-//				fragmentTransaction.replace(R.id.fragment_complete_information, completeFragment);
-//			    fragmentTransaction.commit();
+				CompleteTextualAggregation completeTextualAggregation = viewManager.completeInfoRequest(graphicalsAggregations.get(position));			
+				onSearchListener.onCardSelected(completeTextualAggregation);
 				return true;
 			}
         	
 		});
 	}
-	
-	public interface OnSearchListener{
-		public void onCardSelected(int position);
-	}
+
 }

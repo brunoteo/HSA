@@ -1,6 +1,7 @@
 package com.hsa;
 
 import com.hsa.adapter.TabsPagerAdapter;
+import com.hsa.aggregation.CompleteTextualAggregation;
 import com.hsa.database.HSADatabaseHelper;
 import com.hsa.manager.SaveManager;
 import com.hsa.manager.SearchManager;
@@ -27,10 +28,6 @@ public class MainActivity extends ActionBarActivity implements
 
 	public void setDbHelper(HSADatabaseHelper dbHelper) {
 		this.dbHelper = dbHelper;
-	}
-	
-	public HSADatabaseHelper getHSADatabaseHelper() {
-		return this.dbHelper;
 	}
 
 	private String[] tabs = { "News", "Search", "Decks" };
@@ -74,6 +71,7 @@ public class MainActivity extends ActionBarActivity implements
                         .setTabListener(this));
         	}
         }
+        
         dbHelper = new HSADatabaseHelper(this);
         SearchManager searchManager = new SearchManager(dbHelper);
        //Riempimento database
@@ -125,17 +123,12 @@ public class MainActivity extends ActionBarActivity implements
 	}
 
 	@Override
-	public void onCardSelected(int position) {
-//		CompleteInformationFragment completeFragment = (CompleteInformationFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_complete_information);
-//		if (completeFragment != null){
-//			
-//		}else{
-			CompleteInformationFragment newFragment = new CompleteInformationFragment();
-			FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+	public void onCardSelected(CompleteTextualAggregation completeAggregation) {
+		CompleteInformationFragment newFragment = new CompleteInformationFragment();
+		FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 			
-			transaction.replace(R.id.fragment_complete_information, newFragment);
-			transaction.addToBackStack(null);
-			transaction.commit();
-//		}
+		transaction.replace(R.id.fragment_container, newFragment);
+		transaction.addToBackStack(null);
+		transaction.commit();
 	}
 }
