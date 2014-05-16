@@ -15,6 +15,7 @@ import android.view.MenuItem;
 import android.widget.GridView;
 
 import com.hsa.activity.CompleteInformationActivity;
+import com.hsa.activity.FilterActivity;
 import com.hsa.adapter.GraphicalAggregationAdapter;
 import com.hsa.adapter.TabsPagerAdapter;
 import com.hsa.aggregation.CompleteTextualAggregation;
@@ -132,7 +133,8 @@ public class MainActivity extends ActionBarActivity implements
 			case R.id.action_settings : 
 				return true;
 			case R.id.filter :
-				//TODO chiamare activity
+				Intent intent = new Intent(this, FilterActivity.class);
+				startActivity(intent);
 				return true;
 			default:
 	            return super.onOptionsItemSelected(item);
