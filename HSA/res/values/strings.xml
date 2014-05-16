@@ -10,5 +10,7 @@
     <string name="new_deck">New Deck</string>
     <string name="import_deck">Import Deck</string>
     <string name="filter_title">Filter</string>
-
+	<string name="accept_filter">OK</string>
+	<string name="cancel_filter">Reset</string>
+	
 </resources>
