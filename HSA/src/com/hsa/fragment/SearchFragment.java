@@ -12,6 +12,7 @@ import com.hsa.manager.ViewHandler;
 import android.app.Activity;
 import android.app.SearchManager;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.MenuItemCompat;
@@ -77,6 +78,7 @@ public class SearchFragment extends Fragment{
         searchViewAction.setSearchableInfo(SManager.getSearchableInfo(getActivity().getComponentName()));
 		
 	}
+
 	
 	public void viewGraphicsAggregations(final List<GraphicalAggregation> graphicalsAggregations) {
 		gridView = (GridView) getView().findViewById(R.id.gridview1);

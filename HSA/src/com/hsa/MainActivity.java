@@ -1,5 +1,6 @@
 package com.hsa;
 
+import android.app.SearchManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
@@ -12,10 +13,12 @@ import android.view.MenuItem;
 
 import com.hsa.adapter.TabsPagerAdapter;
 import com.hsa.aggregation.CompleteTextualAggregation;
+import com.hsa.bean.SearchCriterion;
 import com.hsa.database.HSADatabaseHelper;
 import com.hsa.fragment.SearchFragment;
 import com.hsa.manager.SaveHandler;
 import com.hsa.manager.SearchHandler;
+import com.hsa.manager.ViewHandler;
 
 public class MainActivity extends ActionBarActivity implements
 		ActionBar.TabListener, SearchFragment.OnSearchListener{
@@ -85,6 +88,22 @@ public class MainActivity extends ActionBarActivity implements
         
 	}
 	
+	@Override
+	protected void onNewIntent(Intent intent) {
+		handleIntent(intent);
+	}
+
+	private void handleIntent(Intent intent) {
+
+        if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
+            String query = intent.getStringExtra(SearchManager.QUERY);
+            //SearchFragment searchFragment = getFragmentManager().findFragmentById(R.id.fragment_container);
+            ViewHandler viewHandler = new ViewHandler(dbHelper);
+            SearchCriterion criterion = new SearchCriterion(query, null);
+            viewHandler.searchRequest(criterion, this);
+        }
+    }
+
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
