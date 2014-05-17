@@ -78,6 +78,7 @@ public class NewDeckActivity extends ActionBarActivity{
 	
 	public void onClickConfirm(View view){
 		EditText editText = (EditText) findViewById(R.id.deck_name);
+		//FIXME fare la creazione
 	    DeckDataAggregation dda = viewHandler.deckCreationRequest(editText.getText().toString(), className);
 	    	
 //	    if(dda != null){
