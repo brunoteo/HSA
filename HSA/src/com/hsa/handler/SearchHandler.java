@@ -23,7 +23,16 @@ public class SearchHandler {
 
 	private HSADatabaseHelper dbHelper;
 	private SaveHandler saveHandler;
+	private ViewHandler viewHandler;
 	
+	public ViewHandler getViewHandler() {
+		return viewHandler;
+	}
+
+	public void setViewHandler(ViewHandler viewHandler) {
+		this.viewHandler = viewHandler;
+	}
+
 	public SaveHandler getSaveHandler() {
 		return saveHandler;
 	}
@@ -35,6 +44,7 @@ public class SearchHandler {
 	public SearchHandler(HSADatabaseHelper dbHelper) {
 		this.dbHelper = dbHelper;
 		saveHandler = null;
+		viewHandler = null;
 	}
 	
 	public Card cardRetrievalRequest(String name) {

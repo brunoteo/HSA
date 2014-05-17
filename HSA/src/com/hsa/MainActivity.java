@@ -37,6 +37,9 @@ public class MainActivity extends ActionBarActivity implements
 	private HSADatabaseHelper dbHelper;
 	private TabsPagerAdapter tabsPagerAdapter;
 	private ViewPager mViewPager;
+	private SaveHandler saveHandler;
+	private SearchHandler searchHandler;
+	private ViewHandler viewHandler;
 	
 	public HSADatabaseHelper getDbHelper() {
 		return dbHelper;
@@ -89,26 +92,45 @@ public class MainActivity extends ActionBarActivity implements
         }
         
         dbHelper = new HSADatabaseHelper(this);
-        SearchHandler searchHandler = new SearchHandler(dbHelper);
-        SaveHandler saveHandler = new SaveHandler(dbHelper);
+        searchHandler = new SearchHandler(dbHelper);
+        saveHandler = new SaveHandler(dbHelper);
+        viewHandler = new ViewHandler(dbHelper);
         searchHandler.setSaveHandler(saveHandler);
+        searchHandler.setViewHandler(viewHandler);
+        viewHandler.setSearchHandler(searchHandler);
+        viewHandler.setSaveHandler(saveHandler);
        //Riempimento database
         int emptyDB = searchHandler.search(null).size();
         if(emptyDB==0) {
             saveHandler.fillDB();
         }
         
-//        Button button = (Button) findViewById(R.id.buttonNewDeck);
-//
-//        button.setOnClickListener(new OnClickListener() {
-//			@Override
-//			public void onClick(View v) {
-//				Intent intent = new Intent(getApplicationContext(), NewDeckActivity.class); 
-//				startActivity(intent);
-//			}
-//        });
 	}
 	
+	public SaveHandler getSaveHandler() {
+		return saveHandler;
+	}
+
+	public void setSaveHandler(SaveHandler saveHandler) {
+		this.saveHandler = saveHandler;
+	}
+
+	public SearchHandler getSearchHandler() {
+		return searchHandler;
+	}
+
+	public void setSearchHandler(SearchHandler searchHandler) {
+		this.searchHandler = searchHandler;
+	}
+
+	public ViewHandler getViewHandler() {
+		return viewHandler;
+	}
+
+	public void setViewHandler(ViewHandler viewHandler) {
+		this.viewHandler = viewHandler;
+	}
+
 	public void onClickND(View v) {
 		Intent intent = new Intent(MainActivity.this, NewDeckActivity.class);
 	    startActivity(intent);

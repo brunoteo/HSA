@@ -74,7 +74,7 @@ public class NewDeckActivity extends ActionBarActivity {
 	    	
 	    if(dda != null){
 	    	Intent intent = new Intent(this, ModifyDeckActivity.class);
-	    	intent.putExtra("NewDeck", (Parcelable) dda);
+	    	intent.putExtra("NewDeck", dda);
 		    startActivity(intent);
 	    }else{
 	    	
@@ -100,8 +100,6 @@ public class NewDeckActivity extends ActionBarActivity {
 	 
 				// find the radiobutton by returned id
 				radioClassButton = (RadioButton) findViewById(selectedId);
-	 
-				Toast.makeText(getApplicationContext(), radioClassButton.getText(), Toast.LENGTH_SHORT).show();
 	 
 			}
 
