@@ -1,6 +1,8 @@
-package com.hsa.manager;
+package com.hsa.handler;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import android.content.Context;
@@ -83,5 +85,17 @@ public class ViewHandler {
 		}
 		dda.setCardNumber(n);
 		return dda;
+	}
+	
+	public DeckDataAggregation deckCreationRequest(String name, String className){
+		Deck newDeck = searchHandler.dataCheck(name, className);
+		if(newDeck == null) return null;
+		
+        DeckDataAggregation dda = new DeckDataAggregation();
+        dda.setName(newDeck.getName());
+        dda.setClassName(newDeck.getClassName());
+        dda.setCardNumber(0);
+        dda.setDate(newDeck.getDate());
+        return dda;
 	}
 }

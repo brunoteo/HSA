@@ -10,6 +10,18 @@
     <string name="new_deck">New Deck</string>
     <string name="import_deck">Import Deck</string>
     <string name="filter_title">Filter</string>
+    <string name="druid">Druid</string>
+    <string name="hunter">Hunter</string>
+    <string name="mage">Mage</string>
+    <string name="paladin">Paladin</string>
+    <string name="priest">Priest</string>
+    <string name="rogue">Rogue</string>
+    <string name="shaman">Shaman</string>
+    <string name="warlock">Warlock</string>
+    <string name="warrior">Warrior</string>
+    <string name="enter_a_name">Enter a name...</string>
+    <string name="confirm">Confirm</string>
+    <string name="create">Create</string>
 	<string name="accept_filter">OK</string>
 	<string name="cancel_filter">Reset</string>
 	

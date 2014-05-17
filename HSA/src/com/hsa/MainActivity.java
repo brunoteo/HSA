@@ -12,10 +12,14 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.GridView;
 
 import com.hsa.activity.CompleteInformationActivity;
 import com.hsa.activity.FilterActivity;
+import com.hsa.activity.NewDeckActivity;
 import com.hsa.adapter.GraphicalAggregationAdapter;
 import com.hsa.adapter.TabsPagerAdapter;
 import com.hsa.aggregation.CompleteTextualAggregation;
@@ -23,9 +27,9 @@ import com.hsa.aggregation.GraphicalAggregation;
 import com.hsa.bean.SearchCriterion;
 import com.hsa.database.HSADatabaseHelper;
 import com.hsa.fragment.SearchFragment;
-import com.hsa.manager.SaveHandler;
-import com.hsa.manager.SearchHandler;
-import com.hsa.manager.ViewHandler;
+import com.hsa.handler.SaveHandler;
+import com.hsa.handler.SearchHandler;
+import com.hsa.handler.ViewHandler;
 
 public class MainActivity extends ActionBarActivity implements
 		ActionBar.TabListener, SearchFragment.OnSearchListener{
@@ -86,13 +90,28 @@ public class MainActivity extends ActionBarActivity implements
         
         dbHelper = new HSADatabaseHelper(this);
         SearchHandler searchHandler = new SearchHandler(dbHelper);
+        SaveHandler saveHandler = new SaveHandler(dbHelper);
+        searchHandler.setSaveHandler(saveHandler);
        //Riempimento database
         int emptyDB = searchHandler.search(null).size();
         if(emptyDB==0) {
-            SaveHandler saveHandler = new SaveHandler(dbHelper);
             saveHandler.fillDB();
         }
         
+//        Button button = (Button) findViewById(R.id.buttonNewDeck);
+//
+//        button.setOnClickListener(new OnClickListener() {
+//			@Override
+//			public void onClick(View v) {
+//				Intent intent = new Intent(getApplicationContext(), NewDeckActivity.class); 
+//				startActivity(intent);
+//			}
+//        });
+	}
+	
+	public void onClickND(View v) {
+		Intent intent = new Intent(MainActivity.this, NewDeckActivity.class);
+	    startActivity(intent);
 	}
 	
 	@Override

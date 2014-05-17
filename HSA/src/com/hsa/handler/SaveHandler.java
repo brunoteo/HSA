@@ -1,6 +1,8 @@
-package com.hsa.manager;
+package com.hsa.handler;
 
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 import android.content.ContentValues;
@@ -89,6 +91,21 @@ public class SaveHandler {
 		}
 		db.close();
 		
+	}
+	
+	public Deck createNewDeck(String name, String className){
+		SimpleDateFormat s = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+		String format = s.format(new Date());
+		Deck deck = new Deck(name, className, "", format);
+		ContentValues values = new ContentValues();
+		values.put(DeckEntry.COLUMN_NAME_NAME, deck.getName());
+		values.put(DeckEntry.COLUMN_NAME_CLASS, deck.getClassName());
+		values.put(DeckEntry.COLUMN_NAME_NOTE, deck.getNote());
+		values.put(DeckEntry.COLUMN_NAME_DATE, deck.getDate());
+		SQLiteDatabase db = dbHelper.getWritableDatabase();
+		
+		db.insert(DeckEntry.TABLE_NAME, null, values);
+		return deck;
 	}
 	
 }
