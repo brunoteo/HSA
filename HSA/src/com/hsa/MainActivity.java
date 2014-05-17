@@ -131,7 +131,13 @@ public class MainActivity extends ActionBarActivity implements
 	}
 
 	public void onClickND(View v) {
+		Bundle bundle = new Bundle();
+		bundle.putSerializable("ViewHandler", viewHandler);
 		Intent intent = new Intent(MainActivity.this, NewDeckActivity.class);
+		intent.putExtra("ViewHandler", bundle);
+//		intent.putExtra("SearchHandler", searchHandler);
+//		intent.putExtra("SaveHandler", saveHandler);
+//		intent.putExtra("ViewHandler", viewHandler);
 	    startActivity(intent);
 	}
 	
