@@ -48,7 +48,8 @@ public class ViewHandler {
 	}
 	
 	public List<GraphicalAggregation> searchRequest(SearchCriterion criterion, FragmentActivity fragment) {
-//		searchHandler = new SearchHandler(this.dbHelper);	
+//		searchHandler = new SearchHandler(this.dbHelper);
+		graphicalsAggregations.clear();
 		List<Card> cards = searchHandler.search(criterion);
 		for(Card card : cards) {
 			graphicalsAggregations.add(createGraphicalAggregation(card, fragment));
