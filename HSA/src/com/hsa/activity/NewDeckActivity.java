@@ -66,31 +66,31 @@ public class NewDeckActivity extends ActionBarActivity {
 	}
 	
 	public void onClickConfirm(View view){
-	    @SuppressWarnings("unused")
-		EditText editText = (EditText) findViewById(R.id.deck_name);
-	    ViewHandler viewHandler = MainActivity.viewHandler;
-	    DeckDataAggregation dda = viewHandler.deckCreationRequest(editText.getText().toString(), className);
-	    	
-	    if(dda != null){
-	    	Intent intent = new Intent(this, ModifyDeckActivity.class);
-	    	intent.putExtra("NewDeck", dda);
-		    startActivity(intent);
-	    }else{
-	    	AlertDialog.Builder dlgAlert  = new AlertDialog.Builder(this);
-
-            dlgAlert.setMessage("Error: Name already exist or name empty or class empty.");
-            dlgAlert.setTitle("Error Message...");
-            dlgAlert.setPositiveButton("OK", null);
-            dlgAlert.setCancelable(true);
-            dlgAlert.create().show();
-            
-            dlgAlert.setPositiveButton("Ok",
-                    new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-
-                        }
-                    });
-            }
+//	    @SuppressWarnings("unused")
+//		EditText editText = (EditText) findViewById(R.id.deck_name);
+//	    ViewHandler viewHandler = new ViewHandler(new HSADatabaseHelper());
+//	    DeckDataAggregation dda = viewHandler.deckCreationRequest(editText.getText().toString(), className);
+//	    	
+//	    if(dda != null){
+//	    	Intent intent = new Intent(this, ModifyDeckActivity.class);
+//	    	intent.putExtra("NewDeck", dda);
+//		    startActivity(intent);
+//	    }else{
+//	    	AlertDialog.Builder dlgAlert  = new AlertDialog.Builder(this);
+//
+//            dlgAlert.setMessage("Error: Name already exist or name empty or class empty.");
+//            dlgAlert.setTitle("Error Message...");
+//            dlgAlert.setPositiveButton("OK", null);
+//            dlgAlert.setCancelable(true);
+//            dlgAlert.create().show();
+//            
+//            dlgAlert.setPositiveButton("Ok",
+//                    new DialogInterface.OnClickListener() {
+//                        public void onClick(DialogInterface dialog, int which) {
+//
+//                        }
+//                    });
+//            }
 	    }
 	    //fare i controlli
 //	    String message = editText.getText().toString();

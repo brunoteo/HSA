@@ -265,7 +265,7 @@ public class SearchHandler {
 			for (Deck deck : decks){
 				if(deck.getName()==name) return null;
 			}
-			Deck deck = MainActivity.saveHandler.createNewDeck(name, className);
+			Deck deck = saveHandler.createNewDeck(name, className);
 			return deck;
 		}
 		return null;

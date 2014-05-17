@@ -13,8 +13,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.Button;
 import com.hsa.activity.CompleteInformationActivity;
 import com.hsa.activity.FilterActivity;
 import com.hsa.activity.NewDeckActivity;
@@ -31,12 +29,13 @@ import com.hsa.handler.ViewHandler;
 public class MainActivity extends ActionBarActivity implements
 		ActionBar.TabListener, SearchFragment.OnSearchListener{
 
-	public static HSADatabaseHelper dbHelper;
+	private HSADatabaseHelper dbHelper;
 	private TabsPagerAdapter tabsPagerAdapter;
 	private ViewPager mViewPager;
-	public static SaveHandler saveHandler;
-	public static SearchHandler searchHandler;
-	public static ViewHandler viewHandler;
+
+	private SaveHandler saveHandler;
+	private SearchHandler searchHandler;
+	private ViewHandler viewHandler;
 	
 	public HSADatabaseHelper getDbHelper() {
 		return dbHelper;
