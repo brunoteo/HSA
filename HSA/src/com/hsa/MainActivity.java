@@ -12,11 +12,8 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.GridView;
-
 import com.hsa.activity.CompleteInformationActivity;
 import com.hsa.activity.FilterActivity;
-import com.hsa.adapter.GraphicalAggregationAdapter;
 import com.hsa.adapter.TabsPagerAdapter;
 import com.hsa.aggregation.CompleteTextualAggregation;
 import com.hsa.aggregation.GraphicalAggregation;
@@ -100,6 +97,16 @@ public class MainActivity extends ActionBarActivity implements
 		handleIntent(intent);
 	}
 
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+	    if (requestCode == 1) {
+	        if(resultCode == RESULT_OK){
+	            List<String> filters = data.getStringArrayListExtra("result");
+	            System.out.println("Pippo");
+	        }
+	    }
+	}
+	
 	private void handleIntent(Intent intent) {
 
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
@@ -134,7 +141,7 @@ public class MainActivity extends ActionBarActivity implements
 				return true;
 			case R.id.filter :
 				Intent intent = new Intent(this, FilterActivity.class);
-				startActivity(intent);
+				startActivityForResult(intent, 1);
 				return true;
 			default:
 	            return super.onOptionsItemSelected(item);
@@ -162,11 +169,6 @@ public class MainActivity extends ActionBarActivity implements
 	@Override
 	public void onCardSelected(CompleteTextualAggregation completeAggregation) {
 		
-//		CompleteInformationFragment newFragment = new CompleteInformationFragment();
-//		FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();		
-//		transaction.replace(R.id.fragment_container, newFragment);
-//		transaction.addToBackStack(null);
-//		transaction.commit();
 		Intent intent = new Intent(this, CompleteInformationActivity.class);
 		intent.putExtra("completeAggregation", completeAggregation);
 		startActivity(intent);
