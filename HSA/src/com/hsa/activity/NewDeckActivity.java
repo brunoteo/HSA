@@ -6,6 +6,8 @@ import com.hsa.MainActivity;
 import com.hsa.R;
 import com.hsa.aggregation.DeckDataAggregation;
 import com.hsa.database.HSADatabaseHelper;
+import com.hsa.fragment.SearchFragment;
+import com.hsa.handler.SaveHandler;
 import com.hsa.handler.ViewHandler;
 
 import android.app.AlertDialog;
@@ -26,12 +28,19 @@ public class NewDeckActivity extends ActionBarActivity{
     private RadioButton radioClassButton;
     private Button onClickConfirm;
     private String className;
+    private ViewHandler viewHandler;
+    private SaveHandler saveHandler;
+    private SearchFragment searchFragment;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_new_deck);
-		className = null;
+		Intent intent = getIntent();
+	    viewHandler = (ViewHandler) intent.getSerializableExtra("ViewHandler");
+	    saveHandler = (SaveHandler) intent.getSerializableExtra("SaveHandler");
+	    searchFragment = (SearchFragment) intent.getSerializableExtra("SearchFragment");
+//		className = null;
 	}
 	
 	public void onRadioButtonClicked(View view){
@@ -68,9 +77,7 @@ public class NewDeckActivity extends ActionBarActivity{
 	}
 	
 	public void onClickConfirm(View view){
-	    @SuppressWarnings("unused")
 		EditText editText = (EditText) findViewById(R.id.deck_name);
-	    ViewHandler viewHandler = (ViewHandler) getIntent().getExtras().getSerializable("ViewHandler");
 	    DeckDataAggregation dda = viewHandler.deckCreationRequest(editText.getText().toString(), className);
 	    	
 //	    if(dda != null){

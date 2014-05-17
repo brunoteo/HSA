@@ -1,7 +1,5 @@
 package com.hsa.activity;
 
-import java.io.Serializable;
-
 import com.hsa.R;
 
 import android.content.Intent;
@@ -16,5 +14,6 @@ public class ModifyDeckActivity extends ActionBarActivity{
 		setContentView(R.layout.activity_modify_deck);
 		
 		Intent intent = getIntent();
+		//TODO finire il modificaCarteMazzo
 	}
 }
