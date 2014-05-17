@@ -1,12 +1,11 @@
 package com.hsa.activity;
 
 import com.hsa.R;
-import com.hsa.aggregation.DeckDataAggregation;
-import com.hsa.fragment.SearchFragment;
+import com.hsa.database.HSADatabaseHelper;
 import com.hsa.handler.SaveHandler;
+import com.hsa.handler.SearchHandler;
 import com.hsa.handler.ViewHandler;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
@@ -22,18 +21,20 @@ public class NewDeckActivity extends ActionBarActivity{
     private RadioButton radioClassButton;
     private Button onClickConfirm;
     private String className;
+    
+    private HSADatabaseHelper dbHelper;
     private ViewHandler viewHandler;
     private SaveHandler saveHandler;
-    private SearchFragment searchFragment;
+    private SearchHandler searchHandler;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_new_deck);
-		Intent intent = getIntent();
-//	    viewHandler = (ViewHandler) intent.getSerializableExtra("ViewHandler");
-	    saveHandler = (SaveHandler) intent.getSerializableExtra("SaveHandler");
-//	    searchFragment = (SearchFragment) intent.getSerializableExtra("SearchFragment");
+		dbHelper = HSADatabaseHelper.getInstance(this);
+	    viewHandler = ViewHandler.getInstance(dbHelper);
+	    saveHandler = SaveHandler.getInstance(dbHelper);
+	    searchHandler = SearchHandler.getInstance(dbHelper);
 //		className = null;
 	}
 	
