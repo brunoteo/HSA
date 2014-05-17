@@ -31,12 +31,12 @@ import com.hsa.handler.ViewHandler;
 public class MainActivity extends ActionBarActivity implements
 		ActionBar.TabListener, SearchFragment.OnSearchListener{
 
-	private HSADatabaseHelper dbHelper;
+	public static HSADatabaseHelper dbHelper;
 	private TabsPagerAdapter tabsPagerAdapter;
 	private ViewPager mViewPager;
-	private SaveHandler saveHandler;
-	private SearchHandler searchHandler;
-	private ViewHandler viewHandler;
+	private static SaveHandler saveHandler;
+	private static SearchHandler searchHandler;
+	public static ViewHandler viewHandler;
 	
 	public HSADatabaseHelper getDbHelper() {
 		return dbHelper;

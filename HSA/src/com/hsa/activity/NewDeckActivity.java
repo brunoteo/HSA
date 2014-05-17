@@ -10,7 +10,6 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -18,7 +17,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.Toast;
 
 public class NewDeckActivity extends ActionBarActivity {
 
@@ -70,8 +68,7 @@ public class NewDeckActivity extends ActionBarActivity {
 	public void onClickConfirm(View view){
 	    @SuppressWarnings("unused")
 		EditText editText = (EditText) findViewById(R.id.deck_name);
-	    HSADatabaseHelper dbh = new HSADatabaseHelper(this);
-	    ViewHandler viewHandler = new ViewHandler(dbh);
+	    ViewHandler viewHandler = MainActivity.viewHandler;
 	    DeckDataAggregation dda = viewHandler.deckCreationRequest(editText.getText().toString(), className);
 	    	
 	    if(dda != null){

@@ -1,8 +1,6 @@
 package com.hsa.handler;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import android.content.Context;
@@ -19,7 +17,6 @@ import com.hsa.aggregation.DeckDataAggregation;
 
 public class ViewHandler {
 	
-	private HSADatabaseHelper dbHelper;
 	private SearchHandler searchHandler;
 	private SaveHandler saveHandler;
 	public SaveHandler getSaveHandler() {
@@ -42,13 +39,13 @@ public class ViewHandler {
 	}
 
 	public ViewHandler(HSADatabaseHelper dbHelper) {
-		this.dbHelper = dbHelper;
 		graphicalsAggregations = new ArrayList<GraphicalAggregation>();
 		deckDataAggregations = new ArrayList<DeckDataAggregation>();
 	}
 	
 	public List<GraphicalAggregation> searchRequest(SearchCriterion criterion, FragmentActivity fragment) {
-//		searchHandler = new SearchHandler(this.dbHelper);	
+//		searchHandler = new SearchHandler(this.dbHelper);
+		graphicalsAggregations.clear();
 		List<Card> cards = searchHandler.search(criterion);
 		for(Card card : cards) {
 			graphicalsAggregations.add(createGraphicalAggregation(card, fragment));
