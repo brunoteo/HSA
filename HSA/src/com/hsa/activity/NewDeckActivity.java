@@ -6,6 +6,8 @@ import com.hsa.aggregation.DeckDataAggregation;
 import com.hsa.database.HSADatabaseHelper;
 import com.hsa.handler.ViewHandler;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
@@ -77,13 +79,27 @@ public class NewDeckActivity extends ActionBarActivity {
 	    	intent.putExtra("NewDeck", dda);
 		    startActivity(intent);
 	    }else{
-	    	
+	    	AlertDialog.Builder dlgAlert  = new AlertDialog.Builder(this);
+
+            dlgAlert.setMessage("Error: Name already exist or name empty or class empty.");
+            dlgAlert.setTitle("Error Message...");
+            dlgAlert.setPositiveButton("OK", null);
+            dlgAlert.setCancelable(true);
+            dlgAlert.create().show();
+            
+            dlgAlert.setPositiveButton("Ok",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+
+                        }
+                    });
+            }
 	    }
 	    //fare i controlli
 //	    String message = editText.getText().toString();
 //	    intent.putExtra(EXTRA_MESSAGE, message);
 //	    startActivity(intent);
-	}
+
 	
 	public void addListenerOnButton() {
 		 

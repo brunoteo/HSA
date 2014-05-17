@@ -4,25 +4,15 @@ import java.util.List;
 
 import com.hsa.MainActivity;
 import com.hsa.R;
-import com.hsa.activity.NewDeckActivity;
 import com.hsa.adapter.DeckDataAggregationAdapter;
-import com.hsa.adapter.GraphicalAggregationAdapter;
-import com.hsa.aggregation.CompleteTextualAggregation;
 import com.hsa.aggregation.DeckDataAggregation;
-import com.hsa.aggregation.GraphicalAggregation;
-import com.hsa.fragment.SearchFragment.OnSearchListener;
 import com.hsa.handler.ViewHandler;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.GridView;
-import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ListView;
 
 public class DecksFragment extends Fragment{
