@@ -62,7 +62,7 @@ public class SearchFragment extends Fragment{
         super.onActivityCreated(savedInstanceState);
         setHasOptionsMenu(true);
 //        viewHandler = ((MainActivity) getActivity()).getViewHandler();
-        viewHandler = MainActivity.viewHandler;
+        viewHandler = ((MainActivity) getActivity()).getViewHandler();
 //        viewHandler = new ViewHandler(((MainActivity) getActivity()).getDbHelper());
         List<GraphicalAggregation> graphicalsAggregations = viewHandler.searchRequest(null, this.getActivity());
         viewGraphicsAggregations(graphicalsAggregations);

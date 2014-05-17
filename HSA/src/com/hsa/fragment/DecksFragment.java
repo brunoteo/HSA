@@ -34,7 +34,7 @@ public class DecksFragment extends Fragment{
 	public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         setHasOptionsMenu(true);
-        viewHandler = MainActivity.viewHandler;
+        viewHandler = ((MainActivity) getActivity()).getViewHandler();
 //        viewHandler = new ViewHandler(((MainActivity) getActivity()).getDbHelper());
         List<DeckDataAggregation> deckDataAggregations = viewHandler.decksRequest(this.getActivity());
         viewDeckDataggregations(deckDataAggregations);
