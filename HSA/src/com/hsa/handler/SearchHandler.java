@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map.Entry;
 
+import com.hsa.MainActivity;
 import com.hsa.bean.Card;
 import com.hsa.bean.Deck;
 import com.hsa.bean.Formation;
@@ -264,7 +265,7 @@ public class SearchHandler {
 			for (Deck deck : decks){
 				if(deck.getName()==name) return null;
 			}
-			Deck deck = saveHandler.createNewDeck(name, className);
+			Deck deck = MainActivity.saveHandler.createNewDeck(name, className);
 			return deck;
 		}
 		return null;

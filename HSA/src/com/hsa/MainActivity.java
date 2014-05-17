@@ -34,8 +34,8 @@ public class MainActivity extends ActionBarActivity implements
 	public static HSADatabaseHelper dbHelper;
 	private TabsPagerAdapter tabsPagerAdapter;
 	private ViewPager mViewPager;
-	private static SaveHandler saveHandler;
-	private static SearchHandler searchHandler;
+	public static SaveHandler saveHandler;
+	public static SearchHandler searchHandler;
 	public static ViewHandler viewHandler;
 	
 	public HSADatabaseHelper getDbHelper() {
