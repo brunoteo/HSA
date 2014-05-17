@@ -1,17 +1,11 @@
 package com.hsa.activity;
 
-import java.io.Serializable;
-
-import com.hsa.MainActivity;
 import com.hsa.R;
 import com.hsa.aggregation.DeckDataAggregation;
-import com.hsa.database.HSADatabaseHelper;
 import com.hsa.fragment.SearchFragment;
 import com.hsa.handler.SaveHandler;
 import com.hsa.handler.ViewHandler;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -37,9 +31,9 @@ public class NewDeckActivity extends ActionBarActivity{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_new_deck);
 		Intent intent = getIntent();
-	    viewHandler = (ViewHandler) intent.getSerializableExtra("ViewHandler");
+//	    viewHandler = (ViewHandler) intent.getSerializableExtra("ViewHandler");
 	    saveHandler = (SaveHandler) intent.getSerializableExtra("SaveHandler");
-	    searchFragment = (SearchFragment) intent.getSerializableExtra("SearchFragment");
+//	    searchFragment = (SearchFragment) intent.getSerializableExtra("SearchFragment");
 //		className = null;
 	}
 	
@@ -79,7 +73,7 @@ public class NewDeckActivity extends ActionBarActivity{
 	public void onClickConfirm(View view){
 		EditText editText = (EditText) findViewById(R.id.deck_name);
 		//FIXME fare la creazione
-	    DeckDataAggregation dda = viewHandler.deckCreationRequest(editText.getText().toString(), className);
+//	    DeckDataAggregation dda = viewHandler.deckCreationRequest(editText.getText().toString(), className);
 	    	
 //	    if(dda != null){
 //	    	Intent intent = new Intent(this, ModifyDeckActivity.class);

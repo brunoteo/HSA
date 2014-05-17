@@ -96,7 +96,7 @@ public class MainActivity extends ActionBarActivity implements
         dbHelper = new HSADatabaseHelper(this);
         searchHandler = new SearchHandler(dbHelper);
         saveHandler = new SaveHandler(dbHelper);
-        viewHandler = new ViewHandler(dbHelper);
+        viewHandler = new ViewHandler();
         searchHandler.setSaveHandler(saveHandler);
         searchHandler.setViewHandler(viewHandler);
         viewHandler.setSearchHandler(searchHandler);
@@ -135,9 +135,9 @@ public class MainActivity extends ActionBarActivity implements
 
 	public void onClickND(View v) {
 		Intent intent = new Intent(MainActivity.this, NewDeckActivity.class);
-		intent.putExtra("ViewHandler", viewHandler);
+//		intent.putExtra("ViewHandler", viewHandler);
 		intent.putExtra("SaveHandler", saveHandler);
-		intent.putExtra("SearchHandler", searchHandler);
+//		intent.putExtra("SearchHandler", searchHandler);
 	    startActivity(intent);
 	}
 	

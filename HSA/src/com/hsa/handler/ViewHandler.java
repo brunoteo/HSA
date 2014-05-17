@@ -13,7 +13,6 @@ import com.hsa.bean.Card;
 import com.hsa.bean.Deck;
 import com.hsa.bean.Formation;
 import com.hsa.bean.SearchCriterion;
-import com.hsa.database.HSADatabaseHelper;
 import com.hsa.aggregation.DeckDataAggregation;
 
 public class ViewHandler implements Serializable{
@@ -43,9 +42,7 @@ public class ViewHandler implements Serializable{
 	}
 
 	//FIXME si potrebbe togliere dbHelper
-	public ViewHandler(HSADatabaseHelper dbHelper) {
-
-	}
+	public ViewHandler() { }
 	
 	public List<GraphicalAggregation> searchRequest(SearchCriterion criterion, FragmentActivity fragment) {
 //		searchHandler = new SearchHandler(this.dbHelper);
