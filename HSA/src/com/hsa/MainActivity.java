@@ -154,7 +154,6 @@ public class MainActivity extends ActionBarActivity implements
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
             String query = intent.getStringExtra(SearchManager.QUERY);
             SearchFragment searchFragment = (SearchFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager + ":" + mViewPager.getCurrentItem());
-            ViewHandler viewHandler = new ViewHandler(dbHelper);
             SearchCriterion criterion = new SearchCriterion(query, null);
             List<GraphicalAggregation> graphicalsAggregations = viewHandler.searchRequest(criterion, this);
             searchFragment.viewGraphicsAggregations(graphicalsAggregations);
