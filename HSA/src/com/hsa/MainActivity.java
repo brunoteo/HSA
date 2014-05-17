@@ -15,19 +15,22 @@ import android.view.MenuItem;
 import android.view.View;
 import com.hsa.activity.CompleteInformationActivity;
 import com.hsa.activity.FilterActivity;
+import com.hsa.activity.ModifyDeckActivity;
 import com.hsa.activity.NewDeckActivity;
 import com.hsa.adapter.TabsPagerAdapter;
 import com.hsa.aggregation.CompleteTextualAggregation;
+import com.hsa.aggregation.DeckDataAggregation;
 import com.hsa.aggregation.GraphicalAggregation;
 import com.hsa.bean.SearchCriterion;
 import com.hsa.database.HSADatabaseHelper;
 import com.hsa.fragment.SearchFragment;
+import com.hsa.fragment.DecksFragment;
 import com.hsa.handler.SaveHandler;
 import com.hsa.handler.SearchHandler;
 import com.hsa.handler.ViewHandler;
 
 public class MainActivity extends ActionBarActivity implements
-		ActionBar.TabListener, SearchFragment.OnSearchListener{
+		ActionBar.TabListener, SearchFragment.OnSearchListener, DecksFragment.OnDecksListener{
 
 	private HSADatabaseHelper dbHelper;
 	private TabsPagerAdapter tabsPagerAdapter;
@@ -142,6 +145,7 @@ public class MainActivity extends ActionBarActivity implements
 	    if (requestCode == 1) {
 	        if(resultCode == RESULT_OK){
 	            List<String> filters = data.getStringArrayListExtra("result");
+	            //TODO fare la ricerca per filtri
 	            System.out.println("Pippo");
 	        }
 	    }
@@ -212,5 +216,14 @@ public class MainActivity extends ActionBarActivity implements
 		intent.putExtra("completeAggregation", completeAggregation);
 		startActivity(intent);
 
+	}
+
+	@Override
+	public void onDeckSelected(DeckDataAggregation deckDataAggregation) {
+		
+		Intent intent = new Intent(this, ModifyDeckActivity.class);
+		intent.putExtra("deckDataAggregation", deckDataAggregation);
+		startActivity(intent);
+		
 	}
 }

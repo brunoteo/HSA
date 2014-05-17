@@ -12,7 +12,6 @@ import com.hsa.handler.ViewHandler;
 import android.app.Activity;
 import android.app.SearchManager;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.MenuItemCompat;
@@ -61,9 +60,7 @@ public class SearchFragment extends Fragment{
 	public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         setHasOptionsMenu(true);
-//        viewHandler = ((MainActivity) getActivity()).getViewHandler();
         viewHandler = ((MainActivity) getActivity()).getViewHandler();
-//        viewHandler = new ViewHandler(((MainActivity) getActivity()).getDbHelper());
         List<GraphicalAggregation> graphicalsAggregations = viewHandler.searchRequest(null, this.getActivity());
         viewGraphicsAggregations(graphicalsAggregations);
         
