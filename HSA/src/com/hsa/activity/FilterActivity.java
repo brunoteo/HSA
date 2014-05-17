@@ -50,32 +50,7 @@ public class FilterActivity extends ActionBarActivity {
 	}
 	
 	public void addListenerOnButtons() {
-		
-//		chkDruid = (CheckBox) findViewById(R.id.chkDruid);
-//		chkHunter = (CheckBox) findViewById(R.id.chkHunter);
-//		chkMage = (CheckBox) findViewById(R.id.chkMage);
-//		chkPaladin = (CheckBox) findViewById(R.id.chkPaladin);
-//		chkPriest = (CheckBox) findViewById(R.id.chkPriest);
-//		chkRogue = (CheckBox) findViewById(R.id.chkRogue);
-//		chkShaman = (CheckBox) findViewById(R.id.chkShaman);
-//		chkWarlock = (CheckBox) findViewById(R.id.chkWarlock);
-//		chkWarrior = (CheckBox) findViewById(R.id.chkWarrior);
-//		chkZero = (CheckBox) findViewById(R.id.chkZero);
-//		chkOne = (CheckBox) findViewById(R.id.chkOne);
-//		chkTwo = (CheckBox) findViewById(R.id.chkTwo);
-//		chkThree = (CheckBox) findViewById(R.id.chkThree);
-//		chkFour = (CheckBox) findViewById(R.id.chkFour);
-//		chkFive = (CheckBox) findViewById(R.id.chkFive);
-//		chkSix = (CheckBox) findViewById(R.id.chkSix);
-//		chkSeven = (CheckBox) findViewById(R.id.chkSeven);
-//		chkBasic = (CheckBox) findViewById(R.id.chkBasic);
-//		chkCommon = (CheckBox) findViewById(R.id.chkCommon);
-//		chkRare = (CheckBox) findViewById(R.id.chkRare);
-//		chkEpic = (CheckBox) findViewById(R.id.chkEpic);
-//		chkLegendary = (CheckBox) findViewById(R.id.chkLegendary);
-//		chkMinion = (CheckBox) findViewById(R.id.chkMinion);
-//		chkSpell = (CheckBox) findViewById(R.id.chkSpell);
-//		chkWeapon = (CheckBox) findViewById(R.id.chkWeapon);
+
 		checkboxes.add((CheckBox) findViewById(R.id.chkDruid));
 		checkboxes.add((CheckBox) findViewById(R.id.chkHunter));
 		checkboxes.add((CheckBox) findViewById(R.id.chkMage));
