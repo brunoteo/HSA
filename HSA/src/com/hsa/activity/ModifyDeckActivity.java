@@ -1,5 +1,7 @@
 package com.hsa.activity;
 
+import java.io.Serializable;
+
 import com.hsa.R;
 
 import android.os.Bundle;

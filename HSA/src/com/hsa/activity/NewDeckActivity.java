@@ -1,5 +1,7 @@
 package com.hsa.activity;
 
+import java.io.Serializable;
+
 import com.hsa.MainActivity;
 import com.hsa.R;
 import com.hsa.aggregation.DeckDataAggregation;
@@ -18,7 +20,7 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
-public class NewDeckActivity extends ActionBarActivity {
+public class NewDeckActivity extends ActionBarActivity{
 
 	private RadioGroup radioClass;
     private RadioButton radioClassButton;
@@ -66,14 +68,17 @@ public class NewDeckActivity extends ActionBarActivity {
 	}
 	
 	public void onClickConfirm(View view){
-//	    @SuppressWarnings("unused")
-//		EditText editText = (EditText) findViewById(R.id.deck_name);
-//	    ViewHandler viewHandler = new ViewHandler(new HSADatabaseHelper());
-//	    DeckDataAggregation dda = viewHandler.deckCreationRequest(editText.getText().toString(), className);
-//	    	
+	    @SuppressWarnings("unused")
+		EditText editText = (EditText) findViewById(R.id.deck_name);
+	    ViewHandler viewHandler = (ViewHandler) getIntent().getExtras().getSerializable("ViewHandler");
+	    DeckDataAggregation dda = viewHandler.deckCreationRequest(editText.getText().toString(), className);
+	    	
 //	    if(dda != null){
 //	    	Intent intent = new Intent(this, ModifyDeckActivity.class);
 //	    	intent.putExtra("NewDeck", dda);
+//	    	intent.putExtra("SearchHandler", getIntent().getSerializableExtra("SearchHandler"));
+//	    	intent.putExtra("ViewHandler", viewHandler);
+//	    	intent.putExtra("SaveHandler", getIntent().getSerializableExtra("SaveHandler"));
 //		    startActivity(intent);
 //	    }else{
 //	    	AlertDialog.Builder dlgAlert  = new AlertDialog.Builder(this);

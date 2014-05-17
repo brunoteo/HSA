@@ -1,10 +1,16 @@
 package com.hsa.aggregation;
 
+import java.io.Serializable;
+
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class DeckDataAggregation implements Parcelable{
+public class DeckDataAggregation implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String name;
 	private String className;
 	private int cardNumber;
@@ -33,18 +39,6 @@ public class DeckDataAggregation implements Parcelable{
 	}
 	public void setDate(String date) {
 		this.date = date;
-	}
-	@Override
-	public int describeContents() {
-		return 0;
-	}
-	@Override
-	public void writeToParcel(Parcel dest, int flags) {
-		dest.writeString(name);
-		dest.writeString(className);
-		dest.writeInt(cardNumber);
-		dest.writeString(date);
-		
 	}
 	
 }

@@ -1,5 +1,6 @@
 package com.hsa.handler;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,8 +16,12 @@ import com.hsa.bean.SearchCriterion;
 import com.hsa.database.HSADatabaseHelper;
 import com.hsa.aggregation.DeckDataAggregation;
 
-public class ViewHandler {
+public class ViewHandler implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private SearchHandler searchHandler;
 	private SaveHandler saveHandler;
 	public SaveHandler getSaveHandler() {

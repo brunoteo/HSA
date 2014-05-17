@@ -1,5 +1,6 @@
 package com.hsa.handler;
 
+import java.io.Serializable;
 import java.security.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -20,8 +21,12 @@ import com.hsa.database.HSADatabaseHelper;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-public class SearchHandler {
+public class SearchHandler implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private HSADatabaseHelper dbHelper;
 	private SaveHandler saveHandler;
 	private ViewHandler viewHandler;
