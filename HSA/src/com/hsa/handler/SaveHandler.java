@@ -24,6 +24,7 @@ public class SaveHandler{
 	
 	private static SaveHandler saveInstance;
 
+
 	private HSADatabaseHelper dbHelper;
 	
 	public static SaveHandler getInstance(HSADatabaseHelper dbHelper) {

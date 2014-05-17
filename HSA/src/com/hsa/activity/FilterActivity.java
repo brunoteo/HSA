@@ -68,6 +68,11 @@ public class FilterActivity extends ActionBarActivity {
 		checkboxes.add((CheckBox) findViewById(R.id.chkFive));
 		checkboxes.add((CheckBox) findViewById(R.id.chkSix));
 		checkboxes.add((CheckBox) findViewById(R.id.chkSeven));
+		checkboxes.add((CheckBox) findViewById(R.id.chkEight));
+		checkboxes.add((CheckBox) findViewById(R.id.chkNine));
+		checkboxes.add((CheckBox) findViewById(R.id.chkTen));
+		checkboxes.add((CheckBox) findViewById(R.id.chkTwelve));
+		checkboxes.add((CheckBox) findViewById(R.id.chkTwenty));
 		checkboxes.add((CheckBox) findViewById(R.id.chkBasic));
 		checkboxes.add((CheckBox) findViewById(R.id.chkCommon));
 		checkboxes.add((CheckBox) findViewById(R.id.chkRare));
@@ -84,7 +89,7 @@ public class FilterActivity extends ActionBarActivity {
 			@Override
 			public void onClick(View v) {
 				for(CheckBox checkBox : checkboxes) {
-					checkBox.setChecked(false);
+					checkBox.setChecked(false); // TODO settare gli arraylist a vuoti quando saranno fatti
 				}
 			}
 		});
@@ -95,14 +100,56 @@ public class FilterActivity extends ActionBarActivity {
 			
 			@Override
 			public void onClick(View v) {
-				ArrayList<String> filters = new ArrayList<String>();
+				ArrayList<String> classFilters = new ArrayList<String>();
+				ArrayList<String> costFilters = new ArrayList<String>();
+				ArrayList<String> rarityFilters = new ArrayList<String>();
+				ArrayList<String> typeFilters = new ArrayList<String>();
 				for(CheckBox checkBox : checkboxes) {
+					String verifica = checkBox.getText().toString();
 					if(checkBox.isChecked())
-						filters.add(checkBox.getText().toString());
+						if(checkBox.getText().toString().equals("Druid") ||
+								checkBox.getText().toString().equals("Hunter") ||
+								checkBox.getText().toString().equals("Mage") ||
+								checkBox.getText().toString().equals("Paladin") ||
+								checkBox.getText().toString().equals("Priest") ||
+								checkBox.getText().toString().equals("Rogue") ||
+								checkBox.getText().toString().equals("Shaman") ||
+								checkBox.getText().toString().equals("Warlock") ||
+								checkBox.getText().toString().equals("Warrior")){
+							classFilters.add(checkBox.getText().toString());
+						}else if(checkBox.getText().toString().equals("Basic") ||
+								checkBox.getText().toString().equals("Common") ||
+								checkBox.getText().toString().equals("Rare") ||
+								checkBox.getText().toString().equals("Rare") ||
+								checkBox.getText().toString().equals("Epic") ||
+								checkBox.getText().toString().equals("Legendary")){
+							rarityFilters.add(checkBox.getText().toString());
+						}else if(checkBox.getText().toString().equals("0") ||
+								checkBox.getText().toString().equals("1") ||
+								checkBox.getText().toString().equals("2") ||
+								checkBox.getText().toString().equals("3") ||
+								checkBox.getText().toString().equals("4") ||
+								checkBox.getText().toString().equals("5") ||
+								checkBox.getText().toString().equals("6") ||
+								checkBox.getText().toString().equals("7") ||
+								checkBox.getText().toString().equals("8") ||
+								checkBox.getText().toString().equals("9") ||
+								checkBox.getText().toString().equals("10") ||
+								checkBox.getText().toString().equals("12") ||
+								checkBox.getText().toString().equals("20")){
+							costFilters.add(checkBox.getText().toString());
+						}else{
+							typeFilters.add(checkBox.getText().toString());
+						}
+						
 				}
 				
 				Intent returnIntent = new Intent();
-				returnIntent.putStringArrayListExtra("result", filters);
+				returnIntent.putStringArrayListExtra("classResult", classFilters);
+				returnIntent.putStringArrayListExtra("costResult", costFilters);
+				returnIntent.putStringArrayListExtra("rarityResult", rarityFilters);
+				returnIntent.putStringArrayListExtra("typeResult", typeFilters);
+				
 				setResult(RESULT_OK,returnIntent);
 				finish();
 			}

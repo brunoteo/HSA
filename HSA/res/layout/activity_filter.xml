@@ -160,7 +160,37 @@
 		        android:id="@+id/chkSeven"
 		        android:layout_width="match_parent"
 		        android:layout_height="wrap_content"
-		        android:text="7+" />
+		        android:text="7" />
+		    
+		    <CheckBox
+		        android:id="@+id/chkEight"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:text="8" />
+		    
+		    <CheckBox
+		        android:id="@+id/chkNine"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:text="9" />
+		    
+		    <CheckBox
+		        android:id="@+id/chkTen"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:text="10" />
+		    
+		    <CheckBox
+		        android:id="@+id/chkTwelve"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:text="12" />
+		    
+		    <CheckBox
+		        android:id="@+id/chkTwenty"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:text="20" />
 		    
 		    <TextView 
 		        android:id="@+id/textFilterRarity"
