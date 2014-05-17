@@ -42,6 +42,11 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.hsa.MainActivity" />
         </activity>
+        <activity
+	        android:name="com.hsa.activity.NewDeckActivity"
+	        android:label="@string/new_deck"
+	        android:parentActivityName="com.hsa.MainActivity">          
+		</activity>
     </application>
 
 </manifest>

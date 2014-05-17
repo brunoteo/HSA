@@ -1,6 +1,8 @@
-package com.hsa.manager;
+package com.hsa.handler;
 
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 import android.content.ContentValues;
@@ -17,6 +19,7 @@ import com.hsa.database.HSADatabaseHelper;
 public class SaveHandler {
 
 	private HSADatabaseHelper dbHelper;
+	
 
 	private final Card card1 = new Card("goldshire footman", "Minion", 1, "Basic", "Taunt.", "Neutral", 1, 2, null, null, "goldshire_footman");
 	private final Card card2 = new Card("inner fire", "Spell", 1, "Common", "Change a minion's Attack to be equal to its Health.", "Priest", null, null, null, null, "inner_fire");
@@ -89,6 +92,21 @@ public class SaveHandler {
 		}
 		db.close();
 		
+	}
+	
+	public Deck createNewDeck(String name, String className){
+		SimpleDateFormat s = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+		String format = s.format(new Date());
+		Deck deck = new Deck(name, className, "", format);
+		ContentValues values = new ContentValues();
+		values.put(DeckEntry.COLUMN_NAME_NAME, deck.getName());
+		values.put(DeckEntry.COLUMN_NAME_CLASS, deck.getClassName());
+		values.put(DeckEntry.COLUMN_NAME_NOTE, deck.getNote());
+		values.put(DeckEntry.COLUMN_NAME_DATE, deck.getDate());
+		SQLiteDatabase db = dbHelper.getWritableDatabase();
+		
+		db.insert(DeckEntry.TABLE_NAME, null, values);
+		return deck;
 	}
 	
 }

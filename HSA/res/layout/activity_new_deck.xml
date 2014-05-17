@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/container"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    
+    <EditText android:id="@+id/deck_name"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:hint="@string/enter_a_name" />
+
+	<ScrollView
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content" >
+		    
+		<RadioGroup
+		    android:id="@+id/radioClass"
+		    android:layout_width="fill_parent"
+		    android:layout_height="wrap_content"
+		    android:layout_marginTop="10dp"
+		    android:orientation="vertical">
+		    <RadioButton android:id="@+id/radio_druid"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:text="@string/druid"
+		        android:layout_marginTop="10dp"
+		        android:onClick="onRadioButtonClicked"/>
+		    <RadioButton android:id="@+id/radio_hunter"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:text="@string/hunter"
+		        android:layout_marginTop="10dp"
+		        android:onClick="onRadioButtonClicked"/>
+		    <RadioButton android:id="@+id/radio_mage"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:text="@string/mage"
+		        android:layout_marginTop="10dp"
+		        android:onClick="onRadioButtonClicked"/>
+		    <RadioButton android:id="@+id/radio_paladin"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:text="@string/paladin"
+		        android:layout_marginTop="10dp"
+		        android:onClick="onRadioButtonClicked"/>
+		    <RadioButton android:id="@+id/radio_priest"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:text="@string/priest"
+		        android:layout_marginTop="10dp"
+		        android:onClick="onRadioButtonClicked"/>
+		    <RadioButton android:id="@+id/radio_rogue"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:text="@string/rogue"
+		        android:layout_marginTop="10dp"
+		        android:onClick="onRadioButtonClicked"/>
+		    <RadioButton android:id="@+id/radio_shaman"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:text="@string/shaman"
+		        android:layout_marginTop="10dp"
+		        android:onClick="onRadioButtonClicked"/>
+		    <RadioButton android:id="@+id/radio_warlock"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:text="@string/warlock"
+		        android:layout_marginTop="10dp"
+		        android:onClick="onRadioButtonClicked"/>
+		    <RadioButton android:id="@+id/radio_warrior"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:text="@string/warrior"
+		        android:layout_marginTop="10dp"
+		        android:onClick="onRadioButtonClicked"/>
+		</RadioGroup>
+	</ScrollView>
+	<Button
+		 android:id="@+id/buttonConfirm"
+		 android:layout_width="match_parent"
+		 android:layout_height="wrap_content"
+		 android:layout_marginTop="20dp"
+		 android:text="@string/create"
+		 android:layout_gravity="bottom"
+		 android:onClick="onClickConfirm" />
+</LinearLayout>

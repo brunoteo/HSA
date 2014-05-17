@@ -1,6 +1,8 @@
-package com.hsa.manager;
+package com.hsa.handler;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import android.content.Context;
@@ -19,9 +21,26 @@ public class ViewHandler {
 	
 	private HSADatabaseHelper dbHelper;
 	private SearchHandler searchHandler;
+	private SaveHandler saveHandler;
+	public SaveHandler getSaveHandler() {
+		return saveHandler;
+	}
+
+	public void setSaveHandler(SaveHandler saveHandler) {
+		this.saveHandler = saveHandler;
+	}
+
 	private List<GraphicalAggregation> graphicalsAggregations;
 	private List<DeckDataAggregation> deckDataAggregations;
 	
+	public SearchHandler getSearchHandler() {
+		return searchHandler;
+	}
+
+	public void setSearchHandler(SearchHandler searchHandler) {
+		this.searchHandler = searchHandler;
+	}
+
 	public ViewHandler(HSADatabaseHelper dbHelper) {
 		this.dbHelper = dbHelper;
 		graphicalsAggregations = new ArrayList<GraphicalAggregation>();
@@ -29,7 +48,7 @@ public class ViewHandler {
 	}
 	
 	public List<GraphicalAggregation> searchRequest(SearchCriterion criterion, FragmentActivity fragment) {
-		searchHandler = new SearchHandler(this.dbHelper);	
+//		searchHandler = new SearchHandler(this.dbHelper);	
 		List<Card> cards = searchHandler.search(criterion);
 		for(Card card : cards) {
 			graphicalsAggregations.add(createGraphicalAggregation(card, fragment));
@@ -39,7 +58,7 @@ public class ViewHandler {
 	}
 	
 	public List<DeckDataAggregation> decksRequest(FragmentActivity fragment) {
-		searchHandler = new SearchHandler(this.dbHelper);
+//		searchHandler = new SearchHandler(this.dbHelper);
 		List<Deck> decks = searchHandler.decksRequest();
 		for(Deck deck : decks){
 			DeckDataAggregation dda = createDeckDataAggregation(deck, fragment);
@@ -75,7 +94,7 @@ public class ViewHandler {
 		dda.setName(deck.getName());
 		dda.setClassName(deck.getClassName());
 		dda.setDate(deck.getDate());
-		searchHandler = new SearchHandler(this.dbHelper);
+//		searchHandler = new SearchHandler(this.dbHelper);
 		List<Formation> formations = searchHandler.formationsRequest(deck.getName());
 		int n = 0;
 		for(int i = 0; i<formations.size();i++){
@@ -83,5 +102,17 @@ public class ViewHandler {
 		}
 		dda.setCardNumber(n);
 		return dda;
+	}
+	
+	public DeckDataAggregation deckCreationRequest(String name, String className){
+		Deck newDeck = searchHandler.dataCheck(name, className);
+		if(newDeck == null) return null;
+		
+        DeckDataAggregation dda = new DeckDataAggregation();
+        dda.setName(newDeck.getName());
+        dda.setClassName(newDeck.getClassName());
+        dda.setCardNumber(0);
+        dda.setDate(newDeck.getDate());
+        return dda;
 	}
 }

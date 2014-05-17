@@ -76,7 +76,6 @@ public class FilterActivity extends ActionBarActivity {
 //		chkMinion = (CheckBox) findViewById(R.id.chkMinion);
 //		chkSpell = (CheckBox) findViewById(R.id.chkSpell);
 //		chkWeapon = (CheckBox) findViewById(R.id.chkWeapon);
-		
 		checkboxes.add((CheckBox) findViewById(R.id.chkDruid));
 		checkboxes.add((CheckBox) findViewById(R.id.chkHunter));
 		checkboxes.add((CheckBox) findViewById(R.id.chkMage));

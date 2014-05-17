@@ -12,17 +12,21 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 import com.hsa.activity.CompleteInformationActivity;
 import com.hsa.activity.FilterActivity;
+import com.hsa.activity.NewDeckActivity;
 import com.hsa.adapter.TabsPagerAdapter;
 import com.hsa.aggregation.CompleteTextualAggregation;
 import com.hsa.aggregation.GraphicalAggregation;
 import com.hsa.bean.SearchCriterion;
 import com.hsa.database.HSADatabaseHelper;
 import com.hsa.fragment.SearchFragment;
-import com.hsa.manager.SaveHandler;
-import com.hsa.manager.SearchHandler;
-import com.hsa.manager.ViewHandler;
+import com.hsa.handler.SaveHandler;
+import com.hsa.handler.SearchHandler;
+import com.hsa.handler.ViewHandler;
 
 public class MainActivity extends ActionBarActivity implements
 		ActionBar.TabListener, SearchFragment.OnSearchListener{
@@ -30,6 +34,9 @@ public class MainActivity extends ActionBarActivity implements
 	private HSADatabaseHelper dbHelper;
 	private TabsPagerAdapter tabsPagerAdapter;
 	private ViewPager mViewPager;
+	private SaveHandler saveHandler;
+	private SearchHandler searchHandler;
+	private ViewHandler viewHandler;
 	
 	public HSADatabaseHelper getDbHelper() {
 		return dbHelper;
@@ -82,20 +89,55 @@ public class MainActivity extends ActionBarActivity implements
         }
         
         dbHelper = new HSADatabaseHelper(this);
-        SearchHandler searchHandler = new SearchHandler(dbHelper);
+        searchHandler = new SearchHandler(dbHelper);
+        saveHandler = new SaveHandler(dbHelper);
+        viewHandler = new ViewHandler(dbHelper);
+        searchHandler.setSaveHandler(saveHandler);
+        searchHandler.setViewHandler(viewHandler);
+        viewHandler.setSearchHandler(searchHandler);
+        viewHandler.setSaveHandler(saveHandler);
        //Riempimento database
         int emptyDB = searchHandler.search(null).size();
         if(emptyDB==0) {
-            SaveHandler saveHandler = new SaveHandler(dbHelper);
             saveHandler.fillDB();
         }
         
+	}
+	
+	public SaveHandler getSaveHandler() {
+		return saveHandler;
+	}
+
+	public void setSaveHandler(SaveHandler saveHandler) {
+		this.saveHandler = saveHandler;
+	}
+
+	public SearchHandler getSearchHandler() {
+		return searchHandler;
+	}
+
+	public void setSearchHandler(SearchHandler searchHandler) {
+		this.searchHandler = searchHandler;
+	}
+
+	public ViewHandler getViewHandler() {
+		return viewHandler;
+	}
+
+	public void setViewHandler(ViewHandler viewHandler) {
+		this.viewHandler = viewHandler;
+	}
+
+	public void onClickND(View v) {
+		Intent intent = new Intent(MainActivity.this, NewDeckActivity.class);
+	    startActivity(intent);
 	}
 	
 	@Override
 	protected void onNewIntent(Intent intent) {
 		handleIntent(intent);
 	}
+	
 
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
@@ -106,7 +148,7 @@ public class MainActivity extends ActionBarActivity implements
 	        }
 	    }
 	}
-	
+
 	private void handleIntent(Intent intent) {
 
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
