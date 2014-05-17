@@ -4,23 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.hsa.R;
-import com.hsa.R.id;
-import com.hsa.R.layout;
-import com.hsa.R.menu;
-
 import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.ActionBar;
-import android.support.v4.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.os.Build;
 
 public class FilterActivity extends ActionBarActivity {
 
@@ -84,7 +76,6 @@ public class FilterActivity extends ActionBarActivity {
 //		chkMinion = (CheckBox) findViewById(R.id.chkMinion);
 //		chkSpell = (CheckBox) findViewById(R.id.chkSpell);
 //		chkWeapon = (CheckBox) findViewById(R.id.chkWeapon);
-		
 		checkboxes.add((CheckBox) findViewById(R.id.chkDruid));
 		checkboxes.add((CheckBox) findViewById(R.id.chkHunter));
 		checkboxes.add((CheckBox) findViewById(R.id.chkMage));
@@ -120,6 +111,25 @@ public class FilterActivity extends ActionBarActivity {
 				for(CheckBox checkBox : checkboxes) {
 					checkBox.setChecked(false);
 				}
+			}
+		});
+		
+		btnAccept = (Button) findViewById(R.id.buttonAcceptFilter);
+		
+		btnAccept.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				ArrayList<String> filters = new ArrayList<String>();
+				for(CheckBox checkBox : checkboxes) {
+					if(checkBox.isChecked())
+						filters.add(checkBox.getText().toString());
+				}
+				
+				Intent returnIntent = new Intent();
+				returnIntent.putStringArrayListExtra("result", filters);
+				setResult(RESULT_OK,returnIntent);
+				finish();
 			}
 		});
 		

@@ -140,6 +140,16 @@ public class MainActivity extends ActionBarActivity implements
 	protected void onNewIntent(Intent intent) {
 		handleIntent(intent);
 	}
+	
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+	    if (requestCode == 1) {
+	        if(resultCode == RESULT_OK){
+	            List<String> filters = data.getStringArrayListExtra("result");
+	            System.out.println("Pippo");
+	        }
+	    }
+	}
 
 	private void handleIntent(Intent intent) {
 
@@ -175,7 +185,7 @@ public class MainActivity extends ActionBarActivity implements
 				return true;
 			case R.id.filter :
 				Intent intent = new Intent(this, FilterActivity.class);
-				startActivity(intent);
+				startActivityForResult(intent, 1);
 				return true;
 			default:
 	            return super.onOptionsItemSelected(item);
