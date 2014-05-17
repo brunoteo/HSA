@@ -35,6 +35,7 @@ public class MainActivity extends ActionBarActivity implements
 	private HSADatabaseHelper dbHelper;
 	private TabsPagerAdapter tabsPagerAdapter;
 	private ViewPager mViewPager;
+
 	private SaveHandler saveHandler;
 	private SearchHandler searchHandler;
 	private ViewHandler viewHandler;
