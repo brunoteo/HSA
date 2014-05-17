@@ -34,6 +34,7 @@ public class FilterActivity extends ActionBarActivity {
 		setContentView(R.layout.activity_filter);
 		
 		checkboxes = new ArrayList<CheckBox>();
+		addListenerOnButtons();
 	}
 
 	@Override
@@ -116,7 +117,6 @@ public class FilterActivity extends ActionBarActivity {
 			
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				for(CheckBox checkBox : checkboxes) {
 					checkBox.setChecked(false);
 				}

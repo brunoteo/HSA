@@ -181,13 +181,13 @@
 		    
 		    <CheckBox
 		        android:id="@+id/chkCommon"
-		        android:layout_width="wrap_content"
+		        android:layout_width="match_parent"
 		        android:layout_height="wrap_content"
 		        android:text="Common" />
 		    
 		    <CheckBox
 		        android:id="@+id/chkRare"
-		        android:layout_width="wrap_content"
+		        android:layout_width="match_parent"
 		        android:layout_height="wrap_content"
 		        android:text="Rare" />
 		    
