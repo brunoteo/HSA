@@ -19,9 +19,6 @@ import com.hsa.database.HSADatabaseHelper;
 
 public class SaveHandler implements Serializable{
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 

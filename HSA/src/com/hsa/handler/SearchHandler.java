@@ -67,45 +67,73 @@ public class SearchHandler implements Serializable{
 		if(searchCriterion!=null){
 			if(searchCriterion.getFilters()!=null){
 				for (Entry<String, ArrayList<String>> entry : searchCriterion.getFilters().entrySet()){
-					if (first){
-						sql = sql + " WHERE";
-						first = false;
-						if(entry.getValue().size()>1){
-							sql = sql + " (";
-							boolean first1 = true;
-							for (String entry2 : entry.getValue()){
-								if (first1){
-									first1 = false;
-									sql = sql + entry.getKey() + " = ?";
-									sqlArgs.add(entry2);
-								}else{
-									sql = sql + " OR " + entry.getKey() + " = ?";
-									sqlArgs.add(entry2);
+					if(entry.getValue().size()!= 0){
+						if (first){
+							sql = sql + " WHERE";
+							first = false;
+							if(entry.getValue().size()>1){
+								sql = sql + " (";
+								boolean first1 = true;
+								for (String entry2 : entry.getValue()){
+									if (first1){
+										first1 = false;
+										if(entry.getKey() == "className"){
+											sql = sql + "class = ?";
+										}else{
+											sql = sql + entry.getKey() + " = ?";
+										}
+										sqlArgs.add(entry2);
+									}else{
+										if(entry.getKey() == "className"){
+											sql = sql + " OR " + "class = ?";
+										}else{
+											sql = sql + " OR " + entry.getKey() + " = ?";
+										}
+										sqlArgs.add(entry2);
+									}
 								}
-							}
-							sql = sql + ")";
-						}else{
-							sql = sql + " " + entry.getKey() + " = ?";
-							sqlArgs.add(entry.getValue().get(0));
-						}
-					}else{
-						sql = sql + " AND";
-						if(entry.getValue().size()>1){
-							sql = sql + " (";
-							boolean first1 = true;
-							for (String entry2 : entry.getValue()){
-								if (first1){
-									first1 = false;
-									sql = sql + entry.getKey() + " = ?";
-									sqlArgs.add(entry2);
+								sql = sql + ")";
+							}else{
+								if(entry.getKey() == "className"){
+									sql = sql + " class = ?";
 								}else{
-									sql = sql + " OR " + entry.getKey() + " = ?";
-									sqlArgs.add(entry2);							}
+									sql = sql + " " + entry.getKey() + " = ?";
+								}
+								sqlArgs.add(entry.getValue().get(0));
 							}
-							sql = sql + ")";
 						}else{
-							sql = sql + " " + entry.getKey() + " = ?";
-							sqlArgs.add(entry.getValue().get(0));					}
+							sql = sql + " AND";
+							if(entry.getValue().size()>1){
+								sql = sql + " (";
+								boolean first1 = true;
+								for (String entry2 : entry.getValue()){
+									if (first1){
+										first1 = false;
+										if(entry.getKey() == "className"){
+											sql = sql + "class = ?";
+										}else{
+											sql = sql + entry.getKey() + " = ?";
+										}
+										sqlArgs.add(entry2);
+									}else{
+										if(entry.getKey() == "className"){
+											sql = sql + " OR class = ?";
+										}else{
+											sql = sql + " OR " + entry.getKey() + " = ?";
+										}
+										sqlArgs.add(entry2);						 
+									}
+								}
+								sql = sql + ")";
+							}else{
+								if(entry.getKey() == "className"){
+									sql = sql + " class = ?";
+								}else{
+									sql = sql + " " + entry.getKey() + " = ?";
+								}
+								sqlArgs.add(entry.getValue().get(0));					
+							}
+						}
 					}
 				}
 			}

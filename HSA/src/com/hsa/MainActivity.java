@@ -1,6 +1,9 @@
 package com.hsa;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import android.app.SearchManager;
 import android.content.Intent;
@@ -143,14 +146,25 @@ public class MainActivity extends ActionBarActivity implements
 		handleIntent(intent);
 	}
 	
-
+	//TODO fare la ricerca per filtri in congiunzione con quella del nome
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
 	    if (requestCode == 1) {
 	        if(resultCode == RESULT_OK){
-	            List<String> filters = data.getStringArrayListExtra("result");
-	            //TODO fare la ricerca per filtri
-	            System.out.println("Pippo");
+	            List<String> classFilters = data.getStringArrayListExtra("classResult");
+	            List<String> costFilters = data.getStringArrayListExtra("costResult");
+	            List<String> rarityFilters = data.getStringArrayListExtra("rarityResult");
+	            List<String> typeFilters = data.getStringArrayListExtra("typeResult");
+
+	            Map<String, ArrayList<String>> filters = new HashMap<String, ArrayList<String>>();
+	            if(classFilters != null || classFilters.size() != 0) filters.put("className", new ArrayList<String>(classFilters));
+	            if(costFilters != null || costFilters.size() != 0) filters.put("cost", new ArrayList<String>(costFilters));
+	            if(rarityFilters != null || rarityFilters.size() != 0) filters.put("rarity", new ArrayList<String>(rarityFilters));
+	            if(typeFilters != null || typeFilters.size() != 0) filters.put("type", new ArrayList<String>(typeFilters));
+	            SearchCriterion searchCriterion = new SearchCriterion(null, filters);
+	            List<GraphicalAggregation> graphicalsAggregations = viewHandler.searchRequest(searchCriterion, this);
+	            SearchFragment searchFragment = (SearchFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager + ":" + mViewPager.getCurrentItem());
+	            searchFragment.viewGraphicsAggregations(graphicalsAggregations);
 	        }
 	    }
 	}
@@ -188,6 +202,7 @@ public class MainActivity extends ActionBarActivity implements
 				return true;
 			case R.id.filter :
 				Intent intent = new Intent(this, FilterActivity.class);
+				// TODO passare la lista dei filtri, salvare i filtri globalmente e di la settare cheched quelli che erano stati selezionati
 				startActivityForResult(intent, 1);
 				return true;
 			default:
