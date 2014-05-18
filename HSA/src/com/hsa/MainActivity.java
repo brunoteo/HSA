@@ -51,6 +51,14 @@ public class MainActivity extends ActionBarActivity implements
     private ArrayList<String> costFilters;
     private ArrayList<String> rarityFilters;
     private ArrayList<String> typeFilters;
+    
+	public HSADatabaseHelper getDbHelper() {
+		return dbHelper;
+	}
+
+	public void setDbHelper(HSADatabaseHelper dbHelper) {
+		this.dbHelper = dbHelper;
+	}
 
 	private String[] tabs = { "News", "Search", "Decks" };
 
