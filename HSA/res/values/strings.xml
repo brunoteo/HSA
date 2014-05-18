@@ -25,5 +25,6 @@
     <string name="create">Create</string>
 	<string name="accept_filter">OK</string>
 	<string name="cancel_filter">Reset</string>
+	<string name="all_card_title">All</string>
 	
 </resources>
