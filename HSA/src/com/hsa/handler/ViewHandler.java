@@ -74,7 +74,7 @@ public class ViewHandler{
 	}
 	
 	public void viewDeckRequest(DeckDataAggregation deckData) {
-		
+		DeckDataAggregation da = deckData;
 	}
 	
 	private CompleteTextualAggregation createCompleteTextualAggregation(Card card) {

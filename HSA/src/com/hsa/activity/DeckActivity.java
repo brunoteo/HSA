@@ -33,6 +33,8 @@ ActionBar.TabListener{
 	private DeckHandler deckHandler;
 	private TrackHandler trackHandler;
 	
+	private DeckDataAggregation deckData;
+	
 	private String[] tabs = { "Note", "Deck", "Deck Info" };
 
 	@Override
@@ -40,7 +42,7 @@ ActionBar.TabListener{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_deck);
 		Intent intent = getIntent();
-		DeckDataAggregation deckData = intent.getParcelableExtra("deckDataAggregation");
+		deckData = intent.getParcelableExtra("deckDataAggregation");
 		
 		// Set up the action bar.
 		final ActionBar actionBar = getSupportActionBar();
@@ -128,5 +130,9 @@ ActionBar.TabListener{
 	public void onTabUnselected(ActionBar.Tab tab,
 			FragmentTransaction fragmentTransaction) {
 		
+	}
+	
+	public DeckDataAggregation getDeckDataAggregation() {
+		return this.deckData;
 	}
 }
