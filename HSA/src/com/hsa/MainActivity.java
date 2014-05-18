@@ -195,6 +195,15 @@ public class MainActivity extends ActionBarActivity implements
 				intent.putStringArrayListExtra("typeResult", typeFilters);
 				startActivityForResult(intent, 1);
 				return true;
+			case R.id.all_card:
+				classFilters = null;
+				costFilters = null;
+				rarityFilters = null;
+				typeFilters = null;
+	            SearchFragment searchFragment = (SearchFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager + ":" + mViewPager.getCurrentItem());
+				List<GraphicalAggregation> graphicalsAggregations = viewHandler.searchRequest(null, this);
+	            searchFragment.viewGraphicsAggregations(graphicalsAggregations);
+				return true;
 			default:
 	            return super.onOptionsItemSelected(item);
 		}

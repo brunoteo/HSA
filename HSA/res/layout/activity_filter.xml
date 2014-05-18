@@ -67,6 +67,12 @@
 		        android:text="Mage" />
 		    
 		    <CheckBox
+		        android:id="@+id/chkNeutral"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:text="Neutral" />
+		    
+		    <CheckBox
 		        android:id="@+id/chkPaladin"
 		        android:layout_width="match_parent"
 		        android:layout_height="wrap_content"

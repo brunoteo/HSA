@@ -55,6 +55,7 @@ public class FilterActivity extends ActionBarActivity {
 		checkboxes.add((CheckBox) findViewById(R.id.chkDruid));
 		checkboxes.add((CheckBox) findViewById(R.id.chkHunter));
 		checkboxes.add((CheckBox) findViewById(R.id.chkMage));
+		checkboxes.add((CheckBox) findViewById(R.id.chkNeutral));
 		checkboxes.add((CheckBox) findViewById(R.id.chkPaladin));
 		checkboxes.add((CheckBox) findViewById(R.id.chkPriest));
 		checkboxes.add((CheckBox) findViewById(R.id.chkRogue));
@@ -95,17 +96,19 @@ public class FilterActivity extends ActionBarActivity {
 						break;
 					case "Mage": checkboxes.get(2).setChecked(true);
 						break;
-					case "Paladin": checkboxes.get(3).setChecked(true);
+					case "Neutral": checkboxes.get(3).setChecked(true);
 						break;
-					case "Priest": checkboxes.get(4).setChecked(true);
+					case "Paladin": checkboxes.get(4).setChecked(true);
 						break;
-					case "Rogue": checkboxes.get(5).setChecked(true);
+					case "Priest": checkboxes.get(5).setChecked(true);
 						break;
-					case "Shaman": checkboxes.get(6).setChecked(true);
+					case "Rogue": checkboxes.get(6).setChecked(true);
 						break;
-					case "Warlock": checkboxes.get(7).setChecked(true);
+					case "Shaman": checkboxes.get(7).setChecked(true);
 						break;
-					case "Warrior": checkboxes.get(8).setChecked(true);
+					case "Warlock": checkboxes.get(8).setChecked(true);
+						break;
+					case "Warrior": checkboxes.get(9).setChecked(true);
 						break;
 				}
 			}
@@ -116,31 +119,31 @@ public class FilterActivity extends ActionBarActivity {
 		if(costFilters != null && costFilters.size() != 0){
 			for(String s : costFilters){
 				switch (s){
-					case "0": checkboxes.get(9).setChecked(true);
+					case "0": checkboxes.get(10).setChecked(true);
 						break;
-					case "1": checkboxes.get(10).setChecked(true);
+					case "1": checkboxes.get(11).setChecked(true);
 						break;
-					case "2": checkboxes.get(11).setChecked(true);
+					case "2": checkboxes.get(12).setChecked(true);
 						break;
-					case "3": checkboxes.get(12).setChecked(true);
+					case "3": checkboxes.get(13).setChecked(true);
 						break;
-					case "4": checkboxes.get(13).setChecked(true);
+					case "4": checkboxes.get(14).setChecked(true);
 						break;
-					case "5": checkboxes.get(14).setChecked(true);
+					case "5": checkboxes.get(15).setChecked(true);
 						break;
-					case "6": checkboxes.get(15).setChecked(true);
+					case "6": checkboxes.get(16).setChecked(true);
 						break;
-					case "7": checkboxes.get(16).setChecked(true);
+					case "7": checkboxes.get(17).setChecked(true);
 						break;
-					case "8": checkboxes.get(17).setChecked(true);
+					case "8": checkboxes.get(18).setChecked(true);
 						break;
-					case "9": checkboxes.get(18).setChecked(true);
+					case "9": checkboxes.get(19).setChecked(true);
 						break;
-					case "10": checkboxes.get(19).setChecked(true);
+					case "10": checkboxes.get(20).setChecked(true);
 						break;
-					case "12": checkboxes.get(20).setChecked(true);
+					case "12": checkboxes.get(21).setChecked(true);
 						break;
-					case "20": checkboxes.get(21).setChecked(true);
+					case "20": checkboxes.get(22).setChecked(true);
 						break;
 				}
 			}
@@ -151,15 +154,15 @@ public class FilterActivity extends ActionBarActivity {
 		if(rarityFilters != null && rarityFilters.size() != 0){
 			for(String s : rarityFilters){
 				switch (s){
-					case "Basic": checkboxes.get(22).setChecked(true);
+					case "Basic": checkboxes.get(23).setChecked(true);
 						break;
-					case "Common": checkboxes.get(23).setChecked(true);
+					case "Common": checkboxes.get(24).setChecked(true);
 						break;
-					case "Rare": checkboxes.get(24).setChecked(true);
+					case "Rare": checkboxes.get(25).setChecked(true);
 						break;
-					case "Epic": checkboxes.get(25).setChecked(true);
+					case "Epic": checkboxes.get(26).setChecked(true);
 						break;
-					case "Legendary": checkboxes.get(26).setChecked(true);
+					case "Legendary": checkboxes.get(27).setChecked(true);
 						break;
 				}
 			}
@@ -170,11 +173,11 @@ public class FilterActivity extends ActionBarActivity {
 		if(typeFilters != null && typeFilters.size() != 0){
 			for(String s : typeFilters){
 				switch (s){
-					case "Minion": checkboxes.get(27).setChecked(true);
+					case "Minion": checkboxes.get(28).setChecked(true);
 						break;
-					case "Spell": checkboxes.get(28).setChecked(true);
+					case "Spell": checkboxes.get(29).setChecked(true);
 						break;
-					case "Weapon": checkboxes.get(29).setChecked(true);
+					case "Weapon": checkboxes.get(30).setChecked(true);
 						break;
 				}
 			}
@@ -208,6 +211,7 @@ public class FilterActivity extends ActionBarActivity {
 						if(checkBox.getText().toString().equals("Druid") ||
 								checkBox.getText().toString().equals("Hunter") ||
 								checkBox.getText().toString().equals("Mage") ||
+								checkBox.getText().toString().equals("Neutral") ||
 								checkBox.getText().toString().equals("Paladin") ||
 								checkBox.getText().toString().equals("Priest") ||
 								checkBox.getText().toString().equals("Rogue") ||
