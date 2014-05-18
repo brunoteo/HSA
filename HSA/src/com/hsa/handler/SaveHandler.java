@@ -58,7 +58,7 @@ public class SaveHandler{
 		final Card card18 = new Card("healing touch", "Spell", 3, "Basic", "Restore 8 Health.", "Druid", null, null, null, null, "healing_touch");
 		final Card card19 = new Card("holy nova", "Spell", 5, "Basic", "Deal 2 damage to all enemies. Restore 2 Health to all friendly characters.", "Priest", null, null, null, null, "holy_nova");
 		final Card card20 = new Card("holy smite", "Spell", 1, "Basic", "Deal 2 damage.", "Priest", null, null, null, null, "holy_smite");
-		final Card card21 = new Card("mark of the wild", "Spell", 8, "Basic", "Give a minion Taunt and +2/+2. (+2 Attack/+2 Health)", "Druid", null, null, null, null, "mark_of_the_wild");
+		final Card card21 = new Card("mark of the wild", "Spell", 2, "Basic", "Give a minion Taunt and +2/+2. (+2 Attack/+2 Health)", "Druid", null, null, null, null, "mark_of_the_wild");
 		final Card card22 = new Card("mind control", "Spell", 10, "Basic", "Take control of an enemy minion", "Priest", null, null, null, null, "mind_control");
 		final Card card23 = new Card("mind vision", "Spell", 1, "Basic", "Put a copy of a random card in your opponent's hand into your hand.", "Priest", null, null, null, null, "mind_vision");
 		final Card card24 = new Card("mirror image", "Spell", 1, "Basic", "Summon two 0/2 minions with Taunt.", "Mage", null, null, null, null, "mirror_image");
