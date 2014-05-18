@@ -18,9 +18,9 @@ import android.view.MenuItem;
 import android.view.View;
 import com.hsa.activity.CompleteInformationActivity;
 import com.hsa.activity.FilterActivity;
-import com.hsa.activity.ModifyDeckActivity;
+import com.hsa.activity.DeckActivity;
 import com.hsa.activity.NewDeckActivity;
-import com.hsa.adapter.TabsPagerAdapter;
+import com.hsa.adapter.MainTabsPagerAdapter;
 import com.hsa.aggregation.CompleteTextualAggregation;
 import com.hsa.aggregation.DeckDataAggregation;
 import com.hsa.aggregation.GraphicalAggregation;
@@ -38,7 +38,7 @@ public class MainActivity extends ActionBarActivity implements
 		ActionBar.TabListener, SearchFragment.OnSearchListener, DecksFragment.OnDecksListener{
 
 	private HSADatabaseHelper dbHelper;
-	private TabsPagerAdapter tabsPagerAdapter;
+	private MainTabsPagerAdapter mainTabsPagerAdapter;
 	private ViewPager mViewPager;
 
 	private SaveHandler saveHandler;
@@ -51,16 +51,6 @@ public class MainActivity extends ActionBarActivity implements
     private ArrayList<String> costFilters;
     private ArrayList<String> rarityFilters;
     private ArrayList<String> typeFilters;
-
-    
-	
-	public HSADatabaseHelper getDbHelper() {
-		return dbHelper;
-	}
-
-	public void setDbHelper(HSADatabaseHelper dbHelper) {
-		this.dbHelper = dbHelper;
-	}
 
 	private String[] tabs = { "News", "Search", "Decks" };
 
@@ -75,12 +65,12 @@ public class MainActivity extends ActionBarActivity implements
 
 		// Create the adapter that will return a fragment for each of the three
 		// primary sections of the activity.
-		tabsPagerAdapter = new TabsPagerAdapter(
+		mainTabsPagerAdapter = new MainTabsPagerAdapter(
 				getSupportFragmentManager());
 
 		// Set up the ViewPager with the sections adapter.
 		mViewPager = (ViewPager) findViewById(R.id.pager);
-		mViewPager.setAdapter(tabsPagerAdapter);
+		mViewPager.setAdapter(mainTabsPagerAdapter);
 
 		// When swiping between different sections, select the corresponding
 		// tab. We can also use ActionBar.Tab#select() to do this if we have
@@ -239,7 +229,7 @@ public class MainActivity extends ActionBarActivity implements
 	@Override
 	public void onDeckSelected(DeckDataAggregation deckDataAggregation) {
 		
-		Intent intent = new Intent(this, ModifyDeckActivity.class);
+		Intent intent = new Intent(this, DeckActivity.class);
 		intent.putExtra("deckDataAggregation", deckDataAggregation);
 		startActivity(intent);
 		
