@@ -47,9 +47,7 @@ public class MainActivity extends ActionBarActivity implements
     private ArrayList<String> costFilters;
     private ArrayList<String> rarityFilters;
     private ArrayList<String> typeFilters;
-
     
-	
 	public HSADatabaseHelper getDbHelper() {
 		return dbHelper;
 	}
@@ -188,8 +186,6 @@ public class MainActivity extends ActionBarActivity implements
 					intent.putStringArrayListExtra("costResult", costFilters);
 					intent.putStringArrayListExtra("rarityResult", rarityFilters);
 					intent.putStringArrayListExtra("typeResult", typeFilters);
-
-				// TODO passare la lista dei filtri, salvare i filtri globalmente e di la settare cheched quelli che erano stati selezionati
 				startActivityForResult(intent, 1);
 				return true;
 			case R.id.all_card:

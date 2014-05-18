@@ -48,8 +48,31 @@ public class SaveHandler{
 		final Card card8 = new Card("ancient of war", "Minion", 7, "Epic", "Choose one - +5 Attack; or +5 Health and Taunt.", "Druid", 5, 5, null, null, "ancient_of_war");
 		final Card card9 = new Card("tirion fordring", "Minion", 8, "Legendary", "Divine Shield. Taunt. Deathrattle: Equip a 5/3 Ashbringer.", "Paladin", 6, 6, null, null, "tirion_fordring");
 		final Card card10 = new Card("grommash hellscream", "Minion", 8, "Legendary", "Charge. Enrage: +6 Attack", "Warrior", 4, 9, null, null, "grommash_hellscream");
+		final Card card11 = new Card("arcane explosion", "Spell", 2, "Basic", "Deal 1 damage to all enemy minions.", "Mage", null, null, null, null, "arcane_explosion");
+		final Card card12 = new Card("arcane intellect", "Spell", 3, "Basic", "Draw 2 cards.", "Mage", null, null, null, null, "arcane_intellect");
+		final Card card13 = new Card("blizzard", "Spell", 6, "Rare", "Deal 2 damage to all enemy minions and Freeze them.", "Mage", null, null, null, null, "blizzard");
+		final Card card14 = new Card("claw", "Spell", 1, "Basic", "Give your hero +2 Attack this turn and 2 Armor.", "Druid", null, null, null, null, "claw");
+		final Card card15 = new Card("fen creeper", "Minion", 5, "Common", "Taunt.", "Neutral", 3, 6, null, null, "fen_creeper");
+		final Card card16 = new Card("fireball", "Spell", 4, "Basic", "Deal 6 damage.", "Mage", null, null, null, null, "fireball");
+		final Card card17 = new Card("frostbolt", "Spell", 2, "Basic", "Deal 3 damage to a character and Freeze it.", "Mage", null, null, null, null, "frostbolt");
+		final Card card18 = new Card("healing touch", "Spell", 3, "Basic", "Restore 8 Health.", "Druid", null, null, null, null, "healing_touch");
+		final Card card19 = new Card("holy nova", "Spell", 5, "Basic", "Deal 2 damage to all enemies. Restore 2 Health to all friendly characters.", "Priest", null, null, null, null, "holy_nova");
+		final Card card20 = new Card("holy smite", "Spell", 1, "Basic", "Deal 2 damage.", "Priest", null, null, null, null, "holy_smite");
+		final Card card21 = new Card("mark of the wild", "Spell", 8, "Basic", "Give a minion Taunt and +2/+2. (+2 Attack/+2 Health)", "Druid", null, null, null, null, "mark_of_the_wild");
+		final Card card22 = new Card("mind control", "Spell", 10, "Basic", "Take control of an enemy minion", "Priest", null, null, null, null, "mind_control");
+		final Card card23 = new Card("mind vision", "Spell", 1, "Basic", "Put a copy of a random card in your opponent's hand into your hand.", "Priest", null, null, null, null, "mind_vision");
+		final Card card24 = new Card("mirror image", "Spell", 1, "Basic", "Summon two 0/2 minions with Taunt.", "Mage", null, null, null, null, "mirror_image");
+		final Card card25 = new Card("moonfire", "Spell", 0, "Basic", "Deal 1 damage.", "Druid", null, null, null, null, "moonfire");
+		final Card card26 = new Card("polymorph", "Spell", 4, "Basic", "Transform a minion into a 1/1 Sheep.", "Mage", null, null, null, null, "polymorph");
+		final Card card27 = new Card("power word: shield", "Spell", 1, "Basic", "Give a minion +2 Health. Draw a card.", "Priest", null, null, null, null, "power_word_shield");
+		final Card card28 = new Card("savage roar", "Spell", 3, "Basic", "Give your characters +2 Attack this turn.", "Druid", null, null, null, null, "savage_roar");
+		final Card card29 = new Card("swipe", "Spell", 4, "Basic", "Deal 4 damage to an enemy and 1 damage to all other enemies.", "Druid", null, null, null, null, "swipe");
+		final Card card30 = new Card("wild growth", "Spell", 2, "Basic", "Gain an empty Mana Crystal.", "Druid", null, null, null, null, "wild_growth");
+
 		
-		List<Card> cards = Arrays.asList(card1, card2, card3, card4, card5, card6, card7, card8, card9, card10);
+		List<Card> cards = Arrays.asList(card1, card2, card3, card4, card5, card6, card7, card8, card9, card10,
+				card11, card12, card13, card14, card15, card16, card17, card18, card19, card20,
+				card21, card22, card23, card24, card25, card26, card27, card28, card29, card30);
 		
 		final Deck deck1 = new Deck("MyDruid", "Druid", "", "2014-05-16 11:30:00");
 		final Deck deck2 = new Deck("MyHunter", "Hunter", "", "2014-05-16 11:33:26");
