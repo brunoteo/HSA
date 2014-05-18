@@ -20,11 +20,6 @@ public class FilterActivity extends ActionBarActivity {
 	private Button btnAccept, btnReset;
 	private List<CheckBox> checkboxes;
 	
-    private List<String> classFilters;
-    private List<String> costFilters;
-    private List<String> rarityFilters;
-    private List<String> typeFilters;
-	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -88,6 +83,104 @@ public class FilterActivity extends ActionBarActivity {
 		checkboxes.add((CheckBox) findViewById(R.id.chkSpell));
 		checkboxes.add((CheckBox) findViewById(R.id.chkWeapon));
 		
+		Intent intent = getIntent();
+		ArrayList<String> classFilters = intent.getExtras().getStringArrayList("classResult");
+		
+		if(classFilters != null && classFilters.size() != 0){
+			for(String s : classFilters){
+				switch (s){
+					case "Druid": checkboxes.get(0).setChecked(true);
+						break;
+					case "Hunter": checkboxes.get(1).setChecked(true);
+						break;
+					case "Mage": checkboxes.get(2).setChecked(true);
+						break;
+					case "Paladin": checkboxes.get(3).setChecked(true);
+						break;
+					case "Priest": checkboxes.get(4).setChecked(true);
+						break;
+					case "Rogue": checkboxes.get(5).setChecked(true);
+						break;
+					case "Shaman": checkboxes.get(6).setChecked(true);
+						break;
+					case "Warlock": checkboxes.get(7).setChecked(true);
+						break;
+					case "Warrior": checkboxes.get(8).setChecked(true);
+						break;
+				}
+			}
+		}
+		
+		ArrayList<String> costFilters = intent.getExtras().getStringArrayList("costResult");
+		
+		if(costFilters != null && costFilters.size() != 0){
+			for(String s : costFilters){
+				switch (s){
+					case "0": checkboxes.get(9).setChecked(true);
+						break;
+					case "1": checkboxes.get(10).setChecked(true);
+						break;
+					case "2": checkboxes.get(11).setChecked(true);
+						break;
+					case "3": checkboxes.get(12).setChecked(true);
+						break;
+					case "4": checkboxes.get(13).setChecked(true);
+						break;
+					case "5": checkboxes.get(14).setChecked(true);
+						break;
+					case "6": checkboxes.get(15).setChecked(true);
+						break;
+					case "7": checkboxes.get(16).setChecked(true);
+						break;
+					case "8": checkboxes.get(17).setChecked(true);
+						break;
+					case "9": checkboxes.get(18).setChecked(true);
+						break;
+					case "10": checkboxes.get(19).setChecked(true);
+						break;
+					case "12": checkboxes.get(20).setChecked(true);
+						break;
+					case "20": checkboxes.get(21).setChecked(true);
+						break;
+				}
+			}
+		}
+		
+		ArrayList<String> rarityFilters = intent.getExtras().getStringArrayList("rarityResult");
+		
+		if(rarityFilters != null && rarityFilters.size() != 0){
+			for(String s : rarityFilters){
+				switch (s){
+					case "Basic": checkboxes.get(22).setChecked(true);
+						break;
+					case "Common": checkboxes.get(23).setChecked(true);
+						break;
+					case "Rare": checkboxes.get(24).setChecked(true);
+						break;
+					case "Epic": checkboxes.get(25).setChecked(true);
+						break;
+					case "Legendary": checkboxes.get(26).setChecked(true);
+						break;
+				}
+			}
+		}
+		
+		ArrayList<String> typeFilters = intent.getExtras().getStringArrayList("typeResult");
+		
+		if(typeFilters != null && typeFilters.size() != 0){
+			for(String s : typeFilters){
+				switch (s){
+					case "Minion": checkboxes.get(27).setChecked(true);
+						break;
+					case "Spell": checkboxes.get(28).setChecked(true);
+						break;
+					case "Weapon": checkboxes.get(29).setChecked(true);
+						break;
+				}
+			}
+		}
+		
+		
 		btnReset = (Button) findViewById(R.id.buttonCancelFilter);
 		
 		btnReset.setOnClickListener(new OnClickListener() {
@@ -95,7 +188,7 @@ public class FilterActivity extends ActionBarActivity {
 			@Override
 			public void onClick(View v) {
 				for(CheckBox checkBox : checkboxes) {
-					checkBox.setChecked(false); // TODO settare gli arraylist a vuoti quando saranno fatti
+					checkBox.setChecked(false);
 				}
 			}
 		});
@@ -111,7 +204,6 @@ public class FilterActivity extends ActionBarActivity {
 				ArrayList<String> rarityFilters = new ArrayList<String>();
 				ArrayList<String> typeFilters = new ArrayList<String>();
 				for(CheckBox checkBox : checkboxes) {
-					String verifica = checkBox.getText().toString();
 					if(checkBox.isChecked())
 						if(checkBox.getText().toString().equals("Druid") ||
 								checkBox.getText().toString().equals("Hunter") ||

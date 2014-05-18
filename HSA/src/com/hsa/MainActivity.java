@@ -43,10 +43,10 @@ public class MainActivity extends ActionBarActivity implements
 	private SearchHandler searchHandler;
 	private ViewHandler viewHandler;
 	
-    private List<String> classFilters;
-    private List<String> costFilters;
-    private List<String> rarityFilters;
-    private List<String> typeFilters;
+    private ArrayList<String> classFilters;
+    private ArrayList<String> costFilters;
+    private ArrayList<String> rarityFilters;
+    private ArrayList<String> typeFilters;
 
     
 	
@@ -184,10 +184,11 @@ public class MainActivity extends ActionBarActivity implements
 			case R.id.filter :
 				
 				Intent intent = new Intent(this, FilterActivity.class);
-				intent.putStringArrayListExtra("classResult", new ArrayList<String>(classFilters));
-				intent.putStringArrayListExtra("costResult", new ArrayList<String>(costFilters));
-				intent.putStringArrayListExtra("rarityResult", new ArrayList<String>(rarityFilters));
-				intent.putStringArrayListExtra("typeResult", new ArrayList<String>(typeFilters));
+					intent.putStringArrayListExtra("classResult", classFilters);
+					intent.putStringArrayListExtra("costResult", costFilters);
+					intent.putStringArrayListExtra("rarityResult", rarityFilters);
+					intent.putStringArrayListExtra("typeResult", typeFilters);
+
 				// TODO passare la lista dei filtri, salvare i filtri globalmente e di la settare cheched quelli che erano stati selezionati
 				startActivityForResult(intent, 1);
 				return true;
