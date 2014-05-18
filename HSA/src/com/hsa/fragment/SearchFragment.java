@@ -2,7 +2,6 @@ package com.hsa.fragment;
 
 import java.util.List;
 
-import com.hsa.MainActivity;
 import com.hsa.R;
 import com.hsa.adapter.GraphicalAggregationAdapter;
 import com.hsa.aggregation.CompleteTextualAggregation;

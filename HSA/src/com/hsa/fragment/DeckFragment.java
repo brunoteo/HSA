@@ -1,6 +1,10 @@
 package com.hsa.fragment;
 
 import com.hsa.R;
+import com.hsa.activity.DeckActivity;
+import com.hsa.database.HSADatabaseHelper;
+import com.hsa.handler.ViewHandler;
+
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -10,6 +14,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 public class DeckFragment extends Fragment{
+	
+	ViewHandler viewHandler;
 	
 	@Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -24,7 +30,8 @@ public class DeckFragment extends Fragment{
 	public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         setHasOptionsMenu(true);
-        
+        viewHandler = ViewHandler.getInstance(HSADatabaseHelper.getInstance(getActivity()));
+        viewHandler.viewDeckRequest(((DeckActivity) getActivity()).getDeckDataAggregation());
 	}
 	
 	@Override
