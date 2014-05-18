@@ -35,7 +35,6 @@ public class ViewHandler{
 	}
 	
 	public List<GraphicalAggregation> searchRequest(SearchCriterion criterion, FragmentActivity fragment) {
-//		searchHandler = new SearchHandler(this.dbHelper);
 		List<GraphicalAggregation> graphicalsAggregations = new ArrayList<GraphicalAggregation>();
 		List<Card> cards = SearchHandler.getInstance(dbHelper).search(criterion);
 		for(Card card : cards) {
@@ -46,7 +45,6 @@ public class ViewHandler{
 	}
 	
 	public List<DeckDataAggregation> decksRequest(FragmentActivity fragment) {
-//		searchHandler = new SearchHandler(this.dbHelper);
 		List<Deck> decks = SearchHandler.getInstance(dbHelper).decksRequest();
 		List<DeckDataAggregation> deckDataAggregations = new ArrayList<DeckDataAggregation>();
 		for(Deck deck : decks){
@@ -62,6 +60,7 @@ public class ViewHandler{
         DeckDataAggregation dda = new DeckDataAggregation();
         dda.setName(newDeck.getName());
         dda.setClassName(newDeck.getClassName());
+        //FIXME bisogna contare le occorrenze
         dda.setCardNumber(0);
         dda.setDate(newDeck.getDate());
         return dda;
@@ -72,6 +71,10 @@ public class ViewHandler{
 		CompleteTextualAggregation completeTextualAggregation;
 		completeTextualAggregation = createCompleteTextualAggregation(card);
 		return completeTextualAggregation;
+	}
+	
+	public void viewDeckRequest(DeckDataAggregation deckData) {
+		
 	}
 	
 	private CompleteTextualAggregation createCompleteTextualAggregation(Card card) {

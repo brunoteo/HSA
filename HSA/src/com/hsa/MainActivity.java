@@ -28,8 +28,10 @@ import com.hsa.bean.SearchCriterion;
 import com.hsa.database.HSADatabaseHelper;
 import com.hsa.fragment.SearchFragment;
 import com.hsa.fragment.DecksFragment;
+import com.hsa.handler.DeckHandler;
 import com.hsa.handler.SaveHandler;
 import com.hsa.handler.SearchHandler;
+import com.hsa.handler.TrackHandler;
 import com.hsa.handler.ViewHandler;
 
 public class MainActivity extends ActionBarActivity implements
@@ -42,6 +44,8 @@ public class MainActivity extends ActionBarActivity implements
 	private SaveHandler saveHandler;
 	private SearchHandler searchHandler;
 	private ViewHandler viewHandler;
+	private DeckHandler deckHandler;
+	private TrackHandler trackHandler;
 	
     private ArrayList<String> classFilters;
     private ArrayList<String> costFilters;
@@ -105,6 +109,8 @@ public class MainActivity extends ActionBarActivity implements
         searchHandler = SearchHandler.getInstance(dbHelper);
         saveHandler = SaveHandler.getInstance(dbHelper);
         viewHandler = ViewHandler.getInstance(dbHelper);
+        deckHandler = DeckHandler.getInstance(dbHelper);
+        trackHandler = TrackHandler.getInstance(dbHelper);
        //Riempimento database
         int emptyDB = searchHandler.search(null).size();
         if(emptyDB==0) {
@@ -127,7 +133,6 @@ public class MainActivity extends ActionBarActivity implements
 		handleIntent(intent);
 	}
 	
-	//TODO fare la ricerca per filtri in congiunzione con quella del nome
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
 	    if (requestCode == 1) {
@@ -184,12 +189,10 @@ public class MainActivity extends ActionBarActivity implements
 			case R.id.filter :
 				
 				Intent intent = new Intent(this, FilterActivity.class);
-					intent.putStringArrayListExtra("classResult", classFilters);
-					intent.putStringArrayListExtra("costResult", costFilters);
-					intent.putStringArrayListExtra("rarityResult", rarityFilters);
-					intent.putStringArrayListExtra("typeResult", typeFilters);
-
-				// TODO passare la lista dei filtri, salvare i filtri globalmente e di la settare cheched quelli che erano stati selezionati
+				intent.putStringArrayListExtra("classResult", classFilters);
+				intent.putStringArrayListExtra("costResult", costFilters);
+				intent.putStringArrayListExtra("rarityResult", rarityFilters);
+				intent.putStringArrayListExtra("typeResult", typeFilters);
 				startActivityForResult(intent, 1);
 				return true;
 			default:
