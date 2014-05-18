@@ -41,6 +41,52 @@ public class SearchHandler{
 		return card;
 	}
 	
+	public Deck deckRetrievalRequest(String name) {
+		String sql = "SELECT * FROM " + DeckEntry.TABLE_NAME + " WHERE name = ?";
+		SQLiteDatabase db = dbHelper.getWritableDatabase();
+		Cursor cursor = db.rawQuery(sql, new String[]{name});
+		Deck deck = null;
+		if(cursor.moveToFirst()) {
+			deck = cursorToDeck(cursor);
+		}
+
+		cursor.close();
+		return deck;
+	}
+	
+	public List<Deck> decksRequest() {
+		String sql = "SELECT * FROM " + DeckEntry.TABLE_NAME;
+		List<Deck> decks = new ArrayList<Deck>();
+		SQLiteDatabase db = dbHelper.getWritableDatabase();
+		Cursor cursor = db.rawQuery(sql, null);
+		if(cursor.moveToFirst()) {
+			do {
+				Deck deck = cursorToDeck(cursor);
+				decks.add(deck);
+			}while(cursor.moveToNext());
+		}
+
+		cursor.close();
+		return decks;
+	}
+	
+	public List<Formation> formationsRequest(String deckName) {
+		String sql = "SELECT * FROM " + FormationEntry.TABLE_NAME + " WHERE deck = ?";
+		List<Formation> formations = new ArrayList<Formation>();
+		SQLiteDatabase db = dbHelper.getWritableDatabase();
+		String [] selectionArgs = new String[]{deckName};
+		Cursor cursor = db.rawQuery(sql, selectionArgs);
+		if(cursor.moveToFirst()) {
+			do {
+				Formation formation = cursorToFormation(cursor);
+				formations.add(formation);
+			}while(cursor.moveToNext());
+		}
+
+		cursor.close();
+		return formations;
+	}
+	
 	public List<Card> search(SearchCriterion searchCriterion) {
 		String sql = "SELECT * FROM " + CardEntry.TABLE_NAME;
 		List<String> sqlArgs = new ArrayList<String>();
@@ -210,30 +256,6 @@ public class SearchHandler{
 	    return card;
 	}
 	
-	private boolean controlNull(String s){
-		if(s == null){
-			return true;
-		}else{
-			return false;
-		}
-	}
-
-	public List<Deck> decksRequest() {
-		String sql = "SELECT * FROM " + DeckEntry.TABLE_NAME;
-		List<Deck> decks = new ArrayList<Deck>();
-		SQLiteDatabase db = dbHelper.getWritableDatabase();
-		Cursor cursor = db.rawQuery(sql, null);
-		if(cursor.moveToFirst()) {
-			do {
-				Deck deck = cursorToDeck(cursor);
-				decks.add(deck);
-			}while(cursor.moveToNext());
-		}
-
-		cursor.close();
-		return decks;
-	}
-	
 	private Deck cursorToDeck(Cursor cursor) {
 	    Deck deck = new Deck();
 	    deck.setName(cursor.getString(cursor.getColumnIndex(DeckEntry.COLUMN_NAME_NAME)));
@@ -242,23 +264,6 @@ public class SearchHandler{
 	    deck.setDate(cursor.getString(cursor.getColumnIndex(DeckEntry.COLUMN_NAME_DATE)));
 	    
 	    return deck;
-	}
-
-	public List<Formation> formationsRequest(String deckName) {
-		String sql = "SELECT * FROM " + FormationEntry.TABLE_NAME + " WHERE deck = ?";
-		List<Formation> formations = new ArrayList<Formation>();
-		SQLiteDatabase db = dbHelper.getWritableDatabase();
-		String [] selectionArgs = new String[]{deckName};
-		Cursor cursor = db.rawQuery(sql, selectionArgs);
-		if(cursor.moveToFirst()) {
-			do {
-				Formation formation = cursorToFormation(cursor);
-				formations.add(formation);
-			}while(cursor.moveToNext());
-		}
-
-		cursor.close();
-		return formations;
 	}
 
 	private Formation cursorToFormation(Cursor cursor) {
@@ -271,6 +276,14 @@ public class SearchHandler{
 	    	formation.setOccurrence(Integer.valueOf(Integer.parseInt(cursor.getString(cursor.getColumnIndex(FormationEntry.COLUMN_NAME_OCCURRENCE)))));
 	    }  
 	    return formation;
+	}
+		
+	private boolean controlNull(String s){
+		if(s == null){
+			return true;
+		}else{
+			return false;
+		}
 	}
 
 	public Deck dataCheck(String name, String className) {
