@@ -43,6 +43,13 @@ public class MainActivity extends ActionBarActivity implements
 	private SearchHandler searchHandler;
 	private ViewHandler viewHandler;
 	
+    private List<String> classFilters;
+    private List<String> costFilters;
+    private List<String> rarityFilters;
+    private List<String> typeFilters;
+
+    
+	
 	public HSADatabaseHelper getDbHelper() {
 		return dbHelper;
 	}
@@ -151,10 +158,10 @@ public class MainActivity extends ActionBarActivity implements
 
 	    if (requestCode == 1) {
 	        if(resultCode == RESULT_OK){
-	            List<String> classFilters = data.getStringArrayListExtra("classResult");
-	            List<String> costFilters = data.getStringArrayListExtra("costResult");
-	            List<String> rarityFilters = data.getStringArrayListExtra("rarityResult");
-	            List<String> typeFilters = data.getStringArrayListExtra("typeResult");
+	            classFilters = data.getStringArrayListExtra("classResult");
+	            costFilters = data.getStringArrayListExtra("costResult");
+	            rarityFilters = data.getStringArrayListExtra("rarityResult");
+	            typeFilters = data.getStringArrayListExtra("typeResult");
 
 	            Map<String, ArrayList<String>> filters = new HashMap<String, ArrayList<String>>();
 	            if(classFilters != null || classFilters.size() != 0) filters.put("className", new ArrayList<String>(classFilters));
@@ -201,7 +208,12 @@ public class MainActivity extends ActionBarActivity implements
 			case R.id.action_settings : 
 				return true;
 			case R.id.filter :
+				
 				Intent intent = new Intent(this, FilterActivity.class);
+				intent.putStringArrayListExtra("classResult", new ArrayList<String>(classFilters));
+				intent.putStringArrayListExtra("costResult", new ArrayList<String>(costFilters));
+				intent.putStringArrayListExtra("rarityResult", new ArrayList<String>(rarityFilters));
+				intent.putStringArrayListExtra("typeResult", new ArrayList<String>(typeFilters));
 				// TODO passare la lista dei filtri, salvare i filtri globalmente e di la settare cheched quelli che erano stati selezionati
 				startActivityForResult(intent, 1);
 				return true;

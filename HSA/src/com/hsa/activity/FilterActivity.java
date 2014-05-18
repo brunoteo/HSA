@@ -20,10 +20,16 @@ public class FilterActivity extends ActionBarActivity {
 	private Button btnAccept, btnReset;
 	private List<CheckBox> checkboxes;
 	
+    private List<String> classFilters;
+    private List<String> costFilters;
+    private List<String> rarityFilters;
+    private List<String> typeFilters;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_filter);
+		
 		
 		checkboxes = new ArrayList<CheckBox>();
 		addListenerOnButtons();
