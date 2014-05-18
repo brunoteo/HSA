@@ -51,6 +51,7 @@ public class MainActivity extends ActionBarActivity implements
     private ArrayList<String> costFilters;
     private ArrayList<String> rarityFilters;
     private ArrayList<String> typeFilters;
+    private String nameFilter;
     
 	public HSADatabaseHelper getDbHelper() {
 		return dbHelper;
@@ -145,7 +146,7 @@ public class MainActivity extends ActionBarActivity implements
 	            if(costFilters != null || costFilters.size() != 0) filters.put("cost", new ArrayList<String>(costFilters));
 	            if(rarityFilters != null || rarityFilters.size() != 0) filters.put("rarity", new ArrayList<String>(rarityFilters));
 	            if(typeFilters != null || typeFilters.size() != 0) filters.put("type", new ArrayList<String>(typeFilters));
-	            SearchCriterion searchCriterion = new SearchCriterion(null, filters);
+	            SearchCriterion searchCriterion = new SearchCriterion(nameFilter, filters);
 	            List<GraphicalAggregation> graphicalsAggregations = viewHandler.searchRequest(searchCriterion, this);
 	            SearchFragment searchFragment = (SearchFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager + ":" + mViewPager.getCurrentItem());
 	            searchFragment.viewGraphicsAggregations(graphicalsAggregations);
@@ -156,9 +157,9 @@ public class MainActivity extends ActionBarActivity implements
 	private void handleIntent(Intent intent) {
 
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
-            String query = intent.getStringExtra(SearchManager.QUERY);
+            nameFilter = intent.getStringExtra(SearchManager.QUERY);
             SearchFragment searchFragment = (SearchFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager + ":" + mViewPager.getCurrentItem());
-            SearchCriterion criterion = new SearchCriterion(query, null);
+            SearchCriterion criterion = new SearchCriterion(nameFilter, null);
             List<GraphicalAggregation> graphicalsAggregations = viewHandler.searchRequest(criterion, this);
             searchFragment.viewGraphicsAggregations(graphicalsAggregations);
             
@@ -198,6 +199,7 @@ public class MainActivity extends ActionBarActivity implements
 				costFilters = null;
 				rarityFilters = null;
 				typeFilters = null;
+				nameFilter = null;
 	            SearchFragment searchFragment = (SearchFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager + ":" + mViewPager.getCurrentItem());
 				List<GraphicalAggregation> graphicalsAggregations = viewHandler.searchRequest(null, this);
 	            searchFragment.viewGraphicsAggregations(graphicalsAggregations);
