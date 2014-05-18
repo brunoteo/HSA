@@ -10,16 +10,20 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-public class HSADatabaseHelper extends SQLiteOpenHelper implements Serializable{
+public class HSADatabaseHelper extends SQLiteOpenHelper {
 	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+	private static HSADatabaseHelper dbInstance;
+	
 	public static final int DATABASE_VERSION = 2;
     public static final String DATABASE_NAME = "hsa.db";
+    
+    public static HSADatabaseHelper getInstance(Context context) {
+    	if(dbInstance == null)
+    		dbInstance = new HSADatabaseHelper(context);
+    	return dbInstance;
+    }
 
-	public HSADatabaseHelper(Context context) {
+	private HSADatabaseHelper(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
 	}
 

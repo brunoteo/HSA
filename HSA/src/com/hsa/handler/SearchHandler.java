@@ -1,14 +1,9 @@
 package com.hsa.handler;
 
-import java.io.Serializable;
-import java.security.Timestamp;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Map.Entry;
 
-import com.hsa.MainActivity;
 import com.hsa.bean.Card;
 import com.hsa.bean.Deck;
 import com.hsa.bean.Formation;
@@ -21,38 +16,25 @@ import com.hsa.database.HSADatabaseHelper;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-public class SearchHandler implements Serializable{
+public class SearchHandler{
 
 	/**
 	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+	 */	
+	private static SearchHandler searchInstance;
+	
 	private HSADatabaseHelper dbHelper;
-	private SaveHandler saveHandler;
-	private ViewHandler viewHandler;
 	
-	public ViewHandler getViewHandler() {
-		return viewHandler;
+	public static SearchHandler getInstance(HSADatabaseHelper dbHelper) {
+		if(searchInstance == null)
+			searchInstance = new SearchHandler(dbHelper);
+		return searchInstance;
 	}
-
-	public void setViewHandler(ViewHandler viewHandler) {
-		this.viewHandler = viewHandler;
-	}
-
-	public SaveHandler getSaveHandler() {
-		return saveHandler;
-	}
-
-	public void setSaveHandler(SaveHandler saveHandler) {
-		this.saveHandler = saveHandler;
-	}
-
-	public SearchHandler(HSADatabaseHelper dbHelper) {
+	
+	private SearchHandler(HSADatabaseHelper dbHelper) {
 		this.dbHelper = dbHelper;
-		saveHandler = null;
-		viewHandler = null;
 	}
-	
+
 	public Card cardRetrievalRequest(String name) {
 		SearchCriterion criterion = new SearchCriterion(name, null);
 		Card card = search(criterion).get(0);
@@ -298,7 +280,7 @@ public class SearchHandler implements Serializable{
 			for (Deck deck : decks){
 				if(deck.getName()==name) return null;
 			}
-			Deck deck = saveHandler.createNewDeck(name, className);
+			Deck deck = SaveHandler.getInstance(dbHelper).createNewDeck(name, className);
 			return deck;
 		}
 		return null;

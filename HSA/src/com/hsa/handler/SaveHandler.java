@@ -1,6 +1,5 @@
 package com.hsa.handler;
 
-import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
@@ -17,16 +16,24 @@ import com.hsa.contract.DeckEntry;
 import com.hsa.contract.FormationEntry;
 import com.hsa.database.HSADatabaseHelper;
 
-public class SaveHandler implements Serializable{
+public class SaveHandler{
 
-	private static final long serialVersionUID = 1L;
+	/**
+	 * 
+	 */
+	
+	private static SaveHandler saveInstance;
 
 
 	private HSADatabaseHelper dbHelper;
 	
-
+	public static SaveHandler getInstance(HSADatabaseHelper dbHelper) {
+		if(saveInstance == null)
+			saveInstance = new SaveHandler(dbHelper);
+		return saveInstance;
+	}
 	
-	public SaveHandler(HSADatabaseHelper dbHelper) {
+	private SaveHandler(HSADatabaseHelper dbHelper) {
 		this.dbHelper = dbHelper;
 	}
 	

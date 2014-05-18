@@ -7,6 +7,7 @@ import com.hsa.R;
 import com.hsa.adapter.GraphicalAggregationAdapter;
 import com.hsa.aggregation.CompleteTextualAggregation;
 import com.hsa.aggregation.GraphicalAggregation;
+import com.hsa.database.HSADatabaseHelper;
 import com.hsa.handler.ViewHandler;
 
 import android.app.Activity;
@@ -60,7 +61,7 @@ public class SearchFragment extends Fragment{
 	public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         setHasOptionsMenu(true);
-        viewHandler = ((MainActivity) getActivity()).getViewHandler();
+        viewHandler = ViewHandler.getInstance(HSADatabaseHelper.getInstance(getActivity()));
         List<GraphicalAggregation> graphicalsAggregations = viewHandler.searchRequest(null, this.getActivity());
         viewGraphicsAggregations(graphicalsAggregations);
         

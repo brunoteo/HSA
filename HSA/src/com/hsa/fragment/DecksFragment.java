@@ -2,10 +2,10 @@ package com.hsa.fragment;
 
 import java.util.List;
 
-import com.hsa.MainActivity;
 import com.hsa.R;
 import com.hsa.adapter.DeckDataAggregationAdapter;
 import com.hsa.aggregation.DeckDataAggregation;
+import com.hsa.database.HSADatabaseHelper;
 import com.hsa.handler.ViewHandler;
 
 import android.app.Activity;
@@ -52,7 +52,7 @@ public class DecksFragment extends Fragment{
 	public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         setHasOptionsMenu(true);
-        viewHandler = ((MainActivity) getActivity()).getViewHandler();
+        viewHandler = ViewHandler.getInstance(HSADatabaseHelper.getInstance(getActivity()));
         List<DeckDataAggregation> deckDataAggregations = viewHandler.decksRequest(this.getActivity());
         viewDeckDataggregations(deckDataAggregations);
         
