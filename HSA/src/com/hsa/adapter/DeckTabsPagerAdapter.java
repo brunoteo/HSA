@@ -15,7 +15,6 @@ public class DeckTabsPagerAdapter extends FragmentPagerAdapter{
 
 	public DeckTabsPagerAdapter(FragmentManager fm) {
 		super(fm);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
