@@ -48,7 +48,7 @@
 	        android:parentActivityName="com.hsa.MainActivity">          
 		</activity>
 		<activity
-	        android:name="com.hsa.activity.ModifyDeckActivity"
+	        android:name="com.hsa.activity.DeckActivity"
 	        android:label="@string/modify_deck"
 	        android:parentActivityName="com.hsa.MainActivity">          
 		</activity>
