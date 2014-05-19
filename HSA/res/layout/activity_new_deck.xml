@@ -17,9 +17,10 @@
 		<RadioGroup
 		    android:id="@+id/radioClass"
 		    android:layout_width="fill_parent"
-		    android:layout_height="wrap_content"
+		    android:layout_height="350dp"
 		    android:layout_marginTop="10dp"
-		    android:orientation="vertical">
+		    android:orientation="vertical" >
+
 		    <RadioButton android:id="@+id/radio_druid"
 		        android:layout_width="wrap_content"
 		        android:layout_height="wrap_content"
@@ -76,12 +77,14 @@
 		        android:onClick="onRadioButtonClicked"/>
 		</RadioGroup>
 	</ScrollView>
+
 	<Button
-		 android:id="@+id/buttonConfirm"
-		 android:layout_width="match_parent"
-		 android:layout_height="wrap_content"
-		 android:layout_marginTop="20dp"
-		 android:text="@string/create"
-		 android:layout_gravity="bottom"
-		 android:onClick="onClickConfirm" />
+	    android:id="@+id/buttonConfirm"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:layout_gravity="bottom"
+	    android:layout_marginTop="20dp"
+	    android:onClick="onClickConfirm"
+	    android:text="@string/create" />
+
 </LinearLayout>

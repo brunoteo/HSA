@@ -9,6 +9,7 @@ import com.hsa.handler.ViewHandler;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
@@ -80,16 +81,12 @@ public class NewDeckActivity extends ActionBarActivity{
 		if(classCheck()){
 			boolean nameBool = searchHandler.nameCheck(editText.getText().toString());
 			if(nameBool){
+				
 				DeckDataAggregation dda = viewHandler.deckCreationRequest(editText.getText().toString(), className);
+		    	Intent intent = new Intent(this, DeckActivity.class);
+		    	intent.putExtra("deckDataAggregation", dda);
+			    startActivity(intent);
 			    
-//			    if(dda != null){
-//			    	Intent intent = new Intent(this, ModifyDeckActivity.class);
-//			    	intent.putExtra("NewDeck", dda);
-//			    	intent.putExtra("SearchHandler", getIntent().getSerializableExtra("SearchHandler"));
-//			    	intent.putExtra("ViewHandler", viewHandler);
-//			    	intent.putExtra("SaveHandler", getIntent().getSerializableExtra("SaveHandler"));
-//				    startActivity(intent);
-//			    }else{
 			}else{
 				AlertDialog.Builder dlgAlert  = new AlertDialog.Builder(this);
 				
