@@ -37,7 +37,6 @@ public class DecksFragment extends Fragment{
             Bundle savedInstanceState) {
  
         View rootView = inflater.inflate(R.layout.fragment_decks, container, false);
-         
         return rootView;
     }
 	
@@ -62,6 +61,7 @@ public class DecksFragment extends Fragment{
         viewDeckDataAggregations(deckDataAggregations);
         
 	}
+	//TODO aggiornare la lista mazzi come callback dalla visualizza carte mazzo
 	
 	private void viewDeckDataAggregations(final List<DeckDataAggregation> deckDataAggregations) {
 		listView = (ListView) getView().findViewById(R.id.deckListView);
