@@ -52,15 +52,16 @@ public class ViewHandler{
 	}
 	
 	public DeckDataAggregation deckCreationRequest(String name, String className){
-		Deck newDeck = SearchHandler.getInstance(dbHelper).dataCheck(name, className);
-		if(newDeck == null) return null;
-		
-        DeckDataAggregation dda = new DeckDataAggregation();
-        dda.setName(newDeck.getName());
-        dda.setClassName(newDeck.getClassName());
-        dda.setCardNumber(0);
-        dda.setDate(newDeck.getDate());
-        return dda;
+//		Deck newDeck = SearchHandler.getInstance(dbHelper).dataCheck(name, className);
+//		if(newDeck == null) return null;
+//		
+//        DeckDataAggregation dda = new DeckDataAggregation();
+//        dda.setName(newDeck.getName());
+//        dda.setClassName(newDeck.getClassName());
+//        dda.setCardNumber(0);
+//        dda.setDate(newDeck.getDate());
+//        return dda;
+		return null;
 	}
 
 	public void trackDeck() {

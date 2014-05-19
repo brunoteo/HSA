@@ -77,25 +77,40 @@ public class NewDeckActivity extends ActionBarActivity{
 	public void onClickConfirm(View view){
 		EditText editText = (EditText) findViewById(R.id.deck_name);
 		//FIXME fare la creazione
-		if(className != null){
-			DeckDataAggregation dda = viewHandler.deckCreationRequest(editText.getText().toString(), className);
-		    
-//		    if(dda != null){
-//		    	Intent intent = new Intent(this, ModifyDeckActivity.class);
-//		    	intent.putExtra("NewDeck", dda);
-//		    	intent.putExtra("SearchHandler", getIntent().getSerializableExtra("SearchHandler"));
-//		    	intent.putExtra("ViewHandler", viewHandler);
-//		    	intent.putExtra("SaveHandler", getIntent().getSerializableExtra("SaveHandler"));
-//			    startActivity(intent);
-//		    }else{
-//		    	
+		if(classCheck()){
+			boolean nameBool = searchHandler.nameCheck(editText.getText().toString());
+			if(nameBool){
+				DeckDataAggregation dda = viewHandler.deckCreationRequest(editText.getText().toString(), className);
+			    
+//			    if(dda != null){
+//			    	Intent intent = new Intent(this, ModifyDeckActivity.class);
+//			    	intent.putExtra("NewDeck", dda);
+//			    	intent.putExtra("SearchHandler", getIntent().getSerializableExtra("SearchHandler"));
+//			    	intent.putExtra("ViewHandler", viewHandler);
+//			    	intent.putExtra("SaveHandler", getIntent().getSerializableExtra("SaveHandler"));
+//				    startActivity(intent);
+//			    }else{
+			}else{
+				AlertDialog.Builder dlgAlert  = new AlertDialog.Builder(this);
+				
+	            dlgAlert.setMessage("Error: Name already exist.");
+	            dlgAlert.setTitle("Error Message...");
+	            dlgAlert.setPositiveButton("OK", null);
+	            dlgAlert.create().show();
+	            
+	            dlgAlert.setPositiveButton("Ok",
+	                    new DialogInterface.OnClickListener() {
+	                        public void onClick(DialogInterface dialog, int which) {
+
+	                        }
+	                    });
+			}		    	
 		}else{
 			AlertDialog.Builder dlgAlert  = new AlertDialog.Builder(this);
 			
             dlgAlert.setMessage("Error: Class empty.");
             dlgAlert.setTitle("Error Message...");
             dlgAlert.setPositiveButton("OK", null);
-//            dlgAlert.setCancelable(true);
             dlgAlert.create().show();
             
             dlgAlert.setPositiveButton("Ok",
@@ -133,4 +148,11 @@ public class NewDeckActivity extends ActionBarActivity{
 		});
 	 
 	  }
+	
+	public boolean classCheck(){
+		if(className != null){
+			return true;
+		}
+		return false;
+	}
 }
