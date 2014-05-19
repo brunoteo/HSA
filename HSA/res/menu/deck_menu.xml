@@ -4,8 +4,7 @@
     
     <item android:id="@+id/track"
           android:title="@string/track_title"
-          android:icon="@drawable/track"
-          hsa:showAsAction="never" />
+          android:icon="@drawable/track_w"
+          hsa:showAsAction="always" />
     
-
 </menu>
