@@ -45,12 +45,12 @@
         <activity
 	        android:name="com.hsa.activity.NewDeckActivity"
 	        android:label="@string/new_deck"
-	        android:parentActivityName="com.hsa.MainActivity">          
+	        android:parentActivityName="com.hsa.MainActivity">         
 		</activity>
 		<activity
 	        android:name="com.hsa.activity.DeckActivity"
 	        android:label="@string/modify_deck"
-	        android:parentActivityName="com.hsa.MainActivity">          
+	        android:parentActivityName="com.hsa.MainActivity">         
 		</activity>
 		<activity
 	        android:name="com.hsa.activity.TrackActivity"
