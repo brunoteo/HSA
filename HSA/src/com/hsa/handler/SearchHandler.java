@@ -291,19 +291,13 @@ public class SearchHandler{
 		}
 	}
 
-	public Deck dataCheck(String name, String className) {
+	public boolean nameCheck(String name) {
 		
-		if(className != null){
-			List<Deck> decks = decksSearch();
-			for (Deck deck : decks){
-				if(deck.getName()==name) return null;
-			}
-			Deck deck = SaveHandler.getInstance(dbHelper).createNewDeck(name, className);
-			return deck;
-		}else{
-			
+		List<Deck> decks = decksSearch();
+		for (Deck deck : decks){
+			if(deck.getName().equals(name)) return false;
 		}
-		return null;
+		return true;
 	}
 
 }

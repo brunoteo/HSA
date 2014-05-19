@@ -52,9 +52,7 @@ public class ViewHandler{
 	}
 	
 	public DeckDataAggregation deckCreationRequest(String name, String className){
-		Deck newDeck = SearchHandler.getInstance(dbHelper).dataCheck(name, className);
-		if(newDeck == null) return null;
-		
+		Deck newDeck = SaveHandler.getInstance(dbHelper).createDeck(name, className);
         DeckDataAggregation dda = new DeckDataAggregation();
         dda.setName(newDeck.getName());
         dda.setClassName(newDeck.getClassName());
