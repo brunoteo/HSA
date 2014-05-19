@@ -66,7 +66,7 @@ public class SearchFragment extends Fragment{
         dbHelper = HSADatabaseHelper.getInstance(getActivity());
         viewHandler = ViewHandler.getInstance(dbHelper);
         
-        List<GraphicalAggregation> graphicalsAggregations = viewHandler.searchRequest(null, this.getActivity());
+        List<GraphicalAggregation> graphicalsAggregations = viewHandler.cardsSearchRequest(null, this.getActivity());
         viewGraphicsAggregations(graphicalsAggregations);
 	}
 	
@@ -90,7 +90,7 @@ public class SearchFragment extends Fragment{
 
 			@Override
 			public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-				CompleteTextualAggregation completeTextualAggregation = viewHandler.completeInfoRequest(graphicalsAggregations.get(position));			
+				CompleteTextualAggregation completeTextualAggregation = viewHandler.completeInfoRequest(graphicalsAggregations.get(position).getName());			
 				onSearchListener.onCardSelected(completeTextualAggregation);
 				return true;
 			}

@@ -32,8 +32,8 @@ public class DeckHandler {
 	}
 	
 	public SearchCriterion deckCriterionRequest(String deckName) {
-		deck = SearchHandler.getInstance(dbHelper).deckRetrievalRequest(deckName);
-		tmpFormations = SearchHandler.getInstance(dbHelper).formationsRetrievalRequest(deckName);
+		deck = SearchHandler.getInstance(dbHelper).deckSearch(deckName);
+		tmpFormations = SearchHandler.getInstance(dbHelper).formationsSearch(deckName);
 		
 		Map<String, ArrayList<String>> filters = new HashMap<String, ArrayList<String>>();
 		ArrayList<String> classFilter = new ArrayList<String>();

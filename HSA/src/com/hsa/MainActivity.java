@@ -111,7 +111,7 @@ public class MainActivity extends ActionBarActivity implements
         deckHandler = DeckHandler.getInstance(dbHelper);
         trackHandler = TrackHandler.getInstance(dbHelper);
        //Riempimento database
-        int emptyDB = searchHandler.search(null).size();
+        int emptyDB = searchHandler.cardsSearch(null).size();
         if(emptyDB==0) {
             saveHandler.fillDB();
         }
@@ -159,7 +159,7 @@ public class MainActivity extends ActionBarActivity implements
 	            	if(typeFilters.size() != 0) filters.put("type", new ArrayList<String>(typeFilters));
 	            }
 	            SearchCriterion searchCriterion = new SearchCriterion(nameFilter, filters);
-	            List<GraphicalAggregation> graphicalsAggregations = viewHandler.searchRequest(searchCriterion, this);
+	            List<GraphicalAggregation> graphicalsAggregations = viewHandler.cardsSearchRequest(searchCriterion, this);
 	            SearchFragment searchFragment = (SearchFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager + ":" + mViewPager.getCurrentItem());
 	            searchFragment.viewGraphicsAggregations(graphicalsAggregations);
 	        }
@@ -185,7 +185,7 @@ public class MainActivity extends ActionBarActivity implements
             	if(typeFilters.size() != 0) filters.put("type", new ArrayList<String>(typeFilters));
             }
             SearchCriterion criterion = new SearchCriterion(nameFilter, filters);
-            List<GraphicalAggregation> graphicalsAggregations = viewHandler.searchRequest(criterion, this);
+            List<GraphicalAggregation> graphicalsAggregations = viewHandler.cardsSearchRequest(criterion, this);
             searchFragment.viewGraphicsAggregations(graphicalsAggregations);
             
         }
@@ -226,7 +226,7 @@ public class MainActivity extends ActionBarActivity implements
 				typeFilters = null;
 				nameFilter = null;
 	            SearchFragment searchFragment = (SearchFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager + ":" + mViewPager.getCurrentItem());
-				List<GraphicalAggregation> graphicalsAggregations = viewHandler.searchRequest(null, this);
+				List<GraphicalAggregation> graphicalsAggregations = viewHandler.cardsSearchRequest(null, this);
 	            searchFragment.viewGraphicsAggregations(graphicalsAggregations);
 				return true;
 			default:

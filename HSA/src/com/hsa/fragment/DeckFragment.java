@@ -50,8 +50,10 @@ public class DeckFragment extends Fragment{
         viewHandler = ViewHandler.getInstance(dbHelper);
         
         SearchCriterion criterion = deckHandler.deckCriterionRequest(((DeckActivity) getActivity()).getDeckDataAggregation().getName());
-        List<GraphicalAggregation> graphicalsAggregations = viewHandler.searchRequest(criterion, this.getActivity());
+        List<GraphicalAggregation> graphicalsAggregations = viewHandler.cardsSearchRequest(criterion, this.getActivity());
         viewGraphicsAggregations(graphicalsAggregations);
+        
+        //TODO richiesta carte mazzo
 	}
 	
 	@Override

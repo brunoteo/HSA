@@ -32,9 +32,9 @@ public class ViewHandler{
 		this.dbHelper = dbHelper;
 	}
 	
-	public List<GraphicalAggregation> searchRequest(SearchCriterion criterion, FragmentActivity fragment) {
+	public List<GraphicalAggregation> cardsSearchRequest(SearchCriterion criterion, FragmentActivity fragment) {
 		List<GraphicalAggregation> graphicalsAggregations = new ArrayList<GraphicalAggregation>();
-		List<Card> cards = SearchHandler.getInstance(dbHelper).search(criterion);
+		List<Card> cards = SearchHandler.getInstance(dbHelper).cardsSearch(criterion);
 		for(Card card : cards) {
 			graphicalsAggregations.add(createGraphicalAggregation(card, fragment));
 		}
@@ -43,7 +43,7 @@ public class ViewHandler{
 	}
 	
 	public List<DeckDataAggregation> decksRequest(FragmentActivity fragment) {
-		List<Deck> decks = SearchHandler.getInstance(dbHelper).decksRequest();
+		List<Deck> decks = SearchHandler.getInstance(dbHelper).decksSearch();
 		List<DeckDataAggregation> deckDataAggregations = new ArrayList<DeckDataAggregation>();
 		for(Deck deck : decks){
 			deckDataAggregations.add(createDeckDataAggregation(deck, fragment));
@@ -67,10 +67,9 @@ public class ViewHandler{
 		DeckHandler.getInstance(dbHelper).trackDeck();
 	}
 	
-	public CompleteTextualAggregation completeInfoRequest(GraphicalAggregation graphicalAggregation) {
-		Card card = SearchHandler.getInstance(dbHelper).cardRetrievalRequest(graphicalAggregation.getName());
-		CompleteTextualAggregation completeTextualAggregation;
-		completeTextualAggregation = createCompleteTextualAggregation(card);
+	public CompleteTextualAggregation completeInfoRequest(String cardName) {
+		Card card = SearchHandler.getInstance(dbHelper).cardSearch(cardName);
+		CompleteTextualAggregation completeTextualAggregation = createCompleteTextualAggregation(card);
 		return completeTextualAggregation;
 	}
 	
@@ -94,7 +93,7 @@ public class ViewHandler{
 		dda.setName(deck.getName());
 		dda.setClassName(deck.getClassName());
 		dda.setDate(deck.getDate());
-		List<Formation> formations = SearchHandler.getInstance(dbHelper).formationsRetrievalRequest(deck.getName());
+		List<Formation> formations = SearchHandler.getInstance(dbHelper).formationsSearch(deck.getName());
 		int n = 0;
 		for(int i = 0; i<formations.size();i++){
 			n = n + formations.get(i).getOccurrence();
