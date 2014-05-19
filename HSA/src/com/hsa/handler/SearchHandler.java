@@ -101,7 +101,7 @@ public class SearchHandler{
 				sql = sql + " " + CardEntry.COLUMN_NAME_NAME + " = ?";
 				first = false;
 			}else{
-				sql = sql + " OR" + CardEntry.COLUMN_NAME_NAME + " = ?";
+				sql = sql + " OR " + CardEntry.COLUMN_NAME_NAME + " = ?";
 			}
 			sqlArgs.add(formation.getCard());
 		}
