@@ -13,7 +13,6 @@ public class TrackTabsPagerAdapter extends FragmentPagerAdapter{
 
 	public TrackTabsPagerAdapter(FragmentManager fm) {
 		super(fm);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
@@ -30,7 +29,6 @@ public class TrackTabsPagerAdapter extends FragmentPagerAdapter{
 
 	@Override
 	public int getCount() {
-		// TODO Auto-generated method stub
 		return 2;
 	}
 

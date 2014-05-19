@@ -88,7 +88,7 @@ ActionBar.TabListener{
         deckHandler = DeckHandler.getInstance(dbHelper);
         trackHandler = TrackHandler.getInstance(dbHelper);
 		
-		viewHandler.viewDeckRequest(deckData);
+		//viewHandler.viewDeckRequest(deckData);
 	}
 	
 	@Override

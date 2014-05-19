@@ -70,7 +70,7 @@ public class SearchHandler{
 		return decks;
 	}
 	
-	public List<Formation> formationsRequest(String deckName) {
+	public List<Formation> formationsRetrievalRequest(String deckName) {
 		String sql = "SELECT * FROM " + FormationEntry.TABLE_NAME + " WHERE deck = ?";
 		List<Formation> formations = new ArrayList<Formation>();
 		SQLiteDatabase db = dbHelper.getWritableDatabase();

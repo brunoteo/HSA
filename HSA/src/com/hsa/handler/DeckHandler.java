@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.hsa.aggregation.DeckDataAggregation;
 import com.hsa.bean.Card;
 import com.hsa.bean.Deck;
 import com.hsa.bean.Formation;
@@ -30,16 +31,18 @@ public class DeckHandler {
 		this.dbHelper = dbHelper;
 	}
 	
-	public void viewDeck(String name) {
-		deck = SearchHandler.getInstance(dbHelper).deckRetrievalRequest(name);
-		tmpFormations = SearchHandler.getInstance(dbHelper).formationsRequest(name);
+	public SearchCriterion deckCriterionRequest(String deckName) {
+		deck = SearchHandler.getInstance(dbHelper).deckRetrievalRequest(deckName);
+		tmpFormations = SearchHandler.getInstance(dbHelper).formationsRetrievalRequest(deckName);
+		
 		Map<String, ArrayList<String>> filters = new HashMap<String, ArrayList<String>>();
 		ArrayList<String> classFilter = new ArrayList<String>();
 		classFilter.add(deck.getClassName());
-		classFilter.add("Neutrol");
+		classFilter.add("Neutral");
 		filters.put("className", classFilter);
-		SearchCriterion criterion = new SearchCriterion(null, filters);
+		return new SearchCriterion(null, filters);
 	}
+	
 	// TODO perché hai messo ovunuqe il dbhelper come variabile se si può ottenere anche di esso l instance?
 
 	public void trackDeck() {

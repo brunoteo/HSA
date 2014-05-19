@@ -74,10 +74,6 @@ public class ViewHandler{
 		return completeTextualAggregation;
 	}
 	
-	public void viewDeckRequest(DeckDataAggregation deckData) {
-		DeckHandler.getInstance(dbHelper).viewDeck(deckData.getName());
-	}
-	
 	private CompleteTextualAggregation createCompleteTextualAggregation(Card card) {
 		return new CompleteTextualAggregation(card);
 	}
@@ -98,7 +94,7 @@ public class ViewHandler{
 		dda.setName(deck.getName());
 		dda.setClassName(deck.getClassName());
 		dda.setDate(deck.getDate());
-		List<Formation> formations = SearchHandler.getInstance(dbHelper).formationsRequest(deck.getName());
+		List<Formation> formations = SearchHandler.getInstance(dbHelper).formationsRetrievalRequest(deck.getName());
 		int n = 0;
 		for(int i = 0; i<formations.size();i++){
 			n = n + formations.get(i).getOccurrence();
