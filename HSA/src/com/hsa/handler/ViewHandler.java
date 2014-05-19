@@ -22,6 +22,8 @@ public class ViewHandler{
 	
 	private HSADatabaseHelper dbHelper;
 	
+	private Context context;
+	
 	public static ViewHandler getInstance(HSADatabaseHelper dbHelper) {
 		if(viewInstance == null)
 			viewInstance = new ViewHandler(dbHelper);
@@ -35,8 +37,9 @@ public class ViewHandler{
 	public List<GraphicalAggregation> cardsSearchRequest(SearchCriterion criterion, FragmentActivity fragment) {
 		List<GraphicalAggregation> graphicalsAggregations = new ArrayList<GraphicalAggregation>();
 		List<Card> cards = SearchHandler.getInstance(dbHelper).cardsSearch(criterion);
+		this.context = fragment;
 		for(Card card : cards) {
-			graphicalsAggregations.add(createGraphicalAggregation(card, null, fragment));
+			graphicalsAggregations.add(createGraphicalAggregation(card, null));
 		}
 		
 		return graphicalsAggregations;
@@ -75,7 +78,7 @@ public class ViewHandler{
 		return new CompleteTextualAggregation(card);
 	}
 	
-	private GraphicalAggregation createGraphicalAggregation(Card card, Formation formation, Context context) {
+	private GraphicalAggregation createGraphicalAggregation(Card card, Formation formation) {
 		String uri = "@drawable/" + card.getPath();
 		int image = context.getResources().getIdentifier(uri, "drawable", context.getPackageName());
 		GraphicalAggregation ga = new GraphicalAggregation();
@@ -115,10 +118,17 @@ public class ViewHandler{
 		return partials;
 	}//FIXME creazione delle aggegazioni testuali parziali
 	
-	public List<GraphicalAggregation> generateDeckCardsAggregations(List<Card> cards, List<Formation> formation) {
-		List<GraphicalAggregation> graphicalsAggregations = null;
+	public List<GraphicalAggregation> generateDeckCardsAggregations(List<Card> cards, List<Formation> formations) {
+		List<GraphicalAggregation> graphicalsAggregations = new ArrayList<GraphicalAggregation>();
+		Formation cardFormation = null;
 		for(Card card : cards) {
-			
+			for(Formation formation : formations) {
+				if(formation.getCard().equals(card.getName())) {
+					cardFormation = formation;
+					break;
+				}			
+			}
+			graphicalsAggregations.add(createGraphicalAggregation(card, cardFormation));
 		}
 		return graphicalsAggregations;
 	}

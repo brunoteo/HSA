@@ -21,7 +21,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.AdapterView.OnItemLongClickListener;
+import android.widget.LinearLayout;
 
 public class DeckFragment extends Fragment{
 	
@@ -55,8 +57,10 @@ public class DeckFragment extends Fragment{
         List<GraphicalAggregation> graphicalsAggregations = viewHandler.cardsSearchRequest(criterion, this.getActivity());
         viewGraphicsAggregations(graphicalsAggregations);
         
-        //TODO richiesta carte mazzo
         deckCardsGA = deckHandler.deckCardsRequest();
+        viewDeckCardsGraphicsAggregations(deckCardsGA);
+        
+        //TODO visualizza numero carte
 	}
 	
 	@Override
@@ -80,6 +84,16 @@ public class DeckFragment extends Fragment{
 //			}
 //        	
 //		});
+	}
+	
+	public void viewDeckCardsGraphicsAggregations(final List<GraphicalAggregation> graphicalsAggregations) {
+		LinearLayout view = (LinearLayout) getActivity().findViewById(R.id.deckCards);
+		for(GraphicalAggregation ga : graphicalsAggregations) {
+			ImageView image = new ImageView(getActivity());
+			image.setVisibility(View.VISIBLE);
+			image.setImageResource(ga.getImage());
+			view.addView(image);
+		}
 	}
 
 }
