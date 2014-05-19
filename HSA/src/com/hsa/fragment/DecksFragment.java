@@ -20,10 +20,13 @@ import android.widget.ListView;
 
 public class DecksFragment extends Fragment{
 
-	private OnDecksListener onDecksListener;
+	private HSADatabaseHelper dbHelper;
+	
 	private ViewHandler viewHandler;
 	
-	ListView listView;
+	private OnDecksListener onDecksListener;
+	
+	private ListView listView;
 	
 	public interface OnDecksListener{
 		public void onDeckSelected(DeckDataAggregation deckDataAggregation);
@@ -52,13 +55,15 @@ public class DecksFragment extends Fragment{
 	public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         setHasOptionsMenu(true);
-        viewHandler = ViewHandler.getInstance(HSADatabaseHelper.getInstance(getActivity()));
+        dbHelper = HSADatabaseHelper.getInstance(getActivity());
+        viewHandler = ViewHandler.getInstance(dbHelper);
+        
         List<DeckDataAggregation> deckDataAggregations = viewHandler.decksRequest(this.getActivity());
-        viewDeckDataggregations(deckDataAggregations);
+        viewDeckDataAggregations(deckDataAggregations);
         
 	}
 	
-	private void viewDeckDataggregations(final List<DeckDataAggregation> deckDataAggregations) {
+	private void viewDeckDataAggregations(final List<DeckDataAggregation> deckDataAggregations) {
 		listView = (ListView) getView().findViewById(R.id.deckListView);
 		listView.setAdapter(new DeckDataAggregationAdapter(this.getActivity(), deckDataAggregations));
 		listView.setOnItemClickListener(new OnItemClickListener() {
@@ -68,16 +73,6 @@ public class DecksFragment extends Fragment{
 				onDecksListener.onDeckSelected(deckDataAggregations.get(position));				
 			}
 		});
-//		listView.setOnItemLongClickListener(new OnItemLongClickListener() { 
-//
-//			@Override
-//			public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-//				CompleteTextualAggregation completeTextualAggregation = viewHandler.completeInfoRequest(graphicalsAggregations.get(position));			
-//				onSearchListener.onCardSelected(completeTextualAggregation);
-//				return true;
-//			}
-//        	
-//		});
 		
 	}
 	

@@ -28,10 +28,13 @@ import android.widget.GridView;
 
 public class SearchFragment extends Fragment{
 	
-	private OnSearchListener onSearchListener;
+	private HSADatabaseHelper dbHelper;
+	
 	private ViewHandler viewHandler;
 	
-	GridView gridView;
+	private OnSearchListener onSearchListener;
+	
+	private GridView gridView;
 	
 	public interface OnSearchListener{
 		public void onCardSelected(CompleteTextualAggregation completeAggregation);
@@ -60,8 +63,10 @@ public class SearchFragment extends Fragment{
 	public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         setHasOptionsMenu(true);
-        viewHandler = ViewHandler.getInstance(HSADatabaseHelper.getInstance(getActivity()));
-        List<GraphicalAggregation> graphicalsAggregations = viewHandler.searchRequest(null, this.getActivity());
+        dbHelper = HSADatabaseHelper.getInstance(getActivity());
+        viewHandler = ViewHandler.getInstance(dbHelper);
+        
+        List<GraphicalAggregation> graphicalsAggregations = viewHandler.cardsSearchRequest(null, this.getActivity());
         viewGraphicsAggregations(graphicalsAggregations);
 	}
 	
@@ -85,7 +90,7 @@ public class SearchFragment extends Fragment{
 
 			@Override
 			public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-				CompleteTextualAggregation completeTextualAggregation = viewHandler.completeInfoRequest(graphicalsAggregations.get(position));			
+				CompleteTextualAggregation completeTextualAggregation = viewHandler.completeInfoRequest(graphicalsAggregations.get(position).getName());			
 				onSearchListener.onCardSelected(completeTextualAggregation);
 				return true;
 			}

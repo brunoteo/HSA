@@ -1,8 +1,15 @@
 package com.hsa.fragment;
 
+import java.util.List;
+
 import com.hsa.R;
 import com.hsa.activity.DeckActivity;
+import com.hsa.adapter.GraphicalAggregationAdapter;
+import com.hsa.aggregation.CompleteTextualAggregation;
+import com.hsa.aggregation.GraphicalAggregation;
+import com.hsa.bean.SearchCriterion;
 import com.hsa.database.HSADatabaseHelper;
+import com.hsa.handler.DeckHandler;
 import com.hsa.handler.ViewHandler;
 
 import android.os.Bundle;
@@ -12,11 +19,19 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.GridView;
+import android.widget.AdapterView.OnItemLongClickListener;
 
 public class DeckFragment extends Fragment{
 	
-	ViewHandler viewHandler;
+	private HSADatabaseHelper dbHelper;
 	
+	private ViewHandler viewHandler;
+	private DeckHandler deckHandler;
+	
+	private GridView gridView;
+
 	@Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
@@ -30,8 +45,15 @@ public class DeckFragment extends Fragment{
 	public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         setHasOptionsMenu(true);
-        viewHandler = ViewHandler.getInstance(HSADatabaseHelper.getInstance(getActivity()));
-        viewHandler.viewDeckRequest(((DeckActivity) getActivity()).getDeckDataAggregation());
+        dbHelper = HSADatabaseHelper.getInstance(getActivity());
+        deckHandler = DeckHandler.getInstance(dbHelper);
+        viewHandler = ViewHandler.getInstance(dbHelper);
+        
+        SearchCriterion criterion = deckHandler.deckCriterionRequest(((DeckActivity) getActivity()).getDeckDataAggregation().getName());
+        List<GraphicalAggregation> graphicalsAggregations = viewHandler.cardsSearchRequest(criterion, this.getActivity());
+        viewGraphicsAggregations(graphicalsAggregations);
+        
+        //TODO richiesta carte mazzo
 	}
 	
 	@Override
@@ -40,6 +62,21 @@ public class DeckFragment extends Fragment{
 		inflater.inflate(R.menu.deck_menu, menu);
 		super.onCreateOptionsMenu(menu, inflater);
 		
+	}
+	
+	public void viewGraphicsAggregations(final List<GraphicalAggregation> graphicalsAggregations) {
+		gridView = (GridView) getView().findViewById(R.id.gridview2);
+        gridView.setAdapter(new GraphicalAggregationAdapter(this.getActivity(), graphicalsAggregations));
+//        gridView.setOnItemLongClickListener(new OnItemLongClickListener() {
+//
+//			@Override
+//			public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+//				CompleteTextualAggregation completeTextualAggregation = viewHandler.completeInfoRequest(graphicalsAggregations.get(position));			
+//				onSearchListener.onCardSelected(completeTextualAggregation);
+//				return true;
+//			}
+//        	
+//		});
 	}
 
 }

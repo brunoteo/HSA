@@ -43,6 +43,7 @@ ActionBar.TabListener{
 		setContentView(R.layout.activity_deck);
 		Intent intent = getIntent();
 		deckData = intent.getParcelableExtra("deckDataAggregation");
+		setTitle(deckData.getName());
 		
 		// Set up the action bar.
 		final ActionBar actionBar = getSupportActionBar();
@@ -87,7 +88,7 @@ ActionBar.TabListener{
         deckHandler = DeckHandler.getInstance(dbHelper);
         trackHandler = TrackHandler.getInstance(dbHelper);
 		
-		viewHandler.viewDeckRequest(deckData);
+		//viewHandler.viewDeckRequest(deckData);
 	}
 	
 	@Override

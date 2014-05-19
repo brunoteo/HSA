@@ -35,13 +35,13 @@ public class SearchHandler{
 		this.dbHelper = dbHelper;
 	}
 
-	public Card cardRetrievalRequest(String name) {
+	public Card cardSearch(String name) {
 		SearchCriterion criterion = new SearchCriterion(name, null);
-		Card card = search(criterion).get(0);
+		Card card = cardsSearch(criterion).get(0);
 		return card;
 	}
 	
-	public Deck deckRetrievalRequest(String name) {
+	public Deck deckSearch(String name) {
 		String sql = "SELECT * FROM " + DeckEntry.TABLE_NAME + " WHERE name = ?";
 		SQLiteDatabase db = dbHelper.getWritableDatabase();
 		Cursor cursor = db.rawQuery(sql, new String[]{name});
@@ -54,7 +54,7 @@ public class SearchHandler{
 		return deck;
 	}
 	
-	public List<Deck> decksRequest() {
+	public List<Deck> decksSearch() {
 		String sql = "SELECT * FROM " + DeckEntry.TABLE_NAME;
 		List<Deck> decks = new ArrayList<Deck>();
 		SQLiteDatabase db = dbHelper.getWritableDatabase();
@@ -70,7 +70,7 @@ public class SearchHandler{
 		return decks;
 	}
 	
-	public List<Formation> formationsRequest(String deckName) {
+	public List<Formation> formationsSearch(String deckName) {
 		String sql = "SELECT * FROM " + FormationEntry.TABLE_NAME + " WHERE deck = ?";
 		List<Formation> formations = new ArrayList<Formation>();
 		SQLiteDatabase db = dbHelper.getWritableDatabase();
@@ -87,7 +87,7 @@ public class SearchHandler{
 		return formations;
 	}
 	
-	public List<Card> search(SearchCriterion searchCriterion) {
+	public List<Card> cardsSearch(SearchCriterion searchCriterion) {
 		String sql = "SELECT * FROM " + CardEntry.TABLE_NAME;
 		List<String> sqlArgs = new ArrayList<String>();
 //=====================================================VERSIONE2=======================================================
@@ -258,7 +258,7 @@ public class SearchHandler{
 	public Deck dataCheck(String name, String className) {
 		
 		if(className != null){
-			List<Deck> decks = decksRequest();
+			List<Deck> decks = decksSearch();
 			for (Deck deck : decks){
 				if(deck.getName()==name) return null;
 			}
