@@ -1,11 +1,14 @@
 package com.hsa.activity;
 
 import com.hsa.R;
+import com.hsa.aggregation.DeckDataAggregation;
 import com.hsa.database.HSADatabaseHelper;
 import com.hsa.handler.SaveHandler;
 import com.hsa.handler.SearchHandler;
 import com.hsa.handler.ViewHandler;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
@@ -74,32 +77,35 @@ public class NewDeckActivity extends ActionBarActivity{
 	public void onClickConfirm(View view){
 		EditText editText = (EditText) findViewById(R.id.deck_name);
 		//FIXME fare la creazione
-//	    DeckDataAggregation dda = viewHandler.deckCreationRequest(editText.getText().toString(), className);
-	    	
-//	    if(dda != null){
-//	    	Intent intent = new Intent(this, ModifyDeckActivity.class);
-//	    	intent.putExtra("NewDeck", dda);
-//	    	intent.putExtra("SearchHandler", getIntent().getSerializableExtra("SearchHandler"));
-//	    	intent.putExtra("ViewHandler", viewHandler);
-//	    	intent.putExtra("SaveHandler", getIntent().getSerializableExtra("SaveHandler"));
-//		    startActivity(intent);
-//	    }else{
-//	    	AlertDialog.Builder dlgAlert  = new AlertDialog.Builder(this);
-//
-//            dlgAlert.setMessage("Error: Name already exist or name empty or class empty.");
-//            dlgAlert.setTitle("Error Message...");
-//            dlgAlert.setPositiveButton("OK", null);
+		if(className != null){
+			DeckDataAggregation dda = viewHandler.deckCreationRequest(editText.getText().toString(), className);
+		    
+//		    if(dda != null){
+//		    	Intent intent = new Intent(this, ModifyDeckActivity.class);
+//		    	intent.putExtra("NewDeck", dda);
+//		    	intent.putExtra("SearchHandler", getIntent().getSerializableExtra("SearchHandler"));
+//		    	intent.putExtra("ViewHandler", viewHandler);
+//		    	intent.putExtra("SaveHandler", getIntent().getSerializableExtra("SaveHandler"));
+//			    startActivity(intent);
+//		    }else{
+//		    	
+		}else{
+			AlertDialog.Builder dlgAlert  = new AlertDialog.Builder(this);
+			
+            dlgAlert.setMessage("Error: Class empty.");
+            dlgAlert.setTitle("Error Message...");
+            dlgAlert.setPositiveButton("OK", null);
 //            dlgAlert.setCancelable(true);
-//            dlgAlert.create().show();
-//            
-//            dlgAlert.setPositiveButton("Ok",
-//                    new DialogInterface.OnClickListener() {
-//                        public void onClick(DialogInterface dialog, int which) {
-//
-//                        }
-//                    });
-//            }
-	    }
+            dlgAlert.create().show();
+            
+            dlgAlert.setPositiveButton("Ok",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+
+                        }
+                    });
+        }
+	}
 	    //fare i controlli
 //	    String message = editText.getText().toString();
 //	    intent.putExtra(EXTRA_MESSAGE, message);
