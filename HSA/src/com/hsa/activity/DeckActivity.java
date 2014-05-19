@@ -27,6 +27,7 @@ ActionBar.TabListener{
 	private DeckTabsPagerAdapter deckTabsPagerAdapter;
 	private ViewPager mViewPager;
 
+	//FIXME forse non servono
 	private SaveHandler saveHandler;
 	private SearchHandler searchHandler;
 	private ViewHandler viewHandler;
@@ -88,7 +89,6 @@ ActionBar.TabListener{
         deckHandler = DeckHandler.getInstance(dbHelper);
         trackHandler = TrackHandler.getInstance(dbHelper);
 		
-		//viewHandler.viewDeckRequest(deckData);
 	}
 	
 	@Override

@@ -36,7 +36,7 @@ public class TrackHandler {
 		this.trackFormations = tmpFormations;
 		this.pile = new Vector<String>();
 		
-		List<Card> cards = SearchHandler.getInstance(dbHelper).deckCardsRecoveryRequest(trackFormations);
+		List<Card> cards = SearchHandler.getInstance(dbHelper).deckCardsSearch(trackFormations);
 		
 		List<PartialTextualAggregation> partials = ViewHandler.getInstance(dbHelper).createPartialTextualAggregation(cards, trackFormations);
 		

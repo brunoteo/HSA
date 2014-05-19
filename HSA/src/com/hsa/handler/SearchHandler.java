@@ -92,6 +92,37 @@ public class SearchHandler{
 		return formations;
 	}
 	
+	public List<Card> deckCardsSearch(List<Formation> trackFormations) {
+		String sql = "SELECT * from " + CardEntry.TABLE_NAME + " WHERE";
+		List<String> sqlArgs = new ArrayList<String>();
+		boolean first = true;
+		for (Formation formation : trackFormations){
+			if(first){
+				sql = sql + " " + CardEntry.COLUMN_NAME_NAME + " = ?";
+				first = false;
+			}else{
+				sql = sql + " OR" + CardEntry.COLUMN_NAME_NAME + " = ?";
+			}
+			sqlArgs.add(formation.getCard());
+		}
+		
+		String [] selectionArgs = new String[sqlArgs.size()];
+		sqlArgs.toArray(selectionArgs);
+		List<Card> cards = new ArrayList<Card>();
+		SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+		Cursor cursor = db.rawQuery(sql, selectionArgs);
+		if(cursor.moveToFirst()) {
+			do {
+				Card card = cursorToCard(cursor);
+				cards.add(card);
+			}while(cursor.moveToNext());
+		}
+
+		cursor.close();
+		return cards;
+	}
+	
 	public List<Card> cardsSearch(SearchCriterion searchCriterion) {
 		String sql = "SELECT * FROM " + CardEntry.TABLE_NAME;
 		List<String> sqlArgs = new ArrayList<String>();
@@ -275,34 +306,4 @@ public class SearchHandler{
 		return null;
 	}
 
-	public List<Card> deckCardsRecoveryRequest(List<Formation> trackFormations) {
-		String sql = "SELECT * from " + CardEntry.TABLE_NAME + " WHERE";
-		List<String> sqlArgs = new ArrayList<String>();
-		boolean first = true;
-		for (Formation formation : trackFormations){
-			if(first){
-				sql = sql + " " + CardEntry.COLUMN_NAME_NAME + " = ?";
-				first = false;
-			}else{
-				sql = sql + " OR" + CardEntry.COLUMN_NAME_NAME + " = ?";
-			}
-			sqlArgs.add(formation.getCard());
-		}
-		
-		String [] selectionArgs = new String[sqlArgs.size()];
-		sqlArgs.toArray(selectionArgs);
-		List<Card> cards = new ArrayList<Card>();
-		SQLiteDatabase db = dbHelper.getWritableDatabase();
-
-		Cursor cursor = db.rawQuery(sql, selectionArgs);
-		if(cursor.moveToFirst()) {
-			do {
-				Card card = cursorToCard(cursor);
-				cards.add(card);
-			}while(cursor.moveToNext());
-		}
-
-		cursor.close();
-		return cards;
-	}
 }
