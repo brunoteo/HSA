@@ -6,7 +6,6 @@
           android:title="@string/track_title"
           android:icon="@drawable/track"
           hsa:showAsAction="never" />
-          hsa:showAsAction="never" />
     
 
 </menu>

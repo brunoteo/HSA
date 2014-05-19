@@ -175,37 +175,6 @@ public class SearchHandler{
 			}
 		}
 		sql = sql + " ORDER BY " + CardEntry.COLUMN_NAME_COST + ", " + CardEntry.COLUMN_NAME_NAME;
-// =============================================VERSIONE 1===============================================
-//				if (i == 0){
-//					sql = sql + " WHERE " +  entry.getKey() + " = ? ";
-//					sqlArgs.add(entry.getValue());
-//					i++;
-//				}else{
-//					sql = sql + "AND " + entry.getKey() + " = ? ";
-//					sqlArgs.add(entry.getValue());
-//				}
-//			}
-//		if(searchCriterion.getFilters()!=null){
-//			for (Map.Entry<String, String> entry : searchCriterion.getFilters().entrySet()){
-//				if (i == 0){
-//					sql = sql + " WHERE " +  entry.getKey() + " = ? ";
-//					sqlArgs.add(entry.getValue());
-//					i++;
-//				}else{
-//					sql = sql + "AND " + entry.getKey() + " = ? ";
-//					sqlArgs.add(entry.getValue());
-//				}
-//			}
-//			if (searchCriterion.getName() != null) {
-//				sql = sql + "AND name LIKE ? ;";
-//				sqlArgs.add("'%"+searchCriterion.getName()+"%'");
-//			}
-//		}else{
-//			if (searchCriterion.getName() != null) {
-//				sql = sql + " WHERE name LIKE ?;";
-//				sqlArgs.add("'%"+searchCriterion.getName()+"%'");
-//			}
-//		}
 		
 		String [] selectionArgs = new String[sqlArgs.size()];
 		sqlArgs.toArray(selectionArgs);
@@ -297,5 +266,36 @@ public class SearchHandler{
 			return deck;
 		}
 		return null;
+	}
+
+	public List<Card> deckCardsRecoveryRequest(List<Formation> trackFormations) {
+		String sql = "SELECT * from " + CardEntry.TABLE_NAME + " WHERE";
+		List<String> sqlArgs = new ArrayList<String>();
+		boolean first = true;
+		for (Formation formation : trackFormations){
+			if(first){
+				sql = sql + " " + CardEntry.COLUMN_NAME_NAME + " = ?";
+				first = false;
+			}else{
+				sql = sql + " OR" + CardEntry.COLUMN_NAME_NAME + " = ?";
+			}
+			sqlArgs.add(formation.getCard());
+		}
+		
+		String [] selectionArgs = new String[sqlArgs.size()];
+		sqlArgs.toArray(selectionArgs);
+		List<Card> cards = new ArrayList<Card>();
+		SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+		Cursor cursor = db.rawQuery(sql, selectionArgs);
+		if(cursor.moveToFirst()) {
+			do {
+				Card card = cursorToCard(cursor);
+				cards.add(card);
+			}while(cursor.moveToNext());
+		}
+
+		cursor.close();
+		return cards;
 	}
 }

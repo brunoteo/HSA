@@ -63,7 +63,6 @@ public class SearchFragment extends Fragment{
         viewHandler = ViewHandler.getInstance(HSADatabaseHelper.getInstance(getActivity()));
         List<GraphicalAggregation> graphicalsAggregations = viewHandler.searchRequest(null, this.getActivity());
         viewGraphicsAggregations(graphicalsAggregations);
-        
 	}
 	
 	@Override

@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.hsa.bean.Card;
 import com.hsa.bean.Deck;
 import com.hsa.bean.Formation;
 import com.hsa.bean.SearchCriterion;
@@ -38,6 +39,12 @@ public class DeckHandler {
 		classFilter.add("Neutrol");
 		filters.put("className", classFilter);
 		SearchCriterion criterion = new SearchCriterion(null, filters);
+	}
+	// TODO perché hai messo ovunuqe il dbhelper come variabile se si può ottenere anche di esso l instance?
+
+	public void trackDeck() {
+		TrackHandler.getInstance(dbHelper).trackDeck(deck, tmpFormations);
+		
 	}
 
 }

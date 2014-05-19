@@ -8,6 +8,7 @@ import android.support.v4.app.FragmentActivity;
 
 import com.hsa.aggregation.CompleteTextualAggregation;
 import com.hsa.aggregation.GraphicalAggregation;
+import com.hsa.aggregation.PartialTextualAggregation;
 import com.hsa.bean.Card;
 import com.hsa.bean.Deck;
 import com.hsa.bean.Formation;
@@ -17,9 +18,6 @@ import com.hsa.aggregation.DeckDataAggregation;
 
 public class ViewHandler{
 	
-	/**
-	 * 
-	 */
 	private static ViewHandler viewInstance;
 	
 	private HSADatabaseHelper dbHelper;
@@ -60,12 +58,15 @@ public class ViewHandler{
         DeckDataAggregation dda = new DeckDataAggregation();
         dda.setName(newDeck.getName());
         dda.setClassName(newDeck.getClassName());
-        //FIXME bisogna contare le occorrenze
         dda.setCardNumber(0);
         dda.setDate(newDeck.getDate());
         return dda;
 	}
 
+	public void trackDeck() {
+		DeckHandler.getInstance(dbHelper).trackDeck();
+	}
+	
 	public CompleteTextualAggregation completeInfoRequest(GraphicalAggregation graphicalAggregation) {
 		Card card = SearchHandler.getInstance(dbHelper).cardRetrievalRequest(graphicalAggregation.getName());
 		CompleteTextualAggregation completeTextualAggregation;
@@ -105,5 +106,17 @@ public class ViewHandler{
 		dda.setCardNumber(n);
 		return dda;
 	}
+
+	public ArrayList<PartialTextualAggregation> createPartialTextualAggregation(List<Card> cards, List<Formation> trackFormations) {
+		
+		ArrayList<PartialTextualAggregation> partials = new ArrayList<PartialTextualAggregation>();
+		
+		for (Card card : cards){
+			PartialTextualAggregation partial = new PartialTextualAggregation(card, trackFormations);
+			partials.add(partial);
+		}
+		
+		return partials;
+	}//FIXME creazione delle aggegazioni testuali parziali
 	
 }
