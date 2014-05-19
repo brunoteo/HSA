@@ -79,7 +79,7 @@ public class SaveHandler{
 		
 		List<Deck> decks = Arrays.asList(deck1, deck2);
 		
-		final Formation formation1 = new Formation("goldshire footman", "MyDruid", 1);
+		final Formation formation1 = new Formation("goldshire footman", "MyDruid", 28);
 		final Formation formation2 = new Formation("ancient of war", "MyDruid", 2);
 		final Formation formation3 = new Formation("gladiator's longbow", "MyHunter", 1);
 		final Formation formation4 = new Formation("goldshire footman", "MyHunter", 2);

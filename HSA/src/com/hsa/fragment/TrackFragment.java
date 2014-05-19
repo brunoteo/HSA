@@ -1,6 +1,11 @@
 package com.hsa.fragment;
 
+import java.util.List;
+
 import com.hsa.R;
+import com.hsa.aggregation.GraphicalAggregation;
+import com.hsa.database.HSADatabaseHelper;
+import com.hsa.handler.ViewHandler;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -18,4 +23,13 @@ public class TrackFragment extends Fragment{
          
         return rootView;
     }
+	
+	@Override
+	public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        setHasOptionsMenu(true);
+        //viewHandler = ViewHandler.getInstance(HSADatabaseHelper.getInstance(getActivity()));
+        //List<GraphicalAggregation> graphicalsAggregations = viewHandler.searchRequest(null, this.getActivity());
+        //viewGraphicsAggregations(graphicalsAggregations);
+	}
 }

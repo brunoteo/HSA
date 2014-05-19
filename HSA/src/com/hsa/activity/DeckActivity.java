@@ -86,7 +86,7 @@ ActionBar.TabListener{
         viewHandler = ViewHandler.getInstance(dbHelper);
         deckHandler = DeckHandler.getInstance(dbHelper);
         trackHandler = TrackHandler.getInstance(dbHelper);
-		        
+		
 		viewHandler.viewDeckRequest(deckData);
 	}
 	
@@ -107,6 +107,12 @@ ActionBar.TabListener{
 		int id = item.getItemId();
 		switch(id) {
 			case R.id.action_settings : 
+				return true;
+			case R.id.track :
+				//TODO controllo che siano 30 carte
+				Intent intent = new Intent(this, TrackActivity.class);
+				//intent.putExtra("DataAggregation", deckData);
+				startActivity(intent);
 				return true;
 			default:
 	            return super.onOptionsItemSelected(item);

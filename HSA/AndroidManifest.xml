@@ -52,6 +52,11 @@
 	        android:label="@string/modify_deck"
 	        android:parentActivityName="com.hsa.MainActivity">          
 		</activity>
+		<activity
+	        android:name="com.hsa.activity.TrackActivity"
+	        android:label="@string/modify_deck"
+	        android:parentActivityName="com.hsa.MainActivity">          
+		</activity>
     </application>
 
 </manifest>

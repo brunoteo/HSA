@@ -33,7 +33,7 @@ ActionBar.TabListener{
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_deck);
+		setContentView(R.layout.activity_track);
 		
 		// Set up the action bar.
 		final ActionBar actionBar = getSupportActionBar();
@@ -45,7 +45,7 @@ ActionBar.TabListener{
 				getSupportFragmentManager());
 
 		// Set up the ViewPager with the sections adapter.
-		mViewPager = (ViewPager) findViewById(R.id.pager2);
+		mViewPager = (ViewPager) findViewById(R.id.pager3);
 		mViewPager.setAdapter(trackTabsPagerAdapter);
 
 		// When swiping between different sections, select the corresponding
@@ -62,21 +62,21 @@ ActionBar.TabListener{
 		// Adding Tabs
 		for (String tab_name : tabs) {
 		   	if(tab_name.equals("Track")) {
-		    		actionBar.addTab(actionBar.newTab().setText(tab_name)
-		                      .setTabListener(this), true);
-		      	}else {
-		              actionBar.addTab(actionBar.newTab().setText(tab_name)
-		                      .setTabListener(this));
-		      	}
-		      }
+	    		actionBar.addTab(actionBar.newTab().setText(tab_name)
+	                      .setTabListener(this), true);
+	      	}else {
+	              actionBar.addTab(actionBar.newTab().setText(tab_name)
+	                      .setTabListener(this));
+	      	}
+		}
 				        
-		      //Istanzio una volta sola gli handler
-		      dbHelper = HSADatabaseHelper.getInstance(this);
-		      searchHandler = SearchHandler.getInstance(dbHelper);
-		      saveHandler = SaveHandler.getInstance(dbHelper);
-		      viewHandler = ViewHandler.getInstance(dbHelper);
-		      deckHandler = DeckHandler.getInstance(dbHelper);
-		      trackHandler = TrackHandler.getInstance(dbHelper);
+        //Istanzio una volta sola gli handler
+        dbHelper = HSADatabaseHelper.getInstance(this);
+        searchHandler = SearchHandler.getInstance(dbHelper);
+        saveHandler = SaveHandler.getInstance(dbHelper);
+        viewHandler = ViewHandler.getInstance(dbHelper);
+        deckHandler = DeckHandler.getInstance(dbHelper);
+        trackHandler = TrackHandler.getInstance(dbHelper);   
 	}
 
 	@Override
