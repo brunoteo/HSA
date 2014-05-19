@@ -45,29 +45,6 @@ public class GraphicalAggregationAdapter extends BaseAdapter{
 	public long getItemId(int i) {
 		return grapichalsAggregations.get(i).getImage();
 	}
-
-//	@Override
-//	public View getView(int position, View convertView, ViewGroup parent) {
-//		
-//		LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-//		View gridView;
-//	 
-//		if (convertView == null) { 
-//			gridView = new View(context);
-//			// get layout from mobile.xml
-//			gridView = inflater.inflate(R.layout.graphical_aggregation, null);
-//				
-//			// set value into textview
-//			ImageView imageView = (ImageView) gridView
-//						.findViewById(R.id.imageView1);
-//			imageView.setImageResource(grapichalsAggregations.get(position).getImage());
-//	 
-//		} else {
-//			gridView = (View) convertView;
-//		}
-//	 
-//		return gridView;
-//	}
 	
 //	@Override
 //	public View getView(int i, View view, ViewGroup viewGroup) {
@@ -104,17 +81,6 @@ public class GraphicalAggregationAdapter extends BaseAdapter{
 //         
 //         return v;
 //	}
-
-//	@Override
-//    public View getView(int position, View convertView, ViewGroup parent) {
-//		int size = (int) context.getResources().getDimension(R.dimen.image_size);
-//        ImageView imageView = new ImageView(context);
-//        imageView.setImageResource(grapichalsAggregations.get(position).getImage());
-//        imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-//        imageView.setLayoutParams(new GridView.LayoutParams(size, (303/200) * size));
-//        //imageView.setLayoutParams(new GridView.LayoutParams((int)context.getResources().getDimension(R.dimen.width),(int)context.getResources().getDimension(R.dimen.width)));
-//        return imageView;
-//    }
 
     public View getView(int position, View convertView, ViewGroup parent) {
     	WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
