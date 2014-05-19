@@ -31,6 +31,8 @@ public class DeckFragment extends Fragment{
 	private DeckHandler deckHandler;
 	
 	private GridView gridView;
+	
+	private List<GraphicalAggregation> deckCardsGA;
 
 	@Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -54,7 +56,7 @@ public class DeckFragment extends Fragment{
         viewGraphicsAggregations(graphicalsAggregations);
         
         //TODO richiesta carte mazzo
-        
+        deckCardsGA = deckHandler.deckCardsRequest();
 	}
 	
 	@Override

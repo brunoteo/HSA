@@ -36,7 +36,7 @@ public class ViewHandler{
 		List<GraphicalAggregation> graphicalsAggregations = new ArrayList<GraphicalAggregation>();
 		List<Card> cards = SearchHandler.getInstance(dbHelper).cardsSearch(criterion);
 		for(Card card : cards) {
-			graphicalsAggregations.add(createGraphicalAggregation(card, fragment));
+			graphicalsAggregations.add(createGraphicalAggregation(card, null, fragment));
 		}
 		
 		return graphicalsAggregations;
@@ -77,12 +77,15 @@ public class ViewHandler{
 		return new CompleteTextualAggregation(card);
 	}
 	
-	private GraphicalAggregation createGraphicalAggregation(Card card, Context context) {
+	private GraphicalAggregation createGraphicalAggregation(Card card, Formation formation, Context context) {
 		String uri = "@drawable/" + card.getPath();
 		int image = context.getResources().getIdentifier(uri, "drawable", context.getPackageName());
 		GraphicalAggregation ga = new GraphicalAggregation();
 		ga.setName(card.getName());
-		ga.setOccurence(0);
+		if(formation==null)
+			ga.setOccurence(0);
+		else
+			ga.setOccurence(formation.getOccurrence());
 		ga.setImage(image);
 		return ga;
 	}
@@ -113,5 +116,13 @@ public class ViewHandler{
 		
 		return partials;
 	}//FIXME creazione delle aggegazioni testuali parziali
+	
+	public List<GraphicalAggregation> generateDeckCardsAggregations(List<Card> cards, List<Formation> formation) {
+		List<GraphicalAggregation> graphicalsAggregations = null;
+		for(Card card : cards) {
+			
+		}
+		return graphicalsAggregations;
+	}
 	
 }

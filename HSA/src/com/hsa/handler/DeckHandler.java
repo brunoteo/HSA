@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.hsa.aggregation.DeckDataAggregation;
+import com.hsa.aggregation.GraphicalAggregation;
 import com.hsa.bean.Card;
 import com.hsa.bean.Deck;
 import com.hsa.bean.Formation;
@@ -43,7 +44,10 @@ public class DeckHandler {
 		return new SearchCriterion(null, filters);
 	}
 	
-	// TODO perché hai messo ovunuqe il dbhelper come variabile se si può ottenere anche di esso l instance?
+	public List<GraphicalAggregation> deckCardsRequest() {
+		List<Card> deckCards = SearchHandler.getInstance(dbHelper).deckCardsSearch(tmpFormations);
+		return ViewHandler.getInstance(dbHelper).generateDeckCardsAggregations(deckCards, tmpFormations);
+	}
 
 	public void trackDeck() {
 		TrackHandler.getInstance(dbHelper).trackDeck(deck, tmpFormations);

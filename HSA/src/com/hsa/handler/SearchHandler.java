@@ -92,11 +92,11 @@ public class SearchHandler{
 		return formations;
 	}
 	
-	public List<Card> deckCardsSearch(List<Formation> trackFormations) {
+	public List<Card> deckCardsSearch(List<Formation> formations) {
 		String sql = "SELECT * from " + CardEntry.TABLE_NAME + " WHERE";
 		List<String> sqlArgs = new ArrayList<String>();
 		boolean first = true;
-		for (Formation formation : trackFormations){
+		for (Formation formation : formations){
 			if(first){
 				sql = sql + " " + CardEntry.COLUMN_NAME_NAME + " = ?";
 				first = false;
