@@ -130,7 +130,7 @@ public class SaveHandler{
 	}
 	
 	public Deck createDeck(String name, String className){
-		SimpleDateFormat s = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+		SimpleDateFormat s = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		String format = s.format(new Date());
 		Deck deck = new Deck(name, className, "", format);
 		ContentValues values = new ContentValues();
