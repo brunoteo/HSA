@@ -54,6 +54,7 @@ public class DeckFragment extends Fragment{
         viewGraphicsAggregations(graphicalsAggregations);
         
         //TODO richiesta carte mazzo
+        
 	}
 	
 	@Override
