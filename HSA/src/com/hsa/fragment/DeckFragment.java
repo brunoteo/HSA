@@ -18,6 +18,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.DisplayMetrics;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -29,9 +30,11 @@ import android.widget.AdapterView;
 import android.widget.Gallery;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ImageView.ScaleType;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 public class DeckFragment extends Fragment{
 	
@@ -99,6 +102,13 @@ public class DeckFragment extends Fragment{
 		LinearLayout view = (LinearLayout) getActivity().findViewById(R.id.deckCards);
 		int density = getDensityName();	
 		for(GraphicalAggregation ga : graphicalsAggregations) {
+			LinearLayout ll = new LinearLayout(getActivity());
+			ll.setOrientation(LinearLayout.VERTICAL);
+			ll.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
+			
+			RelativeLayout rl = new RelativeLayout(getActivity());
+			rl.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
+			
 			ImageView image = new ImageView(getActivity());
 			image.setVisibility(View.VISIBLE);
 			image.setImageResource(ga.getImage());
@@ -111,7 +121,19 @@ public class DeckFragment extends Fragment{
 					
 				}
 			});
-			view.addView(image);
+			
+			TextView tx = new TextView(getActivity());
+		    tx.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
+		    tx.setGravity(Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL);
+		    tx.setBackgroundColor(Color.parseColor("#770000FF"));
+		    tx.setTextColor(Color.RED);
+		    tx.setText(Integer.toString(ga.getOccurence()));
+		    
+		    rl.addView(image);
+		    rl.addView(tx);
+		    ll.addView(rl);
+		    
+			view.addView(ll);
 		}
 	}
 	
@@ -132,7 +154,7 @@ public class DeckFragment extends Fragment{
 	    if (density >= 1.0) {
 	        return 90;
 	    }
-	    return 60;
+	    return 50;
 	}
 
 }
