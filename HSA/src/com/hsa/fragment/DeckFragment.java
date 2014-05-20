@@ -4,13 +4,16 @@ import java.util.List;
 
 import com.hsa.R;
 import com.hsa.activity.DeckActivity;
+import com.hsa.adapter.DeckCardsAdapter;
 import com.hsa.adapter.GraphicalAggregationAdapter;
 import com.hsa.aggregation.CompleteTextualAggregation;
+import com.hsa.aggregation.DeckDataAggregation;
 import com.hsa.aggregation.GraphicalAggregation;
 import com.hsa.bean.SearchCriterion;
 import com.hsa.database.HSADatabaseHelper;
 import com.hsa.handler.DeckHandler;
 import com.hsa.handler.ViewHandler;
+import com.hsa.ui.HorizontalListView;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -20,6 +23,7 @@ import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Gallery;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.AdapterView.OnItemLongClickListener;
@@ -33,6 +37,7 @@ public class DeckFragment extends Fragment{
 	private DeckHandler deckHandler;
 	
 	private GridView gridView;
+	private HorizontalListView hListView;
 	
 	private List<GraphicalAggregation> deckCardsGA;
 
@@ -87,13 +92,17 @@ public class DeckFragment extends Fragment{
 	}
 	
 	public void viewDeckCardsGraphicsAggregations(final List<GraphicalAggregation> graphicalsAggregations) {
-		LinearLayout view = (LinearLayout) getActivity().findViewById(R.id.deckCards);
-		for(GraphicalAggregation ga : graphicalsAggregations) {
-			ImageView image = new ImageView(getActivity());
-			image.setVisibility(View.VISIBLE);
-			image.setImageResource(ga.getImage());
-			view.addView(image);
-		}
+//		LinearLayout view = (LinearLayout) getActivity().findViewById(R.id.deckCards);
+//		for(GraphicalAggregation ga : graphicalsAggregations) {
+//			ImageView image = new ImageView(getActivity());
+//			image.setVisibility(View.VISIBLE);
+//			image.setImageResource(ga.getImage());
+//			view.addView(image);
+//		}
+		//Non riesco a refreshare la pagina
+		
+		hListView = (HorizontalListView) getActivity().findViewById(R.id.cardDeck);
+		hListView.setAdapter(new DeckCardsAdapter(this.getActivity(), graphicalsAggregations));
 	}
 
 }
