@@ -1,5 +1,6 @@
 package com.hsa.fragment;
 
+import java.lang.reflect.Modifier;
 import java.util.List;
 
 import com.hsa.R;
@@ -125,25 +126,31 @@ public class DeckFragment extends Fragment{
 			ImageView image = new ImageView(getActivity());
 			image.setVisibility(View.VISIBLE);
 			image.setImageResource(ga.getImage());
+			image.setTag(ga.getName());
 			image.setLayoutParams(new LayoutParams(160, LayoutParams.WRAP_CONTENT));
 			image.setLayoutParams(new LayoutParams(density, LayoutParams.WRAP_CONTENT));
 			image.setOnClickListener(new OnClickListener() {
 				
 				@Override
 				public void onClick(View v) {
-
+					List<GraphicalAggregation> deckCardsGA = deckHandler.modifyDeckRequest(v.getTag().toString(), 1);
+					deleteItemList();
+					viewDeckCardsGraphicsAggregations(deckCardsGA);
 				}
 			});
+			if(ga.getOccurence()>1) {
+				TextView tx = new TextView(getActivity());	
+			    tx.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
+			    tx.setGravity(Gravity.BOTTOM | Gravity.CENTER);
+			    tx.setBackgroundColor(Color.parseColor("#770000FF"));
+			    tx.setTextColor(Color.RED);
+			    tx.setText(Integer.toString(ga.getOccurence()));
+			    fl.addView(image);	
+			    fl.addView(tx);
+			} else {
+				fl.addView(image);
+			}
 			
-			TextView tx = new TextView(getActivity());	
-		    tx.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
-		    tx.setGravity(Gravity.BOTTOM | Gravity.CENTER);
-		    tx.setBackgroundColor(Color.parseColor("#770000FF"));
-		    tx.setTextColor(Color.RED);
-		    tx.setText(Integer.toString(ga.getOccurence()));
-		    
-		    fl.addView(image);
-		    fl.addView(tx);
 		    ll.addView(fl);
 		    
 			view.addView(ll);
