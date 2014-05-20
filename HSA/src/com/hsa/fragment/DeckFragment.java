@@ -8,6 +8,7 @@ import com.hsa.adapter.GraphicalAggregationAdapter;
 import com.hsa.aggregation.CompleteTextualAggregation;
 import com.hsa.aggregation.DeckDataAggregation;
 import com.hsa.aggregation.GraphicalAggregation;
+import com.hsa.bean.Formation;
 import com.hsa.bean.SearchCriterion;
 import com.hsa.database.HSADatabaseHelper;
 import com.hsa.handler.DeckHandler;
@@ -27,6 +28,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.FrameLayout;
 import android.widget.Gallery;
 import android.widget.GridView;
@@ -45,8 +47,6 @@ public class DeckFragment extends Fragment{
 	private DeckHandler deckHandler;
 	
 	private GridView gridView;
-	
-	private List<GraphicalAggregation> deckCardsGA;
 
 	@Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -69,7 +69,7 @@ public class DeckFragment extends Fragment{
         List<GraphicalAggregation> graphicalsAggregations = viewHandler.cardsSearchRequest(criterion, this.getActivity());
         viewGraphicsAggregations(graphicalsAggregations);
         
-        deckCardsGA = deckHandler.deckCardsRequest();
+        List<GraphicalAggregation> deckCardsGA = deckHandler.deckCardsRequest();
         if(deckCardsGA!=null)
         	viewDeckCardsGraphicsAggregations(deckCardsGA);
         
@@ -87,6 +87,16 @@ public class DeckFragment extends Fragment{
 	public void viewGraphicsAggregations(final List<GraphicalAggregation> graphicalsAggregations) {
 		gridView = (GridView) getView().findViewById(R.id.gridview2);
         gridView.setAdapter(new GraphicalAggregationAdapter(this.getActivity(), graphicalsAggregations));
+        gridView.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+				List<GraphicalAggregation> deckCardsGA = deckHandler.modifyDeckRequest(graphicalsAggregations.get(position).getName(), 0);
+				deleteItemList();
+				viewDeckCardsGraphicsAggregations(deckCardsGA);
+			}
+		});
+        //TODO Visualizza info testuali complete
 //        gridView.setOnItemLongClickListener(new OnItemLongClickListener() {
 //
 //			@Override
@@ -121,8 +131,8 @@ public class DeckFragment extends Fragment{
 				
 				@Override
 				public void onClick(View v) {
-					// TODO Auto-generated method stub
-					
+					//TODO fare elimina carta
+
 				}
 			});
 			
@@ -159,6 +169,12 @@ public class DeckFragment extends Fragment{
 	        return 90;
 	    }
 	    return 50;
+	}
+	
+	private void deleteItemList() {
+		LinearLayout view = (LinearLayout) getActivity().findViewById(R.id.deckCards);
+		if(view.getChildCount()>0)
+			view.removeAllViews();
 	}
 
 }

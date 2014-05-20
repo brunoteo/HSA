@@ -37,6 +37,7 @@
         <activity
             android:name="com.hsa.activity.FilterActivity"
             android:label="@string/title_activity_filter"
+            android:screenOrientation="portrait" 
             android:parentActivityName="com.hsa.MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -45,16 +46,19 @@
         <activity
 	        android:name="com.hsa.activity.NewDeckActivity"
 	        android:label="@string/new_deck"
+	        android:screenOrientation="portrait" 
 	        android:parentActivityName="com.hsa.MainActivity">         
 		</activity>
 		<activity
 	        android:name="com.hsa.activity.DeckActivity"
 	        android:label="@string/modify_deck"
+	        android:screenOrientation="portrait" 
 	        android:parentActivityName="com.hsa.MainActivity">         
 		</activity>
 		<activity
 	        android:name="com.hsa.activity.TrackActivity"
 	        android:label="@string/modify_deck"
+	        android:screenOrientation="portrait" 
 	        android:parentActivityName="com.hsa.MainActivity">          
 		</activity>
     </application>

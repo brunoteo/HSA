@@ -23,7 +23,8 @@ public class DeckHandler {
 	
 	private Deck deck;
 	private List<Formation> tmpFormations;
-	
+	private List<GraphicalAggregation> tmpGraphicalsAggregations;
+
 	public static DeckHandler getInstance(HSADatabaseHelper dbHelper) {
 		if(deckHandler == null)
 			deckHandler = new DeckHandler(dbHelper);
@@ -48,10 +49,28 @@ public class DeckHandler {
 	
 	public List<GraphicalAggregation> deckCardsRequest() {
 		List<Card> deckCards = SearchHandler.getInstance(dbHelper).deckCardsSearch(tmpFormations);
-		if(deckCards.size()!=0)
-			return ViewHandler.getInstance(dbHelper).generateDeckCardsAggregations(deckCards, tmpFormations);
-		else
+		if(deckCards.size()!=0) {
+			tmpGraphicalsAggregations = ViewHandler.getInstance(dbHelper).generateDeckCardsAggregations(deckCards, tmpFormations);
+			return tmpGraphicalsAggregations;
+		} else {
 			return null;
+		}
+	}
+	
+	public List<GraphicalAggregation> modifyDeckRequest(String cardName, int type) {
+		if(type==0){
+			int index = checkExistenceCard(cardName);
+			if(index >= 0) {
+				int occurrence = tmpGraphicalsAggregations.get(index).getOccurence() + 1;
+				tmpGraphicalsAggregations.get(index).setOccurence(occurrence);
+			} else {
+				//TODO inserisci aggregazione
+			}
+		} else {
+			//TODO elimina carta
+			
+		}
+		return tmpGraphicalsAggregations;
 	}
 	
 	public void deckDeletionRequest() {
@@ -63,6 +82,18 @@ public class DeckHandler {
 		TrackHandler.getInstance(dbHelper).trackDeck(deck, tmpFormations);
 		
 	}
+	
+	private int checkExistenceCard(String cardName) {
+		for(int index = 0; index<tmpGraphicalsAggregations.size(); index++) {
+			if(tmpGraphicalsAggregations.get(index).getName().equals(cardName)) {
+				return index;
+			}
+		}
+		return -1;
+	}
 
+	public void setTmpFormations(List<Formation> tmpFormations) {
+		this.tmpFormations = tmpFormations;
+	}
 
 }
