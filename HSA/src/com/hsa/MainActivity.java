@@ -53,7 +53,7 @@ public class MainActivity extends ActionBarActivity implements
     private ArrayList<String> rarityFilters;
     private ArrayList<String> typeFilters;
     private String nameFilter;
-    
+    //TODO eliminare tutte le rotazioni. Dovrebbero essere ovunque tranne che nelle tre principali
 	public HSADatabaseHelper getDbHelper() {
 		return dbHelper;
 	}
