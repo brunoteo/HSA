@@ -138,16 +138,19 @@ public class DeckFragment extends Fragment{
 					viewDeckCardsGraphicsAggregations(deckCardsGA);
 				}
 			});
+			if(ga.getOccurence()>1) {
+				TextView tx = new TextView(getActivity());	
+			    tx.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
+			    tx.setGravity(Gravity.BOTTOM | Gravity.CENTER);
+			    tx.setBackgroundColor(Color.parseColor("#770000FF"));
+			    tx.setTextColor(Color.RED);
+			    tx.setText(Integer.toString(ga.getOccurence()));
+			    fl.addView(image);	
+			    fl.addView(tx);
+			} else {
+				fl.addView(image);
+			}
 			
-			TextView tx = new TextView(getActivity());	
-		    tx.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
-		    tx.setGravity(Gravity.BOTTOM | Gravity.CENTER);
-		    tx.setBackgroundColor(Color.parseColor("#770000FF"));
-		    tx.setTextColor(Color.RED);
-		    tx.setText(Integer.toString(ga.getOccurence()));
-		    
-		    fl.addView(image);
-		    fl.addView(tx);
 		    ll.addView(fl);
 		    
 			view.addView(ll);
