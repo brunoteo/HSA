@@ -11,6 +11,8 @@ import com.hsa.handler.SearchHandler;
 import com.hsa.handler.TrackHandler;
 import com.hsa.handler.ViewHandler;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
@@ -34,7 +36,7 @@ ActionBar.TabListener{
 	private ViewHandler viewHandler;
 	private DeckHandler deckHandler;
 	private TrackHandler trackHandler;
-	
+	//FIXME forse non serve a niente anche questo
 	private DeckDataAggregation deckData;
 	
 	private String[] tabs = { "Note", "Deck", "Deck Info" };
@@ -111,10 +113,25 @@ ActionBar.TabListener{
 			case R.id.action_settings : 
 				return true;
 			case R.id.track :
-				//TODO controllo che siano 30 carte
-				Intent intent = new Intent(this, TrackActivity.class);
-				//intent.putExtra("DataAggregation", deckData);
-				startActivity(intent);
+				int cardNumber = deckHandler.cardNumberRequest();
+				if(cardNumber == 30){
+					Intent intent = new Intent(this, TrackActivity.class);
+					startActivity(intent);
+				}else{
+					AlertDialog.Builder dlgAlert  = new AlertDialog.Builder(this);
+					
+		            dlgAlert.setMessage("Error: Deck not contains 30 cards.");
+		            dlgAlert.setTitle("Error Message...");
+		            dlgAlert.setPositiveButton("OK", null);
+		            dlgAlert.create().show();
+		            
+		            dlgAlert.setPositiveButton("Ok",
+		                    new DialogInterface.OnClickListener() {
+		                        public void onClick(DialogInterface dialog, int which) {
+
+		                        }
+		                    });
+				}
 				return true;
 			case R.id.delete :
 				deckHandler.deckDeletionRequest();
