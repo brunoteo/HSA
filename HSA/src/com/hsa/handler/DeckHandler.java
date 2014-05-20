@@ -67,7 +67,13 @@ public class DeckHandler {
 				//TODO inserisci aggregazione
 			}
 		} else {
-			//TODO elimina carta
+			int index = checkExistenceCard(cardName);
+			int occurrence = tmpGraphicalsAggregations.get(index).getOccurence();
+			if(occurrence > 1) {
+				tmpGraphicalsAggregations.get(index).setOccurence(occurrence-1);
+			} else {
+				//TODO elimina aggregazione
+			}
 			
 		}
 		return tmpGraphicalsAggregations;
