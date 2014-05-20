@@ -62,7 +62,7 @@ public class DeckFragment extends Fragment{
         List<GraphicalAggregation> graphicalsAggregations = viewHandler.cardsSearchRequest(criterion, this.getActivity());
         viewGraphicsAggregations(graphicalsAggregations);
         
-        deckCardsGA = deckHandler.deckCardsRequest();
+//        deckCardsGA = deckHandler.deckCardsRequest();
         viewDeckCardsGraphicsAggregations(deckCardsGA);
         
         //TODO visualizza numero carte

@@ -8,6 +8,7 @@ import java.util.Map;
 import android.app.SearchManager;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
@@ -124,7 +125,8 @@ public class MainActivity extends ActionBarActivity implements
 //		intent.putExtra("ViewHandler", viewHandler);
 //		intent.putExtra("SaveHandler", saveHandler);
 //		intent.putExtra("SearchHandler", searchHandler);
-	    startActivity(intent);
+	    startActivityForResult(intent, 2);
+	    
 	}
 	
 	@Override
@@ -163,6 +165,34 @@ public class MainActivity extends ActionBarActivity implements
 	            SearchFragment searchFragment = (SearchFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager + ":" + mViewPager.getCurrentItem());
 	            searchFragment.viewGraphicsAggregations(graphicalsAggregations);
 	        }
+	    }else if (requestCode == 2){
+	    	if(resultCode == RESULT_OK){
+	            DecksFragment decksFragment = (DecksFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager + ":" + mViewPager.getCurrentItem());
+	            List<DeckDataAggregation> deckDataAggregations = viewHandler.decksRequest(this);
+	            decksFragment.viewDeckDataAggregations(deckDataAggregations);
+	            DeckDataAggregation dda = new DeckDataAggregation();
+	            dda = data.getExtras().getParcelable("deckDataAggregation");
+	            Intent intent = new Intent(this, DeckActivity.class);
+	            intent.putExtra("deckDataAggregation", dda);
+	    		startActivity(intent);
+			
+
+//	    	List<DeckDataAggregation> deckDataAggregations = viewHandler.decksRequest(this);
+//	    	// Create new fragment and transaction
+//	    	Fragment newFragment = new DecksFragment();
+//	    	FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+//
+//	    	// Replace whatever is in the fragment_container view with this fragment,
+//	    	// and add the transaction to the back stack
+//	    	transaction.replace(R.id.decks, newFragment);
+//	    	transaction.addToBackStack(null);
+//
+//	    	// Commit the transaction
+//	    	transaction.commit();
+//            //DeckFragment searchFragment = (SearchFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager + ":" + mViewPager.getCurrentItem());
+//	        //viewDeckDataAggregations(deckDataAggregations);
+//	    	DecksFragment decksFragment = new DecksFragment();
+	    	}
 	    }
 	}
 
