@@ -83,9 +83,11 @@ public class NewDeckActivity extends ActionBarActivity{
 			if(nameBool){
 				
 				DeckDataAggregation dda = viewHandler.deckCreationRequest(editText.getText().toString(), className);
-		    	Intent intent = new Intent(this, DeckActivity.class);
-		    	intent.putExtra("deckDataAggregation", dda);
-			    startActivity(intent);
+		    	Intent returnIntent = new Intent();
+		    	returnIntent.putExtra("deckDataAggregation", dda);
+		    	setResult(RESULT_OK,returnIntent);
+		    	finish();
+			    //startActivity(intent);
 			    
 			}else{
 				AlertDialog.Builder dlgAlert  = new AlertDialog.Builder(this);
@@ -118,10 +120,6 @@ public class NewDeckActivity extends ActionBarActivity{
                     });
         }
 	}
-	    //fare i controlli
-//	    String message = editText.getText().toString();
-//	    intent.putExtra(EXTRA_MESSAGE, message);
-//	    startActivity(intent);
 
 	
 	public void addListenerOnButton() {

@@ -56,7 +56,7 @@ public class DeckFragment extends Fragment{
         viewGraphicsAggregations(graphicalsAggregations);
         
         //TODO richiesta carte mazzo
-        deckCardsGA = deckHandler.deckCardsRequest();
+//        deckCardsGA = deckHandler.deckCardsRequest();
 	}
 	
 	@Override
