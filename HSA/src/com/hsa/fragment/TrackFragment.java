@@ -3,8 +3,8 @@ package com.hsa.fragment;
 import java.util.List;
 
 import com.hsa.R;
-import com.hsa.activity.PartialTextualAggregationAdapter;
 import com.hsa.adapter.DeckDataAggregationAdapter;
+import com.hsa.adapter.PartialTextualAggregationAdapter;
 import com.hsa.aggregation.DeckDataAggregation;
 import com.hsa.aggregation.GraphicalAggregation;
 import com.hsa.aggregation.PartialTextualAggregation;

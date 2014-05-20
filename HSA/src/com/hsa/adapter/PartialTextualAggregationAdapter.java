@@ -1,4 +1,4 @@
-package com.hsa.activity;
+package com.hsa.adapter;
 
 import java.util.List;
 
