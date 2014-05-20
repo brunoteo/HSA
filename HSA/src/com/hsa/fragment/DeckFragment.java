@@ -13,6 +13,7 @@ import com.hsa.database.HSADatabaseHelper;
 import com.hsa.handler.DeckHandler;
 import com.hsa.handler.ViewHandler;
 
+import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -96,12 +97,12 @@ public class DeckFragment extends Fragment{
 	
 	public void viewDeckCardsGraphicsAggregations(final List<GraphicalAggregation> graphicalsAggregations) {
 		LinearLayout view = (LinearLayout) getActivity().findViewById(R.id.deckCards);
-		DisplayMetrics metrics = getResources().getDisplayMetrics();
+		int density = getDensityName();	
 		for(GraphicalAggregation ga : graphicalsAggregations) {
 			ImageView image = new ImageView(getActivity());
 			image.setVisibility(View.VISIBLE);
 			image.setImageResource(ga.getImage());
-			image.setLayoutParams(new LayoutParams(60, LayoutParams.WRAP_CONTENT));
+			image.setLayoutParams(new LayoutParams(density, LayoutParams.WRAP_CONTENT));
 			image.setOnClickListener(new OnClickListener() {
 				
 				@Override
@@ -112,6 +113,26 @@ public class DeckFragment extends Fragment{
 			});
 			view.addView(image);
 		}
+	}
+	
+	private int getDensityName() {
+	    float density = getResources().getDisplayMetrics().density;
+	    if (density >= 4.0) {
+	        return 240;
+	    } 
+	    if (density >= 3.0) {
+	        return 200;
+	    }
+	    if (density >= 2.0) {
+	        return 160;
+	    }
+	    if (density >= 1.5) {
+	        return 120;
+	    }
+	    if (density >= 1.0) {
+	        return 90;
+	    }
+	    return 60;
 	}
 
 }
