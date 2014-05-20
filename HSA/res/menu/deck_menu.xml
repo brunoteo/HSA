@@ -6,5 +6,5 @@
           android:title="@string/track_title"
           android:icon="@drawable/track_w"
           hsa:showAsAction="always" />
-    
+
 </menu>
