@@ -12,15 +12,17 @@ import com.hsa.bean.SearchCriterion;
 import com.hsa.database.HSADatabaseHelper;
 import com.hsa.handler.DeckHandler;
 import com.hsa.handler.ViewHandler;
-import com.hsa.ui.HorizontalListView;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.view.ViewGroup.LayoutParams;
 import android.widget.AdapterView;
 import android.widget.Gallery;
 import android.widget.GridView;
@@ -36,7 +38,6 @@ public class DeckFragment extends Fragment{
 	private DeckHandler deckHandler;
 	
 	private GridView gridView;
-	private HorizontalListView hListView;
 	
 	private List<GraphicalAggregation> deckCardsGA;
 
@@ -62,7 +63,8 @@ public class DeckFragment extends Fragment{
         viewGraphicsAggregations(graphicalsAggregations);
         
         deckCardsGA = deckHandler.deckCardsRequest();
-        viewDeckCardsGraphicsAggregations(deckCardsGA);
+        if(deckCardsGA!=null)
+        	viewDeckCardsGraphicsAggregations(deckCardsGA);
         
         //TODO visualizza numero carte
 	}
@@ -92,10 +94,25 @@ public class DeckFragment extends Fragment{
 	
 	public void viewDeckCardsGraphicsAggregations(final List<GraphicalAggregation> graphicalsAggregations) {
 		LinearLayout view = (LinearLayout) getActivity().findViewById(R.id.deckCards);
+		int i = 1;
 		for(GraphicalAggregation ga : graphicalsAggregations) {
 			ImageView image = new ImageView(getActivity());
 			image.setVisibility(View.VISIBLE);
+			if(i%2==0)
+				image.setBackgroundColor(Color.BLUE);
+			else
+				image.setBackgroundColor(Color.RED);
+			i++;
 			image.setImageResource(ga.getImage());
+			image.setLayoutParams(new LayoutParams(60, LayoutParams.WRAP_CONTENT));
+			image.setOnClickListener(new OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					// TODO Auto-generated method stub
+					
+				}
+			});
 			view.addView(image);
 		}
 		//Non riesco a refreshare la pagina

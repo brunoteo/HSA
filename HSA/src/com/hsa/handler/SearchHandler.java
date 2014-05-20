@@ -93,6 +93,7 @@ public class SearchHandler{
 	}
 	
 	public List<Card> deckCardsSearch(List<Formation> formations) {
+		List<Card> cards = new ArrayList<Card>();
 		if(formations.size() != 0){
 			String sql = "SELECT * from " + CardEntry.TABLE_NAME + " WHERE";
 			List<String> sqlArgs = new ArrayList<String>();
@@ -109,7 +110,6 @@ public class SearchHandler{
 			
 			String [] selectionArgs = new String[sqlArgs.size()];
 			sqlArgs.toArray(selectionArgs);
-			List<Card> cards = new ArrayList<Card>();
 			SQLiteDatabase db = dbHelper.getWritableDatabase();
 	
 			Cursor cursor = db.rawQuery(sql, selectionArgs);

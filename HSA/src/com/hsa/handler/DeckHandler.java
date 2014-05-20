@@ -46,7 +46,10 @@ public class DeckHandler {
 	
 	public List<GraphicalAggregation> deckCardsRequest() {
 		List<Card> deckCards = SearchHandler.getInstance(dbHelper).deckCardsSearch(tmpFormations);
-		return ViewHandler.getInstance(dbHelper).generateDeckCardsAggregations(deckCards, tmpFormations);
+		if(deckCards.size()!=0)
+			return ViewHandler.getInstance(dbHelper).generateDeckCardsAggregations(deckCards, tmpFormations);
+		else
+			return null;
 	}
 
 	public void trackDeck() {
