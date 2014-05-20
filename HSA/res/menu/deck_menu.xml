@@ -7,4 +7,7 @@
           android:icon="@drawable/track_w"
           hsa:showAsAction="always" />
 
+    <item android:id="@+id/delete"
+          android:title="@string/delete_title"
+          hsa:showAsAction="never" />
 </menu>

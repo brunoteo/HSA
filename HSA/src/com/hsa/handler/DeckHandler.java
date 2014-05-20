@@ -51,6 +51,11 @@ public class DeckHandler {
 		else
 			return null;
 	}
+	
+	public void deckDeletionRequest() {
+		SaveHandler.getInstance(dbHelper).deleteDeck(deck);
+		
+	}
 
 	public void trackDeck() {
 		TrackHandler.getInstance(dbHelper).trackDeck(deck, tmpFormations);
