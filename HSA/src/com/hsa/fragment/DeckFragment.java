@@ -16,6 +16,7 @@ import com.hsa.handler.ViewHandler;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -28,6 +29,7 @@ import android.widget.Gallery;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.AdapterView.OnItemLongClickListener;
+import android.widget.ImageView.ScaleType;
 import android.widget.LinearLayout;
 
 public class DeckFragment extends Fragment{
@@ -94,15 +96,10 @@ public class DeckFragment extends Fragment{
 	
 	public void viewDeckCardsGraphicsAggregations(final List<GraphicalAggregation> graphicalsAggregations) {
 		LinearLayout view = (LinearLayout) getActivity().findViewById(R.id.deckCards);
-		int i = 1;
+		DisplayMetrics metrics = getResources().getDisplayMetrics();
 		for(GraphicalAggregation ga : graphicalsAggregations) {
 			ImageView image = new ImageView(getActivity());
 			image.setVisibility(View.VISIBLE);
-			if(i%2==0)
-				image.setBackgroundColor(Color.BLUE);
-			else
-				image.setBackgroundColor(Color.RED);
-			i++;
 			image.setImageResource(ga.getImage());
 			image.setLayoutParams(new LayoutParams(60, LayoutParams.WRAP_CONTENT));
 			image.setOnClickListener(new OnClickListener() {
@@ -115,10 +112,6 @@ public class DeckFragment extends Fragment{
 			});
 			view.addView(image);
 		}
-		//Non riesco a refreshare la pagina
-		
-//		hListView = (HorizontalListView) getActivity().findViewById(R.id.cardDeck);
-//		hListView.setAdapter(new DeckCardsAdapter(this.getActivity(), graphicalsAggregations));
 	}
 
 }
