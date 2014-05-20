@@ -27,6 +27,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.AdapterView;
+import android.widget.FrameLayout;
 import android.widget.Gallery;
 import android.widget.GridView;
 import android.widget.ImageView;
@@ -104,10 +105,12 @@ public class DeckFragment extends Fragment{
 		for(GraphicalAggregation ga : graphicalsAggregations) {
 			LinearLayout ll = new LinearLayout(getActivity());
 			ll.setOrientation(LinearLayout.VERTICAL);
-			ll.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
+			LinearLayout.LayoutParams llp = new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
+			llp.setMargins(2, 0, 2, 0);
+			ll.setLayoutParams(llp);
 			
-			RelativeLayout rl = new RelativeLayout(getActivity());
-			rl.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
+			FrameLayout fl = new FrameLayout(getActivity());
+			fl.setLayoutParams(new FrameLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
 			
 			ImageView image = new ImageView(getActivity());
 			image.setVisibility(View.VISIBLE);
@@ -123,16 +126,16 @@ public class DeckFragment extends Fragment{
 				}
 			});
 			
-			TextView tx = new TextView(getActivity());
+			TextView tx = new TextView(getActivity());	
 		    tx.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
-		    tx.setGravity(Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL);
+		    tx.setGravity(Gravity.BOTTOM | Gravity.CENTER);
 		    tx.setBackgroundColor(Color.parseColor("#770000FF"));
 		    tx.setTextColor(Color.RED);
 		    tx.setText(Integer.toString(ga.getOccurence()));
 		    
-		    rl.addView(image);
-		    rl.addView(tx);
-		    ll.addView(rl);
+		    fl.addView(image);
+		    fl.addView(tx);
+		    ll.addView(fl);
 		    
 			view.addView(ll);
 		}
