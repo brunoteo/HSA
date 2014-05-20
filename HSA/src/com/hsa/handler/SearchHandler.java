@@ -303,4 +303,5 @@ public class SearchHandler{
 		return true;
 	}
 
+//TODO try getreadabledatabase instead of getwritabledb
 }

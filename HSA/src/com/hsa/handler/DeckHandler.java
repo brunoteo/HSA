@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import android.widget.EditText;
+
 import com.hsa.aggregation.DeckDataAggregation;
 import com.hsa.aggregation.GraphicalAggregation;
 import com.hsa.bean.Card;
@@ -61,5 +63,6 @@ public class DeckHandler {
 		TrackHandler.getInstance(dbHelper).trackDeck(deck, tmpFormations);
 		
 	}
+
 
 }

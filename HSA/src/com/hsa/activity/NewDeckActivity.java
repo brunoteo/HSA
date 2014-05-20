@@ -86,7 +86,7 @@ public class NewDeckActivity extends ActionBarActivity{
 		    	Intent returnIntent = new Intent();
 		    	returnIntent.putExtra("deckDataAggregation", dda);
 		    	setResult(RESULT_OK,returnIntent);
-		    	finish();
+		    	
 			    //startActivity(intent);
 			    
 			}else{
@@ -119,6 +119,7 @@ public class NewDeckActivity extends ActionBarActivity{
                         }
                     });
         }
+		finish();
 	}
 
 	
