@@ -64,7 +64,9 @@ public class DeckHandler {
 				int occurrence = tmpGraphicalsAggregations.get(index).getOccurence() + 1;
 				tmpGraphicalsAggregations.get(index).setOccurence(occurrence);
 			} else {
-				//TODO inserisci aggregazione
+				Card card = SearchHandler.getInstance(dbHelper).cardSearch(cardName);
+				GraphicalAggregation newDeckCard = ViewHandler.getInstance(dbHelper).createGraphicalAggregation(card, null);
+				tmpGraphicalsAggregations.add(newDeckCard);
 			}
 		} else {
 			int index = checkExistenceCard(cardName);
@@ -72,7 +74,7 @@ public class DeckHandler {
 			if(occurrence > 1) {
 				tmpGraphicalsAggregations.get(index).setOccurence(occurrence-1);
 			} else {
-				//TODO elimina aggregazione
+				tmpGraphicalsAggregations.remove(index);
 			}
 			
 		}

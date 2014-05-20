@@ -78,13 +78,13 @@ public class ViewHandler{
 		return new CompleteTextualAggregation(card);
 	}
 	
-	private GraphicalAggregation createGraphicalAggregation(Card card, Formation formation) {
+	public GraphicalAggregation createGraphicalAggregation(Card card, Formation formation) {
 		String uri = "@drawable/" + card.getPath();
 		int image = context.getResources().getIdentifier(uri, "drawable", context.getPackageName());
 		GraphicalAggregation ga = new GraphicalAggregation();
 		ga.setName(card.getName());
 		if(formation==null)
-			ga.setOccurence(0);
+			ga.setOccurence(1);
 		else
 			ga.setOccurence(formation.getOccurrence());
 		ga.setImage(image);
