@@ -2,12 +2,14 @@ package com.hsa.activity;
 
 import com.hsa.R;
 import com.hsa.adapter.TrackTabsPagerAdapter;
+import com.hsa.aggregation.PartialTextualAggregation;
 import com.hsa.database.HSADatabaseHelper;
 import com.hsa.handler.DeckHandler;
 import com.hsa.handler.SaveHandler;
 import com.hsa.handler.SearchHandler;
 import com.hsa.handler.TrackHandler;
 import com.hsa.handler.ViewHandler;
+import com.hsa.fragment.TrackFragment;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
@@ -15,8 +17,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 
-public class TrackActivity extends ActionBarActivity implements
-ActionBar.TabListener{
+public class TrackActivity extends ActionBarActivity implements ActionBar.TabListener, TrackFragment.OnTracksListener{
 	
 	private HSADatabaseHelper dbHelper;
 	private TrackTabsPagerAdapter trackTabsPagerAdapter;
@@ -95,6 +96,10 @@ ActionBar.TabListener{
 	@Override
 	public void onTabUnselected(ActionBar.Tab tab,
 			FragmentTransaction fragmentTransaction) {
+		
+	}
+	
+	public void onTrackSelected(PartialTextualAggregation partial){
 		
 	}
 

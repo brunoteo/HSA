@@ -19,6 +19,7 @@ public class TrackHandler {
 	private List<Formation> trackFormations;
 	private List<Formation> tmpFormations;
 	private Vector<String> pile;
+	private List<PartialTextualAggregation> partials;
 	
 	public static TrackHandler getInstance(HSADatabaseHelper dbHelper) {
 		if(trackHandler == null)
@@ -50,7 +51,7 @@ public class TrackHandler {
 	}
 	
 	public List<PartialTextualAggregation> partialTextualAggregationRequest(List<Card> cards) {
-		List<PartialTextualAggregation> partials = ViewHandler.getInstance(dbHelper).generatePartialTextualAggregation(cards, trackFormations);
+		partials = ViewHandler.getInstance(dbHelper).generatePartialTextualAggregation(cards, trackFormations);
 		return partials;
 	}
 
