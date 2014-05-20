@@ -79,14 +79,15 @@ public class SaveHandler{
 		
 		List<Deck> decks = Arrays.asList(deck1, deck2);
 		
-		final Formation formation1 = new Formation("goldshire footman", "MyDruid", 28);
+		final Formation formation1 = new Formation("goldshire footman", "MyDruid", 20);
 		final Formation formation2 = new Formation("ancient of war", "MyDruid", 2);
 		final Formation formation3 = new Formation("gladiator's longbow", "MyHunter", 1);
 		final Formation formation4 = new Formation("goldshire footman", "MyHunter", 2);
 		final Formation formation5 = new Formation("swipe", "MyDruid", 2);
 		final Formation formation6 = new Formation("moonfire", "MyDruid", 2);
+		final Formation formation7 = new Formation("wild growth", "MyDruid", 2);
 		
-		List<Formation> formations = Arrays.asList(formation1, formation2, formation3, formation4, formation5, formation6);
+		List<Formation> formations = Arrays.asList(formation1, formation2, formation3, formation4, formation5, formation6, formation7);
 		
 		SQLiteDatabase db = dbHelper.getWritableDatabase();
 		

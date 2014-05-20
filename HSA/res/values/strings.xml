@@ -28,6 +28,8 @@
 	<string name="all_card_title">All</string>
 	<string name="track_title">Track</string>
 	<string name="delete_title">Delete Deck</string>
+	<string name="modify_name_title">Modify Name</string>
+	
 	
 	
 </resources>

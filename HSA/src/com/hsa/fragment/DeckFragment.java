@@ -112,6 +112,7 @@ public class DeckFragment extends Fragment{
 			ImageView image = new ImageView(getActivity());
 			image.setVisibility(View.VISIBLE);
 			image.setImageResource(ga.getImage());
+			image.setLayoutParams(new LayoutParams(160, LayoutParams.WRAP_CONTENT));
 			image.setLayoutParams(new LayoutParams(density, LayoutParams.WRAP_CONTENT));
 			image.setOnClickListener(new OnClickListener() {
 				
