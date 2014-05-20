@@ -94,9 +94,9 @@ public class DeckHandler {
 		
 	}
 
-	public void trackDeck() {
-		TrackHandler.getInstance(dbHelper).trackDeck(deck, tmpFormations);
-		
+	public List<Card> trackDeckRequest() {
+		List<Card> cards = TrackHandler.getInstance(dbHelper).trackDeck(deck, tmpFormations);
+		return cards;
 	}
 	
 	private int checkExistenceCard(String cardName) {
