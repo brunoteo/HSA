@@ -104,7 +104,7 @@ public class DeckFragment extends Fragment{
 				image.setBackgroundColor(Color.RED);
 			i++;
 			image.setImageResource(ga.getImage());
-			image.setLayoutParams(new LayoutParams(60, LayoutParams.WRAP_CONTENT));
+			image.setLayoutParams(new LayoutParams(160, LayoutParams.WRAP_CONTENT));
 			image.setOnClickListener(new OnClickListener() {
 				
 				@Override

@@ -121,6 +121,12 @@ ActionBar.TabListener{
 				Intent intent1 = new Intent(this, MainActivity.class);
 				startActivity(intent1);
 				return true;
+			case R.id.modify_name :
+				deckHandler.deckDeletionRequest();
+				Intent intent2 = new Intent(this, ModifyNameActivity.class);
+				//TODO startActivityForResult
+				startActivityForResult(intent2, 1);
+				return true;
 			default:
 	            return super.onOptionsItemSelected(item);
 		}
