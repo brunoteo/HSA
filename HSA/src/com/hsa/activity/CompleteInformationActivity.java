@@ -13,7 +13,6 @@ public class CompleteInformationActivity extends ActionBarActivity{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_complete_textual);
-		//TODO il fragment delle informazioni complete testuali e fare in modo che segui l'activity
 		Intent intent = getIntent();
 		CompleteTextualAggregation completeAggregation = intent.getParcelableExtra("completeAggregation");
 		viewCompleteTextualAggregation(completeAggregation);

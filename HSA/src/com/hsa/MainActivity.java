@@ -121,10 +121,6 @@ public class MainActivity extends ActionBarActivity implements
 
 	public void onClickND(View v) {
 		Intent intent = new Intent(MainActivity.this, NewDeckActivity.class);
-		//FIXME crea mazzo
-//		intent.putExtra("ViewHandler", viewHandler);
-//		intent.putExtra("SaveHandler", saveHandler);
-//		intent.putExtra("SearchHandler", searchHandler);
 	    startActivityForResult(intent, 2);
 	    
 	}
