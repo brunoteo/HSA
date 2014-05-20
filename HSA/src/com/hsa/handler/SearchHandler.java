@@ -123,7 +123,7 @@ public class SearchHandler{
 			cursor.close();
 			return cards;
 		}
-		return null;
+		return cards;
 	}
 	
 	public List<Card> cardsSearch(SearchCriterion searchCriterion) {
