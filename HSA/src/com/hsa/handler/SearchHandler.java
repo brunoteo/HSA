@@ -93,34 +93,37 @@ public class SearchHandler{
 	}
 	
 	public List<Card> deckCardsSearch(List<Formation> formations) {
-		String sql = "SELECT * from " + CardEntry.TABLE_NAME + " WHERE";
-		List<String> sqlArgs = new ArrayList<String>();
-		boolean first = true;
-		for (Formation formation : formations){
-			if(first){
-				sql = sql + " " + CardEntry.COLUMN_NAME_NAME + " = ?";
-				first = false;
-			}else{
-				sql = sql + " OR " + CardEntry.COLUMN_NAME_NAME + " = ?";
+		if(formations.size() != 0){
+			String sql = "SELECT * from " + CardEntry.TABLE_NAME + " WHERE";
+			List<String> sqlArgs = new ArrayList<String>();
+			boolean first = true;
+			for (Formation formation : formations){
+				if(first){
+					sql = sql + " " + CardEntry.COLUMN_NAME_NAME + " = ?";
+					first = false;
+				}else{
+					sql = sql + " OR " + CardEntry.COLUMN_NAME_NAME + " = ?";
+				}
+				sqlArgs.add(formation.getCard());
 			}
-			sqlArgs.add(formation.getCard());
+			
+			String [] selectionArgs = new String[sqlArgs.size()];
+			sqlArgs.toArray(selectionArgs);
+			List<Card> cards = new ArrayList<Card>();
+			SQLiteDatabase db = dbHelper.getWritableDatabase();
+	
+			Cursor cursor = db.rawQuery(sql, selectionArgs);
+			if(cursor.moveToFirst()) {
+				do {
+					Card card = cursorToCard(cursor);
+					cards.add(card);
+				}while(cursor.moveToNext());
+			}
+	
+			cursor.close();
+			return cards;
 		}
-		
-		String [] selectionArgs = new String[sqlArgs.size()];
-		sqlArgs.toArray(selectionArgs);
-		List<Card> cards = new ArrayList<Card>();
-		SQLiteDatabase db = dbHelper.getWritableDatabase();
-
-		Cursor cursor = db.rawQuery(sql, selectionArgs);
-		if(cursor.moveToFirst()) {
-			do {
-				Card card = cursorToCard(cursor);
-				cards.add(card);
-			}while(cursor.moveToNext());
-		}
-
-		cursor.close();
-		return cards;
+		return null;
 	}
 	
 	public List<Card> cardsSearch(SearchCriterion searchCriterion) {
