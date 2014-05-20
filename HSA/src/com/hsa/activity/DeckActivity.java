@@ -1,5 +1,6 @@
 package com.hsa.activity;
 
+import com.hsa.MainActivity;
 import com.hsa.R;
 import com.hsa.adapter.DeckTabsPagerAdapter;
 import com.hsa.aggregation.DeckDataAggregation;
@@ -115,7 +116,11 @@ ActionBar.TabListener{
 				//intent.putExtra("DataAggregation", deckData);
 				startActivity(intent);
 				return true;
-
+			case R.id.delete :
+				deckHandler.deckDeletionRequest();
+				Intent intent1 = new Intent(this, MainActivity.class);
+				startActivity(intent1);
+				return true;
 			default:
 	            return super.onOptionsItemSelected(item);
 		}

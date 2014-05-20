@@ -143,7 +143,14 @@ public class SaveHandler{
 		SQLiteDatabase db = dbHelper.getWritableDatabase();
 		
 		db.insert(DeckEntry.TABLE_NAME, null, values);
+		
 		return deck;
+	}
+
+	public void deleteDeck(Deck deck) {
+		SQLiteDatabase db = dbHelper.getWritableDatabase();
+		String[] args = new String[]{deck.getName()};
+		db.delete(DeckEntry.TABLE_NAME, DeckEntry.COLUMN_NAME_NAME + " = ?", args);
 	}
 	
 }

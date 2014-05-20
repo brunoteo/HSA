@@ -48,6 +48,11 @@ public class DeckHandler {
 		List<Card> deckCards = SearchHandler.getInstance(dbHelper).deckCardsSearch(tmpFormations);
 		return ViewHandler.getInstance(dbHelper).generateDeckCardsAggregations(deckCards, tmpFormations);
 	}
+	
+	public void deckDeletionRequest() {
+		SaveHandler.getInstance(dbHelper).deleteDeck(deck);
+		
+	}
 
 	public void trackDeck() {
 		TrackHandler.getInstance(dbHelper).trackDeck(deck, tmpFormations);
