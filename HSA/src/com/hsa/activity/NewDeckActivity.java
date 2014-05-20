@@ -77,7 +77,6 @@ public class NewDeckActivity extends ActionBarActivity{
 	
 	public void onClickConfirm(View view){
 		EditText editText = (EditText) findViewById(R.id.deck_name);
-		//FIXME fare la creazione
 		if(classCheck()){
 			boolean nameBool = searchHandler.nameCheck(editText.getText().toString());
 			if(nameBool){

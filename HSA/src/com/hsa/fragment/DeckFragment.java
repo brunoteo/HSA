@@ -131,7 +131,6 @@ public class DeckFragment extends Fragment{
 				
 				@Override
 				public void onClick(View v) {
-					//TODO fare elimina carta
 
 				}
 			});

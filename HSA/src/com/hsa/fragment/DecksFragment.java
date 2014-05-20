@@ -61,7 +61,6 @@ public class DecksFragment extends Fragment{
         viewDeckDataAggregations(deckDataAggregations);
         
 	}
-	//TODO aggiornare la lista mazzi come callback dalla visualizza carte mazzo
 	
 	public void viewDeckDataAggregations(final List<DeckDataAggregation> deckDataAggregations) {
 		listView = (ListView) getView().findViewById(R.id.deckListView);

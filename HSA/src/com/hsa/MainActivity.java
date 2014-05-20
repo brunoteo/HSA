@@ -53,7 +53,7 @@ public class MainActivity extends ActionBarActivity implements
     private ArrayList<String> rarityFilters;
     private ArrayList<String> typeFilters;
     private String nameFilter;
-    
+    //TODO eliminare tutte le rotazioni. Dovrebbero essere ovunque tranne che nelle tre principali
 	public HSADatabaseHelper getDbHelper() {
 		return dbHelper;
 	}
@@ -121,10 +121,6 @@ public class MainActivity extends ActionBarActivity implements
 
 	public void onClickND(View v) {
 		Intent intent = new Intent(MainActivity.this, NewDeckActivity.class);
-		//FIXME crea mazzo
-//		intent.putExtra("ViewHandler", viewHandler);
-//		intent.putExtra("SaveHandler", saveHandler);
-//		intent.putExtra("SearchHandler", searchHandler);
 	    startActivityForResult(intent, 2);
 	    
 	}
