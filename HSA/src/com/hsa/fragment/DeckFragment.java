@@ -4,7 +4,6 @@ import java.util.List;
 
 import com.hsa.R;
 import com.hsa.activity.DeckActivity;
-import com.hsa.adapter.DeckCardsAdapter;
 import com.hsa.adapter.GraphicalAggregationAdapter;
 import com.hsa.aggregation.CompleteTextualAggregation;
 import com.hsa.aggregation.DeckDataAggregation;
@@ -92,17 +91,17 @@ public class DeckFragment extends Fragment{
 	}
 	
 	public void viewDeckCardsGraphicsAggregations(final List<GraphicalAggregation> graphicalsAggregations) {
-//		LinearLayout view = (LinearLayout) getActivity().findViewById(R.id.deckCards);
-//		for(GraphicalAggregation ga : graphicalsAggregations) {
-//			ImageView image = new ImageView(getActivity());
-//			image.setVisibility(View.VISIBLE);
-//			image.setImageResource(ga.getImage());
-//			view.addView(image);
-//		}
+		LinearLayout view = (LinearLayout) getActivity().findViewById(R.id.deckCards);
+		for(GraphicalAggregation ga : graphicalsAggregations) {
+			ImageView image = new ImageView(getActivity());
+			image.setVisibility(View.VISIBLE);
+			image.setImageResource(ga.getImage());
+			view.addView(image);
+		}
 		//Non riesco a refreshare la pagina
 		
-		hListView = (HorizontalListView) getActivity().findViewById(R.id.cardDeck);
-		hListView.setAdapter(new DeckCardsAdapter(this.getActivity(), graphicalsAggregations));
+//		hListView = (HorizontalListView) getActivity().findViewById(R.id.cardDeck);
+//		hListView.setAdapter(new DeckCardsAdapter(this.getActivity(), graphicalsAggregations));
 	}
 
 }
