@@ -20,6 +20,7 @@ public class TrackHandler {
 	private List<Formation> tmpFormations;
 	private List<PartialTextualAggregation> pile;
 	private List<PartialTextualAggregation> partials;
+	private List<PartialTextualAggregation> totalPartials;
 	
 	public static TrackHandler getInstance(HSADatabaseHelper dbHelper) {
 		if(trackHandler == null)
@@ -47,6 +48,8 @@ public class TrackHandler {
 	public List<PartialTextualAggregation> partialTextualAggregationsRequest(List<Card> cards) {
 		partials = ViewHandler.getInstance(dbHelper).generatePartialTextualAggregations(cards, tmpFormations);
 		partials = quickSort(partials, 0, partials.size()-1);
+		totalPartials = ViewHandler.getInstance(dbHelper).generatePartialTextualAggregations(cards, tmpFormations);
+		totalPartials = quickSort(totalPartials, 0, totalPartials.size()-1);
 		
 		return partials;
 	}
@@ -145,4 +148,51 @@ public class TrackHandler {
 		return occ;
 	}
 
+	public List<PartialTextualAggregation> lastCardRestorationRequest() {
+		if(pile.size() == 0) return null;
+		PartialTextualAggregation pta=popLastTrackedCard();
+		int occ = verifyCardOccurrences(pta);
+		if(occ > 0){
+			increaseOccurrencesNumber(pta);
+		}else{
+			insertCard(pta);
+		}
+		partials = quickSort(partials, 0, partials.size()-1);
+		return partials;
+	}
+
+	private void insertCard(PartialTextualAggregation pta) {
+		partials.add(pta);
+	}
+
+	private void increaseOccurrencesNumber(PartialTextualAggregation pta) {
+		int i = 0;
+		for(PartialTextualAggregation partial : partials){
+			if(pta.getName().equals(partial.getName())) partials.get(i).setOccurrences(partials.get(i).getOccurrences() + 1);
+			i++;
+		}
+	}
+
+	private int verifyCardOccurrences(PartialTextualAggregation pta) {
+		for(PartialTextualAggregation partial : partials){
+			if(pta.getName().equals(partial.getName())) return partial.getOccurrences();
+		}
+		return 0;
+	}
+
+	private PartialTextualAggregation popLastTrackedCard() {
+		return pile.remove(pile.size()-1);
+	}
+
+	public int cardsNumberRequest() {
+		int total = 0;
+		for(PartialTextualAggregation partial : partials){
+			total += partial.getOccurrences();
+		}
+		return total;
+	}
+
+	public List<PartialTextualAggregation> getAllPartialTextualAggregation() {
+		return totalPartials;
+	}
 }

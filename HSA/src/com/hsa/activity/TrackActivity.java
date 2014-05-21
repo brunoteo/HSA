@@ -14,6 +14,8 @@ import com.hsa.handler.ViewHandler;
 import com.hsa.fragment.SearchFragment;
 import com.hsa.fragment.TrackFragment;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
@@ -116,7 +118,58 @@ public class TrackActivity extends ActionBarActivity implements ActionBar.TabLis
 	}
 	
 	public void onClickUndo(View v){
-		
+		List<PartialTextualAggregation> partials = trackHandler.lastCardRestorationRequest();
+		if(partials == null){
+			AlertDialog.Builder dlgAlert  = new AlertDialog.Builder(this);
+			
+            dlgAlert.setMessage("Error: No cards to be restored.");
+            dlgAlert.setTitle("Error Message...");
+            dlgAlert.setPositiveButton("OK", null);
+            dlgAlert.create().show();
+            
+            dlgAlert.setPositiveButton("Ok",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+
+                        }
+                    });
+		}else{
+			TrackFragment trackFragment = (TrackFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager3 + ":" + mViewPager.getCurrentItem());
+	        trackFragment.viewPartialTextualAggregation(partials);
+	        int n = 0;
+			for (PartialTextualAggregation pta : partials){
+				n += pta.getOccurrences();
+			}
+	        trackFragment.viewDeckCardsNumber(n);
+		}
+	}
+	
+	public void onClickReset(View v){
+		int n = trackHandler.cardsNumberRequest();
+		if(n == 30){
+			AlertDialog.Builder dlgAlert  = new AlertDialog.Builder(this);
+			
+            dlgAlert.setMessage("Error: Deck is already reseted.");
+            dlgAlert.setTitle("Error Message...");
+            dlgAlert.setPositiveButton("OK", null);
+            dlgAlert.create().show();
+            
+            dlgAlert.setPositiveButton("Ok",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+
+                        }
+                    });
+		}else{
+			List<PartialTextualAggregation> partials = trackHandler.getAllPartialTextualAggregation();
+			TrackFragment trackFragment = (TrackFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager3 + ":" + mViewPager.getCurrentItem());
+	        trackFragment.viewPartialTextualAggregation(partials);
+	        int total = 0;
+			for (PartialTextualAggregation pta : partials){
+				total += pta.getOccurrences();
+			}
+	        trackFragment.viewDeckCardsNumber(total);
+		}
 	}
 
 }
