@@ -2,6 +2,7 @@ package com.hsa.handler;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.Vector;
 
 import com.hsa.aggregation.PartialTextualAggregation;
@@ -54,6 +55,38 @@ public class TrackHandler {
 		return partials;
 	}
 
+//	public List<PartialTextualAggregation> qsort(List<PartialTextualAggregation> partials, int low, int high) {
+//        int i = low, j = high;
+//
+//        // Get the pivot element
+//        Random r = new Random();
+//        int pivot = r.nextInt(high-low+1)+low;
+//
+//        // Divide into two lists
+//        while (i <= j) {
+//
+//          while (strings[i].compareTo(strings[pivot]) < 0) i++;
+//
+//          while (strings[j].compareTo(strings[pivot]) > 0) j--;
+//
+//          if (i <= j) {
+//            exchange(i, j);
+//            i++;
+//            j--;
+//          }
+//        }
+//
+//        // Recursion
+//        if (low < j) qsort(low, j);
+//        if (i < high) qsort(i, high);
+//      }
+//
+//    static void exchange(List<PartialTextualAggregation> partials, int i, int j) {
+//        String temp = strings[i];
+//        strings[i] = strings[j];
+//        strings[j] = temp;
+//    }
+	
 	private int partition(List<PartialTextualAggregation> partials, int left, int right){
 	      int i = left, j = right;
 	      PartialTextualAggregation tmp;
@@ -157,9 +190,22 @@ public class TrackHandler {
 		}else{
 			insertCard(pta);
 		}
+		updateProbabilities();
 		partials = quickSort(partials, 0, partials.size()-1);
 		return partials;
 	}
+	
+	public void updateProbabilities(){
+		int total = 0;
+		for (PartialTextualAggregation partial : partials){
+			total += partial.getOccurrences();
+		}
+		for (PartialTextualAggregation partial : partials){
+			Integer probability = (int) Math.round(((partial.getOccurrences() * 100.00) / total ));
+			partial.setProbability(probability);
+		}
+	}//TODO probabilità decimale alla seconda cifra
+	//TODO quicksort by name
 
 	private void insertCard(PartialTextualAggregation pta) {
 		partials.add(pta);
