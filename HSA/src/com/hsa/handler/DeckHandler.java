@@ -22,6 +22,7 @@ public class DeckHandler {
 	private HSADatabaseHelper dbHelper;
 	
 	private Deck deck;
+	private List<Formation> copyFormations;
 	private List<Formation> tmpFormations;
 	private List<GraphicalAggregation> tmpGraphicalsAggregations;
 
@@ -38,7 +39,7 @@ public class DeckHandler {
 	public SearchCriterion deckCriterionRequest(String deckName) {
 		deck = SearchHandler.getInstance(dbHelper).deckSearch(deckName);
 		tmpFormations = SearchHandler.getInstance(dbHelper).formationsSearch(deckName);
-		
+		copyFormations = new ArrayList<Formation>(tmpFormations);
 		Map<String, ArrayList<String>> filters = new HashMap<String, ArrayList<String>>();
 		ArrayList<String> classFilter = new ArrayList<String>();
 		classFilter.add(deck.getClassName());
@@ -65,6 +66,18 @@ public class DeckHandler {
 			deleteCard(cardName);		
 		}
 		return tmpGraphicalsAggregations;
+	}
+	
+	public boolean controlModifyRequest() {
+		if(checkModify()) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	public void saveRequest() {
+		SaveHandler.getInstance(dbHelper).updateDeck(copyFormations, tmpFormations, deck);
 	}
 	
 	public int cardNumberRequest() {
@@ -96,6 +109,13 @@ public class DeckHandler {
 			}
 			return -1;
 		}	
+	}
+	
+	private boolean checkModify() {
+		if(copyFormations.equals(tmpFormations))
+			return false;
+		else
+			return true;
 	}
 	
 	private void insertCard(String cardName) {

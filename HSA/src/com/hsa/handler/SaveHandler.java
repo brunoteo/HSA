@@ -154,4 +154,8 @@ public class SaveHandler{
 		db.delete(DeckEntry.TABLE_NAME, DeckEntry.COLUMN_NAME_NAME + " = ?", args);
 	}
 	
+	public void updateDeck(List<Formation> copyFormations, List<Formation> tmpFormations, Deck deck) {
+		
+	}
+	
 }

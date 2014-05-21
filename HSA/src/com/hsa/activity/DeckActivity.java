@@ -157,6 +157,47 @@ ActionBar.TabListener, DeckFragment.OnDeckListener{
 		switch(id) {
 			case R.id.action_settings : 
 				return true;
+			case R.id.save:
+				if(!deckHandler.controlModifyRequest()) {
+					AlertDialog.Builder dlgAlert  = new AlertDialog.Builder(this);
+				
+		            dlgAlert.setMessage("INFO: Deck up to date.");
+		            dlgAlert.setTitle("Info Message...");
+		            	            
+		            dlgAlert.setPositiveButton("Ok",
+		                    new DialogInterface.OnClickListener() {
+		                        public void onClick(DialogInterface dialog, int which) {
+	
+		                        }
+		                    });
+		            
+		            dlgAlert.create().show();
+		            
+				} else {
+					AlertDialog.Builder dlgAlertSave  = new AlertDialog.Builder(this);
+					
+					dlgAlertSave.setMessage("INFO: Do you want to save?");
+					dlgAlertSave.setTitle("Info Save...");
+					
+					dlgAlertSave.setNegativeButton("CANCEL", 
+							new DialogInterface.OnClickListener() {
+								
+								@Override
+								public void onClick(DialogInterface dialog, int which) {
+									
+								}
+							});
+						            
+					dlgAlertSave.setPositiveButton("Ok",
+		                    new DialogInterface.OnClickListener() {
+		                        public void onClick(DialogInterface dialog, int which) {
+		                        	deckHandler.saveRequest();
+		                        }
+		                    });
+					
+					dlgAlertSave.create().show();
+				}
+				return true;
 			case R.id.filterDeck :			
 				Intent intent = new Intent(this, FilterActivity.class);
 				intent.putStringArrayListExtra("classResult", classFilters);

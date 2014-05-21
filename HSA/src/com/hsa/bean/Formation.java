@@ -37,4 +37,22 @@ public class Formation {
 	public void setOccurrence(Integer occurrence) {
 		this.occurrence = occurrence;
 	}
+	
+	@Override
+	public boolean equals(Object object) {
+		boolean sameSame = false;
+
+        if (object != null && object instanceof Formation)
+        {
+        	Formation f = (Formation) object;
+            sameSame = this.card.equals(f.getCard()) && this.deck.equals(f.getDeck()) && this.occurrence==f.getOccurrence();
+        }
+
+        return sameSame;
+	}
+	
+	@Override
+	public int hashCode() {
+		return card.hashCode();
+	}
 }
