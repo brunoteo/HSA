@@ -7,6 +7,7 @@ import com.hsa.aggregation.DeckDataAggregation;
 import com.hsa.aggregation.PartialTextualAggregation;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -61,10 +62,29 @@ public class PartialTextualAggregationAdapter extends BaseAdapter{
         trackNumb = (TextView)v.getTag(R.id.trackNumb);
 
         PartialTextualAggregation partialTextualAggregation = (PartialTextualAggregation)getItem(i);
-        
-        trackCost.setText(partialTextualAggregation.getCost());
-        trackName.setText(partialTextualAggregation.getName() + "\n");
-        trackProb.setText(Integer.toString(partialTextualAggregation.getProbability()) + "%");
+        trackCost.setText("Cost: " + Integer.toString(partialTextualAggregation.getCost()));
+        trackProb.setText(Integer.toString(partialTextualAggregation.getProbability()) + "%" + "\n");
+        String name = "";
+        String[] splitName = partialTextualAggregation.getName().split(" ");
+		for(String split : splitName) {
+			name+= split.substring(0, 1).toUpperCase() + split.substring(1) + " ";
+		}
+        trackName.setText(name);
+        switch (partialTextualAggregation.getRarity()){
+        	case "Rare": trackName.setTextColor(Color.BLUE);
+        		break;
+        	case "Legendary" : trackName.setTextColor(Color.rgb(255, 102, 0));
+        		break;
+        	case "Epic" : trackName.setTextColor(Color.rgb(111, 0, 255));
+        		break;
+        	case "Common" : trackName.setTextColor(Color.rgb(139, 137, 137));
+        		break;
+        	default : trackName.setTextColor(Color.rgb(0, 0, 0));
+        	
+        }
+        if(partialTextualAggregation.getRarity().equals("rare")){
+        	
+        }
         trackNumb.setText("#" + Integer.toString(partialTextualAggregation.getOccurrences()));
         
         return v;

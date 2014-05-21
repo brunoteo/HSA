@@ -134,6 +134,19 @@ ActionBar.TabListener{
 				}
 				return true;
 			case R.id.delete :
+				AlertDialog.Builder dlgAlert  = new AlertDialog.Builder(this);
+				
+	            dlgAlert.setMessage("Are you sure?");
+	            dlgAlert.setTitle("Delete deck");
+	            dlgAlert.setPositiveButton("OK", null);
+	            dlgAlert.create().show();
+	            
+	            dlgAlert.setPositiveButton("Ok",
+	                    new DialogInterface.OnClickListener() {
+	                        public void onClick(DialogInterface dialog, int which) {
+
+	                        }
+	                    });
 				deckHandler.deckDeletionRequest();
 				Intent intent1 = new Intent(this, MainActivity.class);
 				startActivity(intent1);
