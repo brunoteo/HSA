@@ -90,7 +90,6 @@ public class DeckFragment extends Fragment{
         if(deckCardsGA!=null)
         	viewDeckCardsGraphicsAggregations(deckCardsGA);
         
-        //TODO visualizza numero carte
 	}
 	
 	@Override
