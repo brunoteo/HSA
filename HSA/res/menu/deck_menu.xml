@@ -2,6 +2,23 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" 
       xmlns:hsa="http://schemas.android.com/apk/res-auto">
     
+    <item android:id="@+id/searchDeck"
+          android:title="@string/search_title"
+          android:icon="@drawable/ic_action_search"
+          android:showAsAction="collapseActionView|ifRoom"
+          hsa:actionViewClass="android.support.v7.widget.SearchView"
+          hsa:showAsAction="always" />
+    
+    <item android:id="@+id/all_cardDeck"
+          android:title="@string/all_card_title"
+          android:icon="@drawable/ic_all"
+          hsa:showAsAction="always" />
+    
+    <item android:id="@+id/filterDeck"
+          android:title="@string/filter_title"
+          android:icon="@drawable/filter"
+          hsa:showAsAction="always" />
+    
     <item android:id="@+id/track"
           android:title="@string/track_title"
           android:icon="@drawable/track_w"
@@ -10,8 +27,5 @@
     <item android:id="@+id/delete"
           android:title="@string/delete_title"
           hsa:showAsAction="never" />
-    
-    <item android:id="@+id/modify_name"
-          android:title="@string/modify_name_title"
-          hsa:showAsAction="never" />
+
 </menu>

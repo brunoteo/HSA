@@ -1,12 +1,21 @@
 package com.hsa.activity;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import com.hsa.MainActivity;
 import com.hsa.R;
 import com.hsa.adapter.DeckTabsPagerAdapter;
 import com.hsa.aggregation.CompleteTextualAggregation;
 import com.hsa.aggregation.DeckDataAggregation;
+import com.hsa.aggregation.GraphicalAggregation;
+import com.hsa.bean.SearchCriterion;
 import com.hsa.database.HSADatabaseHelper;
 import com.hsa.fragment.DeckFragment;
+import com.hsa.fragment.DecksFragment;
+import com.hsa.fragment.SearchFragment;
 import com.hsa.handler.DeckHandler;
 import com.hsa.handler.SaveHandler;
 import com.hsa.handler.SearchHandler;
@@ -40,6 +49,12 @@ ActionBar.TabListener, DeckFragment.OnDeckListener{
 	private TrackHandler trackHandler;
 	//FIXME forse non serve a niente anche questo
 	private DeckDataAggregation deckData;
+	
+	private ArrayList<String> classFilters;
+    private ArrayList<String> costFilters;
+    private ArrayList<String> rarityFilters;
+    private ArrayList<String> typeFilters;
+    private String nameFilter;
 	
 	private String[] tabs = { "Note", "Deck", "Deck Info" };
 
@@ -101,9 +116,39 @@ ActionBar.TabListener, DeckFragment.OnDeckListener{
 	public boolean onCreateOptionsMenu(Menu menu) {
 
 		MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.main, menu);
+        inflater.inflate(R.menu.deck, menu);
         return super.onCreateOptionsMenu(menu);
 
+	}
+	
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+	    if (requestCode == 1) {
+	        if(resultCode == RESULT_OK){
+	            classFilters = data.getStringArrayListExtra("classResult");
+	            costFilters = data.getStringArrayListExtra("costResult");
+	            rarityFilters = data.getStringArrayListExtra("rarityResult");
+	            typeFilters = data.getStringArrayListExtra("typeResult");
+
+	            Map<String, ArrayList<String>> filters = new HashMap<String, ArrayList<String>>();
+	            if(classFilters != null) {
+	            	if(classFilters.size() != 0) filters.put("className", new ArrayList<String>(classFilters));
+	            }
+	            if(costFilters != null){
+	            	if(costFilters.size() != 0) filters.put("cost", new ArrayList<String>(costFilters));
+	            }
+	            if(rarityFilters != null){
+	            	if(rarityFilters.size() != 0) filters.put("rarity", new ArrayList<String>(rarityFilters));
+	            }
+	            if(typeFilters != null){
+	            	if(typeFilters.size() != 0) filters.put("type", new ArrayList<String>(typeFilters));
+	            }
+	            SearchCriterion searchCriterion = new SearchCriterion(nameFilter, filters);
+	            List<GraphicalAggregation> graphicalsAggregations = viewHandler.cardsSearchRequest(searchCriterion, this);
+	            DeckFragment deckFragment = (DeckFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager2 + ":" + mViewPager.getCurrentItem());
+	            deckFragment.viewGraphicsAggregations(graphicalsAggregations);
+	        }
+	    }
 	}
 
 	@Override
@@ -115,11 +160,29 @@ ActionBar.TabListener, DeckFragment.OnDeckListener{
 		switch(id) {
 			case R.id.action_settings : 
 				return true;
+			case R.id.filterDeck :			
+				Intent intent = new Intent(this, FilterActivity.class);
+				intent.putStringArrayListExtra("classResult", classFilters);
+				intent.putStringArrayListExtra("costResult", costFilters);
+				intent.putStringArrayListExtra("rarityResult", rarityFilters);
+				intent.putStringArrayListExtra("typeResult", typeFilters);
+				startActivityForResult(intent, 1);
+				return true;
+			case R.id.all_cardDeck:
+				classFilters = null;
+				costFilters = null;
+				rarityFilters = null;
+				typeFilters = null;
+				nameFilter = null;
+	            DeckFragment deckFragment = (DeckFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager2 + ":" + mViewPager.getCurrentItem());
+				List<GraphicalAggregation> graphicalsAggregations = viewHandler.cardsSearchRequest(null, this);
+	            deckFragment.viewGraphicsAggregations(graphicalsAggregations);
+				return true;
 			case R.id.track :
 				int cardNumber = deckHandler.cardNumberRequest();
 				if(cardNumber == 30){
-					Intent intent = new Intent(this, TrackActivity.class);
-					startActivity(intent);
+					Intent intent2 = new Intent(this, TrackActivity.class);
+					startActivity(intent2);
 				}else{
 					AlertDialog.Builder dlgAlert  = new AlertDialog.Builder(this);
 					
