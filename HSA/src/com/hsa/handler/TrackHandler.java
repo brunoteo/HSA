@@ -231,7 +231,6 @@ public class TrackHandler {
 			partial.setProbability(probability);
 		}
 	}
-	//TODO quicksort by name
 
 	private void insertCard(PartialTextualAggregation pta) {
 		partials.add(pta);
