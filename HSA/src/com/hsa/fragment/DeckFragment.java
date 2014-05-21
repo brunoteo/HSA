@@ -1,25 +1,19 @@
 package com.hsa.fragment;
 
-import java.lang.reflect.Modifier;
 import java.util.List;
 
 import com.hsa.R;
 import com.hsa.activity.DeckActivity;
 import com.hsa.adapter.GraphicalAggregationAdapter;
-import com.hsa.aggregation.CompleteTextualAggregation;
-import com.hsa.aggregation.DeckDataAggregation;
 import com.hsa.aggregation.GraphicalAggregation;
-import com.hsa.bean.Formation;
 import com.hsa.bean.SearchCriterion;
 import com.hsa.database.HSADatabaseHelper;
 import com.hsa.handler.DeckHandler;
 import com.hsa.handler.ViewHandler;
 
-import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -31,12 +25,8 @@ import android.view.ViewGroup.LayoutParams;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.FrameLayout;
-import android.widget.Gallery;
 import android.widget.GridView;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
-import android.widget.AdapterView.OnItemLongClickListener;
-import android.widget.ImageView.ScaleType;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
