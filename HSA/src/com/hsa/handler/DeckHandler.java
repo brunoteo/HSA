@@ -133,17 +133,6 @@ public class DeckHandler {
 	}
 	
 	private boolean checkModify() {
-//		for(Formation f : tmpFormations) {
-//			for(Formation ff : copyFormations) {
-//				if(f.getCard().equals(ff.getCard()) && f.getDeck().equals(ff.getDeck()) && f.getOccurrence()==ff.getOccurrence()) {
-//					continue;
-//				} else {
-//					if(f.getCard().equals(ff.getCard())) {
-//						return true;
-//					}
-//				}
-//			}
-//		}
 		if(tmpFormations.equals(copyFormations))
 			return false;
 		return true;
@@ -154,7 +143,8 @@ public class DeckHandler {
 		if(index >= 0) {
 			int occurrence = tmpGraphicalsAggregations.get(index).getOccurence() + 1;
 			tmpGraphicalsAggregations.get(index).setOccurence(occurrence);
-			tmpFormations.get(index).setOccurrence(occurrence);
+			int indexF = getDeckIndex(cardName);
+			tmpFormations.get(indexF).setOccurrence(occurrence);
 		} else {
 			Card card = SearchHandler.getInstance(dbHelper).cardSearch(cardName);
 			GraphicalAggregation newDeckCard = ViewHandler.getInstance(dbHelper).createGraphicalAggregation(card, null);
@@ -168,11 +158,22 @@ public class DeckHandler {
 		int occurrence = tmpGraphicalsAggregations.get(index).getOccurence();
 		if(occurrence > 1) {
 			tmpGraphicalsAggregations.get(index).setOccurence(occurrence-1);
-			tmpFormations.get(index).setOccurrence(occurrence-1);
+			int indexF = getDeckIndex(cardName);
+			tmpFormations.get(indexF).setOccurrence(occurrence-1);
 		} else {
 			tmpGraphicalsAggregations.remove(index);
-			tmpFormations.remove(index);
+			int indexF = getDeckIndex(cardName);
+			tmpFormations.remove(indexF);
 		}
+	}
+	
+	private int getDeckIndex(String cardName) {
+		for(int i = 0; i < tmpFormations.size(); i++) {
+			if(tmpFormations.get(i).getCard().equals(cardName)) {
+				return i;
+			}
+		}
+		return -1;
 	}
 
 
