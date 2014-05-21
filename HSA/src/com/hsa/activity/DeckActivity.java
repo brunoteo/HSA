@@ -3,8 +3,10 @@ package com.hsa.activity;
 import com.hsa.MainActivity;
 import com.hsa.R;
 import com.hsa.adapter.DeckTabsPagerAdapter;
+import com.hsa.aggregation.CompleteTextualAggregation;
 import com.hsa.aggregation.DeckDataAggregation;
 import com.hsa.database.HSADatabaseHelper;
+import com.hsa.fragment.DeckFragment;
 import com.hsa.handler.DeckHandler;
 import com.hsa.handler.SaveHandler;
 import com.hsa.handler.SearchHandler;
@@ -24,7 +26,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 
 public class DeckActivity extends ActionBarActivity implements
-ActionBar.TabListener{
+ActionBar.TabListener, DeckFragment.OnDeckListener{
 	
 	private HSADatabaseHelper dbHelper;
 	private DeckTabsPagerAdapter deckTabsPagerAdapter;
@@ -47,7 +49,8 @@ ActionBar.TabListener{
 		setContentView(R.layout.activity_deck);
 		Intent intent = getIntent();
 		deckData = intent.getParcelableExtra("deckDataAggregation");
-		setTitle(deckData.getName());
+//		setTitle(deckData.getName());
+//		setTitle(Integer.toString(deckData.getCardNumber())+"/30");
 		
 		// Set up the action bar.
 		final ActionBar actionBar = getSupportActionBar();
@@ -178,4 +181,13 @@ ActionBar.TabListener{
 	public DeckDataAggregation getDeckDataAggregation() {
 		return this.deckData;
 	}
+
+	@Override
+	public void onCardSelected(CompleteTextualAggregation completeAggregation) {
+		// TODO Auto-generated method stub
+		Intent intent = new Intent(this, CompleteInformationActivity.class);
+		intent.putExtra("completeAggregation", completeAggregation);
+		startActivity(intent);
+	}
+	
 }

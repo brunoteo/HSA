@@ -5,12 +5,15 @@ import java.util.List;
 import com.hsa.R;
 import com.hsa.activity.DeckActivity;
 import com.hsa.adapter.GraphicalAggregationAdapter;
+import com.hsa.aggregation.CompleteTextualAggregation;
 import com.hsa.aggregation.GraphicalAggregation;
 import com.hsa.bean.SearchCriterion;
 import com.hsa.database.HSADatabaseHelper;
+import com.hsa.fragment.SearchFragment.OnSearchListener;
 import com.hsa.handler.DeckHandler;
 import com.hsa.handler.ViewHandler;
 
+import android.app.Activity;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -24,6 +27,7 @@ import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.FrameLayout;
 import android.widget.GridView;
 import android.widget.ImageView;
@@ -38,6 +42,12 @@ public class DeckFragment extends Fragment{
 	private DeckHandler deckHandler;
 	
 	private GridView gridView;
+	
+	private OnDeckListener onDeckListener;
+	
+	public interface OnDeckListener{
+		public void onCardSelected(CompleteTextualAggregation completeAggregation);
+	}
 
 	@Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -47,6 +57,16 @@ public class DeckFragment extends Fragment{
          
         return rootView;
     }
+	
+	@Override
+	public void onAttach(Activity activity){
+		super.onAttach(activity);
+		try{
+			onDeckListener = (OnDeckListener) activity;
+		}catch(ClassCastException e){
+			throw new ClassCastException(activity.toString());
+		}
+	}
 	
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
@@ -88,16 +108,16 @@ public class DeckFragment extends Fragment{
 			}
 		});
         //TODO Visualizza info testuali complete
-//        gridView.setOnItemLongClickListener(new OnItemLongClickListener() {
-//
-//			@Override
-//			public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-//				CompleteTextualAggregation completeTextualAggregation = viewHandler.completeInfoRequest(graphicalsAggregations.get(position));			
-//				onSearchListener.onCardSelected(completeTextualAggregation);
-//				return true;
-//			}
-//        	
-//		});
+        gridView.setOnItemLongClickListener(new OnItemLongClickListener() {
+
+			@Override
+			public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+				CompleteTextualAggregation completeTextualAggregation = viewHandler.completeInfoRequest(graphicalsAggregations.get(position).getName());			
+				onDeckListener.onCardSelected(completeTextualAggregation);
+				return true;
+			}
+        	
+		});
 	}
 	
 	public void viewDeckCardsGraphicsAggregations(final List<GraphicalAggregation> graphicalsAggregations) {

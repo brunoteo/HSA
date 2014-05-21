@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
     
     <EditText android:id="@+id/deck_name"
-        android:layout_weight="1"
+        android:layout_weight="0.6"
 	    android:layout_width="match_parent"
 	    android:layout_height="0dp"
 	    android:hint="@string/enter_a_name" />
