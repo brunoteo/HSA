@@ -1,6 +1,6 @@
 package com.hsa.bean;
 
-public class Formation {
+public class Formation{
 
 	private String card;
 	private String deck;
@@ -56,4 +56,5 @@ public class Formation {
 	public int hashCode() {
 		return card.hashCode() + deck.hashCode() + occurrence.hashCode();
 	}
+
 }

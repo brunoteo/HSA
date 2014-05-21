@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import android.app.AlertDialog;
+import android.content.Context;
 import android.widget.EditText;
 
 import com.hsa.aggregation.DeckDataAggregation;
@@ -59,9 +61,18 @@ public class DeckHandler {
 		}
 	}
 	
-	public List<GraphicalAggregation> modifyDeckRequest(String cardName, int type) {
+	public List<GraphicalAggregation> modifyDeckRequest(String cardName, int type, Context context) {
 		if(type==0){
-			insertCard(cardName);
+			if(checkNumCards()) {
+				insertCard(cardName);
+			} else {
+				AlertDialog.Builder dlgAlert  = new AlertDialog.Builder(context);
+				
+	            dlgAlert.setMessage("Error: Deck contains 30 cards.");
+	            dlgAlert.setTitle("Error Message...");
+	            dlgAlert.setPositiveButton("OK", null);
+	            dlgAlert.create().show();
+			}
 		} else {
 			deleteCard(cardName);		
 		}
@@ -94,6 +105,18 @@ public class DeckHandler {
 	public List<Card> trackDeckRequest() {
 		List<Card> cards = TrackHandler.getInstance(dbHelper).trackDeck(deck, tmpFormations);
 		return cards;
+	}
+	
+	private boolean checkNumCards() {
+		int numCards = 0;
+		for(Formation f : tmpFormations) {
+			numCards += f.getOccurrence();
+		}
+		if(numCards < 30) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 	
 	private int checkExistenceCard(String cardName) {

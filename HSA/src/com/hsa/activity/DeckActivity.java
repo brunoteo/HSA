@@ -62,7 +62,7 @@ ActionBar.TabListener, DeckFragment.OnDeckListener{
 		Intent intent = getIntent();
 		deckData = intent.getParcelableExtra("deckDataAggregation");
 //		setTitle(deckData.getName());
-//		setTitle(Integer.toString(deckData.getCardNumber())+"/30");
+		setTitle(Integer.toString(deckData.getCardNumber())+"/30");
 		
 		// Set up the action bar.
 		final ActionBar actionBar = getSupportActionBar();

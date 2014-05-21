@@ -113,9 +113,10 @@ public class DeckFragment extends Fragment{
 
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-				List<GraphicalAggregation> deckCardsGA = deckHandler.modifyDeckRequest(graphicalsAggregations.get(position).getName(), 0);
+				List<GraphicalAggregation> deckCardsGA = deckHandler.modifyDeckRequest(graphicalsAggregations.get(position).getName(), 0, getActivity());
 				deleteItemList();
-				viewDeckCardsGraphicsAggregations(deckCardsGA);
+				viewNumCards(deckCardsGA);
+				viewDeckCardsGraphicsAggregations(deckCardsGA);				
 			}
 		});
 
@@ -154,9 +155,10 @@ public class DeckFragment extends Fragment{
 				
 				@Override
 				public void onClick(View v) {
-					List<GraphicalAggregation> deckCardsGA = deckHandler.modifyDeckRequest(v.getTag().toString(), 1);
+					List<GraphicalAggregation> deckCardsGA = deckHandler.modifyDeckRequest(v.getTag().toString(), 1, getActivity());
 					deleteItemList();
 					viewDeckCardsGraphicsAggregations(deckCardsGA);
+					viewNumCards(graphicalsAggregations);
 				}
 			});
 			if(ga.getOccurence()>1) {
@@ -176,6 +178,14 @@ public class DeckFragment extends Fragment{
 		    
 			view.addView(ll);
 		}
+	}
+	
+	private void viewNumCards(List<GraphicalAggregation> graphicalsAggregations) {
+		int numCards = 0;
+		for(GraphicalAggregation ga : graphicalsAggregations) {
+			numCards += ga.getOccurence();
+		}
+		getActivity().setTitle(Integer.toString(numCards) + "/30");
 	}
 	
 	private int getDensityName() {
