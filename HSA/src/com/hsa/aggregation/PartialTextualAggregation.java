@@ -5,7 +5,7 @@ import java.util.List;
 import com.hsa.bean.Card;
 import com.hsa.bean.Formation;
 
-public class PartialTextualAggregation {
+public class PartialTextualAggregation{
 	
 	private String name;
 	private Integer cost;
@@ -53,5 +53,4 @@ public class PartialTextualAggregation {
 	public void setOccurrences(Integer occurrences) {
 		this.occurrences = occurrences;
 	}
-
 }
