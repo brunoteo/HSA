@@ -102,7 +102,7 @@ public class ViewHandler{
 		return dda;
 	}
 
-	public List<PartialTextualAggregation> generatePartialTextualAggregation(List<Card> cards, List<Formation> trackFormations) {
+	public List<PartialTextualAggregation> generatePartialTextualAggregations(List<Card> cards, List<Formation> trackFormations) {
 		
 		int total = 0;
 		for(Formation formation : trackFormations){

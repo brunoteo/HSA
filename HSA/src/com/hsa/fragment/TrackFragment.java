@@ -27,6 +27,7 @@ import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.TextView;
 
 public class TrackFragment extends Fragment{
 	
@@ -38,6 +39,7 @@ public class TrackFragment extends Fragment{
 	private TrackHandler trackHandler;
 	
 	private ListView listView;
+	private TextView textView;
 	
 	private OnTracksListener onTracksListener;
 
@@ -72,13 +74,22 @@ public class TrackFragment extends Fragment{
         deckHandler = DeckHandler.getInstance(dbHelper);
         trackHandler = TrackHandler.getInstance(dbHelper);
         List<Card> cards = deckHandler.trackDeckRequest();
-        List<PartialTextualAggregation> partials = trackHandler.partialTextualAggregationRequest(cards);
+        List<PartialTextualAggregation> partials = trackHandler.partialTextualAggregationsRequest(cards);
         viewPartialTextualAggregation(partials);
-        //List<GraphicalAggregation> graphicalsAggregations = viewHandler.searchRequest(null, this.getActivity());
-        //viewGraphicsAggregations(graphicalsAggregations);
+        int n = 0;
+		for (PartialTextualAggregation partial : partials){
+			n += partial.getOccurrences();
+		}
+        viewDeckCardsNumber(n);
 	}
 
-	private void viewPartialTextualAggregation(final List<PartialTextualAggregation> partials) {
+	public void viewDeckCardsNumber(int n) {
+		textView = (TextView) getView().findViewById(R.id.remainCards);
+		textView.setText("Remaining cards: " + Integer.toString(n) + "/30");
+		
+	}
+
+	public void viewPartialTextualAggregation(final List<PartialTextualAggregation> partials) {
 		listView = (ListView) getView().findViewById(R.id.trackListView);
 		listView.setAdapter(new PartialTextualAggregationAdapter(this.getActivity(), partials));
 		listView.setOnItemClickListener(new OnItemClickListener() {

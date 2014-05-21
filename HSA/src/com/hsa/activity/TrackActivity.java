@@ -1,5 +1,7 @@
 package com.hsa.activity;
 
+import java.util.List;
+
 import com.hsa.R;
 import com.hsa.adapter.TrackTabsPagerAdapter;
 import com.hsa.aggregation.PartialTextualAggregation;
@@ -9,8 +11,10 @@ import com.hsa.handler.SaveHandler;
 import com.hsa.handler.SearchHandler;
 import com.hsa.handler.TrackHandler;
 import com.hsa.handler.ViewHandler;
+import com.hsa.fragment.SearchFragment;
 import com.hsa.fragment.TrackFragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
@@ -100,7 +104,14 @@ public class TrackActivity extends ActionBarActivity implements ActionBar.TabLis
 	}
 	
 	public void onTrackSelected(PartialTextualAggregation partial){
-		
+		List<PartialTextualAggregation> partials = trackHandler.trackCard(partial);
+        TrackFragment trackFragment = (TrackFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager3 + ":" + mViewPager.getCurrentItem());
+        trackFragment.viewPartialTextualAggregation(partials);
+        int n = 0;
+		for (PartialTextualAggregation pta : partials){
+			n += pta.getOccurrences();
+		}
+        trackFragment.viewDeckCardsNumber(n);
 	}
 
 }
