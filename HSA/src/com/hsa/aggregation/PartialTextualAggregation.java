@@ -10,12 +10,12 @@ public class PartialTextualAggregation{
 	private String name;
 	private Integer cost;
 	private String rarity;
-	private Integer probability;
+	private Double probability;
 	private Integer occurrences;
 	
 	public PartialTextualAggregation(){}
 	
-	public PartialTextualAggregation(String name, Integer cost, String rarity, Integer probability, Integer occurrences){
+	public PartialTextualAggregation(String name, Integer cost, String rarity, Double probability, Integer occurrences){
 		this.name = name;
 		this.cost = cost;
 		this.rarity = rarity;
@@ -41,10 +41,10 @@ public class PartialTextualAggregation{
 	public void setRarity(String rarity) {
 		this.rarity = rarity;
 	}
-	public Integer getProbability() {
+	public Double getProbability() {
 		return probability;
 	}
-	public void setProbability(Integer probability2) {
+	public void setProbability(Double probability2) {
 		this.probability = probability2;
 	}
 	public Integer getOccurrences() {

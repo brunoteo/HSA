@@ -137,8 +137,8 @@ public class TrackHandler {
 		}
 		int i = 0;
 		for(PartialTextualAggregation partial : partials){
-			Integer prob = (int) Math.round(((partials.get(i).getOccurrences() * 100.00) / total ));
-			partials.get(i).setProbability(prob);
+			Double prob = (double) Math.round(((partials.get(i).getOccurrences() * 10000) / total )) / 100;
+			partial.setProbability(prob);
 			i++;
 		}
 	}
@@ -201,10 +201,10 @@ public class TrackHandler {
 			total += partial.getOccurrences();
 		}
 		for (PartialTextualAggregation partial : partials){
-			Integer probability = (int) Math.round(((partial.getOccurrences() * 100.00) / total ));
+			Double probability = (double) Math.round(((partial.getOccurrences() * 10000) / total ))/100;
 			partial.setProbability(probability);
 		}
-	}//TODO probabilità decimale alla seconda cifra
+	}
 	//TODO quicksort by name
 
 	private void insertCard(PartialTextualAggregation pta) {

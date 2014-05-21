@@ -113,11 +113,11 @@ public class ViewHandler{
 		List<PartialTextualAggregation> partials = new ArrayList<PartialTextualAggregation>();
 		
 		for (Card card : cards){
-			PartialTextualAggregation partial = new PartialTextualAggregation(card.getName(), card.getCost(), card.getRarity(), 0, 0);
+			PartialTextualAggregation partial = new PartialTextualAggregation(card.getName(), card.getCost(), card.getRarity(), 0.0, 0);
 			for(Formation formation : trackFormations){
 				if(formation.getCard().equals(card.getName())){
 					partial.setOccurrences(formation.getOccurrence());
-					Integer probability = (int) Math.round(((formation.getOccurrence() * 100.00) / total ));
+					Double probability = (double) Math.round(((formation.getOccurrence() * 10000) / total ))/100;
 					partial.setProbability(probability);
 				}
 			}
