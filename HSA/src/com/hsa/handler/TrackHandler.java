@@ -52,7 +52,40 @@ public class TrackHandler {
 	
 	public List<PartialTextualAggregation> partialTextualAggregationRequest(List<Card> cards) {
 		partials = ViewHandler.getInstance(dbHelper).generatePartialTextualAggregation(cards, trackFormations);
+		partials = quickSort(partials, 0, partials.size()-1);
+		
 		return partials;
+	}
+
+	private int partition(List<PartialTextualAggregation> partials, int left, int right){
+	      int i = left, j = right;
+	      PartialTextualAggregation tmp;
+	      PartialTextualAggregation pivot = partials.get((left + right) / 2);
+	     
+	      while (i <= j) {
+	            while (partials.get(i).getCost() < pivot.getCost())
+	                  i++;
+	            while (partials.get(j).getCost() > pivot.getCost())
+	                  j--;
+	            if (i <= j) {
+	                  tmp = partials.get(i);
+	                  partials.set(i, partials.get(j));
+	                  partials.set(j, tmp);
+	                  i++;
+	                  j--;
+	            }
+	      };
+	     
+	      return i;
+	}
+	
+	private List<PartialTextualAggregation> quickSort(List<PartialTextualAggregation> partials, int left, int right) {
+	      int index = partition(partials, left, right);
+	      if (left < index - 1)
+	            quickSort(partials, left, index - 1);
+	      if (index < right)
+	            quickSort(partials, index, right);
+	      return partials;
 	}
 
 }
