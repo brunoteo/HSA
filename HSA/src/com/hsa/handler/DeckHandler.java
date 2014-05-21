@@ -39,7 +39,7 @@ public class DeckHandler {
 	public SearchCriterion deckCriterionRequest(String deckName) {
 		deck = SearchHandler.getInstance(dbHelper).deckSearch(deckName);
 		tmpFormations = SearchHandler.getInstance(dbHelper).formationsSearch(deckName);
-		copyFormations = new ArrayList<Formation>(tmpFormations);
+		copyFormations = SearchHandler.getInstance(dbHelper).formationsSearch(deckName);
 		Map<String, ArrayList<String>> filters = new HashMap<String, ArrayList<String>>();
 		ArrayList<String> classFilter = new ArrayList<String>();
 		classFilter.add(deck.getClassName());
@@ -69,15 +69,13 @@ public class DeckHandler {
 	}
 	
 	public boolean controlModifyRequest() {
-		if(checkModify()) {
+		if(checkModify())
 			return true;
-		} else {
-			return false;
-		}
+		return false;	
 	}
 	
 	public void saveRequest() {
-		SaveHandler.getInstance(dbHelper).updateDeck(copyFormations, tmpFormations, deck);
+		SaveHandler.getInstance(dbHelper).updateDeck(tmpFormations, deck);
 	}
 	
 	public int cardNumberRequest() {
@@ -112,10 +110,20 @@ public class DeckHandler {
 	}
 	
 	private boolean checkModify() {
-		if(copyFormations.equals(tmpFormations))
+//		for(Formation f : tmpFormations) {
+//			for(Formation ff : copyFormations) {
+//				if(f.getCard().equals(ff.getCard()) && f.getDeck().equals(ff.getDeck()) && f.getOccurrence()==ff.getOccurrence()) {
+//					continue;
+//				} else {
+//					if(f.getCard().equals(ff.getCard())) {
+//						return true;
+//					}
+//				}
+//			}
+//		}
+		if(tmpFormations.equals(copyFormations))
 			return false;
-		else
-			return true;
+		return true;
 	}
 	
 	private void insertCard(String cardName) {

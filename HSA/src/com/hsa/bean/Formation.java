@@ -39,20 +39,21 @@ public class Formation {
 	}
 	
 	@Override
-	public boolean equals(Object object) {
-		boolean sameSame = false;
+	public boolean equals(Object o) {
 
-        if (object != null && object instanceof Formation)
+        if (o instanceof Formation)
         {
-        	Formation f = (Formation) object;
-            sameSame = this.card.equals(f.getCard()) && this.deck.equals(f.getDeck()) && this.occurrence==f.getOccurrence();
+        	Formation f = (Formation) o;
+        	if(card.equals(f.getCard()) && deck.equals(f.getDeck()) && occurrence==f.getOccurrence()) {
+        		return true;
+        	}
         }
 
-        return sameSame;
+        return false;
 	}
 	
 	@Override
 	public int hashCode() {
-		return card.hashCode();
+		return card.hashCode() + deck.hashCode() + occurrence.hashCode();
 	}
 }

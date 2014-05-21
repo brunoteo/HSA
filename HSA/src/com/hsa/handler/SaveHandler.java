@@ -1,6 +1,7 @@
 package com.hsa.handler;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
@@ -154,7 +155,19 @@ public class SaveHandler{
 		db.delete(DeckEntry.TABLE_NAME, DeckEntry.COLUMN_NAME_NAME + " = ?", args);
 	}
 	
-	public void updateDeck(List<Formation> copyFormations, List<Formation> tmpFormations, Deck deck) {
+	public void updateDeck(List<Formation> tmpFormations, Deck deck) {
+		SQLiteDatabase db = dbHelper.getWritableDatabase();
+		String[] args = new String[]{deck.getName()};
+		db.delete(FormationEntry.TABLE_NAME, FormationEntry.COLUMN_NAME_DECK + " = ?", args);
+		
+		for(Formation f : tmpFormations) {
+			ContentValues values = new ContentValues();
+			values.put(FormationEntry.COLUMN_NAME_CARD, f.getCard());
+			values.put(FormationEntry.COLUMN_NAME_DECK, f.getDeck());
+			values.put(FormationEntry.COLUMN_NAME_OCCURRENCE, f.getOccurrence());
+			
+			db.insert(FormationEntry.TABLE_NAME, null, values);
+		}
 		
 	}
 	
