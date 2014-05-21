@@ -8,6 +8,7 @@ import com.hsa.aggregation.PartialTextualAggregation;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -64,12 +65,14 @@ public class PartialTextualAggregationAdapter extends BaseAdapter{
         PartialTextualAggregation partialTextualAggregation = (PartialTextualAggregation)getItem(i);
         trackCost.setText("Cost: " + Integer.toString(partialTextualAggregation.getCost()));
         trackProb.setText(Integer.toString(partialTextualAggregation.getProbability()) + "%" + "\n");
+        trackProb.setTypeface(null, Typeface.BOLD);
         String name = "";
         String[] splitName = partialTextualAggregation.getName().split(" ");
 		for(String split : splitName) {
 			name+= split.substring(0, 1).toUpperCase() + split.substring(1) + " ";
 		}
         trackName.setText(name);
+        trackName.setTypeface(null, Typeface.BOLD);
         switch (partialTextualAggregation.getRarity()){
         	case "Rare": trackName.setTextColor(Color.BLUE);
         		break;
