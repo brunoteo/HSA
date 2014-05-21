@@ -1,5 +1,6 @@
 package com.hsa.handler;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 
@@ -16,9 +17,8 @@ public class TrackHandler {
 	private HSADatabaseHelper dbHelper;
 	
 	private Deck deck;
-	private List<Formation> trackFormations;
 	private List<Formation> tmpFormations;
-	private Vector<String> pile;
+	private List<PartialTextualAggregation> pile;
 	private List<PartialTextualAggregation> partials;
 	
 	public static TrackHandler getInstance(HSADatabaseHelper dbHelper) {
@@ -30,28 +30,22 @@ public class TrackHandler {
 	private TrackHandler(HSADatabaseHelper dbHelper) {
 		this.dbHelper = dbHelper;
 	}
-
-	public List<Formation> createFormationCopy(List<Formation> tmpFormations){
-		this.trackFormations = tmpFormations;
-		return this.trackFormations;
-	}
 	
 	public void createCardsPile(){
-		this.pile = new Vector<String>();
+		this.pile = new ArrayList<PartialTextualAggregation>();
 	}
 	
 	public List<Card> trackDeck(Deck deck, List<Formation> tmpFormations) {
 		this.deck = deck;
 		this.tmpFormations = tmpFormations;
-		createFormationCopy(tmpFormations);
-		this.pile = new Vector<String>();
+		createCardsPile();
 		
-		List<Card> cards = SearchHandler.getInstance(dbHelper).deckCardsSearch(trackFormations);
+		List<Card> cards = SearchHandler.getInstance(dbHelper).deckCardsSearch(tmpFormations);
 		return cards;
 	}
 	
-	public List<PartialTextualAggregation> partialTextualAggregationRequest(List<Card> cards) {
-		partials = ViewHandler.getInstance(dbHelper).generatePartialTextualAggregation(cards, trackFormations);
+	public List<PartialTextualAggregation> partialTextualAggregationsRequest(List<Card> cards) {
+		partials = ViewHandler.getInstance(dbHelper).generatePartialTextualAggregations(cards, tmpFormations);
 		partials = quickSort(partials, 0, partials.size()-1);
 		
 		return partials;
@@ -74,7 +68,7 @@ public class TrackHandler {
 	                  i++;
 	                  j--;
 	            }
-	      };
+	      }
 	     
 	      return i;
 	}
@@ -86,6 +80,69 @@ public class TrackHandler {
 	      if (index < right)
 	            quickSort(partials, index, right);
 	      return partials;
+	}
+
+	public List<PartialTextualAggregation> trackCard(PartialTextualAggregation partial) {
+		int occ = checkCardOccurrence(partial);
+		if(occ > 1){
+			decreaseOccurrence(partial);
+		}else{
+			deleteCard(partial);
+		}
+		addCardToPile(partial);
+		calculateProbabilities();
+		return partials;
+	}
+
+	private void calculateProbabilities() {
+		int total = 0;
+		for (PartialTextualAggregation partial : partials){
+			total += partial.getOccurrences();
+		}
+		int i = 0;
+		for(PartialTextualAggregation partial : partials){
+			Integer prob = (int) Math.round(((partials.get(i).getOccurrences() * 100.00) / total ));
+			partials.get(i).setProbability(prob);
+			i++;
+		}
+	}
+
+	private void addCardToPile(PartialTextualAggregation partial) {
+		pile.add(partial);
+	}
+
+	private void deleteCard(PartialTextualAggregation partial) {
+		int i = 0;
+		for(PartialTextualAggregation pta : partials){
+			if(pta.getName().equals(partial.getName())){
+				partials.remove(i);
+				break;
+			}
+			i++;
+		}
+	}
+
+	private void decreaseOccurrence(PartialTextualAggregation partial) {
+		int i = 0;
+		for(PartialTextualAggregation pta : partials){
+			if(pta.getName().equals(partial.getName())){
+				partials.get(i).setOccurrences(partials.get(i).getOccurrences()-1);
+				break;
+			}
+			i++;
+		}
+		
+	}
+
+	private int checkCardOccurrence(PartialTextualAggregation partial) {
+		int occ = 0;
+		for(PartialTextualAggregation pta : partials){
+			if(pta.getName().equals(partial.getName())){
+				occ = pta.getOccurrences();
+				break;
+			}
+		}
+		return occ;
 	}
 
 }
