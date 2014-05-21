@@ -24,7 +24,7 @@ public class DeckHandler {
 	private Deck deck;
 	private List<Formation> tmpFormations;
 	private List<GraphicalAggregation> tmpGraphicalsAggregations;
-
+	//FIXME perché tenere sia la formazione che le aggregazioni temponaree?
 	public static DeckHandler getInstance(HSADatabaseHelper dbHelper) {
 		if(deckHandler == null)
 			deckHandler = new DeckHandler(dbHelper);
@@ -81,14 +81,22 @@ public class DeckHandler {
 		return tmpGraphicalsAggregations;
 	}
 	
+	public int cardNumberRequest() {
+		int cards = 0;
+		for(GraphicalAggregation ga : tmpGraphicalsAggregations){
+			cards = cards + ga.getOccurence();
+		}
+		return cards;
+	}
+	
 	public void deckDeletionRequest() {
 		SaveHandler.getInstance(dbHelper).deleteDeck(deck);
 		
 	}
 
-	public void trackDeck() {
-		TrackHandler.getInstance(dbHelper).trackDeck(deck, tmpFormations);
-		
+	public List<Card> trackDeckRequest() {
+		List<Card> cards = TrackHandler.getInstance(dbHelper).trackDeck(deck, tmpFormations);
+		return cards;
 	}
 	
 	private int checkExistenceCard(String cardName) {
@@ -103,5 +111,6 @@ public class DeckHandler {
 	public void setTmpFormations(List<Formation> tmpFormations) {
 		this.tmpFormations = tmpFormations;
 	}
+
 
 }

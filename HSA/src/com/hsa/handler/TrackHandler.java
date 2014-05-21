@@ -19,6 +19,7 @@ public class TrackHandler {
 	private List<Formation> trackFormations;
 	private List<Formation> tmpFormations;
 	private Vector<String> pile;
+	private List<PartialTextualAggregation> partials;
 	
 	public static TrackHandler getInstance(HSADatabaseHelper dbHelper) {
 		if(trackHandler == null)
@@ -30,15 +31,28 @@ public class TrackHandler {
 		this.dbHelper = dbHelper;
 	}
 
-	public void trackDeck(Deck deck, List<Formation> tmpFormations) {
+	public List<Formation> createFormationCopy(List<Formation> tmpFormations){
+		this.trackFormations = tmpFormations;
+		return this.trackFormations;
+	}
+	
+	public void createCardsPile(){
+		this.pile = new Vector<String>();
+	}
+	
+	public List<Card> trackDeck(Deck deck, List<Formation> tmpFormations) {
 		this.deck = deck;
 		this.tmpFormations = tmpFormations;
-		this.trackFormations = tmpFormations;
+		createFormationCopy(tmpFormations);
 		this.pile = new Vector<String>();
 		
 		List<Card> cards = SearchHandler.getInstance(dbHelper).deckCardsSearch(trackFormations);
-		
-		List<PartialTextualAggregation> partials = ViewHandler.getInstance(dbHelper).createPartialTextualAggregation(cards, trackFormations);
-		
+		return cards;
 	}
+	
+	public List<PartialTextualAggregation> partialTextualAggregationRequest(List<Card> cards) {
+		partials = ViewHandler.getInstance(dbHelper).generatePartialTextualAggregation(cards, trackFormations);
+		return partials;
+	}
+
 }

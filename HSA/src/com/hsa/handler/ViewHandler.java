@@ -49,7 +49,7 @@ public class ViewHandler{
 		List<Deck> decks = SearchHandler.getInstance(dbHelper).decksSearch();
 		List<DeckDataAggregation> deckDataAggregations = new ArrayList<DeckDataAggregation>();
 		for(Deck deck : decks){
-			deckDataAggregations.add(createDeckDataAggregation(deck, fragment));
+			deckDataAggregations.add(generateDeckDataAggregation(deck, fragment));
 		}
 		return deckDataAggregations;
 	}
@@ -62,10 +62,6 @@ public class ViewHandler{
         dda.setCardNumber(0);
         dda.setDate(newDeck.getDate());
         return dda;
-	}
-
-	public void trackDeck() {
-		DeckHandler.getInstance(dbHelper).trackDeck();
 	}
 	
 	public CompleteTextualAggregation completeInfoRequest(String cardName) {
@@ -92,7 +88,7 @@ public class ViewHandler{
 	}
 	
 	
-	private DeckDataAggregation createDeckDataAggregation(Deck deck, FragmentActivity fragment) {
+	private DeckDataAggregation generateDeckDataAggregation(Deck deck, FragmentActivity fragment) {
 		DeckDataAggregation dda = new DeckDataAggregation();
 		dda.setName(deck.getName());
 		dda.setClassName(deck.getClassName());
@@ -106,17 +102,30 @@ public class ViewHandler{
 		return dda;
 	}
 
-	public ArrayList<PartialTextualAggregation> createPartialTextualAggregation(List<Card> cards, List<Formation> trackFormations) {
+	public List<PartialTextualAggregation> generatePartialTextualAggregation(List<Card> cards, List<Formation> trackFormations) {
 		
-		ArrayList<PartialTextualAggregation> partials = new ArrayList<PartialTextualAggregation>();
+		int total = 0;
+		for(Formation formation : trackFormations){
+			//if(formation.getCard() == card.getName()) this.occurrences = formation.getOccurrence();
+			total = total + formation.getOccurrence();
+		}
+		
+		List<PartialTextualAggregation> partials = new ArrayList<PartialTextualAggregation>();
 		
 		for (Card card : cards){
-			PartialTextualAggregation partial = new PartialTextualAggregation(card, trackFormations);
+			PartialTextualAggregation partial = new PartialTextualAggregation(card.getName(), card.getCost(), card.getRarity(), 0, 0);
+			for(Formation formation : trackFormations){
+				if(formation.getCard().equals(card.getName())){
+					partial.setOccurrences(formation.getOccurrence());
+					Integer probability = (int) Math.round(((formation.getOccurrence() * 100.00) / total ));
+					partial.setProbability(probability);
+				}
+			}
 			partials.add(partial);
 		}
 		
 		return partials;
-	}//FIXME creazione delle aggegazioni testuali parziali
+	}
 	
 	public List<GraphicalAggregation> generateDeckCardsAggregations(List<Card> cards, List<Formation> formations) {
 		List<GraphicalAggregation> graphicalsAggregations = new ArrayList<GraphicalAggregation>();

@@ -1,8 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/track"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
     
+	<LinearLayout
+	    android:layout_width="match_parent"
+	    android:layout_height="50dp"
+	    android:orientation="horizontal" >
 
+	    <Button
+	        android:id="@+id/buttonUndo"
+	        android:layout_width="wrap_content"
+	        android:layout_height="match_parent"
+	        android:layout_gravity="right" 
+	        android:text="Undo"
+	        android:onClick="onClickUndo" />
+
+	    <Button
+	        android:id="@+id/buttonReset"
+	        android:layout_width="wrap_content"
+	        android:layout_height="match_parent"
+	        android:text="Reset" 
+	        android:onClick="onClickReset" />
+
+	    <TextView
+	        android:id="@+id/remainCards"
+	        android:layout_width="match_parent"
+	        android:layout_height="match_parent" />
+
+	</LinearLayout>
+
+		<ListView
+		    android:id="@+id/trackListView"
+		    android:layout_width="match_parent"
+		    android:layout_height="wrap_content"
+		    android:layout_marginBottom="10dp"
+		    android:layout_marginTop="5dp"
+		    android:background="@android:color/transparent"
+		    android:cacheColorHint="@android:color/transparent"
+		    android:divider="#CCCCCC"
+		    android:dividerHeight="1dp"
+		    android:paddingLeft="2dp" >
+	    
+			<!-- <LinearLayout
+				    android:layout_width="fill_parent"
+				    android:layout_height="fill_parent"
+				    android:background="#FF0000"
+				    android:orientation="horizontal" >
+			
+			
+			    <TextView
+			        android:id="@+id/trackViewCost"
+			        android:layout_width="wrap_content"
+			        android:layout_height="wrap_content" />
+			
+			    <TextView
+			        android:id="@+id/trackViewName"
+			        android:layout_width="wrap_content"
+			        android:layout_height="wrap_content" />
+			
+			    <TextView
+			        android:id="@+id/trackViewProb"
+			        android:layout_width="wrap_content"
+			        android:layout_height="wrap_content" />
+			
+			    <TextView
+			        android:id="@+id/trackViewNumb"
+			        android:layout_width="wrap_content"
+			        android:layout_height="wrap_content" />
+			
+			</LinearLayout> -->
+		    
+		</ListView>
 </LinearLayout>

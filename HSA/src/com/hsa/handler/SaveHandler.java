@@ -84,8 +84,8 @@ public class SaveHandler{
 		final Formation formation3 = new Formation("gladiator's longbow", "MyHunter", 1);
 		final Formation formation4 = new Formation("goldshire footman", "MyHunter", 2);
 		final Formation formation5 = new Formation("swipe", "MyDruid", 2);
-		final Formation formation6 = new Formation("moonfire", "MyDruid", 2);
-		final Formation formation7 = new Formation("wild growth", "MyDruid", 2);
+		final Formation formation6 = new Formation("moonfire", "MyDruid", 3);
+		final Formation formation7 = new Formation("wild growth", "MyDruid", 3);
 		
 		List<Formation> formations = Arrays.asList(formation1, formation2, formation3, formation4, formation5, formation6, formation7);
 		
