@@ -20,6 +20,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
+import android.view.View;
 
 public class TrackActivity extends ActionBarActivity implements ActionBar.TabListener, TrackFragment.OnTracksListener{
 	
@@ -112,6 +113,10 @@ public class TrackActivity extends ActionBarActivity implements ActionBar.TabLis
 			n += pta.getOccurrences();
 		}
         trackFragment.viewDeckCardsNumber(n);
+	}
+	
+	public void onClickUndo(View v){
+		
 	}
 
 }

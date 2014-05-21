@@ -85,13 +85,12 @@ public class NewDeckActivity extends ActionBarActivity{
 		    	Intent returnIntent = new Intent();
 		    	returnIntent.putExtra("deckDataAggregation", dda);
 		    	setResult(RESULT_OK,returnIntent);
-		    	
-			    //startActivity(intent);
+		    	finish();
 			    
 			}else{
 				AlertDialog.Builder dlgAlert  = new AlertDialog.Builder(this);
 				
-	            dlgAlert.setMessage("Error: Name already exist.");
+	            dlgAlert.setMessage("Error: Name already exist or is void.");
 	            dlgAlert.setTitle("Error Message...");
 	            dlgAlert.setPositiveButton("OK", null);
 	            dlgAlert.create().show();
@@ -118,7 +117,7 @@ public class NewDeckActivity extends ActionBarActivity{
                         }
                     });
         }
-		finish();
+		
 	}
 
 	

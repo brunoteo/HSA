@@ -295,12 +295,14 @@ public class SearchHandler{
 	}
 
 	public boolean nameCheck(String name) {
-		
-		List<Deck> decks = decksSearch();
-		for (Deck deck : decks){
-			if(deck.getName().equals(name)) return false;
+		if (name != null && !name.isEmpty() && !name.trim().isEmpty()){
+			List<Deck> decks = decksSearch();
+			for (Deck deck : decks){
+				if(deck.getName().equals(name)) return false;
+			}
+			return true;
 		}
-		return true;
+		return false;
 	}
 
 //TODO try getreadabledatabase instead of getwritabledb
