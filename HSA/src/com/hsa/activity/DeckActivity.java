@@ -159,7 +159,7 @@ ActionBar.TabListener, DeckFragment.OnDeckListener{
 		switch(id) {
 			case R.id.action_settings : 
 				return true;
-			case R.id.save:
+			case R.id.save://TODO aggiornare la lista mazzi quando si torna indietro
 				if(!deckHandler.controlModifyRequest()) {
 					AlertDialog.Builder dlgAlert  = new AlertDialog.Builder(this);
 				
@@ -239,7 +239,7 @@ ActionBar.TabListener, DeckFragment.OnDeckListener{
 		                    });
 				}
 				return true;
-			case R.id.delete :
+			case R.id.delete ://TODO conferma di eliminazione
 				deckHandler.deckDeletionRequest();
 				Intent intent1 = new Intent(this, MainActivity.class);
 				startActivity(intent1);

@@ -45,49 +45,71 @@ public class TrackHandler {
 		List<Card> cards = SearchHandler.getInstance(dbHelper).deckCardsSearch(tmpFormations);
 		return cards;
 	}
-	
+
 	public List<PartialTextualAggregation> partialTextualAggregationsRequest(List<Card> cards) {
 		partials = ViewHandler.getInstance(dbHelper).generatePartialTextualAggregations(cards, tmpFormations);
-		partials = quickSort(partials, 0, partials.size()-1);
+		partials = costSort(partials, 0, partials.size()-1);
+		partials = nameSort(partials);
 		totalPartials = ViewHandler.getInstance(dbHelper).generatePartialTextualAggregations(cards, tmpFormations);
-		totalPartials = quickSort(totalPartials, 0, totalPartials.size()-1);
+		totalPartials = costSort(totalPartials, 0, totalPartials.size()-1);
+		totalPartials = nameSort(totalPartials);
 		
 		return partials;
 	}
-
-//	public List<PartialTextualAggregation> qsort(List<PartialTextualAggregation> partials, int low, int high) {
-//        int i = low, j = high;
-//
-//        // Get the pivot element
-//        Random r = new Random();
-//        int pivot = r.nextInt(high-low+1)+low;
-//
-//        // Divide into two lists
-//        while (i <= j) {
-//
-//          while (strings[i].compareTo(strings[pivot]) < 0) i++;
-//
-//          while (strings[j].compareTo(strings[pivot]) > 0) j--;
-//
-//          if (i <= j) {
-//            exchange(i, j);
-//            i++;
-//            j--;
-//          }
-//        }
-//
-//        // Recursion
-//        if (low < j) qsort(low, j);
-//        if (i < high) qsort(i, high);
-//      }
-//
-//    static void exchange(List<PartialTextualAggregation> partials, int i, int j) {
-//        String temp = strings[i];
-//        strings[i] = strings[j];
-//        strings[j] = temp;
-//    }
 	
-	private int partition(List<PartialTextualAggregation> partials, int left, int right){
+	private List<PartialTextualAggregation> nameSort(List<PartialTextualAggregation> partials){
+		int i = 0;
+		while(i<partials.size()-1){
+			int startCost = i;
+			boolean search = true;
+			int endCost = i;
+			while (search && i<partials.size()-1){
+				i++;
+				if(partials.get(i).getCost() == partials.get(startCost).getCost()){
+					endCost = i;
+				}else{
+					search=false;
+				}
+			}
+			if(startCost != endCost) qsort(partials, startCost, endCost);
+		}
+		return partials;
+	}
+
+	public List<PartialTextualAggregation> qsort(List<PartialTextualAggregation> partials, int low, int high) {
+        int i = low, j = high;
+
+        // Get the pivot element
+        Random r = new Random();
+        int pivot = r.nextInt(high-low+1)+low;
+
+        // Divide into two lists
+        while (i <= j) {
+
+          while (partials.get(i).getName().compareTo(partials.get(pivot).getName()) < 0) i++;
+
+          while (partials.get(j).getName().compareTo(partials.get(pivot).getName()) > 0) j--;
+
+          if (i <= j) {
+            exchange(partials, i, j);
+            i++;
+            j--;
+          }
+        }
+
+        // Recursion
+        if (low < j) qsort(partials, low, j);
+        if (i < high) qsort(partials, i, high);
+        return partials;
+      }
+
+    static void exchange(List<PartialTextualAggregation> partials, int i, int j) {
+    	PartialTextualAggregation temp = partials.get(i);
+    	partials.set(i, partials.get(j));
+    	partials.set(j, temp);
+    }
+	
+	private int partition(int left, int right){
 	      int i = left, j = right;
 	      PartialTextualAggregation tmp;
 	      PartialTextualAggregation pivot = partials.get((left + right) / 2);
@@ -108,13 +130,13 @@ public class TrackHandler {
 	     
 	      return i;
 	}
-	
-	private List<PartialTextualAggregation> quickSort(List<PartialTextualAggregation> partials, int left, int right) {
-	      int index = partition(partials, left, right);
+	//TODO aggiungere questi due sort ai diagrammi di tracciamento?
+	private List<PartialTextualAggregation> costSort(List<PartialTextualAggregation> partials2, int left, int right) {
+	      int index = partition(left, right);
 	      if (left < index - 1)
-	            quickSort(partials, left, index - 1);
+	            costSort(partials2, left, index - 1);
 	      if (index < right)
-	            quickSort(partials, index, right);
+	            costSort(partials2, index, right);
 	      return partials;
 	}
 
@@ -127,6 +149,8 @@ public class TrackHandler {
 		}
 		addCardToPile(partial);
 		calculateProbabilities();
+		partials = costSort(partials, 0, partials.size()-1);
+		partials = nameSort(partials);
 		return partials;
 	}
 
@@ -191,7 +215,8 @@ public class TrackHandler {
 			insertCard(pta);
 		}
 		updateProbabilities();
-		partials = quickSort(partials, 0, partials.size()-1);
+		partials = costSort(partials, 0, partials.size()-1);
+		partials = nameSort(partials);
 		return partials;
 	}
 	
@@ -200,6 +225,7 @@ public class TrackHandler {
 		for (PartialTextualAggregation partial : partials){
 			total += partial.getOccurrences();
 		}
+		
 		for (PartialTextualAggregation partial : partials){
 			Double probability = (double) Math.round(((partial.getOccurrences() * 10000) / total ))/100;
 			partial.setProbability(probability);
