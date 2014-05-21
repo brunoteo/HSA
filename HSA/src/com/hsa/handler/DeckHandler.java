@@ -24,7 +24,7 @@ public class DeckHandler {
 	private Deck deck;
 	private List<Formation> tmpFormations;
 	private List<GraphicalAggregation> tmpGraphicalsAggregations;
-	//FIXME perché tenere sia la formazione che le aggregazioni temponaree?
+
 	public static DeckHandler getInstance(HSADatabaseHelper dbHelper) {
 		if(deckHandler == null)
 			deckHandler = new DeckHandler(dbHelper);

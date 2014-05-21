@@ -5,25 +5,34 @@ import java.util.List;
 import com.hsa.R;
 import com.hsa.activity.DeckActivity;
 import com.hsa.adapter.GraphicalAggregationAdapter;
+import com.hsa.aggregation.CompleteTextualAggregation;
 import com.hsa.aggregation.GraphicalAggregation;
 import com.hsa.bean.SearchCriterion;
 import com.hsa.database.HSADatabaseHelper;
 import com.hsa.handler.DeckHandler;
 import com.hsa.handler.ViewHandler;
 
+import android.app.Activity;
+import android.app.SearchManager;
+import android.content.ComponentName;
+import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.MenuItemCompat;
+import android.support.v7.widget.SearchView;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.FrameLayout;
 import android.widget.GridView;
 import android.widget.ImageView;
@@ -38,6 +47,12 @@ public class DeckFragment extends Fragment{
 	private DeckHandler deckHandler;
 	
 	private GridView gridView;
+	
+	private OnDeckListener onDeckListener;
+	
+	public interface OnDeckListener{
+		public void onCardSelected(CompleteTextualAggregation completeAggregation);
+	}
 
 	@Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -47,6 +62,16 @@ public class DeckFragment extends Fragment{
          
         return rootView;
     }
+	
+	@Override
+	public void onAttach(Activity activity){
+		super.onAttach(activity);
+		try{
+			onDeckListener = (OnDeckListener) activity;
+		}catch(ClassCastException e){
+			throw new ClassCastException(activity.toString());
+		}
+	}
 	
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
@@ -72,6 +97,12 @@ public class DeckFragment extends Fragment{
 		// Inflate the menu; this adds items to the action bar if it is present.
 		inflater.inflate(R.menu.deck_menu, menu);
 		super.onCreateOptionsMenu(menu, inflater);
+		//FIXME non funziona la ricerca
+//		SearchManager SManager =  (SearchManager) getActivity().getSystemService(Context.SEARCH_SERVICE);
+//        MenuItem searchMenuItem = menu.findItem(R.id.searchDeck);
+//        SearchView searchViewAction = (SearchView) MenuItemCompat.getActionView(searchMenuItem);
+//        ComponentName cn = getActivity().getComponentName();
+//        searchViewAction.setSearchableInfo(SManager.getSearchableInfo(getActivity().getComponentName()));
 		
 	}
 	
@@ -87,17 +118,17 @@ public class DeckFragment extends Fragment{
 				viewDeckCardsGraphicsAggregations(deckCardsGA);
 			}
 		});
-        //TODO Visualizza info testuali complete
-//        gridView.setOnItemLongClickListener(new OnItemLongClickListener() {
-//
-//			@Override
-//			public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-//				CompleteTextualAggregation completeTextualAggregation = viewHandler.completeInfoRequest(graphicalsAggregations.get(position));			
-//				onSearchListener.onCardSelected(completeTextualAggregation);
-//				return true;
-//			}
-//        	
-//		});
+
+        gridView.setOnItemLongClickListener(new OnItemLongClickListener() {
+
+			@Override
+			public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+				CompleteTextualAggregation completeTextualAggregation = viewHandler.completeInfoRequest(graphicalsAggregations.get(position).getName());			
+				onDeckListener.onCardSelected(completeTextualAggregation);
+				return true;
+			}
+        	
+		});
 	}
 	
 	public void viewDeckCardsGraphicsAggregations(final List<GraphicalAggregation> graphicalsAggregations) {

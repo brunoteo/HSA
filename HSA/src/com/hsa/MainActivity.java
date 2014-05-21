@@ -8,7 +8,6 @@ import java.util.Map;
 import android.app.SearchManager;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
@@ -45,15 +44,13 @@ public class MainActivity extends ActionBarActivity implements
 	private SaveHandler saveHandler;
 	private SearchHandler searchHandler;
 	private ViewHandler viewHandler;
-	private DeckHandler deckHandler;
-	private TrackHandler trackHandler;
 	
-    private ArrayList<String> classFilters;
+	private ArrayList<String> classFilters;
     private ArrayList<String> costFilters;
     private ArrayList<String> rarityFilters;
     private ArrayList<String> typeFilters;
     private String nameFilter;
-    //TODO eliminare tutte le rotazioni. Dovrebbero essere ovunque tranne che nelle tre principali
+    
 	public HSADatabaseHelper getDbHelper() {
 		return dbHelper;
 	}
@@ -109,8 +106,8 @@ public class MainActivity extends ActionBarActivity implements
         searchHandler = SearchHandler.getInstance(dbHelper);
         saveHandler = SaveHandler.getInstance(dbHelper);
         viewHandler = ViewHandler.getInstance(dbHelper);
-        deckHandler = DeckHandler.getInstance(dbHelper);
-        trackHandler = TrackHandler.getInstance(dbHelper);
+        DeckHandler.getInstance(dbHelper);
+        TrackHandler.getInstance(dbHelper);
        //Riempimento database
         int emptyDB = searchHandler.cardsSearch(null).size();
         if(emptyDB==0) {
@@ -171,23 +168,6 @@ public class MainActivity extends ActionBarActivity implements
 	            Intent intent = new Intent(this, DeckActivity.class);
 	            intent.putExtra("deckDataAggregation", dda);
 	    		startActivity(intent);
-			
-
-//	    	List<DeckDataAggregation> deckDataAggregations = viewHandler.decksRequest(this);
-//	    	// Create new fragment and transaction
-//	    	Fragment newFragment = new DecksFragment();
-//	    	FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-//
-//	    	// Replace whatever is in the fragment_container view with this fragment,
-//	    	// and add the transaction to the back stack
-//	    	transaction.replace(R.id.decks, newFragment);
-//	    	transaction.addToBackStack(null);
-//
-//	    	// Commit the transaction
-//	    	transaction.commit();
-//            //DeckFragment searchFragment = (SearchFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager + ":" + mViewPager.getCurrentItem());
-//	        //viewDeckDataAggregations(deckDataAggregations);
-//	    	DecksFragment decksFragment = new DecksFragment();
 	    	}
 	    }
 	}
