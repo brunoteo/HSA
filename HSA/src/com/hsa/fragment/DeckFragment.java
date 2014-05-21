@@ -20,6 +20,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.MenuItemCompat;
+import android.support.v7.app.ActionBar;
 import android.support.v7.widget.SearchView;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -115,7 +116,8 @@ public class DeckFragment extends Fragment{
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 				List<GraphicalAggregation> deckCardsGA = deckHandler.modifyDeckRequest(graphicalsAggregations.get(position).getName(), 0, getActivity());
 				deleteItemList();
-				viewNumCards(deckCardsGA);
+				((DeckActivity) getActivity()).viewNumCards(deckCardsGA);
+//				viewNumCards(deckCardsGA);
 				viewDeckCardsGraphicsAggregations(deckCardsGA);				
 			}
 		});
@@ -158,7 +160,8 @@ public class DeckFragment extends Fragment{
 					List<GraphicalAggregation> deckCardsGA = deckHandler.modifyDeckRequest(v.getTag().toString(), 1, getActivity());
 					deleteItemList();
 					viewDeckCardsGraphicsAggregations(deckCardsGA);
-					viewNumCards(graphicalsAggregations);
+					((DeckActivity) getActivity()).viewNumCards(deckCardsGA);
+//					viewNumCards(graphicalsAggregations);
 				}
 			});
 			if(ga.getOccurence()>1) {
@@ -180,13 +183,13 @@ public class DeckFragment extends Fragment{
 		}
 	}
 	
-	private void viewNumCards(List<GraphicalAggregation> graphicalsAggregations) {
-		int numCards = 0;
-		for(GraphicalAggregation ga : graphicalsAggregations) {
-			numCards += ga.getOccurence();
-		}
-		getActivity().setTitle(Integer.toString(numCards) + "/30");
-	}
+//	private void viewNumCards(List<GraphicalAggregation> graphicalsAggregations) {
+//		int numCards = 0;
+//		for(GraphicalAggregation ga : graphicalsAggregations) {
+//			numCards += ga.getOccurence();
+//		}
+//		getActivity().setTitle(Integer.toString(numCards) + "/30");
+//	}
 	
 	private int getDensityName() {
 	    float density = getResources().getDisplayMetrics().density;
