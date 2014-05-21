@@ -107,7 +107,7 @@ public class SearchHandler{
 				}
 				sqlArgs.add(formation.getCard());
 			}
-			
+			sql = sql + " ORDER BY " + CardEntry.COLUMN_NAME_COST + ", " + CardEntry.COLUMN_NAME_NAME;
 			String [] selectionArgs = new String[sqlArgs.size()];
 			sqlArgs.toArray(selectionArgs);
 			SQLiteDatabase db = dbHelper.getWritableDatabase();
