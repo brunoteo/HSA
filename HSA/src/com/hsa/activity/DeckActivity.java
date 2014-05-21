@@ -62,12 +62,14 @@ ActionBar.TabListener, DeckFragment.OnDeckListener{
 		Intent intent = getIntent();
 		deckData = intent.getParcelableExtra("deckDataAggregation");
 //		setTitle(deckData.getName());
-		setTitle(Integer.toString(deckData.getCardNumber())+"/30");
+//		setTitle(Integer.toString(deckData.getCardNumber())+"/30");
 		
 		// Set up the action bar.
 		final ActionBar actionBar = getSupportActionBar();
 		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-
+		actionBar.setDisplayHomeAsUpEnabled(true);
+		actionBar.setTitle(deckData.getName());
+		actionBar.setSubtitle(Integer.toString(deckData.getCardNumber())+"/30");
 		// Create the adapter that will return a fragment for each of the three
 		// primary sections of the activity.
 		deckTabsPagerAdapter = new DeckTabsPagerAdapter(
@@ -275,6 +277,15 @@ ActionBar.TabListener, DeckFragment.OnDeckListener{
 		Intent intent = new Intent(this, CompleteInformationActivity.class);
 		intent.putExtra("completeAggregation", completeAggregation);
 		startActivity(intent);
+	}
+	
+	public void viewNumCards(List<GraphicalAggregation> graphicalsAggregations) {
+		int numCards = 0;
+		for(GraphicalAggregation ga : graphicalsAggregations) {
+			numCards += ga.getOccurence();
+		}
+		final ActionBar actionBar = getSupportActionBar();
+		actionBar.setSubtitle(Integer.toString(numCards)+"/30");
 	}
 	
 }
