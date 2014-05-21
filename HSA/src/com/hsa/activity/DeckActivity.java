@@ -14,8 +14,6 @@ import com.hsa.aggregation.GraphicalAggregation;
 import com.hsa.bean.SearchCriterion;
 import com.hsa.database.HSADatabaseHelper;
 import com.hsa.fragment.DeckFragment;
-import com.hsa.fragment.DecksFragment;
-import com.hsa.fragment.SearchFragment;
 import com.hsa.handler.DeckHandler;
 import com.hsa.handler.SaveHandler;
 import com.hsa.handler.SearchHandler;
@@ -47,7 +45,6 @@ ActionBar.TabListener, DeckFragment.OnDeckListener{
 	private ViewHandler viewHandler;
 	private DeckHandler deckHandler;
 	private TrackHandler trackHandler;
-	//FIXME forse non serve a niente anche questo
 	private DeckDataAggregation deckData;
 	
 	private ArrayList<String> classFilters;
@@ -234,7 +231,6 @@ ActionBar.TabListener, DeckFragment.OnDeckListener{
 
 	@Override
 	public void onCardSelected(CompleteTextualAggregation completeAggregation) {
-		// TODO Auto-generated method stub
 		Intent intent = new Intent(this, CompleteInformationActivity.class);
 		intent.putExtra("completeAggregation", completeAggregation);
 		startActivity(intent);

@@ -9,18 +9,23 @@ import com.hsa.aggregation.CompleteTextualAggregation;
 import com.hsa.aggregation.GraphicalAggregation;
 import com.hsa.bean.SearchCriterion;
 import com.hsa.database.HSADatabaseHelper;
-import com.hsa.fragment.SearchFragment.OnSearchListener;
 import com.hsa.handler.DeckHandler;
 import com.hsa.handler.ViewHandler;
 
 import android.app.Activity;
+import android.app.SearchManager;
+import android.content.ComponentName;
+import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.MenuItemCompat;
+import android.support.v7.widget.SearchView;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -92,6 +97,12 @@ public class DeckFragment extends Fragment{
 		// Inflate the menu; this adds items to the action bar if it is present.
 		inflater.inflate(R.menu.deck_menu, menu);
 		super.onCreateOptionsMenu(menu, inflater);
+		//FIXME non funziona la ricerca
+//		SearchManager SManager =  (SearchManager) getActivity().getSystemService(Context.SEARCH_SERVICE);
+//        MenuItem searchMenuItem = menu.findItem(R.id.searchDeck);
+//        SearchView searchViewAction = (SearchView) MenuItemCompat.getActionView(searchMenuItem);
+//        ComponentName cn = getActivity().getComponentName();
+//        searchViewAction.setSearchableInfo(SManager.getSearchableInfo(getActivity().getComponentName()));
 		
 	}
 	
@@ -107,7 +118,7 @@ public class DeckFragment extends Fragment{
 				viewDeckCardsGraphicsAggregations(deckCardsGA);
 			}
 		});
-        //TODO Visualizza info testuali complete
+
         gridView.setOnItemLongClickListener(new OnItemLongClickListener() {
 
 			@Override

@@ -23,6 +23,11 @@
           android:title="@string/track_title"
           android:icon="@drawable/track_w"
           hsa:showAsAction="never" />
+    
+    <item android:id="@+id/save"
+          android:title="@string/save_title"
+          android:icon="@drawable/ic_action_save"
+          hsa:showAsAction="never" />
 
     <item android:id="@+id/delete"
           android:title="@string/delete_title"
