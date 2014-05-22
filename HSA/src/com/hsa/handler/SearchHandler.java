@@ -126,84 +126,215 @@ public class SearchHandler{
 		return cards;
 	}
 	
+//	public List<Card> cardsSearch(SearchCriterion searchCriterion) {
+//		String sql = "SELECT * FROM " + CardEntry.TABLE_NAME;
+//		List<String> sqlArgs = new ArrayList<String>();
+////=====================================================VERSIONE2=======================================================
+//		boolean first = true;
+//		if(searchCriterion!=null){
+//			if(searchCriterion.getFilters()!=null){
+//				for (Entry<String, ArrayList<String>> entry : searchCriterion.getFilters().entrySet()){
+//					if(entry.getValue().size()!= 0){
+//						if (first){
+//							sql = sql + " WHERE";
+//							first = false;
+//							if(entry.getValue().size()>1){
+//								sql = sql + " (";
+//								boolean first1 = true;
+//								for (String entry2 : entry.getValue()){
+//									if (first1){
+//										first1 = false;
+//										if(entry.getKey() == "className"){
+//											sql = sql + "class = ?";
+//										}else{
+//											sql = sql + entry.getKey() + " = ?";
+//										}
+//										sqlArgs.add(entry2);
+//									}else{
+//										if(entry.getKey() == "className"){
+//											sql = sql + " OR " + "class = ?";
+//										}else{
+//											sql = sql + " OR " + entry.getKey() + " = ?";
+//										}
+//										sqlArgs.add(entry2);
+//									}
+//								}
+//								sql = sql + ")";
+//							}else{
+//								if(entry.getKey() == "className"){
+//									sql = sql + " class = ?";
+//								}else{
+//									sql = sql + " " + entry.getKey() + " = ?";
+//								}
+//								sqlArgs.add(entry.getValue().get(0));
+//							}
+//						}else{
+//							sql = sql + " AND";
+//							if(entry.getValue().size()>1){
+//								sql = sql + " (";
+//								boolean first1 = true;
+//								for (String entry2 : entry.getValue()){
+//									if (first1){
+//										first1 = false;
+//										if(entry.getKey() == "className"){
+//											sql = sql + "class = ?";
+//										}else{
+//											sql = sql + entry.getKey() + " = ?";
+//										}
+//										sqlArgs.add(entry2);
+//									}else{
+//										if(entry.getKey() == "className"){
+//											sql = sql + " OR class = ?";
+//										}else{
+//											sql = sql + " OR " + entry.getKey() + " = ?";
+//										}
+//										sqlArgs.add(entry2);						 
+//									}
+//								}
+//								sql = sql + ")";
+//							}else{
+//								if(entry.getKey() == "className"){
+//									sql = sql + " class = ?";
+//								}else{
+//									sql = sql + " " + entry.getKey() + " = ?";
+//								}
+//								sqlArgs.add(entry.getValue().get(0));					
+//							}
+//						}
+//					}
+//				}
+//			}
+//			if(searchCriterion.getName()!=null){
+//				if (first){
+//					sql = sql + " WHERE " + CardEntry.COLUMN_NAME_NAME + " LIKE ?";
+//				}else{
+//					sql = sql + " AND " + CardEntry.COLUMN_NAME_NAME + " LIKE ?";
+//				}
+//				sqlArgs.add("%"+searchCriterion.getName()+"%");
+//			}
+//		}
+//		sql = sql + " ORDER BY " + CardEntry.COLUMN_NAME_COST + ", " + CardEntry.COLUMN_NAME_NAME;
+//		
+//		String [] selectionArgs = new String[sqlArgs.size()];
+//		sqlArgs.toArray(selectionArgs);
+//		List<Card> cards = new ArrayList<Card>();
+//		SQLiteDatabase db = dbHelper.getReadableDatabase();
+//
+//		Cursor cursor = db.rawQuery(sql, selectionArgs);
+//		if(cursor.moveToFirst()) {
+//			do {
+//				Card card = cursorToCard(cursor);
+//				cards.add(card);
+//			}while(cursor.moveToNext());
+//		}
+//
+//		cursor.close();
+//		return cards;
+//	}
+	
 	public List<Card> cardsSearch(SearchCriterion searchCriterion) {
 		String sql = "SELECT * FROM " + CardEntry.TABLE_NAME;
 		List<String> sqlArgs = new ArrayList<String>();
-//=====================================================VERSIONE2=======================================================
+		List<Card> cards = new ArrayList<Card>();
+		if(searchCriterion == null){
+			sql = sql + " ORDER BY " + CardEntry.COLUMN_NAME_COST + ", " + CardEntry.COLUMN_NAME_NAME;
+			
+			String [] selectionArgs = new String[sqlArgs.size()];
+			sqlArgs.toArray(selectionArgs);
+			SQLiteDatabase db = dbHelper.getReadableDatabase();
+
+			Cursor cursor = db.rawQuery(sql, selectionArgs);
+			if(cursor.moveToFirst()) {
+				do {
+					Card card = cursorToCard(cursor);
+					cards.add(card);
+				}while(cursor.moveToNext());
+			}
+
+			cursor.close();
+			return cards;
+		}
+		if((searchCriterion.getName() == null && searchCriterion.getFilters().size() == 0) ||
+				searchCriterion.getFilters().get("className") == null ||
+				searchCriterion.getFilters().get("cost") == null ||
+				searchCriterion.getFilters().get("rarity") == null ||
+				searchCriterion.getFilters().get("type") == null ||
+				searchCriterion.getFilters().get("className").size() == 0 ||
+				searchCriterion.getFilters().get("cost").size() == 0 ||
+				searchCriterion.getFilters().get("rarity").size() == 0 ||
+				searchCriterion.getFilters().get("type").size() == 0) return cards;
+//=====================================================VERSIONE3=======================================================
 		boolean first = true;
-		if(searchCriterion!=null){
-			if(searchCriterion.getFilters()!=null){
-				for (Entry<String, ArrayList<String>> entry : searchCriterion.getFilters().entrySet()){
-					if(entry.getValue().size()!= 0){
-						if (first){
-							sql = sql + " WHERE";
-							first = false;
-							if(entry.getValue().size()>1){
-								sql = sql + " (";
-								boolean first1 = true;
-								for (String entry2 : entry.getValue()){
-									if (first1){
-										first1 = false;
-										if(entry.getKey() == "className"){
-											sql = sql + "class = ?";
-										}else{
-											sql = sql + entry.getKey() + " = ?";
-										}
-										sqlArgs.add(entry2);
-									}else{
-										if(entry.getKey() == "className"){
-											sql = sql + " OR " + "class = ?";
-										}else{
-											sql = sql + " OR " + entry.getKey() + " = ?";
-										}
-										sqlArgs.add(entry2);
-									}
+		for (Entry<String, ArrayList<String>> entry : searchCriterion.getFilters().entrySet()){
+			if(entry.getValue().size()!= 0){
+				if (first){
+					sql = sql + " WHERE";
+					first = false;
+					if(entry.getValue().size()>1){
+						sql = sql + " (";
+						boolean first1 = true;
+						for (String entry2 : entry.getValue()){
+							if (first1){
+								first1 = false;
+								if(entry.getKey() == "className"){
+									sql = sql + "class = ?";
+								}else{
+									sql = sql + entry.getKey() + " = ?";
 								}
-								sql = sql + ")";
+								sqlArgs.add(entry2);
 							}else{
 								if(entry.getKey() == "className"){
-									sql = sql + " class = ?";
+									sql = sql + " OR " + "class = ?";
 								}else{
-									sql = sql + " " + entry.getKey() + " = ?";
+									sql = sql + " OR " + entry.getKey() + " = ?";
 								}
-								sqlArgs.add(entry.getValue().get(0));
-							}
-						}else{
-							sql = sql + " AND";
-							if(entry.getValue().size()>1){
-								sql = sql + " (";
-								boolean first1 = true;
-								for (String entry2 : entry.getValue()){
-									if (first1){
-										first1 = false;
-										if(entry.getKey() == "className"){
-											sql = sql + "class = ?";
-										}else{
-											sql = sql + entry.getKey() + " = ?";
-										}
-										sqlArgs.add(entry2);
-									}else{
-										if(entry.getKey() == "className"){
-											sql = sql + " OR class = ?";
-										}else{
-											sql = sql + " OR " + entry.getKey() + " = ?";
-										}
-										sqlArgs.add(entry2);						 
-									}
-								}
-								sql = sql + ")";
-							}else{
-								if(entry.getKey() == "className"){
-									sql = sql + " class = ?";
-								}else{
-									sql = sql + " " + entry.getKey() + " = ?";
-								}
-								sqlArgs.add(entry.getValue().get(0));					
+								sqlArgs.add(entry2);
 							}
 						}
+						sql = sql + ")";
+					}else{
+						if(entry.getKey() == "className"){
+							sql = sql + " class = ?";
+						}else{
+							sql = sql + " " + entry.getKey() + " = ?";
+						}
+						sqlArgs.add(entry.getValue().get(0));
+					}
+				}else{
+					sql = sql + " AND";
+					if(entry.getValue().size()>1){
+						sql = sql + " (";
+						boolean first1 = true;
+						for (String entry2 : entry.getValue()){
+							if (first1){
+								first1 = false;
+								if(entry.getKey() == "className"){
+									sql = sql + "class = ?";
+								}else{
+									sql = sql + entry.getKey() + " = ?";
+								}
+								sqlArgs.add(entry2);
+							}else{
+								if(entry.getKey() == "className"){
+									sql = sql + " OR class = ?";
+								}else{
+									sql = sql + " OR " + entry.getKey() + " = ?";
+								}
+								sqlArgs.add(entry2);						 
+							}
+						}
+						sql = sql + ")";
+					}else{
+						if(entry.getKey() == "className"){
+							sql = sql + " class = ?";
+						}else{
+							sql = sql + " " + entry.getKey() + " = ?";
+						}
+						sqlArgs.add(entry.getValue().get(0));					
 					}
 				}
 			}
+
 			if(searchCriterion.getName()!=null){
 				if (first){
 					sql = sql + " WHERE " + CardEntry.COLUMN_NAME_NAME + " LIKE ?";
@@ -217,7 +348,6 @@ public class SearchHandler{
 		
 		String [] selectionArgs = new String[sqlArgs.size()];
 		sqlArgs.toArray(selectionArgs);
-		List<Card> cards = new ArrayList<Card>();
 		SQLiteDatabase db = dbHelper.getReadableDatabase();
 
 		Cursor cursor = db.rawQuery(sql, selectionArgs);

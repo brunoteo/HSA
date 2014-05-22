@@ -18,11 +18,17 @@
 	        android:layout_height="wrap_content"
 	        android:text="@string/accept_filter" />
 	    <Button
-	        android:id="@+id/buttonCancelFilter"
+	        android:id="@+id/buttonClearFilter"
 	        android:layout_weight="1"
 	        android:layout_width="0dp"
 	        android:layout_height="wrap_content"
-	        android:text="@string/cancel_filter" />
+	        android:text="@string/clear_filter" />
+	    <Button
+	        android:id="@+id/buttonResetFilter"
+	        android:layout_weight="1"
+	        android:layout_width="0dp"
+	        android:layout_height="wrap_content"
+	        android:text="@string/reset_filter" />
 	</LinearLayout>
 	<ScrollView 
 	    	android:layout_width="match_parent"
