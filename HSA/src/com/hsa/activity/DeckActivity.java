@@ -121,8 +121,13 @@ ActionBar.TabListener, DeckFragment.OnDeckListener{
 
 	    if (requestCode == 1) {
 	        if(resultCode == RESULT_OK){
-	        	if(data.getStringArrayListExtra("classResult").size()!=0)
+	        	if(data.getStringArrayListExtra("classResult").size()!=0) {
 	        		classFilters = data.getStringArrayListExtra("classResult");
+	        	} else if(data.getStringArrayListExtra("classResult").size()==0) {
+	        		classFilters = new ArrayList<String>();
+	        		classFilters.add(deckData.getClassName());
+	        		classFilters.add("Neutral");
+	        	}
 	            costFilters = data.getStringArrayListExtra("costResult");
 	            rarityFilters = data.getStringArrayListExtra("rarityResult");
 	            typeFilters = data.getStringArrayListExtra("typeResult");
