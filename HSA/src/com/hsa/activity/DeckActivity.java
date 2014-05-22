@@ -39,12 +39,8 @@ ActionBar.TabListener, DeckFragment.OnDeckListener{
 	private DeckTabsPagerAdapter deckTabsPagerAdapter;
 	private ViewPager mViewPager;
 
-	//FIXME forse non servono
-	private SaveHandler saveHandler;
-	private SearchHandler searchHandler;
 	private ViewHandler viewHandler;
 	private DeckHandler deckHandler;
-	private TrackHandler trackHandler;
 	private DeckDataAggregation deckData;
 	
 	private ArrayList<String> classFilters;
@@ -104,11 +100,11 @@ ActionBar.TabListener, DeckFragment.OnDeckListener{
 		        
         //Istanzio una volta sola gli handler
         dbHelper = HSADatabaseHelper.getInstance(this);
-        searchHandler = SearchHandler.getInstance(dbHelper);
-        saveHandler = SaveHandler.getInstance(dbHelper);
+        SearchHandler.getInstance(dbHelper);
+        SaveHandler.getInstance(dbHelper);
         viewHandler = ViewHandler.getInstance(dbHelper);
         deckHandler = DeckHandler.getInstance(dbHelper);
-        trackHandler = TrackHandler.getInstance(dbHelper);
+        TrackHandler.getInstance(dbHelper);
 		
 	}
 	
