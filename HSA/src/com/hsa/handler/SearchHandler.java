@@ -60,7 +60,7 @@ public class SearchHandler{
 	}
 	
 	public List<Deck> decksSearch() {
-		String sql = "SELECT * FROM " + DeckEntry.TABLE_NAME;
+		String sql = "SELECT * FROM " + DeckEntry.TABLE_NAME + " ORDER BY " + DeckEntry.COLUMN_NAME_NAME;
 		List<Deck> decks = new ArrayList<Deck>();
 		SQLiteDatabase db = dbHelper.getReadableDatabase();
 		Cursor cursor = db.rawQuery(sql, null);
