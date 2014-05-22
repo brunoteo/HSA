@@ -125,7 +125,8 @@ ActionBar.TabListener, DeckFragment.OnDeckListener{
 
 	    if (requestCode == 1) {
 	        if(resultCode == RESULT_OK){
-	            classFilters = data.getStringArrayListExtra("classResult");
+	        	if(data.getStringArrayListExtra("classResult").size()!=0)
+	        		classFilters = data.getStringArrayListExtra("classResult");
 	            costFilters = data.getStringArrayListExtra("costResult");
 	            rarityFilters = data.getStringArrayListExtra("rarityResult");
 	            typeFilters = data.getStringArrayListExtra("typeResult");
