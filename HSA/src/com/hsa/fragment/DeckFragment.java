@@ -240,6 +240,7 @@ public class DeckFragment extends Fragment implements SearchView.OnQueryTextList
 
 	@Override
 	public boolean onQueryTextSubmit(String query) {
+		((DeckActivity) getActivity()).setNameFilter(query);
 		Map<String, ArrayList<String>> filters = new HashMap<String, ArrayList<String>>();
 		if(((DeckActivity) getActivity()).getClassFilters() != null){
 	    	if(((DeckActivity) getActivity()).getClassFilters().size() != 0) filters.put("className", new ArrayList<String>(((DeckActivity) getActivity()).getClassFilters()));	    	
