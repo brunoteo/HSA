@@ -122,10 +122,10 @@ public class MainActivity extends ActionBarActivity implements
 	    
 	}
 	
-	@Override
-	protected void onNewIntent(Intent intent) {
-		handleIntent(intent);
-	}
+//	@Override
+//	protected void onNewIntent(Intent intent) {
+//		handleIntent(intent);
+//	}
 	
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
@@ -172,30 +172,30 @@ public class MainActivity extends ActionBarActivity implements
 	    }
 	}
 
-	private void handleIntent(Intent intent) {
-
-        if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
-            nameFilter = intent.getStringExtra(SearchManager.QUERY);
-            SearchFragment searchFragment = (SearchFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager + ":" + mViewPager.getCurrentItem());
-            Map<String, ArrayList<String>> filters = new HashMap<String, ArrayList<String>>();
-            if(classFilters != null) {
-            	if(classFilters.size() != 0) filters.put("className", new ArrayList<String>(classFilters));
-            }
-            if(costFilters != null){
-            	if(costFilters.size() != 0) filters.put("cost", new ArrayList<String>(costFilters));
-            }
-            if(rarityFilters != null){
-            	if(rarityFilters.size() != 0) filters.put("rarity", new ArrayList<String>(rarityFilters));
-            }
-            if(typeFilters != null){
-            	if(typeFilters.size() != 0) filters.put("type", new ArrayList<String>(typeFilters));
-            }
-            SearchCriterion criterion = new SearchCriterion(nameFilter, filters);
-            List<GraphicalAggregation> graphicalsAggregations = viewHandler.cardsSearchRequest(criterion, this);
-            searchFragment.viewGraphicsAggregations(graphicalsAggregations);
-            
-        }
-    }
+//	private void handleIntent(Intent intent) {
+//
+//        if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
+//            nameFilter = intent.getStringExtra(SearchManager.QUERY);
+//            SearchFragment searchFragment = (SearchFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager + ":" + mViewPager.getCurrentItem());
+//            Map<String, ArrayList<String>> filters = new HashMap<String, ArrayList<String>>();
+//            if(classFilters != null) {
+//            	if(classFilters.size() != 0) filters.put("className", new ArrayList<String>(classFilters));
+//            }
+//            if(costFilters != null){
+//            	if(costFilters.size() != 0) filters.put("cost", new ArrayList<String>(costFilters));
+//            }
+//            if(rarityFilters != null){
+//            	if(rarityFilters.size() != 0) filters.put("rarity", new ArrayList<String>(rarityFilters));
+//            }
+//            if(typeFilters != null){
+//            	if(typeFilters.size() != 0) filters.put("type", new ArrayList<String>(typeFilters));
+//            }
+//            SearchCriterion criterion = new SearchCriterion(nameFilter, filters);
+//            List<GraphicalAggregation> graphicalsAggregations = viewHandler.cardsSearchRequest(criterion, this);
+//            searchFragment.viewGraphicsAggregations(graphicalsAggregations);
+//            
+//        }
+//    }
 
 
 	@Override
@@ -273,5 +273,45 @@ public class MainActivity extends ActionBarActivity implements
 		intent.putExtra("deckDataAggregation", deckDataAggregation);
 		startActivity(intent);
 		
+	}
+
+	public ArrayList<String> getClassFilters() {
+		return classFilters;
+	}
+
+	public void setClassFilters(ArrayList<String> classFilters) {
+		this.classFilters = classFilters;
+	}
+
+	public ArrayList<String> getCostFilters() {
+		return costFilters;
+	}
+
+	public void setCostFilters(ArrayList<String> costFilters) {
+		this.costFilters = costFilters;
+	}
+
+	public ArrayList<String> getRarityFilters() {
+		return rarityFilters;
+	}
+
+	public void setRarityFilters(ArrayList<String> rarityFilters) {
+		this.rarityFilters = rarityFilters;
+	}
+
+	public ArrayList<String> getTypeFilters() {
+		return typeFilters;
+	}
+
+	public void setTypeFilters(ArrayList<String> typeFilters) {
+		this.typeFilters = typeFilters;
+	}
+
+	public String getNameFilter() {
+		return nameFilter;
+	}
+
+	public void setNameFilter(String nameFilter) {
+		this.nameFilter = nameFilter;
 	}
 }

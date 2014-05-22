@@ -1,6 +1,9 @@
 package com.hsa.fragment;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.hsa.R;
 import com.hsa.activity.DeckActivity;
@@ -40,7 +43,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-public class DeckFragment extends Fragment{
+public class DeckFragment extends Fragment implements SearchView.OnQueryTextListener{
 	
 	private HSADatabaseHelper dbHelper;
 	
@@ -97,13 +100,35 @@ public class DeckFragment extends Fragment{
 		// Inflate the menu; this adds items to the action bar if it is present.
 		inflater.inflate(R.menu.deck_menu, menu);
 		super.onCreateOptionsMenu(menu, inflater);
-		//FIXME non funziona la ricerca
-//		SearchManager SManager =  (SearchManager) getActivity().getSystemService(Context.SEARCH_SERVICE);
-//        MenuItem searchMenuItem = menu.findItem(R.id.searchDeck);
-//        SearchView searchViewAction = (SearchView) MenuItemCompat.getActionView(searchMenuItem);
-//        ComponentName cn = getActivity().getComponentName();
-//        searchViewAction.setSearchableInfo(SManager.getSearchableInfo(getActivity().getComponentName()));
-		
+        MenuItem searchMenuItem = menu.findItem(R.id.searchDeck);
+        SearchView searchViewAction = (SearchView) MenuItemCompat.getActionView(searchMenuItem);
+		searchViewAction.setOnQueryTextListener(this);
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		int id = item.getItemId();
+		switch(id) {
+		case R.id.all_cardDeck:
+			Map<String, ArrayList<String>> filters = new HashMap<String, ArrayList<String>>();
+			ArrayList<String> classFilters = new ArrayList<String>();
+			classFilters.add(((DeckActivity) getActivity()).getDeckDataAggregation().getClassName());
+			classFilters.add("Neutral");
+			filters.put("className", classFilters);
+			
+			((DeckActivity) getActivity()).setClassFilters(classFilters);
+			((DeckActivity) getActivity()).setCostFilters(null);
+			((DeckActivity) getActivity()).setRarityFilters(null);
+			((DeckActivity) getActivity()).setTypeFilters(null);
+			((DeckActivity) getActivity()).setNameFilter(null);
+			
+			SearchCriterion criterion = new SearchCriterion(null, filters);
+			List<GraphicalAggregation> graphicalsAggregations = viewHandler.cardsSearchRequest(criterion, getActivity());
+            viewGraphicsAggregations(graphicalsAggregations);
+			return true;
+		default:
+            return super.onOptionsItemSelected(item);
+		}
 	}
 	
 	public void viewGraphicsAggregations(final List<GraphicalAggregation> graphicalsAggregations) {
@@ -116,7 +141,6 @@ public class DeckFragment extends Fragment{
 				List<GraphicalAggregation> deckCardsGA = deckHandler.modifyDeckRequest(graphicalsAggregations.get(position).getName(), 0, getActivity());
 				deleteItemList();
 				((DeckActivity) getActivity()).viewNumCards(deckCardsGA);
-//				viewNumCards(deckCardsGA);
 				viewDeckCardsGraphicsAggregations(deckCardsGA);				
 			}
 		});
@@ -182,14 +206,6 @@ public class DeckFragment extends Fragment{
 		}
 	}
 	
-//	private void viewNumCards(List<GraphicalAggregation> graphicalsAggregations) {
-//		int numCards = 0;
-//		for(GraphicalAggregation ga : graphicalsAggregations) {
-//			numCards += ga.getOccurence();
-//		}
-//		getActivity().setTitle(Integer.toString(numCards) + "/30");
-//	}
-	
 	private int getDensityName() {
 	    float density = getResources().getDisplayMetrics().density;
 	    if (density >= 4.0) {
@@ -214,6 +230,33 @@ public class DeckFragment extends Fragment{
 		LinearLayout view = (LinearLayout) getActivity().findViewById(R.id.deckCards);
 		if(view.getChildCount()>0)
 			view.removeAllViews();
+	}
+
+	@Override
+	public boolean onQueryTextChange(String query) {
+		
+		return true;
+	}
+
+	@Override
+	public boolean onQueryTextSubmit(String query) {
+		Map<String, ArrayList<String>> filters = new HashMap<String, ArrayList<String>>();
+		if(((DeckActivity) getActivity()).getClassFilters() != null){
+	    	if(((DeckActivity) getActivity()).getClassFilters().size() != 0) filters.put("className", new ArrayList<String>(((DeckActivity) getActivity()).getClassFilters()));	    	
+	    }		
+	    if(((DeckActivity) getActivity()).getCostFilters() != null){
+	    	if(((DeckActivity) getActivity()).getCostFilters().size() != 0) filters.put("cost", new ArrayList<String>(((DeckActivity) getActivity()).getCostFilters()));
+	    }
+	    if(((DeckActivity) getActivity()).getRarityFilters() != null){
+	    	if(((DeckActivity) getActivity()).getRarityFilters().size() != 0) filters.put("rarity", new ArrayList<String>(((DeckActivity) getActivity()).getRarityFilters()));
+	    }
+	    if(((DeckActivity) getActivity()).getTypeFilters() != null){
+	    	if(((DeckActivity) getActivity()).getTypeFilters().size() != 0) filters.put("type", new ArrayList<String>(((DeckActivity) getActivity()).getTypeFilters()));
+	    }
+		SearchCriterion criterion = new SearchCriterion(query, filters);
+		List<GraphicalAggregation> graphicalsAggregations = ViewHandler.getInstance(dbHelper).cardsSearchRequest(criterion, getActivity());
+		viewGraphicsAggregations(graphicalsAggregations);
+		return false;
 	}
 
 }

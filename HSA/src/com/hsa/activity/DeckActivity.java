@@ -61,8 +61,9 @@ ActionBar.TabListener, DeckFragment.OnDeckListener{
 		setContentView(R.layout.activity_deck);
 		Intent intent = getIntent();
 		deckData = intent.getParcelableExtra("deckDataAggregation");
-//		setTitle(deckData.getName());
-//		setTitle(Integer.toString(deckData.getCardNumber())+"/30");
+		classFilters = new ArrayList<String>();
+		classFilters.add(deckData.getClassName());
+		classFilters.add("Neutral");
 		
 		// Set up the action bar.
 		final ActionBar actionBar = getSupportActionBar();
@@ -208,16 +209,16 @@ ActionBar.TabListener, DeckFragment.OnDeckListener{
 				intent.putStringArrayListExtra("typeResult", typeFilters);
 				startActivityForResult(intent, 1);
 				return true;
-			case R.id.all_cardDeck:
-				classFilters = null;
-				costFilters = null;
-				rarityFilters = null;
-				typeFilters = null;
-				nameFilter = null;
-	            DeckFragment deckFragment = (DeckFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager2 + ":" + mViewPager.getCurrentItem());
-				List<GraphicalAggregation> graphicalsAggregations = viewHandler.cardsSearchRequest(null, this);
-	            deckFragment.viewGraphicsAggregations(graphicalsAggregations);
-				return true;
+//			case R.id.all_cardDeck:
+//				classFilters = null;
+//				costFilters = null;
+//				rarityFilters = null;
+//				typeFilters = null;
+//				nameFilter = null;
+//	            DeckFragment deckFragment = (DeckFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager2 + ":" + mViewPager.getCurrentItem());
+//				List<GraphicalAggregation> graphicalsAggregations = viewHandler.cardsSearchRequest(null, this);
+//	            deckFragment.viewGraphicsAggregations(graphicalsAggregations);
+//				return true;
 			case R.id.track :
 				int cardNumber = deckHandler.cardNumberRequest();
 				if(cardNumber == 30){
@@ -286,6 +287,46 @@ ActionBar.TabListener, DeckFragment.OnDeckListener{
 		}
 		final ActionBar actionBar = getSupportActionBar();
 		actionBar.setSubtitle(Integer.toString(numCards)+"/30");
+	}
+
+	public ArrayList<String> getClassFilters() {
+		return classFilters;
+	}
+
+	public void setClassFilters(ArrayList<String> classFilters) {
+		this.classFilters = classFilters;
+	}
+
+	public ArrayList<String> getCostFilters() {
+		return costFilters;
+	}
+
+	public void setCostFilters(ArrayList<String> costFilters) {
+		this.costFilters = costFilters;
+	}
+
+	public ArrayList<String> getRarityFilters() {
+		return rarityFilters;
+	}
+
+	public void setRarityFilters(ArrayList<String> rarityFilters) {
+		this.rarityFilters = rarityFilters;
+	}
+
+	public ArrayList<String> getTypeFilters() {
+		return typeFilters;
+	}
+
+	public void setTypeFilters(ArrayList<String> typeFilters) {
+		this.typeFilters = typeFilters;
+	}
+
+	public String getNameFilter() {
+		return nameFilter;
+	}
+
+	public void setNameFilter(String nameFilter) {
+		this.nameFilter = nameFilter;
 	}
 	
 }
