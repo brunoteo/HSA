@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import android.app.SearchManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
@@ -108,6 +107,18 @@ public class MainActivity extends ActionBarActivity implements
         viewHandler = ViewHandler.getInstance(dbHelper);
         DeckHandler.getInstance(dbHelper);
         TrackHandler.getInstance(dbHelper);
+        //Filtri classe checkati
+        classFilters = new ArrayList<String>();
+        classFilters.add("Druid");
+        classFilters.add("Hunter");
+        classFilters.add("Mage");
+        classFilters.add("Neutral");
+        classFilters.add("Paladin");
+        classFilters.add("Priest");
+        classFilters.add("Rogue");
+        classFilters.add("Shaman");
+        classFilters.add("Warlock");
+        classFilters.add("Warrior");
        //Riempimento database
         int emptyDB = searchHandler.cardsSearch(null).size();
         if(emptyDB==0) {
@@ -225,7 +236,17 @@ public class MainActivity extends ActionBarActivity implements
 				startActivityForResult(intent, 1);
 				return true;
 			case R.id.all_card:
-				classFilters = null;
+				classFilters = new ArrayList<String>();
+		        classFilters.add("Druid");
+		        classFilters.add("Hunter");
+		        classFilters.add("Mage");
+		        classFilters.add("Neutral");
+		        classFilters.add("Paladin");
+		        classFilters.add("Priest");
+		        classFilters.add("Rogue");
+		        classFilters.add("Shaman");
+		        classFilters.add("Warlock");
+		        classFilters.add("Warrior");
 				costFilters = null;
 				rarityFilters = null;
 				typeFilters = null;
