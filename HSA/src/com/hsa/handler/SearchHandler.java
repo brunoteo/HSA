@@ -26,8 +26,6 @@ public class SearchHandler{
 	 */	
 	private static SearchHandler searchInstance;
 	
-	private Context context;
-	
 	private HSADatabaseHelper dbHelper;
 	
 	public static SearchHandler getInstance(HSADatabaseHelper dbHelper) {

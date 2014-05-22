@@ -107,18 +107,6 @@ public class MainActivity extends ActionBarActivity implements
         viewHandler = ViewHandler.getInstance(dbHelper);
         DeckHandler.getInstance(dbHelper);
         TrackHandler.getInstance(dbHelper);
-        //Filtri classe checkati
-        classFilters = new ArrayList<String>();
-        classFilters.add("Druid");
-        classFilters.add("Hunter");
-        classFilters.add("Mage");
-        classFilters.add("Neutral");
-        classFilters.add("Paladin");
-        classFilters.add("Priest");
-        classFilters.add("Rogue");
-        classFilters.add("Shaman");
-        classFilters.add("Warlock");
-        classFilters.add("Warrior");
        //Riempimento database
         int emptyDB = searchHandler.cardsSearch(null).size();
         if(emptyDB==0) {
