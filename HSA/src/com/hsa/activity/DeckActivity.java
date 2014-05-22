@@ -64,7 +64,6 @@ ActionBar.TabListener, DeckFragment.OnDeckListener{
 		// Set up the action bar.
 		final ActionBar actionBar = getSupportActionBar();
 		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-		actionBar.setDisplayHomeAsUpEnabled(true);
 		actionBar.setTitle(deckData.getName());
 		actionBar.setSubtitle(Integer.toString(deckData.getCardNumber())+"/30");
 		// Create the adapter that will return a fragment for each of the three

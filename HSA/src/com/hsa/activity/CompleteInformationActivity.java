@@ -14,8 +14,6 @@ public class CompleteInformationActivity extends ActionBarActivity{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_complete_textual);
-		final ActionBar actionBar = getSupportActionBar();
-		actionBar.setDisplayHomeAsUpEnabled(true);
 		Intent intent = getIntent();
 		CompleteTextualAggregation completeAggregation = intent.getParcelableExtra("completeAggregation");
 		viewCompleteTextualAggregation(completeAggregation);
