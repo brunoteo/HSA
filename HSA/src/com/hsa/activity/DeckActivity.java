@@ -202,6 +202,7 @@ ActionBar.TabListener, DeckFragment.OnDeckListener{
 				return true;
 			case R.id.filterDeck :			
 				Intent intent = new Intent(this, FilterActivity.class);
+				intent.putExtra("classDeck", deckData.getClassName());
 				intent.putStringArrayListExtra("classResult", classFilters);
 				intent.putStringArrayListExtra("costResult", costFilters);
 				intent.putStringArrayListExtra("rarityResult", rarityFilters);
