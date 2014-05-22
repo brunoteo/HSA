@@ -57,26 +57,26 @@ public class TrackHandler {
 		return partials;
 	}
 	
-	private List<PartialTextualAggregation> nameSort(List<PartialTextualAggregation> partials){
+	private List<PartialTextualAggregation> nameSort(List<PartialTextualAggregation> ptas){
 		int i = 0;
-		while(i<partials.size()-1){
+		while(i<ptas.size()-1){
 			int startCost = i;
 			boolean search = true;
 			int endCost = i;
-			while (search && i<partials.size()-1){
+			while (search && i<ptas.size()-1){
 				i++;
-				if(partials.get(i).getCost() == partials.get(startCost).getCost()){
+				if(ptas.get(i).getCost() == ptas.get(startCost).getCost()){
 					endCost = i;
 				}else{
 					search=false;
 				}
 			}
-			if(startCost != endCost) qsort(partials, startCost, endCost);
+			if(startCost != endCost) qsort(ptas, startCost, endCost);
 		}
-		return partials;
+		return ptas;
 	}
 
-	public List<PartialTextualAggregation> qsort(List<PartialTextualAggregation> partials, int low, int high) {
+	public List<PartialTextualAggregation> qsort(List<PartialTextualAggregation> ptas, int low, int high) {
         int i = low, j = high;
 
         // Get the pivot element
@@ -86,43 +86,43 @@ public class TrackHandler {
         // Divide into two lists
         while (i <= j) {
 
-          while (partials.get(i).getName().compareTo(partials.get(pivot).getName()) < 0) i++;
+          while (ptas.get(i).getName().compareTo(ptas.get(pivot).getName()) < 0) i++;
 
-          while (partials.get(j).getName().compareTo(partials.get(pivot).getName()) > 0) j--;
+          while (ptas.get(j).getName().compareTo(ptas.get(pivot).getName()) > 0) j--;
 
           if (i <= j) {
-            exchange(partials, i, j);
+            exchange(ptas, i, j);
             i++;
             j--;
           }
         }
 
         // Recursion
-        if (low < j) qsort(partials, low, j);
-        if (i < high) qsort(partials, i, high);
-        return partials;
+        if (low < j) qsort(ptas, low, j);
+        if (i < high) qsort(ptas, i, high);
+        return ptas;
       }
 
-    static void exchange(List<PartialTextualAggregation> partials, int i, int j) {
-    	PartialTextualAggregation temp = partials.get(i);
-    	partials.set(i, partials.get(j));
-    	partials.set(j, temp);
+    static void exchange(List<PartialTextualAggregation> ptas, int i, int j) {
+    	PartialTextualAggregation temp = ptas.get(i);
+    	ptas.set(i, ptas.get(j));
+    	ptas.set(j, temp);
     }
 	
-	private int partition(int left, int right){
+	private int partition(List<PartialTextualAggregation> ptas, int left, int right){
 	      int i = left, j = right;
 	      PartialTextualAggregation tmp;
-	      PartialTextualAggregation pivot = partials.get((left + right) / 2);
+	      PartialTextualAggregation pivot = ptas.get((left + right) / 2);
 	     
 	      while (i <= j) {
-	            while (partials.get(i).getCost() < pivot.getCost())
+	            while (ptas.get(i).getCost() < pivot.getCost())
 	                  i++;
-	            while (partials.get(j).getCost() > pivot.getCost())
+	            while (ptas.get(j).getCost() > pivot.getCost())
 	                  j--;
 	            if (i <= j) {
-	                  tmp = partials.get(i);
-	                  partials.set(i, partials.get(j));
-	                  partials.set(j, tmp);
+	                  tmp = ptas.get(i);
+	                  ptas.set(i, ptas.get(j));
+	                  ptas.set(j, tmp);
 	                  i++;
 	                  j--;
 	            }
@@ -131,13 +131,13 @@ public class TrackHandler {
 	      return i;
 	}
 	//TODO aggiungere questi due sort ai diagrammi di tracciamento?
-	private List<PartialTextualAggregation> costSort(List<PartialTextualAggregation> partials2, int left, int right) {
-	      int index = partition(left, right);
+	private List<PartialTextualAggregation> costSort(List<PartialTextualAggregation> ptas, int left, int right) {
+	      int index = partition(ptas, left, right);
 	      if (left < index - 1)
-	            costSort(partials2, left, index - 1);
+	            costSort(ptas, left, index - 1);
 	      if (index < right)
-	            costSort(partials2, index, right);
-	      return partials;
+	            costSort(ptas, index, right);
+	      return ptas;
 	}
 
 	public List<PartialTextualAggregation> trackCard(PartialTextualAggregation partial) {
