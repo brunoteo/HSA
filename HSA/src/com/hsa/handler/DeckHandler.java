@@ -42,11 +42,47 @@ public class DeckHandler {
 		deck = SearchHandler.getInstance(dbHelper).deckSearch(deckName);
 		tmpFormations = SearchHandler.getInstance(dbHelper).formationsSearch(deckName);
 		copyFormations = SearchHandler.getInstance(dbHelper).formationsSearch(deckName);
+		
 		Map<String, ArrayList<String>> filters = new HashMap<String, ArrayList<String>>();
+		
 		ArrayList<String> classFilter = new ArrayList<String>();
 		classFilter.add(deck.getClassName());
 		classFilter.add("Neutral");
 		filters.put("className", classFilter);
+		
+		ArrayList<String> costFilters = new ArrayList<String>();
+		costFilters = new ArrayList<String>();
+        costFilters.add("0");
+        costFilters.add("1");
+        costFilters.add("2");
+        costFilters.add("3");
+        costFilters.add("4");
+        costFilters.add("5");
+        costFilters.add("6");
+        costFilters.add("7");
+        costFilters.add("8");
+        costFilters.add("9");
+        costFilters.add("10");
+        costFilters.add("12");
+        costFilters.add("20");
+        filters.put("cost", costFilters);
+        
+        ArrayList<String> rarityFilters = new ArrayList<String>();
+        rarityFilters = new ArrayList<String>();
+        rarityFilters.add("Basic");
+        rarityFilters.add("Common");
+        rarityFilters.add("Rare");
+        rarityFilters.add("Epic");
+        rarityFilters.add("Legendary");
+        filters.put("rarity", rarityFilters);
+        
+        ArrayList<String> typeFilters = new ArrayList<String>();
+        typeFilters = new ArrayList<String>();
+        typeFilters.add("Minion");
+        typeFilters.add("Spell");
+        typeFilters.add("Weapon");
+        filters.put("type", typeFilters);
+        
 		return new SearchCriterion(null, filters);
 	}
 	

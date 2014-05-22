@@ -58,13 +58,11 @@ ActionBar.TabListener, DeckFragment.OnDeckListener{
 		setContentView(R.layout.activity_deck);
 		Intent intent = getIntent();
 		deckData = intent.getParcelableExtra("deckDataAggregation");
-		classFilters = new ArrayList<String>();
 		resetFilters();
 		
 		// Set up the action bar.
 		final ActionBar actionBar = getSupportActionBar();
 		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-		actionBar.setDisplayHomeAsUpEnabled(true);
 		actionBar.setTitle(deckData.getName());
 		actionBar.setSubtitle(Integer.toString(deckData.getCardNumber())+"/30");
 		// Create the adapter that will return a fragment for each of the three
@@ -111,16 +109,18 @@ ActionBar.TabListener, DeckFragment.OnDeckListener{
 	public void resetFilters(){
 		//Filtri classe checkati
         classFilters = new ArrayList<String>();
-        if(deckData.getClassName().equals("Druid")) classFilters.add("Druid");
-        if(deckData.getClassName().equals("Hunter"))classFilters.add("Hunter");
-        if(deckData.getClassName().equals("Mage"))classFilters.add("Mage");
+        classFilters.add(deckData.getClassName());
         classFilters.add("Neutral");
-        if(deckData.getClassName().equals("Paladin"))classFilters.add("Paladin");
-        if(deckData.getClassName().equals("Priest"))classFilters.add("Priest");
-        if(deckData.getClassName().equals("Rogue"))classFilters.add("Rogue");
-        if(deckData.getClassName().equals("Shaman"))classFilters.add("Shaman");
-        if(deckData.getClassName().equals("Warlock"))classFilters.add("Warlock");
-        if(deckData.getClassName().equals("Warrior"))classFilters.add("Warrior");
+//        if(deckData.getClassName().equals("Druid")) classFilters.add("Druid");
+//        if(deckData.getClassName().equals("Hunter"))classFilters.add("Hunter");
+//        if(deckData.getClassName().equals("Mage"))classFilters.add("Mage");
+//        
+//        if(deckData.getClassName().equals("Paladin"))classFilters.add("Paladin");
+//        if(deckData.getClassName().equals("Priest"))classFilters.add("Priest");
+//        if(deckData.getClassName().equals("Rogue"))classFilters.add("Rogue");
+//        if(deckData.getClassName().equals("Shaman"))classFilters.add("Shaman");
+//        if(deckData.getClassName().equals("Warlock"))classFilters.add("Warlock");
+//        if(deckData.getClassName().equals("Warrior"))classFilters.add("Warrior");
         
         costFilters = new ArrayList<String>();
         costFilters.add("0");
@@ -164,7 +164,7 @@ ActionBar.TabListener, DeckFragment.OnDeckListener{
 	    if (requestCode == 1) {
 	        if(resultCode == RESULT_OK){
 	        	if(data.getStringArrayListExtra("classResult").size()!=0)
-	        	classFilters = data.getStringArrayListExtra("classResult");
+	        		classFilters = data.getStringArrayListExtra("classResult");
 	            costFilters = data.getStringArrayListExtra("costResult");
 	            rarityFilters = data.getStringArrayListExtra("rarityResult");
 	            typeFilters = data.getStringArrayListExtra("typeResult");
