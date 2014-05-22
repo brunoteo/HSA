@@ -107,7 +107,19 @@ public class MainActivity extends ActionBarActivity implements
         viewHandler = ViewHandler.getInstance(dbHelper);
         DeckHandler.getInstance(dbHelper);
         TrackHandler.getInstance(dbHelper);
-        //Filtri classe checkati
+        
+        resetFilters();
+        
+       //Riempimento database
+        int emptyDB = searchHandler.cardsSearch(null).size();
+        if(emptyDB==0) {
+            saveHandler.fillDB();
+        }
+        
+	}
+	
+	public void resetFilters(){
+		//Filtri classe checkati
         classFilters = new ArrayList<String>();
         classFilters.add("Druid");
         classFilters.add("Hunter");
@@ -119,12 +131,33 @@ public class MainActivity extends ActionBarActivity implements
         classFilters.add("Shaman");
         classFilters.add("Warlock");
         classFilters.add("Warrior");
-       //Riempimento database
-        int emptyDB = searchHandler.cardsSearch(null).size();
-        if(emptyDB==0) {
-            saveHandler.fillDB();
-        }
         
+        costFilters = new ArrayList<String>();
+        costFilters.add("0");
+        costFilters.add("1");
+        costFilters.add("2");
+        costFilters.add("3");
+        costFilters.add("4");
+        costFilters.add("5");
+        costFilters.add("6");
+        costFilters.add("7");
+        costFilters.add("8");
+        costFilters.add("9");
+        costFilters.add("10");
+        costFilters.add("12");
+        costFilters.add("20");
+        
+        rarityFilters = new ArrayList<String>();
+        rarityFilters.add("Basic");
+        rarityFilters.add("Common");
+        rarityFilters.add("Rare");
+        rarityFilters.add("Epic");
+        rarityFilters.add("Legendary");
+        
+        typeFilters = new ArrayList<String>();
+        typeFilters.add("Minion");
+        typeFilters.add("Spell");
+        typeFilters.add("Weapon");
 	}
 
 	public void onClickND(View v) {
@@ -140,6 +173,7 @@ public class MainActivity extends ActionBarActivity implements
 	
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
+		//return from filterActivity
 	    if (requestCode == 1) {
 	        if(resultCode == RESULT_OK){
 	            classFilters = data.getStringArrayListExtra("classResult");
@@ -148,10 +182,6 @@ public class MainActivity extends ActionBarActivity implements
 	            typeFilters = data.getStringArrayListExtra("typeResult");
 
 	            Map<String, ArrayList<String>> filters = new HashMap<String, ArrayList<String>>();
-//	            if(classFilters != null || classFilters.size() != 0) filters.put("className", new ArrayList<String>(classFilters));
-//	            if(costFilters != null || costFilters.size() != 0) filters.put("cost", new ArrayList<String>(costFilters));
-//	            if(rarityFilters != null || rarityFilters.size() != 0) filters.put("rarity", new ArrayList<String>(rarityFilters));
-//	            if(typeFilters != null || typeFilters.size() != 0) filters.put("type", new ArrayList<String>(typeFilters));
 	            if(classFilters != null) {
 	            	if(classFilters.size() != 0) filters.put("className", new ArrayList<String>(classFilters));
 	            }
@@ -170,6 +200,7 @@ public class MainActivity extends ActionBarActivity implements
 	            searchFragment.viewGraphicsAggregations(graphicalsAggregations);
 	        }
 	    }else if (requestCode == 2){
+	    	//query for decks list
 	    	if(resultCode == RESULT_OK){
 	            DecksFragment decksFragment = (DecksFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager + ":" + mViewPager.getCurrentItem());
 	            List<DeckDataAggregation> deckDataAggregations = viewHandler.decksRequest(this);
@@ -227,33 +258,13 @@ public class MainActivity extends ActionBarActivity implements
 		switch(id) {
 			case R.id.action_settings : 
 				return true;
-			case R.id.filter :			
+			case R.id.filter :
 				Intent intent = new Intent(this, FilterActivity.class);
 				intent.putStringArrayListExtra("classResult", classFilters);
 				intent.putStringArrayListExtra("costResult", costFilters);
 				intent.putStringArrayListExtra("rarityResult", rarityFilters);
 				intent.putStringArrayListExtra("typeResult", typeFilters);
 				startActivityForResult(intent, 1);
-				return true;
-			case R.id.all_card:
-				classFilters = new ArrayList<String>();
-		        classFilters.add("Druid");
-		        classFilters.add("Hunter");
-		        classFilters.add("Mage");
-		        classFilters.add("Neutral");
-		        classFilters.add("Paladin");
-		        classFilters.add("Priest");
-		        classFilters.add("Rogue");
-		        classFilters.add("Shaman");
-		        classFilters.add("Warlock");
-		        classFilters.add("Warrior");
-				costFilters = null;
-				rarityFilters = null;
-				typeFilters = null;
-				nameFilter = null;
-	            SearchFragment searchFragment = (SearchFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager + ":" + mViewPager.getCurrentItem());
-				List<GraphicalAggregation> graphicalsAggregations = viewHandler.cardsSearchRequest(null, this);
-	            searchFragment.viewGraphicsAggregations(graphicalsAggregations);
 				return true;
 			default:
 	            return super.onOptionsItemSelected(item);

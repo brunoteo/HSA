@@ -261,3 +261,4 @@ public class DeckFragment extends Fragment implements SearchView.OnQueryTextList
 	}
 
 }
+

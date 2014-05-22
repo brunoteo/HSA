@@ -14,6 +14,7 @@ import com.hsa.aggregation.GraphicalAggregation;
 import com.hsa.bean.SearchCriterion;
 import com.hsa.database.HSADatabaseHelper;
 import com.hsa.fragment.DeckFragment;
+import com.hsa.fragment.SearchFragment;
 import com.hsa.handler.DeckHandler;
 import com.hsa.handler.SaveHandler;
 import com.hsa.handler.SearchHandler;
@@ -58,8 +59,7 @@ ActionBar.TabListener, DeckFragment.OnDeckListener{
 		Intent intent = getIntent();
 		deckData = intent.getParcelableExtra("deckDataAggregation");
 		classFilters = new ArrayList<String>();
-		classFilters.add(deckData.getClassName());
-		classFilters.add("Neutral");
+		resetFilters();
 		
 		// Set up the action bar.
 		final ActionBar actionBar = getSupportActionBar();
@@ -108,6 +108,48 @@ ActionBar.TabListener, DeckFragment.OnDeckListener{
 		
 	}
 	
+	public void resetFilters(){
+		//Filtri classe checkati
+        classFilters = new ArrayList<String>();
+        if(deckData.getClassName().equals("Druid")) classFilters.add("Druid");
+        if(deckData.getClassName().equals("Hunter"))classFilters.add("Hunter");
+        if(deckData.getClassName().equals("Mage"))classFilters.add("Mage");
+        classFilters.add("Neutral");
+        if(deckData.getClassName().equals("Paladin"))classFilters.add("Paladin");
+        if(deckData.getClassName().equals("Priest"))classFilters.add("Priest");
+        if(deckData.getClassName().equals("Rogue"))classFilters.add("Rogue");
+        if(deckData.getClassName().equals("Shaman"))classFilters.add("Shaman");
+        if(deckData.getClassName().equals("Warlock"))classFilters.add("Warlock");
+        if(deckData.getClassName().equals("Warrior"))classFilters.add("Warrior");
+        
+        costFilters = new ArrayList<String>();
+        costFilters.add("0");
+        costFilters.add("1");
+        costFilters.add("2");
+        costFilters.add("3");
+        costFilters.add("4");
+        costFilters.add("5");
+        costFilters.add("6");
+        costFilters.add("7");
+        costFilters.add("8");
+        costFilters.add("9");
+        costFilters.add("10");
+        costFilters.add("12");
+        costFilters.add("20");
+        
+        rarityFilters = new ArrayList<String>();
+        rarityFilters.add("Basic");
+        rarityFilters.add("Common");
+        rarityFilters.add("Rare");
+        rarityFilters.add("Epic");
+        rarityFilters.add("Legendary");
+        
+        typeFilters = new ArrayList<String>();
+        typeFilters.add("Minion");
+        typeFilters.add("Spell");
+        typeFilters.add("Weapon");
+	}
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 
@@ -122,7 +164,7 @@ ActionBar.TabListener, DeckFragment.OnDeckListener{
 	    if (requestCode == 1) {
 	        if(resultCode == RESULT_OK){
 	        	if(data.getStringArrayListExtra("classResult").size()!=0)
-	        		classFilters = data.getStringArrayListExtra("classResult");
+	        	classFilters = data.getStringArrayListExtra("classResult");
 	            costFilters = data.getStringArrayListExtra("costResult");
 	            rarityFilters = data.getStringArrayListExtra("rarityResult");
 	            typeFilters = data.getStringArrayListExtra("typeResult");
@@ -161,6 +203,14 @@ ActionBar.TabListener, DeckFragment.OnDeckListener{
 		int id = item.getItemId();
 		switch(id) {
 			case R.id.action_settings : 
+				return true;
+			case R.id.all_cardDeck:
+				resetFilters();
+				nameFilter = null;
+	            DeckFragment deckFragment = (DeckFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager2 + ":" + mViewPager.getCurrentItem());
+				List<GraphicalAggregation> graphicalsAggregations = viewHandler.cardsSearchRequest(null, this);
+	            deckFragment.viewGraphicsAggregations(graphicalsAggregations);
+				
 				return true;
 			case R.id.save:
 				if(!deckHandler.controlModifyRequest()) {

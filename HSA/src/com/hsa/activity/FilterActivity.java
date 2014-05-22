@@ -18,7 +18,7 @@ import android.widget.LinearLayout;
 public class FilterActivity extends ActionBarActivity {
 
 //	private CheckBox chkDruid, chkHunter, chkMage, chkPaladin, chkPriest, chkRogue, chkShaman, chkWarlock, chkWarrior, chkZero, chkOne, chkTwo, chkThree, chkFour, chkFive, chkSix, chkSeven, chkBasic, chkCommon, chkRare, chkEpic, chkLegendary, chkMinion, chkSpell, chkWeapon;
-	private Button btnAccept, btnReset;
+	private Button btnAccept, btnClear, btnReset;
 	private List<CheckBox> checkboxes;
 	
 	@Override
@@ -224,10 +224,21 @@ public class FilterActivity extends ActionBarActivity {
 			}
 		}
 		
-		
-		btnReset = (Button) findViewById(R.id.buttonCancelFilter);
-		
+		btnReset = (Button) findViewById(R.id.buttonResetFilter);
+				
 		btnReset.setOnClickListener(new OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					for(CheckBox checkBox : checkboxes) {
+						checkBox.setChecked(true);
+					}
+				}
+			});
+		
+		btnClear = (Button) findViewById(R.id.buttonClearFilter);
+		
+		btnClear.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
@@ -248,7 +259,7 @@ public class FilterActivity extends ActionBarActivity {
 				ArrayList<String> rarityFilters = new ArrayList<String>();
 				ArrayList<String> typeFilters = new ArrayList<String>();
 				for(CheckBox checkBox : checkboxes) {
-					if(checkBox.isChecked())
+					if(checkBox.isChecked()){
 						if(checkBox.getText().toString().equals("Druid") ||
 								checkBox.getText().toString().equals("Hunter") ||
 								checkBox.getText().toString().equals("Mage") ||
@@ -284,7 +295,7 @@ public class FilterActivity extends ActionBarActivity {
 						}else{
 							typeFilters.add(checkBox.getText().toString());
 						}
-						
+					}
 				}
 				
 				Intent returnIntent = new Intent();
