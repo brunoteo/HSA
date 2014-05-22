@@ -17,6 +17,7 @@ import com.hsa.handler.ViewHandler;
 import android.app.Activity;
 import android.app.SearchManager;
 import android.content.Context;
+import android.location.Criteria;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.MenuItemCompat;
@@ -126,7 +127,7 @@ public class SearchFragment extends Fragment implements SearchView.OnQueryTextLi
 	    if(((MainActivity) getActivity()).getTypeFilters() != null){
 	      	if(((MainActivity) getActivity()).getTypeFilters().size() != 0) filters.put("type", new ArrayList<String>(((MainActivity) getActivity()).getTypeFilters()));
 	    }
-		SearchCriterion criterion = new SearchCriterion(query, null);
+		SearchCriterion criterion = new SearchCriterion(query, filters);
 		List<GraphicalAggregation> graphicalsAggregations = ViewHandler.getInstance(dbHelper).cardsSearchRequest(criterion, getActivity());
 		viewGraphicsAggregations(graphicalsAggregations);
 		return true;

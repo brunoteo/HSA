@@ -211,16 +211,6 @@ ActionBar.TabListener, DeckFragment.OnDeckListener{
 				intent.putStringArrayListExtra("typeResult", typeFilters);
 				startActivityForResult(intent, 1);
 				return true;
-//			case R.id.all_cardDeck:
-//				classFilters = null;
-//				costFilters = null;
-//				rarityFilters = null;
-//				typeFilters = null;
-//				nameFilter = null;
-//	            DeckFragment deckFragment = (DeckFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager2 + ":" + mViewPager.getCurrentItem());
-//				List<GraphicalAggregation> graphicalsAggregations = viewHandler.cardsSearchRequest(null, this);
-//	            deckFragment.viewGraphicsAggregations(graphicalsAggregations);
-//				return true;
 			case R.id.track :
 				int cardNumber = deckHandler.cardNumberRequest();
 				if(cardNumber == 30){

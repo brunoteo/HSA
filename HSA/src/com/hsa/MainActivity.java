@@ -216,8 +216,7 @@ public class MainActivity extends ActionBarActivity implements
 		switch(id) {
 			case R.id.action_settings : 
 				return true;
-			case R.id.filter :
-				
+			case R.id.filter :			
 				Intent intent = new Intent(this, FilterActivity.class);
 				intent.putStringArrayListExtra("classResult", classFilters);
 				intent.putStringArrayListExtra("costResult", costFilters);
