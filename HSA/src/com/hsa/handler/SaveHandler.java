@@ -1,10 +1,13 @@
 package com.hsa.handler;
 
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import android.content.ContentValues;
 import android.database.sqlite.SQLiteDatabase;
@@ -168,6 +171,17 @@ public class SaveHandler{
 			
 			db.insert(FormationEntry.TABLE_NAME, null, values);
 		}
+		
+		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		Date date = new Date();
+		
+		ContentValues values = new ContentValues();
+		values.put(DeckEntry.COLUMN_NAME_DATE, dateFormat.format(date));
+		String[] deckName = new String[]{deck.getName()};
+		
+		db.update(DeckEntry.TABLE_NAME, values, DeckEntry.COLUMN_NAME_NAME + "=?", deckName);
+		
+		
 		
 	}
 	

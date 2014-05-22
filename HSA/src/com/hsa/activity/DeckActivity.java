@@ -155,6 +155,7 @@ ActionBar.TabListener, DeckFragment.OnDeckListener{
 
 	public void launchIntent(){
     	Intent intent = new Intent(this, MainActivity.class);
+    	intent.putExtra("tab", "Decks");
     	startActivity(intent);
 	}
 	
@@ -165,9 +166,7 @@ ActionBar.TabListener, DeckFragment.OnDeckListener{
 		// as you specify a parent activity in AndroidManifest.xml.
 		int id = item.getItemId();
 		switch(id) {
-			case R.id.action_settings : 
-				return true;
-			case R.id.save://TODO aggiornare la lista mazzi quando si torna indietro
+			case R.id.save:
 				if(!deckHandler.controlModifyRequest()) {
 					AlertDialog.Builder dlgAlert  = new AlertDialog.Builder(this);
 				
@@ -202,6 +201,7 @@ ActionBar.TabListener, DeckFragment.OnDeckListener{
 		                    new DialogInterface.OnClickListener() {
 		                        public void onClick(DialogInterface dialog, int which) {
 		                        	deckHandler.saveRequest();
+		                        	//TODO aggiornare data ultima modifica mazzo
 		                        	launchIntent();
 		                        }
 		                    });
@@ -239,7 +239,7 @@ ActionBar.TabListener, DeckFragment.OnDeckListener{
 		                    });
 				}
 				return true;
-			case R.id.delete ://TODO conferma di eliminazione
+			case R.id.delete :
 				
 				AlertDialog.Builder dlgAlertSave  = new AlertDialog.Builder(this);
 				

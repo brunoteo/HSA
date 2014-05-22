@@ -64,6 +64,8 @@ public class MainActivity extends ActionBarActivity implements
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		
+		Intent intent = getIntent();
 
 		// Set up the action bar.
 		final ActionBar actionBar = getSupportActionBar();
@@ -99,6 +101,8 @@ public class MainActivity extends ActionBarActivity implements
                         .setTabListener(this));
         	}
         }
+        if(intent.getStringExtra("tab")!=null)
+        	actionBar.setSelectedNavigationItem(2);
         
         //Istanzio una volta sola gli handler
         dbHelper = HSADatabaseHelper.getInstance(this);
@@ -213,8 +217,6 @@ public class MainActivity extends ActionBarActivity implements
 		// as you specify a parent activity in AndroidManifest.xml.
 		int id = item.getItemId();
 		switch(id) {
-			case R.id.action_settings : 
-				return true;
 			case R.id.filter :			
 				Intent intent = new Intent(this, FilterActivity.class);
 				intent.putStringArrayListExtra("classResult", classFilters);

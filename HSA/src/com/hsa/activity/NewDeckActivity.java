@@ -16,19 +16,16 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 public class NewDeckActivity extends ActionBarActivity{
 
 	private RadioGroup radioClass;
-    private RadioButton radioClassButton;
     private Button onClickConfirm;
     private String className;
     
     private HSADatabaseHelper dbHelper;
     private ViewHandler viewHandler;
-    private SaveHandler saveHandler;
     private SearchHandler searchHandler;
 	
 	@Override
@@ -37,7 +34,7 @@ public class NewDeckActivity extends ActionBarActivity{
 		setContentView(R.layout.activity_new_deck);
 		dbHelper = HSADatabaseHelper.getInstance(this);
 	    viewHandler = ViewHandler.getInstance(dbHelper);
-	    saveHandler = SaveHandler.getInstance(dbHelper);
+	    SaveHandler.getInstance(dbHelper);
 	    searchHandler = SearchHandler.getInstance(dbHelper);
 //		className = null;
 	}
@@ -133,9 +130,6 @@ public class NewDeckActivity extends ActionBarActivity{
 	 
 			    // get selected radio button from radioGroup
 				int selectedId = radioClass.getCheckedRadioButtonId();
-	 
-				// find the radiobutton by returned id
-				radioClassButton = (RadioButton) findViewById(selectedId);
 	 
 			}
 
