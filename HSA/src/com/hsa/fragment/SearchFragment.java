@@ -81,11 +81,9 @@ public class SearchFragment extends Fragment implements SearchView.OnQueryTextLi
 		// Inflate the menu; this adds items to the action bar if it is present.
 		inflater.inflate(R.menu.search_menu, menu);
 		super.onCreateOptionsMenu(menu, inflater);
-//		SearchManager SManager =  (SearchManager) getActivity().getSystemService(Context.SEARCH_SERVICE);
         MenuItem searchMenuItem = menu.findItem(R.id.search);
         SearchView searchViewAction = (SearchView) MenuItemCompat.getActionView(searchMenuItem);
         searchViewAction.setOnQueryTextListener(this);
-//        searchViewAction.setSearchableInfo(SManager.getSearchableInfo(getActivity().getComponentName()));
 		
 	}
 
