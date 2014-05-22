@@ -152,6 +152,11 @@ ActionBar.TabListener, DeckFragment.OnDeckListener{
 	    }
 	}
 
+	public void launchIntent(){
+    	Intent intent = new Intent(this, MainActivity.class);
+    	startActivity(intent);
+	}
+	
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		// Handle action bar item clicks here. The action bar will
@@ -171,7 +176,7 @@ ActionBar.TabListener, DeckFragment.OnDeckListener{
 		            dlgAlert.setPositiveButton("Ok",
 		                    new DialogInterface.OnClickListener() {
 		                        public void onClick(DialogInterface dialog, int which) {
-	
+		                        	
 		                        }
 		                    });
 		            
@@ -196,6 +201,7 @@ ActionBar.TabListener, DeckFragment.OnDeckListener{
 		                    new DialogInterface.OnClickListener() {
 		                        public void onClick(DialogInterface dialog, int which) {
 		                        	deckHandler.saveRequest();
+		                        	launchIntent();
 		                        }
 		                    });
 					
@@ -243,9 +249,30 @@ ActionBar.TabListener, DeckFragment.OnDeckListener{
 				}
 				return true;
 			case R.id.delete ://TODO conferma di eliminazione
-				deckHandler.deckDeletionRequest();
-				Intent intent1 = new Intent(this, MainActivity.class);
-				startActivity(intent1);
+				
+				AlertDialog.Builder dlgAlertSave  = new AlertDialog.Builder(this);
+				
+				dlgAlertSave.setMessage("INFO: Do you want to delete?");
+				dlgAlertSave.setTitle("Delete Deck...");
+				
+				dlgAlertSave.setNegativeButton("CANCEL", 
+						new DialogInterface.OnClickListener() {
+							
+							@Override
+							public void onClick(DialogInterface dialog, int which) {
+								
+							}
+						});
+					            
+				dlgAlertSave.setPositiveButton("Ok",
+	                    new DialogInterface.OnClickListener() {
+	                        public void onClick(DialogInterface dialog, int which) {
+	                        	deckHandler.deckDeletionRequest();
+	                        	launchIntent();
+	                        }
+	                    });
+				
+				dlgAlertSave.create().show();
 				return true;
 			default:
 	            return super.onOptionsItemSelected(item);
