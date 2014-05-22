@@ -25,6 +25,7 @@ import com.hsa.aggregation.DeckDataAggregation;
 import com.hsa.aggregation.GraphicalAggregation;
 import com.hsa.bean.SearchCriterion;
 import com.hsa.database.HSADatabaseHelper;
+import com.hsa.fragment.DeckFragment;
 import com.hsa.fragment.SearchFragment;
 import com.hsa.fragment.DecksFragment;
 import com.hsa.handler.DeckHandler;
@@ -265,6 +266,13 @@ public class MainActivity extends ActionBarActivity implements
 				intent.putStringArrayListExtra("rarityResult", rarityFilters);
 				intent.putStringArrayListExtra("typeResult", typeFilters);
 				startActivityForResult(intent, 1);
+				return true;
+			case R.id.all_card:
+				resetFilters();
+				nameFilter = null;
+	            SearchFragment searchFragment = (SearchFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager + ":" + mViewPager.getCurrentItem());
+				List<GraphicalAggregation> graphicalsAggregations = viewHandler.cardsSearchRequest(null, this);
+				searchFragment.viewGraphicsAggregations(graphicalsAggregations);
 				return true;
 			default:
 	            return super.onOptionsItemSelected(item);
