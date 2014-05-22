@@ -145,8 +145,8 @@ public class TrackActivity extends ActionBarActivity implements ActionBar.TabLis
 	}
 	
 	public void onClickReset(View v){
-		int n = trackHandler.cardsNumberRequest();
-		if(n == 30){
+		int n = trackHandler.pileNumberRequest();
+		if(n == 0){
 			AlertDialog.Builder dlgAlert  = new AlertDialog.Builder(this);
 			
             dlgAlert.setMessage("Error: Deck is already reseted.");
