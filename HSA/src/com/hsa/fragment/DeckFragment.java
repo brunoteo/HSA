@@ -16,14 +16,10 @@ import com.hsa.handler.DeckHandler;
 import com.hsa.handler.ViewHandler;
 
 import android.app.Activity;
-import android.app.SearchManager;
-import android.content.ComponentName;
-import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.MenuItemCompat;
-import android.support.v7.app.ActionBar;
 import android.support.v7.widget.SearchView;
 import android.view.Gravity;
 import android.view.LayoutInflater;
