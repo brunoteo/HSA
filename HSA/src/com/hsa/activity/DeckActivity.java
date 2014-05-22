@@ -204,14 +204,6 @@ ActionBar.TabListener, DeckFragment.OnDeckListener{
 		switch(id) {
 			case R.id.action_settings : 
 				return true;
-			case R.id.all_cardDeck:
-				resetFilters();
-				nameFilter = null;
-	            DeckFragment deckFragment = (DeckFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager2 + ":" + mViewPager.getCurrentItem());
-				List<GraphicalAggregation> graphicalsAggregations = viewHandler.cardsSearchRequest(null, this);
-	            deckFragment.viewGraphicsAggregations(graphicalsAggregations);
-				
-				return true;
 			case R.id.save:
 				if(!deckHandler.controlModifyRequest()) {
 					AlertDialog.Builder dlgAlert  = new AlertDialog.Builder(this);
