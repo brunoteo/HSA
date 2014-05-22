@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.LinearLayout;
 
 public class FilterActivity extends ActionBarActivity {
 
@@ -86,7 +87,7 @@ public class FilterActivity extends ActionBarActivity {
 		
 		Intent intent = getIntent();
 		ArrayList<String> classFilters = intent.getExtras().getStringArrayList("classResult");
-		
+		String classDeck = (String) intent.getExtras().get("classDeck");
 		if(classFilters != null && classFilters.size() != 0){
 			for(String s : classFilters){
 				switch (s){
@@ -112,6 +113,46 @@ public class FilterActivity extends ActionBarActivity {
 						break;
 				}
 			}
+		}
+		LinearLayout ll = new LinearLayout(this);
+		if(classDeck != null){
+			if(!classDeck.equals("Druid")) {
+				ll = (LinearLayout) findViewById(R.id.layoutDruid);
+				ll.removeAllViews();
+			}
+			if(!classDeck.equals("Hunter")) {
+				ll = (LinearLayout) findViewById(R.id.layoutHunter);
+				ll.removeAllViews();
+			}
+			if(!classDeck.equals("Mage")) {
+				ll = (LinearLayout) findViewById(R.id.layoutMage);
+				ll.removeAllViews();
+			}
+			if(!classDeck.equals("Paladin")) {
+				ll = (LinearLayout) findViewById(R.id.layoutPaladin);
+				ll.removeAllViews();
+			}
+			if(!classDeck.equals("Priest")) {
+				ll = (LinearLayout) findViewById(R.id.layoutPriest);
+				ll.removeAllViews();
+			}
+			if(!classDeck.equals("Rogue")) {
+				ll = (LinearLayout) findViewById(R.id.layoutRogue);
+				ll.removeAllViews();
+			}
+			if(!classDeck.equals("Shaman")) {
+				ll = (LinearLayout) findViewById(R.id.layoutShaman);
+				ll.removeAllViews();
+			}
+			if(!classDeck.equals("Warlock")) {
+				ll = (LinearLayout) findViewById(R.id.layoutWarlock);
+				ll.removeAllViews();
+			}
+			if(!classDeck.equals("Warrior")) {
+				ll = (LinearLayout) findViewById(R.id.layoutWarrior);
+				ll.removeAllViews();
+			}
+			
 		}
 		
 		ArrayList<String> costFilters = intent.getExtras().getStringArrayList("costResult");

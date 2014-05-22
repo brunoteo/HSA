@@ -48,7 +48,7 @@ public class SearchHandler{
 	
 	public Deck deckSearch(String name) {
 		String sql = "SELECT * FROM " + DeckEntry.TABLE_NAME + " WHERE name = ?";
-		SQLiteDatabase db = dbHelper.getWritableDatabase();
+		SQLiteDatabase db = dbHelper.getReadableDatabase();
 		Cursor cursor = db.rawQuery(sql, new String[]{name});
 		Deck deck = null;
 		if(cursor.moveToFirst()) {
@@ -62,7 +62,7 @@ public class SearchHandler{
 	public List<Deck> decksSearch() {
 		String sql = "SELECT * FROM " + DeckEntry.TABLE_NAME;
 		List<Deck> decks = new ArrayList<Deck>();
-		SQLiteDatabase db = dbHelper.getWritableDatabase();
+		SQLiteDatabase db = dbHelper.getReadableDatabase();
 		Cursor cursor = db.rawQuery(sql, null);
 		if(cursor.moveToFirst()) {
 			do {
@@ -78,7 +78,7 @@ public class SearchHandler{
 	public List<Formation> formationsSearch(String deckName) {
 		String sql = "SELECT * FROM " + FormationEntry.TABLE_NAME + " WHERE deck = ?";
 		List<Formation> formations = new ArrayList<Formation>();
-		SQLiteDatabase db = dbHelper.getWritableDatabase();
+		SQLiteDatabase db = dbHelper.getReadableDatabase();
 		String [] selectionArgs = new String[]{deckName};
 		Cursor cursor = db.rawQuery(sql, selectionArgs);
 		if(cursor.moveToFirst()) {
@@ -110,7 +110,7 @@ public class SearchHandler{
 			sql = sql + " ORDER BY " + CardEntry.COLUMN_NAME_COST + ", " + CardEntry.COLUMN_NAME_NAME;
 			String [] selectionArgs = new String[sqlArgs.size()];
 			sqlArgs.toArray(selectionArgs);
-			SQLiteDatabase db = dbHelper.getWritableDatabase();
+			SQLiteDatabase db = dbHelper.getReadableDatabase();
 	
 			Cursor cursor = db.rawQuery(sql, selectionArgs);
 			if(cursor.moveToFirst()) {
@@ -218,7 +218,7 @@ public class SearchHandler{
 		String [] selectionArgs = new String[sqlArgs.size()];
 		sqlArgs.toArray(selectionArgs);
 		List<Card> cards = new ArrayList<Card>();
-		SQLiteDatabase db = dbHelper.getWritableDatabase();
+		SQLiteDatabase db = dbHelper.getReadableDatabase();
 
 		Cursor cursor = db.rawQuery(sql, selectionArgs);
 		if(cursor.moveToFirst()) {
@@ -304,6 +304,4 @@ public class SearchHandler{
 		}
 		return false;
 	}
-
-//TODO try getreadabledatabase instead of getwritabledb
 }

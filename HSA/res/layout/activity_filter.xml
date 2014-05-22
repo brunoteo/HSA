@@ -1,29 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout 
-    		xmlns:android="http://schemas.android.com/apk/res/android"
-		    xmlns:tools="http://schemas.android.com/tools"
-		    android:layout_width="match_parent"
-		    android:layout_height="match_parent"
-		    android:orientation="vertical">
+  	xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 		    
 	<LinearLayout 
-	    	android:layout_width="match_parent"
-		    android:layout_height="wrap_content"
-		    android:orientation="horizontal">
-	    
-	    	<Button
-		        android:id="@+id/buttonAcceptFilter"
-		        android:layout_weight="1"
-		        android:layout_width="0dp"
-		        android:layout_height="wrap_content"
-		        android:text="@string/accept_filter" />
-
-		    <Button
-		        android:id="@+id/buttonCancelFilter"
-		        android:layout_weight="1"
-		        android:layout_width="0dp"
-		        android:layout_height="wrap_content"
-		        android:text="@string/cancel_filter" />
+    	android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:orientation="horizontal">
+	        
+    	<Button
+	        android:id="@+id/buttonAcceptFilter"
+	        android:layout_weight="1"
+	        android:layout_width="0dp"
+	        android:layout_height="wrap_content"
+	        android:text="@string/accept_filter" />
+	    <Button
+	        android:id="@+id/buttonCancelFilter"
+	        android:layout_weight="1"
+	        android:layout_width="0dp"
+	        android:layout_height="wrap_content"
+	        android:text="@string/cancel_filter" />
 	</LinearLayout>
 	<ScrollView 
 	    	android:layout_width="match_parent"
@@ -47,24 +46,44 @@
 		        android:layout_marginLeft="3dp"
 		        android:text="Class:"
 		        />
-		    
-		    <CheckBox
-		        android:id="@+id/chkDruid"
+		    <LinearLayout
+		        android:id="@+id/layoutDruid"
 		        android:layout_width="match_parent"
-		        android:layout_height="wrap_content"
-		        android:text="Druid" />
+			    android:layout_height="wrap_content"
+			    android:orientation="horizontal">
+			    
+			    <CheckBox
+			        android:id="@+id/chkDruid"
+			        android:layout_width="match_parent"
+			        android:layout_height="wrap_content"
+			        android:text="Druid" />
+		    </LinearLayout>
 		    
-		    <CheckBox
-		        android:id="@+id/chkHunter"
+		    <LinearLayout
+		        android:id="@+id/layoutHunter"
 		        android:layout_width="match_parent"
-		        android:layout_height="wrap_content"
-		        android:text="Hunter" />
+			    android:layout_height="wrap_content"
+			    android:orientation="horizontal">
+			    
+			    <CheckBox
+			        android:id="@+id/chkHunter"
+			        android:layout_width="match_parent"
+			        android:layout_height="wrap_content"
+			        android:text="Hunter" />
+		    </LinearLayout>
 		    
-		    <CheckBox
-		        android:id="@+id/chkMage"
+		    <LinearLayout
+		        android:id="@+id/layoutMage"
 		        android:layout_width="match_parent"
-		        android:layout_height="wrap_content"
-		        android:text="Mage" />
+			    android:layout_height="wrap_content"
+			    android:orientation="horizontal">
+			    
+			    <CheckBox
+			        android:id="@+id/chkMage"
+			        android:layout_width="match_parent"
+			        android:layout_height="wrap_content"
+			        android:text="Mage" />
+			</LinearLayout>
 		    
 		    <CheckBox
 		        android:id="@+id/chkNeutral"
@@ -72,42 +91,83 @@
 		        android:layout_height="wrap_content"
 		        android:text="Neutral" />
 		    
-		    <CheckBox
-		        android:id="@+id/chkPaladin"
+		    <LinearLayout
+		        android:id="@+id/layoutPaladin"
 		        android:layout_width="match_parent"
-		        android:layout_height="wrap_content"
-		        android:text="Paladin" />
+			    android:layout_height="wrap_content"
+			    android:orientation="horizontal">
+			    
+			    <CheckBox
+			        android:id="@+id/chkPaladin"
+			        android:layout_width="match_parent"
+			        android:layout_height="wrap_content"
+			        android:text="Paladin" />
+			</LinearLayout>
 		    
-		    <CheckBox
-		        android:id="@+id/chkPriest"
+		    <LinearLayout
+		        android:id="@+id/layoutPriest"
 		        android:layout_width="match_parent"
-		        android:layout_height="wrap_content"
-		        android:text="Priest" />
+			    android:layout_height="wrap_content"
+			    android:orientation="horizontal">
+			    
+			    <CheckBox
+			        android:id="@+id/chkPriest"
+			        android:layout_width="match_parent"
+			        android:layout_height="wrap_content"
+			        android:text="Priest" />
+			</LinearLayout>
 		    
-		    <CheckBox
-		        android:id="@+id/chkRogue"
+		    <LinearLayout
+		        android:id="@+id/layoutRogue"
 		        android:layout_width="match_parent"
-		        android:layout_height="wrap_content"
-		        android:text="Rogue" />
+			    android:layout_height="wrap_content"
+			    android:orientation="horizontal" >
 		    
-		    <CheckBox
-		        android:id="@+id/chkShaman"
+			    <CheckBox
+			        android:id="@+id/chkRogue"
+			        android:layout_width="match_parent"
+			        android:layout_height="wrap_content"
+			        android:text="Rogue" />
+		    </LinearLayout>
+		    
+		    <LinearLayout
+		        android:id="@+id/layoutShaman"
 		        android:layout_width="match_parent"
-		        android:layout_height="wrap_content"
-		        android:text="Shaman" />
+			    android:layout_height="wrap_content"
+			    android:orientation="horizontal">
 		    
-		    <CheckBox
-		        android:id="@+id/chkWarlock"
+			    <CheckBox
+			        android:id="@+id/chkShaman"
+			        android:layout_width="match_parent"
+			        android:layout_height="wrap_content"
+			        android:text="Shaman" />
+			</LinearLayout>
+		    
+		    <LinearLayout
+		        android:id="@+id/layoutWarlock"
 		        android:layout_width="match_parent"
-		        android:layout_height="wrap_content"
-		        android:text="Warlock" />
+			    android:layout_height="wrap_content"
+			    android:orientation="horizontal">
 		    
-		    <CheckBox
-		        android:id="@+id/chkWarrior"
+			    <CheckBox
+			        android:id="@+id/chkWarlock"
+			        android:layout_width="match_parent"
+			        android:layout_height="wrap_content"
+			        android:text="Warlock" />
+		    </LinearLayout>
+		    
+		    <LinearLayout
+		        android:id="@+id/layoutWarrior"
 		        android:layout_width="match_parent"
-		        android:layout_height="wrap_content"
-		        android:text="Warrior" />
+			    android:layout_height="wrap_content"
+			    android:orientation="horizontal">
 		    
+			    <CheckBox
+			        android:id="@+id/chkWarrior"
+			        android:layout_width="match_parent"
+			        android:layout_height="wrap_content"
+			        android:text="Warrior" />
+		    </LinearLayout>
 		    
 		    <TextView 
 		        android:id="@+id/textFilterCost"
