@@ -87,8 +87,8 @@ public class NewDeckActivity extends ActionBarActivity{
 			}else{
 				AlertDialog.Builder dlgAlert  = new AlertDialog.Builder(this);
 				
-	            dlgAlert.setMessage("Error: Name already exist or is void.");
-	            dlgAlert.setTitle("Error Message...");
+	            dlgAlert.setMessage("Name already exist or is void.");
+	            dlgAlert.setTitle("WARNING");
 	            dlgAlert.setPositiveButton("OK", null);
 	            dlgAlert.create().show();
 	            
@@ -102,8 +102,8 @@ public class NewDeckActivity extends ActionBarActivity{
 		}else{
 			AlertDialog.Builder dlgAlert  = new AlertDialog.Builder(this);
 			
-            dlgAlert.setMessage("Error: Class empty.");
-            dlgAlert.setTitle("Error Message...");
+            dlgAlert.setMessage("Class empty.");
+            dlgAlert.setTitle("Warning");
             dlgAlert.setPositiveButton("OK", null);
             dlgAlert.create().show();
             

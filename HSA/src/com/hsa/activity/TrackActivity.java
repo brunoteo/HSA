@@ -122,8 +122,8 @@ public class TrackActivity extends ActionBarActivity implements ActionBar.TabLis
 		if(partials == null){
 			AlertDialog.Builder dlgAlert  = new AlertDialog.Builder(this);
 			
-            dlgAlert.setMessage("Error: No cards to be restored.");
-            dlgAlert.setTitle("Error Message...");
+            dlgAlert.setMessage("No cards to be restored.");
+            dlgAlert.setTitle("WARNING");
             dlgAlert.setPositiveButton("OK", null);
             dlgAlert.create().show();
             
@@ -149,8 +149,8 @@ public class TrackActivity extends ActionBarActivity implements ActionBar.TabLis
 		if(n == 0){
 			AlertDialog.Builder dlgAlert  = new AlertDialog.Builder(this);
 			
-            dlgAlert.setMessage("Error: Deck is already reseted.");
-            dlgAlert.setTitle("Error Message...");
+            dlgAlert.setMessage("Deck is already reseted.");
+            dlgAlert.setTitle("WARNING");
             dlgAlert.setPositiveButton("OK", null);
             dlgAlert.create().show();
             
