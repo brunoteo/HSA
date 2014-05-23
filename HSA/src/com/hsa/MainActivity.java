@@ -226,17 +226,7 @@ public class MainActivity extends ActionBarActivity implements
 				startActivityForResult(intent, 1);
 				return true;
 			case R.id.all_card:
-				classFilters = new ArrayList<String>();
-		        classFilters.add("Druid");
-		        classFilters.add("Hunter");
-		        classFilters.add("Mage");
-		        classFilters.add("Neutral");
-		        classFilters.add("Paladin");
-		        classFilters.add("Priest");
-		        classFilters.add("Rogue");
-		        classFilters.add("Shaman");
-		        classFilters.add("Warlock");
-		        classFilters.add("Warrior");
+				classFilters = null;
 				costFilters = null;
 				rarityFilters = null;
 				typeFilters = null;
