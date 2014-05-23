@@ -33,9 +33,6 @@ import android.widget.TextView;
 public class TrackFragment extends Fragment{
 	
 	private HSADatabaseHelper dbHelper;
-	private SaveHandler saveHandler;
-	private SearchHandler searchHandler;
-	private ViewHandler viewHandler;
 	private DeckHandler deckHandler;
 	private TrackHandler trackHandler;
 	

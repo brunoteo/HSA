@@ -68,8 +68,8 @@ public class DeckHandler {
 			} else {
 				AlertDialog.Builder dlgAlert  = new AlertDialog.Builder(context);
 				
-	            dlgAlert.setMessage("Error: Deck contains 30 cards.");
-	            dlgAlert.setTitle("Error Message...");
+	            dlgAlert.setMessage("Deck contains 30 cards.");
+	            dlgAlert.setTitle("WARNING");
 	            dlgAlert.setPositiveButton("OK", null);
 	            dlgAlert.create().show();
 			}

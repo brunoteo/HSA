@@ -170,8 +170,8 @@ ActionBar.TabListener, DeckFragment.OnDeckListener{
 				if(!deckHandler.controlModifyRequest()) {
 					AlertDialog.Builder dlgAlert  = new AlertDialog.Builder(this);
 				
-		            dlgAlert.setMessage("INFO: Deck up to date.");
-		            dlgAlert.setTitle("Info Message...");
+		            dlgAlert.setMessage("Deck up to date.");
+		            dlgAlert.setTitle("INFO");
 		            	            
 		            dlgAlert.setPositiveButton("Ok",
 		                    new DialogInterface.OnClickListener() {
@@ -226,8 +226,8 @@ ActionBar.TabListener, DeckFragment.OnDeckListener{
 				}else{
 					AlertDialog.Builder dlgAlert  = new AlertDialog.Builder(this);
 					
-		            dlgAlert.setMessage("Error: Deck not contains 30 cards.");
-		            dlgAlert.setTitle("Error Message...");
+		            dlgAlert.setMessage("Deck not contains 30 cards.");
+		            dlgAlert.setTitle("Warning");
 		            dlgAlert.setPositiveButton("OK", null);
 		            dlgAlert.create().show();
 		            
