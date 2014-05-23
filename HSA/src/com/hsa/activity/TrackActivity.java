@@ -115,6 +115,8 @@ public class TrackActivity extends ActionBarActivity implements ActionBar.TabLis
 			n += pta.getOccurrences();
 		}
         trackFragment.viewDeckCardsNumber(n);
+        String nameLast = trackHandler.getLastTrack();
+        trackFragment.viewLastCardTracked(nameLast);
 	}
 	
 	public void onClickUndo(View v){
@@ -141,6 +143,9 @@ public class TrackActivity extends ActionBarActivity implements ActionBar.TabLis
 				n += pta.getOccurrences();
 			}
 	        trackFragment.viewDeckCardsNumber(n);
+	        
+	        String nameLast = trackHandler.getLastTrack();
+	        trackFragment.viewLastCardTracked(nameLast);
 		}
 	}
 	
@@ -169,6 +174,7 @@ public class TrackActivity extends ActionBarActivity implements ActionBar.TabLis
 				total += pta.getOccurrences();
 			}
 	        trackFragment.viewDeckCardsNumber(total);
+	        trackFragment.viewLastCardTracked(null);
 		}
 	}
 

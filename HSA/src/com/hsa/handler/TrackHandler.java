@@ -268,4 +268,12 @@ public class TrackHandler {
 		createCardsPile();
 		return partials;
 	}
+
+	public String getLastTrack() {
+		if(pile.size() != 0){
+			return pile.get(pile.size()-1).getName();
+		}else{
+			return null;
+		}
+	}
 }

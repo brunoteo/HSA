@@ -18,6 +18,7 @@ import com.hsa.handler.TrackHandler;
 import com.hsa.handler.ViewHandler;
 
 import android.app.Activity;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -81,12 +82,13 @@ public class TrackFragment extends Fragment{
 			n += partial.getOccurrences();
 		}
         viewDeckCardsNumber(n);
+        viewLastCardTracked(null);
 	}
 
 	public void viewDeckCardsNumber(int n) {
 		textView = (TextView) getView().findViewById(R.id.remainCards);
 		textView.setText("Remaining cards: " + Integer.toString(n) + "/30");
-		
+		textView.setTypeface(null, Typeface.BOLD);
 	}
 
 	public void viewPartialTextualAggregation(final List<PartialTextualAggregation> partials) {
@@ -99,5 +101,17 @@ public class TrackFragment extends Fragment{
 				onTracksListener.onTrackSelected(partials.get(position));				
 			}
 		});
+	}
+
+	public void viewLastCardTracked(String nameLast) {
+		if(nameLast != null){
+			textView = (TextView) getView().findViewById(R.id.lastCard);
+			textView.setText("Last card: " + nameLast);
+			textView.setTypeface(null, Typeface.BOLD);
+		}else{
+			textView = (TextView) getView().findViewById(R.id.lastCard);
+			textView.setText("Last card: ");
+			textView.setTypeface(null, Typeface.BOLD);
+		}
 	}
 }
