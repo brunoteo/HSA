@@ -158,9 +158,9 @@ public class SaveHandler{
 		db.delete(DeckEntry.TABLE_NAME, DeckEntry.COLUMN_NAME_NAME + " = ?", args);
 	}
 	
-	public void updateDeck(List<Formation> tmpFormations, Deck deck) {
+	public void updateDeck(List<Formation> tmpFormations, String deckName) {
 		SQLiteDatabase db = dbHelper.getWritableDatabase();
-		String[] args = new String[]{deck.getName()};
+		String[] args = new String[]{deckName};
 		db.delete(FormationEntry.TABLE_NAME, FormationEntry.COLUMN_NAME_DECK + " = ?", args);
 		
 		for(Formation f : tmpFormations) {
@@ -177,9 +177,9 @@ public class SaveHandler{
 		
 		ContentValues values = new ContentValues();
 		values.put(DeckEntry.COLUMN_NAME_DATE, dateFormat.format(date));
-		String[] deckName = new String[]{deck.getName()};
+		String[] deckValue = new String[]{deckName};
 		
-		db.update(DeckEntry.TABLE_NAME, values, DeckEntry.COLUMN_NAME_NAME + "=?", deckName);
+		db.update(DeckEntry.TABLE_NAME, values, DeckEntry.COLUMN_NAME_NAME + "=?", deckValue);
 		
 		
 		

@@ -7,9 +7,6 @@ import java.util.Map;
 
 import android.app.AlertDialog;
 import android.content.Context;
-import android.widget.EditText;
-
-import com.hsa.aggregation.DeckDataAggregation;
 import com.hsa.aggregation.GraphicalAggregation;
 import com.hsa.bean.Card;
 import com.hsa.bean.Deck;
@@ -86,7 +83,7 @@ public class DeckHandler {
 	}
 	
 	public void saveRequest() {
-		SaveHandler.getInstance(dbHelper).updateDeck(tmpFormations, deck);
+		SaveHandler.getInstance(dbHelper).updateDeck(tmpFormations, deck.getName());
 	}
 	
 	public int cardNumberRequest() {
