@@ -133,30 +133,46 @@ public class DeckHandler {
 	private void insertCard(String cardName) {
 		int index = checkExistenceCard(cardName);
 		if(index >= 0) {
-			int occurrence = tmpGraphicalsAggregations.get(index).getOccurence() + 1;
-			tmpGraphicalsAggregations.get(index).setOccurence(occurrence);
-			int indexF = getDeckIndex(cardName);
-			tmpFormations.get(indexF).setOccurrence(occurrence);
+			increaseOccurrence(cardName, index);
 		} else {
-			Card card = SearchHandler.getInstance(dbHelper).cardSearch(cardName);
-			GraphicalAggregation newDeckCard = ViewHandler.getInstance(dbHelper).createGraphicalAggregation(card, null);
-			tmpGraphicalsAggregations.add(newDeckCard);
-			tmpFormations.add(new Formation(newDeckCard.getName(), deck.getName() ,newDeckCard.getOccurence()));
+			addCard(cardName);
 		}
+	}
+	
+	private void increaseOccurrence(String cardName, int index) {
+		int occurrence = tmpGraphicalsAggregations.get(index).getOccurence() + 1;
+		tmpGraphicalsAggregations.get(index).setOccurence(occurrence);
+		int indexF = getDeckIndex(cardName);
+		tmpFormations.get(indexF).setOccurrence(occurrence);
+	}
+	
+	private void addCard(String cardName) {
+		Card card = SearchHandler.getInstance(dbHelper).cardSearch(cardName);
+		GraphicalAggregation newDeckCard = ViewHandler.getInstance(dbHelper).createGraphicalAggregation(card, null);
+		tmpGraphicalsAggregations.add(newDeckCard);
+		tmpFormations.add(new Formation(newDeckCard.getName(), deck.getName() ,newDeckCard.getOccurence()));
 	}
 	
 	private void deleteCard(String cardName) {
 		int index = checkExistenceCard(cardName);
 		int occurrence = tmpGraphicalsAggregations.get(index).getOccurence();
 		if(occurrence > 1) {
-			tmpGraphicalsAggregations.get(index).setOccurence(occurrence-1);
-			int indexF = getDeckIndex(cardName);
-			tmpFormations.get(indexF).setOccurrence(occurrence-1);
+			decreaseOccurrence(cardName, index, occurrence);
 		} else {
-			tmpGraphicalsAggregations.remove(index);
-			int indexF = getDeckIndex(cardName);
-			tmpFormations.remove(indexF);
+			cancelCard(cardName, index);
 		}
+	}
+	
+	private void decreaseOccurrence(String cardName, int index, int occurrence) {
+		tmpGraphicalsAggregations.get(index).setOccurence(occurrence-1);
+		int indexF = getDeckIndex(cardName);
+		tmpFormations.get(indexF).setOccurrence(occurrence-1);
+	}
+	
+	private void cancelCard(String cardName, int index) {
+		tmpGraphicalsAggregations.remove(index);
+		int indexF = getDeckIndex(cardName);
+		tmpFormations.remove(indexF);
 	}
 	
 	private int getDeckIndex(String cardName) {
