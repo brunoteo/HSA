@@ -16,12 +16,10 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RadioGroup;
 
 public class NewDeckActivity extends ActionBarActivity{
 
-	private RadioGroup radioClass;
-    private Button onClickConfirm;
+	private Button onClickConfirm;
     private String className;
     
     private HSADatabaseHelper dbHelper;
@@ -36,7 +34,6 @@ public class NewDeckActivity extends ActionBarActivity{
 	    viewHandler = ViewHandler.getInstance(dbHelper);
 	    SaveHandler.getInstance(dbHelper);
 	    searchHandler = SearchHandler.getInstance(dbHelper);
-//		className = null;
 	}
 	
 	public void onRadioButtonClicked(View view){
@@ -75,8 +72,8 @@ public class NewDeckActivity extends ActionBarActivity{
 	public void onClickConfirm(View view){
 		EditText editText = (EditText) findViewById(R.id.deck_name);
 		if(classCheck()){
-			boolean nameBool = searchHandler.nameCheck(editText.getText().toString());
-			if(nameBool){
+			boolean nameRight = searchHandler.nameCheck(editText.getText().toString());
+			if(nameRight){
 				
 				DeckDataAggregation dda = viewHandler.deckCreationRequest(editText.getText().toString(), className);
 		    	Intent returnIntent = new Intent();
@@ -119,17 +116,13 @@ public class NewDeckActivity extends ActionBarActivity{
 
 	
 	public void addListenerOnButton() {
-		 
-		radioClass = (RadioGroup) findViewById(R.id.radioClass);
+	
 		onClickConfirm = (Button) findViewById(R.id.buttonConfirm);
 	 
 		onClickConfirm.setOnClickListener(new OnClickListener() {
 	 
 			@Override
 			public void onClick(View v) {
-	 
-			    // get selected radio button from radioGroup
-				int selectedId = radioClass.getCheckedRadioButtonId();
 	 
 			}
 

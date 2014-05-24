@@ -120,15 +120,10 @@ public class MainActivity extends ActionBarActivity implements
 	}
 
 	public void onClickND(View v) {
-		Intent intent = new Intent(MainActivity.this, NewDeckActivity.class);
+		Intent intent = new Intent(this, NewDeckActivity.class);
 	    startActivityForResult(intent, 2);
 	    
 	}
-	
-//	@Override
-//	protected void onNewIntent(Intent intent) {
-//		handleIntent(intent);
-//	}
 	
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
@@ -160,7 +155,7 @@ public class MainActivity extends ActionBarActivity implements
 	    }else if (requestCode == 2){
 	    	if(resultCode == RESULT_OK){
 	            DecksFragment decksFragment = (DecksFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager + ":" + mViewPager.getCurrentItem());
-	            List<DeckDataAggregation> deckDataAggregations = viewHandler.decksRequest(this);
+	            List<DeckDataAggregation> deckDataAggregations = viewHandler.decksRequest();
 	            decksFragment.viewDeckDataAggregations(deckDataAggregations);
 	            DeckDataAggregation dda = new DeckDataAggregation();
 	            dda = data.getExtras().getParcelable("deckDataAggregation");

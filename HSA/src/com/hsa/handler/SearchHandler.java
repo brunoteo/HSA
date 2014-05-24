@@ -295,11 +295,15 @@ public class SearchHandler{
 	public boolean nameCheck(String name) {
 		if (name != null && !name.isEmpty() && !name.trim().isEmpty()){
 			List<Deck> decks = decksSearch();
-			for (Deck deck : decks){
-				if(deck.getName().equals(name)) return false;
-			}
-			return true;
+			return nameCheck(name, decks);
 		}
 		return false;
+	}
+	
+	private boolean nameCheck(String name, List<Deck> decks) {
+		for (Deck deck : decks){
+			if(deck.getName().equals(name)) return false;
+		}
+		return true;
 	}
 }

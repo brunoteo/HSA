@@ -45,22 +45,23 @@ public class ViewHandler{
 		return graphicalsAggregations;
 	}
 	
-	public List<DeckDataAggregation> decksRequest(FragmentActivity fragment) {
+	public List<DeckDataAggregation> decksRequest() {
 		List<Deck> decks = SearchHandler.getInstance(dbHelper).decksSearch();
 		List<DeckDataAggregation> deckDataAggregations = new ArrayList<DeckDataAggregation>();
 		for(Deck deck : decks){
-			deckDataAggregations.add(generateDeckDataAggregation(deck, fragment));
+			deckDataAggregations.add(createDeckDataAggregation(deck));
 		}
 		return deckDataAggregations;
 	}
 	
 	public DeckDataAggregation deckCreationRequest(String name, String className){
 		Deck newDeck = SaveHandler.getInstance(dbHelper).createDeck(name, className);
-        DeckDataAggregation dda = new DeckDataAggregation();
-        dda.setName(newDeck.getName());
-        dda.setClassName(newDeck.getClassName());
-        dda.setCardNumber(0);
-        dda.setDate(newDeck.getDate());
+//        DeckDataAggregation dda = new DeckDataAggregation();
+//        dda.setName(newDeck.getName());
+//        dda.setClassName(newDeck.getClassName());
+//        dda.setCardNumber(0);
+//        dda.setDate(newDeck.getDate());
+		DeckDataAggregation dda = createDeckDataAggregation(newDeck);
         return dda;
 	}
 	
@@ -88,7 +89,7 @@ public class ViewHandler{
 	}
 	
 	
-	private DeckDataAggregation generateDeckDataAggregation(Deck deck, FragmentActivity fragment) {
+	private DeckDataAggregation createDeckDataAggregation(Deck deck) {
 		DeckDataAggregation dda = new DeckDataAggregation();
 		dda.setName(deck.getName());
 		dda.setClassName(deck.getClassName());

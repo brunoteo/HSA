@@ -57,7 +57,7 @@ public class DecksFragment extends Fragment{
         dbHelper = HSADatabaseHelper.getInstance(getActivity());
         viewHandler = ViewHandler.getInstance(dbHelper);
         
-        List<DeckDataAggregation> deckDataAggregations = viewHandler.decksRequest(this.getActivity());
+        List<DeckDataAggregation> deckDataAggregations = viewHandler.decksRequest();
         viewDeckDataAggregations(deckDataAggregations);
         
 	}
