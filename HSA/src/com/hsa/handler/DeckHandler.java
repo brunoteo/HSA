@@ -39,12 +39,7 @@ public class DeckHandler {
 		deck = SearchHandler.getInstance(dbHelper).deckSearch(deckName);
 		tmpFormations = SearchHandler.getInstance(dbHelper).formationsSearch(deckName);
 		copyFormations = SearchHandler.getInstance(dbHelper).formationsSearch(deckName);
-		Map<String, ArrayList<String>> filters = new HashMap<String, ArrayList<String>>();
-		ArrayList<String> classFilter = new ArrayList<String>();
-		classFilter.add(deck.getClassName());
-		classFilter.add("Neutral");
-		filters.put("className", classFilter);
-		return new SearchCriterion(null, filters);
+		return createSearchCriterion();
 	}
 	
 	public List<GraphicalAggregation> deckCardsRequest() {
@@ -58,8 +53,8 @@ public class DeckHandler {
 		}
 	}
 	
-	public List<GraphicalAggregation> modifyDeckRequest(String cardName, int type, Context context) {
-		if(type==0){
+	public List<GraphicalAggregation> modifyDeckRequest(String cardName, boolean insert, Context context) {
+		if(insert){
 			if(checkNumCards()) {
 				insertCard(cardName);
 			} else {
@@ -171,6 +166,15 @@ public class DeckHandler {
 			}
 		}
 		return -1;
+	}
+	
+	private SearchCriterion createSearchCriterion() {
+		Map<String, ArrayList<String>> filters = new HashMap<String, ArrayList<String>>();
+		ArrayList<String> classFilter = new ArrayList<String>();
+		classFilter.add(deck.getClassName());
+		classFilter.add("Neutral");
+		filters.put("className", classFilter);
+		return new SearchCriterion(null, filters);
 	}
 
 

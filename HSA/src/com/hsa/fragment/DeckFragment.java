@@ -88,6 +88,8 @@ public class DeckFragment extends Fragment implements SearchView.OnQueryTextList
         List<GraphicalAggregation> deckCardsGA = deckHandler.deckCardsRequest();
         if(deckCardsGA!=null)
         	viewDeckCardsGraphicsAggregations(deckCardsGA);
+        ((DeckActivity) getActivity()).viewNumCards(deckCardsGA);
+        
         
 	}
 	
@@ -134,10 +136,10 @@ public class DeckFragment extends Fragment implements SearchView.OnQueryTextList
 
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-				List<GraphicalAggregation> deckCardsGA = deckHandler.modifyDeckRequest(graphicalsAggregations.get(position).getName(), 0, getActivity());
+				List<GraphicalAggregation> deckCardsGA = deckHandler.modifyDeckRequest(graphicalsAggregations.get(position).getName(), true, getActivity());
 				deleteItemList();
+				viewDeckCardsGraphicsAggregations(deckCardsGA);	
 				((DeckActivity) getActivity()).viewNumCards(deckCardsGA);
-				viewDeckCardsGraphicsAggregations(deckCardsGA);				
 			}
 		});
 
@@ -176,7 +178,7 @@ public class DeckFragment extends Fragment implements SearchView.OnQueryTextList
 				
 				@Override
 				public void onClick(View v) {
-					List<GraphicalAggregation> deckCardsGA = deckHandler.modifyDeckRequest(v.getTag().toString(), 1, getActivity());
+					List<GraphicalAggregation> deckCardsGA = deckHandler.modifyDeckRequest(v.getTag().toString(), false, getActivity());
 					deleteItemList();
 					viewDeckCardsGraphicsAggregations(deckCardsGA);
 					((DeckActivity) getActivity()).viewNumCards(deckCardsGA);
