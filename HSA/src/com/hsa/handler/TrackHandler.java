@@ -3,8 +3,6 @@ package com.hsa.handler;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.Vector;
-
 import com.hsa.aggregation.PartialTextualAggregation;
 import com.hsa.bean.Card;
 import com.hsa.bean.Deck;
@@ -17,7 +15,6 @@ public class TrackHandler {
 	
 	private HSADatabaseHelper dbHelper;
 	
-	private Deck deck;
 	private List<Formation> tmpFormations;
 	private List<Card> cards;
 	private List<PartialTextualAggregation> pile;
@@ -37,8 +34,7 @@ public class TrackHandler {
 		this.pile = new ArrayList<PartialTextualAggregation>();
 	}
 	
-	public List<Card> trackDeck(Deck deck, List<Formation> tmpFormations) {
-		this.deck = deck;
+	public List<Card> trackDeck(List<Formation> tmpFormations) {
 		this.tmpFormations = tmpFormations;
 		createCardsPile();
 		

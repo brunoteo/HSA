@@ -100,7 +100,7 @@ public class DeckHandler {
 	}
 
 	public List<Card> trackDeckRequest() {
-		List<Card> cards = TrackHandler.getInstance(dbHelper).trackDeck(deck, tmpFormations);
+		List<Card> cards = TrackHandler.getInstance(dbHelper).trackDeck(tmpFormations);
 		return cards;
 	}
 	

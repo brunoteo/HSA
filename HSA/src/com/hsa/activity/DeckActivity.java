@@ -201,7 +201,6 @@ ActionBar.TabListener, DeckFragment.OnDeckListener{
 		                    new DialogInterface.OnClickListener() {
 		                        public void onClick(DialogInterface dialog, int which) {
 		                        	deckHandler.saveRequest();
-		                        	//TODO aggiornare data ultima modifica mazzo
 		                        	launchIntent();
 		                        }
 		                    });

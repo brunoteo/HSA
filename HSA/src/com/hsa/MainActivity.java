@@ -140,10 +140,6 @@ public class MainActivity extends ActionBarActivity implements
 	            typeFilters = data.getStringArrayListExtra("typeResult");
 
 	            Map<String, ArrayList<String>> filters = new HashMap<String, ArrayList<String>>();
-//	            if(classFilters != null || classFilters.size() != 0) filters.put("className", new ArrayList<String>(classFilters));
-//	            if(costFilters != null || costFilters.size() != 0) filters.put("cost", new ArrayList<String>(costFilters));
-//	            if(rarityFilters != null || rarityFilters.size() != 0) filters.put("rarity", new ArrayList<String>(rarityFilters));
-//	            if(typeFilters != null || typeFilters.size() != 0) filters.put("type", new ArrayList<String>(typeFilters));
 	            if(classFilters != null) {
 	            	if(classFilters.size() != 0) filters.put("className", new ArrayList<String>(classFilters));
 	            }
@@ -174,32 +170,6 @@ public class MainActivity extends ActionBarActivity implements
 	    	}
 	    }
 	}
-
-//	private void handleIntent(Intent intent) {
-//
-//        if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
-//            nameFilter = intent.getStringExtra(SearchManager.QUERY);
-//            SearchFragment searchFragment = (SearchFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager + ":" + mViewPager.getCurrentItem());
-//            Map<String, ArrayList<String>> filters = new HashMap<String, ArrayList<String>>();
-//            if(classFilters != null) {
-//            	if(classFilters.size() != 0) filters.put("className", new ArrayList<String>(classFilters));
-//            }
-//            if(costFilters != null){
-//            	if(costFilters.size() != 0) filters.put("cost", new ArrayList<String>(costFilters));
-//            }
-//            if(rarityFilters != null){
-//            	if(rarityFilters.size() != 0) filters.put("rarity", new ArrayList<String>(rarityFilters));
-//            }
-//            if(typeFilters != null){
-//            	if(typeFilters.size() != 0) filters.put("type", new ArrayList<String>(typeFilters));
-//            }
-//            SearchCriterion criterion = new SearchCriterion(nameFilter, filters);
-//            List<GraphicalAggregation> graphicalsAggregations = viewHandler.cardsSearchRequest(criterion, this);
-//            searchFragment.viewGraphicsAggregations(graphicalsAggregations);
-//            
-//        }
-//    }
-
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {

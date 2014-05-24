@@ -15,9 +15,6 @@ import com.hsa.database.HSADatabaseHelper;
 import com.hsa.handler.ViewHandler;
 
 import android.app.Activity;
-import android.app.SearchManager;
-import android.content.Context;
-import android.location.Criteria;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.MenuItemCompat;
@@ -29,7 +26,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemLongClickListener;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.GridView;
 
 public class SearchFragment extends Fragment implements SearchView.OnQueryTextListener{
@@ -93,13 +90,12 @@ public class SearchFragment extends Fragment implements SearchView.OnQueryTextLi
 	public void viewGraphicsAggregations(final List<GraphicalAggregation> graphicalsAggregations) {
 		gridView = (GridView) getView().findViewById(R.id.gridview1);
         gridView.setAdapter(new GraphicalAggregationAdapter(this.getActivity(), graphicalsAggregations));
-        gridView.setOnItemLongClickListener(new OnItemLongClickListener() {
+        gridView.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
-			public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 				CompleteTextualAggregation completeTextualAggregation = viewHandler.completeInfoRequest(graphicalsAggregations.get(position).getName());			
 				onSearchListener.onCardSelected(completeTextualAggregation);
-				return true;
 			}
         	
 		});

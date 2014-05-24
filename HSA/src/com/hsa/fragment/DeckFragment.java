@@ -180,7 +180,6 @@ public class DeckFragment extends Fragment implements SearchView.OnQueryTextList
 					deleteItemList();
 					viewDeckCardsGraphicsAggregations(deckCardsGA);
 					((DeckActivity) getActivity()).viewNumCards(deckCardsGA);
-//					viewNumCards(graphicalsAggregations);
 				}
 			});
 			if(ga.getOccurence()>1) {
