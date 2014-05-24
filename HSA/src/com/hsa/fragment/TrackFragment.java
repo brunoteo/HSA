@@ -3,20 +3,12 @@ package com.hsa.fragment;
 import java.util.List;
 
 import com.hsa.R;
-import com.hsa.adapter.DeckDataAggregationAdapter;
 import com.hsa.adapter.PartialTextualAggregationAdapter;
-import com.hsa.aggregation.DeckDataAggregation;
-import com.hsa.aggregation.GraphicalAggregation;
 import com.hsa.aggregation.PartialTextualAggregation;
 import com.hsa.bean.Card;
 import com.hsa.database.HSADatabaseHelper;
-import com.hsa.fragment.DecksFragment.OnDecksListener;
 import com.hsa.handler.DeckHandler;
-import com.hsa.handler.SaveHandler;
-import com.hsa.handler.SearchHandler;
 import com.hsa.handler.TrackHandler;
-import com.hsa.handler.ViewHandler;
-
 import android.app.Activity;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -25,7 +17,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.TextView;

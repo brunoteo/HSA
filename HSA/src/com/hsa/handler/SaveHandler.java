@@ -2,13 +2,9 @@ package com.hsa.handler;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.Locale;
-
 import android.content.ContentValues;
 import android.database.sqlite.SQLiteDatabase;
 

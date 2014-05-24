@@ -11,12 +11,10 @@ import com.hsa.handler.SaveHandler;
 import com.hsa.handler.SearchHandler;
 import com.hsa.handler.TrackHandler;
 import com.hsa.handler.ViewHandler;
-import com.hsa.fragment.SearchFragment;
 import com.hsa.fragment.TrackFragment;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
@@ -30,10 +28,6 @@ public class TrackActivity extends ActionBarActivity implements ActionBar.TabLis
 	private TrackTabsPagerAdapter trackTabsPagerAdapter;
 	private ViewPager mViewPager;
 
-	private SaveHandler saveHandler;
-	private SearchHandler searchHandler;
-	private ViewHandler viewHandler;
-	private DeckHandler deckHandler;
 	private TrackHandler trackHandler;
 	
 	private String[] tabs = { "Note", "Track"};
@@ -80,10 +74,10 @@ public class TrackActivity extends ActionBarActivity implements ActionBar.TabLis
 				        
         //Istanzio una volta sola gli handler
         dbHelper = HSADatabaseHelper.getInstance(this);
-        searchHandler = SearchHandler.getInstance(dbHelper);
-        saveHandler = SaveHandler.getInstance(dbHelper);
-        viewHandler = ViewHandler.getInstance(dbHelper);
-        deckHandler = DeckHandler.getInstance(dbHelper);
+        SearchHandler.getInstance(dbHelper);
+        SaveHandler.getInstance(dbHelper);
+        ViewHandler.getInstance(dbHelper);
+        DeckHandler.getInstance(dbHelper);
         trackHandler = TrackHandler.getInstance(dbHelper);   
 	}
 
@@ -115,7 +109,7 @@ public class TrackActivity extends ActionBarActivity implements ActionBar.TabLis
 			n += pta.getOccurrences();
 		}
         trackFragment.viewDeckCardsNumber(n);
-        String nameLast = trackHandler.getLastTrack();
+        String nameLast = trackHandler.lastTrackRequest();
         trackFragment.viewLastCardTracked(nameLast);
 	}
 	
@@ -144,7 +138,7 @@ public class TrackActivity extends ActionBarActivity implements ActionBar.TabLis
 			}
 	        trackFragment.viewDeckCardsNumber(n);
 	        
-	        String nameLast = trackHandler.getLastTrack();
+	        String nameLast = trackHandler.lastTrackRequest();
 	        trackFragment.viewLastCardTracked(nameLast);
 		}
 	}
@@ -166,7 +160,7 @@ public class TrackActivity extends ActionBarActivity implements ActionBar.TabLis
                         }
                     });
 		}else{
-			List<PartialTextualAggregation> partials = trackHandler.getAllPartialTextualAggregation();
+			List<PartialTextualAggregation> partials = trackHandler.partialTextualAggregationsRequest(null);
 			TrackFragment trackFragment = (TrackFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager3 + ":" + mViewPager.getCurrentItem());
 	        trackFragment.viewPartialTextualAggregation(partials);
 	        int total = 0;

@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Random;
 import com.hsa.aggregation.PartialTextualAggregation;
 import com.hsa.bean.Card;
-import com.hsa.bean.Deck;
 import com.hsa.bean.Formation;
 import com.hsa.database.HSADatabaseHelper;
 
@@ -43,8 +42,9 @@ public class TrackHandler {
 	}
 
 	public List<PartialTextualAggregation> partialTextualAggregationsRequest(List<Card> cards) {
-		this.cards = cards;
-		partials = ViewHandler.getInstance(dbHelper).generatePartialTextualAggregations(cards, tmpFormations);
+		if(cards!=null)
+			this.cards = cards;
+		partials = ViewHandler.getInstance(dbHelper).generatePartialTextualAggregations(this.cards, tmpFormations);
 		partials = costSort(partials, 0, partials.size()-1);
 		partials = nameSort(partials);
 		
@@ -124,7 +124,7 @@ public class TrackHandler {
 	     
 	      return i;
 	}
-	//TODO aggiungere questi due sort ai diagrammi di tracciamento?
+	
 	private List<PartialTextualAggregation> costSort(List<PartialTextualAggregation> ptas, int left, int right) {
 	      int index = partition(ptas, left, right);
 	      if (left < index - 1)
@@ -257,15 +257,7 @@ public class TrackHandler {
 		return total;
 	}
 
-	public List<PartialTextualAggregation> getAllPartialTextualAggregation() {
-		partials = ViewHandler.getInstance(dbHelper).generatePartialTextualAggregations(cards, tmpFormations);
-		partials = costSort(partials, 0, partials.size()-1);
-		partials = nameSort(partials);
-		createCardsPile();
-		return partials;
-	}
-
-	public String getLastTrack() {
+	public String lastTrackRequest() {
 		if(pile.size() != 0){
 			return pile.get(pile.size()-1).getName();
 		}else{

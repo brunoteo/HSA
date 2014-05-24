@@ -72,9 +72,9 @@ public class DeckHandler {
 	}
 	
 	public boolean controlModifyRequest() {
-		if(checkModify())
-			return true;
-		return false;	
+		if(tmpFormations.equals(copyFormations))
+			return false;
+		return true;	
 	}
 	
 	public void saveRequest() {
@@ -122,12 +122,6 @@ public class DeckHandler {
 			}
 			return -1;
 		}	
-	}
-	
-	private boolean checkModify() {
-		if(tmpFormations.equals(copyFormations))
-			return false;
-		return true;
 	}
 	
 	private void insertCard(String cardName) {
