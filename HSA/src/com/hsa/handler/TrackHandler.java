@@ -44,6 +44,8 @@ public class TrackHandler {
 	public List<PartialTextualAggregation> partialTextualAggregationsRequest(List<Card> cards) {
 		if(cards!=null)
 			this.cards = cards;
+		else
+			createCardsPile();
 		partials = ViewHandler.getInstance(dbHelper).generatePartialTextualAggregations(this.cards, tmpFormations);
 		partials = costSort(partials, 0, partials.size()-1);
 		partials = nameSort(partials);
