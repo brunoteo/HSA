@@ -152,10 +152,11 @@ public class SaveHandler{
 		return deck;
 	}
 
-	public void deleteDeck(Deck deck) {
+	public void deleteDeck(String deckName) {
 		SQLiteDatabase db = dbHelper.getWritableDatabase();
-		String[] args = new String[]{deck.getName()};
+		String[] args = new String[]{deckName};
 		db.delete(DeckEntry.TABLE_NAME, DeckEntry.COLUMN_NAME_NAME + " = ?", args);
+		db.delete(FormationEntry.TABLE_NAME, FormationEntry.COLUMN_NAME_DECK + " = ?", args);
 	}
 	
 	public void updateDeck(List<Formation> tmpFormations, String deckName) {

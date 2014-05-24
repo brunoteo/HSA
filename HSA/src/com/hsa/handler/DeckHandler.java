@@ -95,7 +95,7 @@ public class DeckHandler {
 	}
 	
 	public void deckDeletionRequest() {
-		SaveHandler.getInstance(dbHelper).deleteDeck(deck);
+		SaveHandler.getInstance(dbHelper).deleteDeck(deck.getName());
 		
 	}
 

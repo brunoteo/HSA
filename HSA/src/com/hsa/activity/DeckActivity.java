@@ -242,8 +242,8 @@ ActionBar.TabListener, DeckFragment.OnDeckListener{
 				
 				AlertDialog.Builder dlgAlertSave  = new AlertDialog.Builder(this);
 				
-				dlgAlertSave.setMessage("INFO: Do you want to delete?");
-				dlgAlertSave.setTitle("Delete Deck...");
+				dlgAlertSave.setMessage("Do you want to delete?");
+				dlgAlertSave.setTitle("INFO");
 				
 				dlgAlertSave.setNegativeButton("CANCEL", 
 						new DialogInterface.OnClickListener() {
