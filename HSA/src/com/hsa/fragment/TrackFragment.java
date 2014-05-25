@@ -65,15 +65,15 @@ public class TrackFragment extends Fragment{
         List<Card> cards = deckHandler.trackDeckRequest();
         List<PartialTextualAggregation> partials = trackHandler.partialTextualAggregationsRequest(cards);
         viewPartialTextualAggregation(partials);
-        int n = 0;
-		for (PartialTextualAggregation partial : partials){
-			n += partial.getOccurrences();
-		}
-        viewDeckCardsNumber(n);
+        viewDeckCardsNumber(partials);
         viewLastCardTracked(null);
 	}
 
-	public void viewDeckCardsNumber(int n) {
+	public void viewDeckCardsNumber(List<PartialTextualAggregation> partials) {
+		int n = 0;
+		for (PartialTextualAggregation partial : partials){
+			n += partial.getOccurrences();
+		}
 		textView = (TextView) getView().findViewById(R.id.remainCards);
 		textView.setText("Remaining cards: " + Integer.toString(n) + "/30");
 		textView.setTypeface(null, Typeface.BOLD);

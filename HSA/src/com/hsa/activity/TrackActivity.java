@@ -104,11 +104,7 @@ public class TrackActivity extends ActionBarActivity implements ActionBar.TabLis
 		List<PartialTextualAggregation> partials = trackHandler.trackCard(partial);
         TrackFragment trackFragment = (TrackFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager3 + ":" + mViewPager.getCurrentItem());
         trackFragment.viewPartialTextualAggregation(partials);
-        int n = 0;
-		for (PartialTextualAggregation pta : partials){
-			n += pta.getOccurrences();
-		}
-        trackFragment.viewDeckCardsNumber(n);
+        trackFragment.viewDeckCardsNumber(partials);
         String nameLast = trackHandler.lastTrackRequest();
         trackFragment.viewLastCardTracked(nameLast);
 	}
@@ -132,11 +128,7 @@ public class TrackActivity extends ActionBarActivity implements ActionBar.TabLis
 		}else{
 			TrackFragment trackFragment = (TrackFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager3 + ":" + mViewPager.getCurrentItem());
 	        trackFragment.viewPartialTextualAggregation(partials);
-	        int n = 0;
-			for (PartialTextualAggregation pta : partials){
-				n += pta.getOccurrences();
-			}
-	        trackFragment.viewDeckCardsNumber(n);
+	        trackFragment.viewDeckCardsNumber(partials);
 	        
 	        String nameLast = trackHandler.lastTrackRequest();
 	        trackFragment.viewLastCardTracked(nameLast);
@@ -163,11 +155,7 @@ public class TrackActivity extends ActionBarActivity implements ActionBar.TabLis
 			List<PartialTextualAggregation> partials = trackHandler.partialTextualAggregationsRequest(null);
 			TrackFragment trackFragment = (TrackFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager3 + ":" + mViewPager.getCurrentItem());
 	        trackFragment.viewPartialTextualAggregation(partials);
-	        int total = 0;
-			for (PartialTextualAggregation pta : partials){
-				total += pta.getOccurrences();
-			}
-	        trackFragment.viewDeckCardsNumber(total);
+	        trackFragment.viewDeckCardsNumber(partials);
 	        trackFragment.viewLastCardTracked(null);
 		}
 	}
