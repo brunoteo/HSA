@@ -21,11 +21,10 @@ import android.widget.TextView;
 public class GraphicalAggregationAdapter extends BaseAdapter{
 
 	private final List<GraphicalAggregation> grapichalsAggregations;
-	private LayoutInflater inflater;
 	private Context context;
  
 	public GraphicalAggregationAdapter(Context context, List<GraphicalAggregation> ga) {
-		this.inflater = LayoutInflater.from(context);
+		LayoutInflater.from(context);
 		this.grapichalsAggregations = ga;
 		this.context = context;
 	}

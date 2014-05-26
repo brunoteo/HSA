@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map.Entry;
 
-import com.hsa.activity.NewDeckActivity;
 import com.hsa.bean.Card;
 import com.hsa.bean.Deck;
 import com.hsa.bean.Formation;
@@ -14,8 +13,6 @@ import com.hsa.contract.DeckEntry;
 import com.hsa.contract.FormationEntry;
 import com.hsa.database.HSADatabaseHelper;
 
-import android.app.AlertDialog;
-import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 

@@ -1,7 +1,5 @@
 package com.hsa.adapter;
 
-import com.hsa.fragment.DeckFragment;
-import com.hsa.fragment.DeckInformationFragment;
 import com.hsa.fragment.NoteFragment;
 import com.hsa.fragment.TrackFragment;
 

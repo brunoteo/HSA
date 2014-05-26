@@ -2,11 +2,7 @@ package com.hsa.adapter;
 
 import com.hsa.fragment.DeckFragment;
 import com.hsa.fragment.DeckInformationFragment;
-import com.hsa.fragment.DecksFragment;
-import com.hsa.fragment.NewsFragment;
 import com.hsa.fragment.NoteFragment;
-import com.hsa.fragment.SearchFragment;
-
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;

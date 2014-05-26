@@ -14,7 +14,7 @@ public class TrackHandler {
 	
 	private HSADatabaseHelper dbHelper;
 	
-	private List<Formation> tmpFormations;
+	private List<Formation> trackFormations;
 	private List<Card> cards;
 	private List<PartialTextualAggregation> pile;
 	private List<PartialTextualAggregation> partials;
@@ -34,7 +34,7 @@ public class TrackHandler {
 	}
 	
 	public List<Card> trackDeck(List<Formation> tmpFormations) {
-		this.tmpFormations = tmpFormations;
+		this.trackFormations = tmpFormations;
 		createCardsPile();
 		
 		List<Card> cards = SearchHandler.getInstance(dbHelper).deckCardsSearch(tmpFormations);
@@ -46,7 +46,7 @@ public class TrackHandler {
 			this.cards = cards;
 		else
 			createCardsPile();
-		partials = ViewHandler.getInstance(dbHelper).generatePartialTextualAggregations(this.cards, tmpFormations);
+		partials = ViewHandler.getInstance(dbHelper).generatePartialTextualAggregations(this.cards, trackFormations);
 		partials = costSort(partials, 0, partials.size()-1);
 		partials = nameSort(partials);
 		

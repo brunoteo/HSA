@@ -3,7 +3,6 @@ package com.hsa.adapter;
 import java.util.List;
 
 import com.hsa.R;
-import com.hsa.aggregation.DeckDataAggregation;
 import com.hsa.aggregation.PartialTextualAggregation;
 
 import android.content.Context;
