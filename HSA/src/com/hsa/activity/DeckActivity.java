@@ -21,6 +21,7 @@ import com.hsa.handler.TrackHandler;
 import com.hsa.handler.ViewHandler;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -156,6 +157,7 @@ ActionBar.TabListener, DeckFragment.OnDeckListener{
     	Intent intent = new Intent(this, MainActivity.class);
     	intent.putExtra("tab", "Decks");
     	startActivity(intent);
+    	finish();
 	}
 	
 	@Override

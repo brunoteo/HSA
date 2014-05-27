@@ -42,10 +42,12 @@ public class TrackHandler {
 	}
 
 	public List<PartialTextualAggregation> partialTextualAggregationsRequest(List<Card> cards) {
-		if(cards!=null)
-			this.cards = cards;
-		else
-			createCardsPile();
+		if(cards!=null) this.cards = cards;
+		else{
+			if(pile.size() == 0) return null;
+		}
+		
+		createCardsPile();
 		partials = ViewHandler.getInstance(dbHelper).generatePartialTextualAggregations(this.cards, tmpFormations);
 		partials = costSort(partials, 0, partials.size()-1);
 		partials = nameSort(partials);
@@ -249,14 +251,6 @@ public class TrackHandler {
 
 	private PartialTextualAggregation popLastTrackedCard() {
 		return pile.remove(pile.size()-1);
-	}
-
-	public int pileNumberRequest() {
-		int total = 0;
-		for(PartialTextualAggregation partial : pile){
-			total += partial.getOccurrences();
-		}
-		return total;
 	}
 
 	public String lastTrackRequest() {
