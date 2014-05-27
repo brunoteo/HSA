@@ -62,6 +62,11 @@ public class DecksFragment extends Fragment{
         
 	}
 	
+	public void refreshList() {
+		List<DeckDataAggregation> deckDataAggregations = viewHandler.decksRequest();
+        viewDeckDataAggregations(deckDataAggregations);
+	}
+	
 	public void viewDeckDataAggregations(final List<DeckDataAggregation> deckDataAggregations) {
 		listView = (ListView) getView().findViewById(R.id.deckListView);
 		listView.setAdapter(new DeckDataAggregationAdapter(this.getActivity(), deckDataAggregations));
