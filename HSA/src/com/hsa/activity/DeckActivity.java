@@ -157,7 +157,6 @@ ActionBar.TabListener, DeckFragment.OnDeckListener{
     	Intent intent = new Intent(this, MainActivity.class);
     	intent.putExtra("tab", "Decks");
     	startActivity(intent);
-    	finish();
 	}
 	
 	@Override
