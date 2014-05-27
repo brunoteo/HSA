@@ -7,6 +7,7 @@ import java.util.Map;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
@@ -132,9 +133,13 @@ public class MainActivity extends ActionBarActivity implements
 	protected void onRestart() {
 	    super.onResume();
 	    final ActionBar actionBar = getSupportActionBar();
-	    DecksFragment deckFragment = (DecksFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager + ":" + mViewPager.getCurrentItem());
-	    deckFragment.refreshList();
-	    actionBar.setSelectedNavigationItem(2);
+	    Fragment s = getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager + ":" + mViewPager.getCurrentItem());
+	    if(s instanceof DecksFragment) {
+	    	DecksFragment deckFragment = (DecksFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager + ":" + mViewPager.getCurrentItem());
+		    deckFragment.refreshList();
+		    actionBar.setSelectedNavigationItem(2);
+	    }
+	    
 	    // Normal case behavior follows
 	}
 
