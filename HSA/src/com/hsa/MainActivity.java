@@ -260,6 +260,7 @@ public class MainActivity extends ActionBarActivity implements
 	public void onDeckSelected(DeckDataAggregation deckDataAggregation) {
 		Intent intent = new Intent(this, DeckActivity.class);
 		intent.putExtra("deckDataAggregation", deckDataAggregation);
+		finish();
 		startActivity(intent);
 		
 	}

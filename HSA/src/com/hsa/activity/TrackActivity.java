@@ -136,8 +136,8 @@ public class TrackActivity extends ActionBarActivity implements ActionBar.TabLis
 	}
 	
 	public void onClickReset(View v){
-		int n = trackHandler.pileNumberRequest();
-		if(n == 0){
+		List<PartialTextualAggregation> partials = trackHandler.partialTextualAggregationsRequest(null);
+		if(partials == null){
 			AlertDialog.Builder dlgAlert  = new AlertDialog.Builder(this);
 			
             dlgAlert.setMessage("Deck is already reseted.");
@@ -152,7 +152,6 @@ public class TrackActivity extends ActionBarActivity implements ActionBar.TabLis
                         }
                     });
 		}else{
-			List<PartialTextualAggregation> partials = trackHandler.partialTextualAggregationsRequest(null);
 			TrackFragment trackFragment = (TrackFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager3 + ":" + mViewPager.getCurrentItem());
 	        trackFragment.viewPartialTextualAggregation(partials);
 	        trackFragment.viewDeckCardsNumber(partials);
