@@ -25,6 +25,7 @@ import com.hsa.aggregation.DeckDataAggregation;
 import com.hsa.aggregation.GraphicalAggregation;
 import com.hsa.bean.SearchCriterion;
 import com.hsa.database.HSADatabaseHelper;
+import com.hsa.fragment.DeckFragment;
 import com.hsa.fragment.SearchFragment;
 import com.hsa.fragment.DecksFragment;
 import com.hsa.handler.DeckHandler;
@@ -117,6 +118,24 @@ public class MainActivity extends ActionBarActivity implements
             saveHandler.fillDB();
         }
         
+	}
+	
+//	@Override
+//	protected void onResume() {
+//	    super.onResume();
+//	    final ActionBar actionBar = getSupportActionBar();
+//	    actionBar.setSelectedNavigationItem(2);
+//	    // Normal case behavior follows
+//	}
+	
+	@Override
+	protected void onRestart() {
+	    super.onResume();
+	    final ActionBar actionBar = getSupportActionBar();
+	    DecksFragment deckFragment = (DecksFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager + ":" + mViewPager.getCurrentItem());
+	    deckFragment.refreshList();
+	    actionBar.setSelectedNavigationItem(2);
+	    // Normal case behavior follows
 	}
 
 	public void onClickND(View v) {
