@@ -106,6 +106,11 @@ public class TrackActivity extends ActionBarActivity implements ActionBar.TabLis
         trackFragment.viewPartialTextualAggregation(partials);
         trackFragment.viewDeckCardsNumber(partials);
         String nameLast = trackHandler.lastTrackRequest();
+        String[] splitName = nameLast.split(" ");
+        nameLast = "";
+		for(String split : splitName) {
+			nameLast+= split.substring(0, 1).toUpperCase() + split.substring(1) + " ";
+		}
         trackFragment.viewLastCardTracked(nameLast);
 	}
 	
@@ -131,6 +136,11 @@ public class TrackActivity extends ActionBarActivity implements ActionBar.TabLis
 	        trackFragment.viewDeckCardsNumber(partials);
 	        
 	        String nameLast = trackHandler.lastTrackRequest();
+	        String[] splitName = nameLast.split(" ");
+	        nameLast = "";
+			for(String split : splitName) {
+				nameLast+= split.substring(0, 1).toUpperCase() + split.substring(1) + " ";
+			}
 	        trackFragment.viewLastCardTracked(nameLast);
 		}
 	}
