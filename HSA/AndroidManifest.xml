@@ -57,7 +57,7 @@
 	
 		<activity
 	        android:name="com.hsa.activity.TrackActivity"
-	        android:label="@string/modify_deck"
+	        android:label="@string/track_deck"
 	        android:screenOrientation="portrait" 
 	        android:parentActivityName="com.hsa.MainActivity">          
 		</activity>
