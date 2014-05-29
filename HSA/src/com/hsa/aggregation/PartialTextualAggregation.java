@@ -1,10 +1,5 @@
 package com.hsa.aggregation;
 
-import java.util.List;
-
-import com.hsa.bean.Card;
-import com.hsa.bean.Formation;
-
 public class PartialTextualAggregation{
 	
 	private String name;

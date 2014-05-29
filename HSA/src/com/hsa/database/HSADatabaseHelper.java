@@ -1,7 +1,5 @@
 package com.hsa.database;
 
-import java.io.Serializable;
-
 import com.hsa.contract.CardEntry;
 import com.hsa.contract.DeckEntry;
 import com.hsa.contract.FormationEntry;
