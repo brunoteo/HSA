@@ -2,11 +2,9 @@ package com.hsa.adapter;
 
 import java.util.List;
 
-import com.hsa.R;
 import com.hsa.aggregation.GraphicalAggregation;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.graphics.Point;
 import android.view.Display;
 import android.view.LayoutInflater;
@@ -16,7 +14,6 @@ import android.view.WindowManager;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 public class GraphicalAggregationAdapter extends BaseAdapter{
 
