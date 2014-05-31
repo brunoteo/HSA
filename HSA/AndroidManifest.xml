@@ -59,7 +59,7 @@
 	        android:name="com.hsa.activity.TrackActivity"
 	        android:label="@string/track_deck"
 	        android:screenOrientation="portrait" 
-	        android:parentActivityName="com.hsa.DeckActivity">          
+	        android:parentActivityName="com.hsa.activity.DeckActivity">          
 		</activity>
     </application>
 
