@@ -1,6 +1,8 @@
 package com.hsa.aggregation;
 
-public class PartialTextualAggregation{
+import com.hsa.bean.Formation;
+
+public class PartialTextualAggregation implements Cloneable{
 	
 	private String name;
 	private Integer cost;
@@ -47,5 +49,11 @@ public class PartialTextualAggregation{
 	}
 	public void setOccurrences(Integer occurrences) {
 		this.occurrences = occurrences;
+	}
+	
+	@Override
+	public Object clone() {
+		PartialTextualAggregation f = new PartialTextualAggregation(name, cost, rarity, probability, occurrences);
+		return f;
 	}
 }

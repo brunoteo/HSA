@@ -15,9 +15,9 @@ public class TrackHandler {
 	private HSADatabaseHelper dbHelper;
 	
 	private List<Formation> trackFormations;
-	private List<Card> cards;
 	private List<PartialTextualAggregation> pile;
-	private List<PartialTextualAggregation> partials;
+	private List<PartialTextualAggregation> copyPartials;
+	private List<PartialTextualAggregation> staticPartials;
 	
 	public static TrackHandler getInstance(HSADatabaseHelper dbHelper) {
 		if(trackHandler == null)
@@ -42,19 +42,28 @@ public class TrackHandler {
 	}
 
 	public List<PartialTextualAggregation> partialTextualAggregationsRequest(List<Card> cards) {
-		if(cards!=null) this.cards = cards;
+		if(cards!=null) {
+			staticPartials = ViewHandler.getInstance(dbHelper).generatePartialTextualAggregations(cards, trackFormations);
+			staticPartials = costSort(staticPartials, 0, staticPartials.size()-1);
+			staticPartials = nameSort(staticPartials);
+		}
 		else{
 			if(pile.size() == 0) return null;
 		}
 		
 		createCardsPile();
-		partials = ViewHandler.getInstance(dbHelper).generatePartialTextualAggregations(this.cards, trackFormations);
-		partials = costSort(partials, 0, partials.size()-1);
-		partials = nameSort(partials);
+		resetPartialTextualAggregations();
 		
-		return partials;
+		return copyPartials;
 	}
 	
+	private void resetPartialTextualAggregations() {
+		copyPartials = new ArrayList<PartialTextualAggregation>();
+		for(PartialTextualAggregation pta : staticPartials){
+			copyPartials.add((PartialTextualAggregation) pta.clone());
+		}
+	}
+
 	private List<PartialTextualAggregation> nameSort(List<PartialTextualAggregation> ptas){
 		int i = 0;
 		while(i<ptas.size()-1){
@@ -147,19 +156,21 @@ public class TrackHandler {
 		}
 		addCardToPile(partial);
 		calculateProbabilities();
-		partials = costSort(partials, 0, partials.size()-1);
-		partials = nameSort(partials);
-		return partials;
+		if(copyPartials.size()>1){
+			copyPartials = costSort(copyPartials, 0, copyPartials.size()-1);
+			copyPartials = nameSort(copyPartials);
+		}
+		return copyPartials;
 	}
 
 	private void calculateProbabilities() {
 		int total = 0;
-		for (PartialTextualAggregation partial : partials){
+		for (PartialTextualAggregation partial : copyPartials){
 			total += partial.getOccurrences();
 		}
 		int i = 0;
-		for(PartialTextualAggregation partial : partials){
-			Double prob = (double) Math.round(((partials.get(i).getOccurrences() * 10000) / total )) / 100;
+		for(PartialTextualAggregation partial : copyPartials){
+			Double prob = (double) Math.round(((copyPartials.get(i).getOccurrences() * 10000) / total )) / 100;
 			partial.setProbability(prob);
 			i++;
 		}
@@ -171,9 +182,9 @@ public class TrackHandler {
 
 	private void deleteCard(PartialTextualAggregation partial) {
 		int i = 0;
-		for(PartialTextualAggregation pta : partials){
+		for(PartialTextualAggregation pta : copyPartials){
 			if(pta.getName().equals(partial.getName())){
-				partials.remove(i);
+				copyPartials.remove(i);
 				break;
 			}
 			i++;
@@ -182,9 +193,9 @@ public class TrackHandler {
 
 	private void decreaseOccurrence(PartialTextualAggregation partial) {
 		int i = 0;
-		for(PartialTextualAggregation pta : partials){
+		for(PartialTextualAggregation pta : copyPartials){
 			if(pta.getName().equals(partial.getName())){
-				partials.get(i).setOccurrences(partials.get(i).getOccurrences()-1);
+				copyPartials.get(i).setOccurrences(copyPartials.get(i).getOccurrences()-1);
 				break;
 			}
 			i++;
@@ -194,7 +205,7 @@ public class TrackHandler {
 
 	private int checkCardOccurrence(PartialTextualAggregation partial) {
 		int occ = 0;
-		for(PartialTextualAggregation pta : partials){
+		for(PartialTextualAggregation pta : copyPartials){
 			if(pta.getName().equals(partial.getName())){
 				occ = pta.getOccurrences();
 				break;
@@ -213,37 +224,39 @@ public class TrackHandler {
 			insertCard(pta);
 		}
 		updateProbabilities();
-		partials = costSort(partials, 0, partials.size()-1);
-		partials = nameSort(partials);
-		return partials;
+		if(copyPartials.size()>1){
+			copyPartials = costSort(copyPartials, 0, copyPartials.size()-1);
+			copyPartials = nameSort(copyPartials);
+		}
+		return copyPartials;
 	}
 	
 	public void updateProbabilities(){
 		int total = 0;
-		for (PartialTextualAggregation partial : partials){
+		for (PartialTextualAggregation partial : copyPartials){
 			total += partial.getOccurrences();
 		}
 		
-		for (PartialTextualAggregation partial : partials){
+		for (PartialTextualAggregation partial : copyPartials){
 			Double probability = (double) Math.round(((partial.getOccurrences() * 10000) / total ))/100;
 			partial.setProbability(probability);
 		}
 	}
 
 	private void insertCard(PartialTextualAggregation pta) {
-		partials.add(pta);
+		copyPartials.add(pta);
 	}
 
 	private void increaseOccurrencesNumber(PartialTextualAggregation pta) {
 		int i = 0;
-		for(PartialTextualAggregation partial : partials){
-			if(pta.getName().equals(partial.getName())) partials.get(i).setOccurrences(partials.get(i).getOccurrences() + 1);
+		for(PartialTextualAggregation partial : copyPartials){
+			if(pta.getName().equals(partial.getName())) copyPartials.get(i).setOccurrences(copyPartials.get(i).getOccurrences() + 1);
 			i++;
 		}
 	}
 
 	private int verifyCardOccurrences(PartialTextualAggregation pta) {
-		for(PartialTextualAggregation partial : partials){
+		for(PartialTextualAggregation partial : copyPartials){
 			if(pta.getName().equals(partial.getName())) return partial.getOccurrences();
 		}
 		return 0;

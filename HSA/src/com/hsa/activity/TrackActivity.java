@@ -136,11 +136,17 @@ public class TrackActivity extends ActionBarActivity implements ActionBar.TabLis
 	        trackFragment.viewDeckCardsNumber(partials);
 	        
 	        String nameLast = trackHandler.lastTrackRequest();
-	        String[] splitName = nameLast.split(" ");
-	        nameLast = "";
-			for(String split : splitName) {
-				nameLast+= split.substring(0, 1).toUpperCase() + split.substring(1) + " ";
-			}
+	        if(nameLast != null){
+	        	String[] splitName = nameLast.split(" ");
+	        	nameLast = "";
+				for(String split : splitName) {
+					nameLast+= split.substring(0, 1).toUpperCase() + split.substring(1) + " ";
+				}
+	        }else{
+	        	nameLast = "";
+	        }
+	        
+	        
 	        trackFragment.viewLastCardTracked(nameLast);
 		}
 	}
