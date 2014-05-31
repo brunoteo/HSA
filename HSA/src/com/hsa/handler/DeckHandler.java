@@ -38,7 +38,11 @@ public class DeckHandler {
 	public SearchCriterion deckCriterionRequest(String deckName) {
 		deck = SearchHandler.getInstance(dbHelper).deckSearch(deckName);
 		tmpFormations = SearchHandler.getInstance(dbHelper).formationsSearch(deckName);
-		copyFormations = SearchHandler.getInstance(dbHelper).formationsSearch(deckName);
+		copyFormations = new ArrayList<Formation>();
+		for(Formation f : tmpFormations){
+			copyFormations.add((Formation) f.clone());
+		}
+		//		copyFormations = SearchHandler.getInstance(dbHelper).formationsSearch(deckName);
 		return createSearchCriterion();
 	}
 	

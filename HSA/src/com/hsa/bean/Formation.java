@@ -1,6 +1,6 @@
 package com.hsa.bean;
 
-public class Formation{
+public class Formation implements Cloneable{
 
 	private String card;
 	private String deck;
@@ -55,6 +55,12 @@ public class Formation{
 	@Override
 	public int hashCode() {
 		return card.hashCode() + deck.hashCode() + occurrence.hashCode();
+	}
+	
+	@Override
+	public Object clone() {
+		Formation f = new Formation(card, deck, occurrence);
+		return f;
 	}
 
 }
