@@ -35,7 +35,6 @@ public class TrackHandler {
 	
 	public List<Card> trackDeck(List<Formation> tmpFormations) {
 		this.trackFormations = tmpFormations;
-		createCardsPile();
 		
 		List<Card> cards = SearchHandler.getInstance(dbHelper).deckCardsSearch(tmpFormations);
 		return cards;
