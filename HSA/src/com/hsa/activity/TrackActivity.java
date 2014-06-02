@@ -152,7 +152,7 @@ public class TrackActivity extends ActionBarActivity implements ActionBar.TabLis
 	}
 	
 	public void onClickReset(View v){
-		List<PartialTextualAggregation> partials = trackHandler.partialTextualAggregationsRequest(null);
+		List<PartialTextualAggregation> partials = trackHandler.trackReset();
 		if(partials == null){
 			AlertDialog.Builder dlgAlert  = new AlertDialog.Builder(this);
 			

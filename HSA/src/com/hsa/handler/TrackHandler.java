@@ -35,20 +35,18 @@ public class TrackHandler {
 	
 	public List<PartialTextualAggregation> trackDeck() {
 		this.trackFormations = DeckHandler.getInstance(dbHelper).getTmpFormations();	
-		List<Card> cards = SearchHandler.getInstance(dbHelper).deckCardsSearch(this.trackFormations);	
-		return ViewHandler.getInstance(dbHelper).generatePartialTextualAggregations(cards, this.trackFormations);
-	}
-
-	public List<PartialTextualAggregation> partialTextualAggregationsRequest(List<Card> cards) {
-		if(cards!=null) {
-			staticPartials = ViewHandler.getInstance(dbHelper).generatePartialTextualAggregations(cards, trackFormations);
-			staticPartials = costSort(staticPartials, 0, staticPartials.size()-1);
-			staticPartials = nameSort(staticPartials);
-		}
-		else{
-			if(pile.size() == 0) return null;
-		}
+		List<Card> cards = SearchHandler.getInstance(dbHelper).deckCardsSearch(this.trackFormations);
+		staticPartials = ViewHandler.getInstance(dbHelper).generatePartialTextualAggregations(cards, this.trackFormations);
+		staticPartials = costSort(staticPartials, 0, staticPartials.size()-1);
+		staticPartials = nameSort(staticPartials);
+		createCardsPile();
+		resetPartialTextualAggregations();
 		
+		return copyPartials;
+	}
+	
+	public List<PartialTextualAggregation> trackReset(){
+		if(pile.size() == 0) return null;
 		createCardsPile();
 		resetPartialTextualAggregations();
 		

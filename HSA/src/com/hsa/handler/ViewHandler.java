@@ -104,29 +104,32 @@ public class ViewHandler{
 
 	public List<PartialTextualAggregation> generatePartialTextualAggregations(List<Card> cards, List<Formation> trackFormations) {
 		
-		int total = 0;
-		for(Formation formation : trackFormations){
-			//if(formation.getCard() == card.getName()) this.occurrences = formation.getOccurrence();
-			total = total + formation.getOccurrence();
-		}
-		
 		List<PartialTextualAggregation> partials = new ArrayList<PartialTextualAggregation>();
 		
 		for (Card card : cards){
-			PartialTextualAggregation partial = new PartialTextualAggregation(card.getName(), card.getCost(), card.getRarity(), 0.0, 0);
-			for(Formation formation : trackFormations){
-				if(formation.getCard().equals(card.getName())){
-					partial.setOccurrences(formation.getOccurrence());
-					Double probability = (double) Math.round(((formation.getOccurrence() * 10000) / total ))/100;
-					partial.setProbability(probability);
-				}
-			}
-			partials.add(partial);
+			partials.add(createPartialTextualAggregation(card, trackFormations));
+			
 		}
 		
 		return partials;
 	}
 	
+	private PartialTextualAggregation createPartialTextualAggregation(Card card, List<Formation> trackFormations) {
+		int total = 0;
+		for(Formation formation : trackFormations){
+			total = total + formation.getOccurrence();
+		}
+		PartialTextualAggregation partial = new PartialTextualAggregation(card.getName(), card.getCost(), card.getRarity(), 0.0, 0);
+		for(Formation formation : trackFormations){
+			if(formation.getCard().equals(card.getName())){
+				partial.setOccurrences(formation.getOccurrence());
+				Double probability = (double) Math.round(((formation.getOccurrence() * 10000) / total ))/100;
+				partial.setProbability(probability);
+			}
+		}
+		return partial;
+	}
+
 	public List<GraphicalAggregation> generateDeckCardsAggregations(List<Card> cards, List<Formation> formations) {
 		List<GraphicalAggregation> graphicalsAggregations = new ArrayList<GraphicalAggregation>();
 		Formation cardFormation = null;
