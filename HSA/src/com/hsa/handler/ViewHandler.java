@@ -54,16 +54,16 @@ public class ViewHandler{
 		return deckDataAggregations;
 	}
 	
-	public DeckDataAggregation deckCreationRequest(String name, String className){
-		Deck newDeck = SaveHandler.getInstance(dbHelper).createDeck(name, className);
+//	public DeckDataAggregation deckCreationRequest(String name, String className){
+//		Deck newDeck = SaveHandler.getInstance(dbHelper).createDeck(name, className);
 //        DeckDataAggregation dda = new DeckDataAggregation();
 //        dda.setName(newDeck.getName());
 //        dda.setClassName(newDeck.getClassName());
 //        dda.setCardNumber(0);
 //        dda.setDate(newDeck.getDate());
-		DeckDataAggregation dda = createDeckDataAggregation(newDeck);
-        return dda;
-	}
+//		DeckDataAggregation dda = createDeckDataAggregation(newDeck);
+//        return dda;
+//	}
 	
 	public CompleteTextualAggregation completeInfoRequest(String cardName) {
 		Card card = SearchHandler.getInstance(dbHelper).cardSearch(cardName);
@@ -89,7 +89,7 @@ public class ViewHandler{
 	}
 	
 	
-	private DeckDataAggregation createDeckDataAggregation(Deck deck) {
+	public DeckDataAggregation createDeckDataAggregation(Deck deck) {
 		DeckDataAggregation dda = new DeckDataAggregation();
 		dda.setName(deck.getName());
 		dda.setClassName(deck.getClassName());

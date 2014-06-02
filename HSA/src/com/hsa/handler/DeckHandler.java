@@ -5,8 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import android.app.AlertDialog;
-import android.content.Context;
 import com.hsa.aggregation.GraphicalAggregation;
 import com.hsa.bean.Card;
 import com.hsa.bean.Deck;
@@ -88,10 +86,10 @@ public class DeckHandler {
 		return cards;
 	}
 	
-	public void deckDeletionRequest() {
-		SaveHandler.getInstance(dbHelper).deleteDeck(deck.getName());
-		
-	}
+//	public void deckDeletionRequest() {
+//		SaveHandler.getInstance(dbHelper).deleteDeck(deck.getName());
+//		
+//	}
 
 	public List<Card> trackDeckRequest() {
 		List<Card> cards = TrackHandler.getInstance(dbHelper).trackDeck(tmpFormations);
@@ -184,6 +182,14 @@ public class DeckHandler {
 		classFilter.add("Neutral");
 		filters.put("className", classFilter);
 		return new SearchCriterion(null, filters);
+	}
+
+	public Deck getDeck() {
+		return deck;
+	}
+
+	public void setDeck(Deck deck) {
+		this.deck = deck;
 	}
 
 

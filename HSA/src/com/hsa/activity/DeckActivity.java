@@ -256,7 +256,8 @@ ActionBar.TabListener, DeckFragment.OnDeckListener{
 				dlgAlertSave.setPositiveButton("Ok",
 	                    new DialogInterface.OnClickListener() {
 	                        public void onClick(DialogInterface dialog, int which) {
-	                        	deckHandler.deckDeletionRequest();
+	                        	SaveHandler.getInstance(dbHelper).deleteDeck();
+//	                        	deckHandler.deckDeletionRequest();
 	                        	finish();
 //	                        	launchIntent();
 	                        }

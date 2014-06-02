@@ -23,7 +23,6 @@ public class NewDeckActivity extends ActionBarActivity{
     private String className;
     
     private HSADatabaseHelper dbHelper;
-    private ViewHandler viewHandler;
     private SearchHandler searchHandler;
 	
 	@Override
@@ -31,7 +30,7 @@ public class NewDeckActivity extends ActionBarActivity{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_new_deck);
 		dbHelper = HSADatabaseHelper.getInstance(this);
-	    viewHandler = ViewHandler.getInstance(dbHelper);
+	    ViewHandler.getInstance(dbHelper);
 	    SaveHandler.getInstance(dbHelper);
 	    searchHandler = SearchHandler.getInstance(dbHelper);
 	}
@@ -75,7 +74,9 @@ public class NewDeckActivity extends ActionBarActivity{
 			boolean nameRight = searchHandler.nameCheck(editText.getText().toString());
 			if(nameRight){
 				
-				DeckDataAggregation dda = viewHandler.deckCreationRequest(editText.getText().toString(), className);
+//		    	Deck deck = SaveHandler.getInstance(dbHelper).createDeck(editText.getText().toString(), className);
+//		    	DeckDataAggregation dda = viewHandler.createDeckDataAggregation(deck);
+		    	DeckDataAggregation dda = SaveHandler.getInstance(dbHelper).createDeck(editText.getText().toString(), className);
 		    	Intent returnIntent = new Intent();
 		    	returnIntent.putExtra("deckDataAggregation", dda);
 		    	setResult(RESULT_OK,returnIntent);

@@ -8,6 +8,7 @@ import java.util.List;
 import android.content.ContentValues;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.hsa.aggregation.DeckDataAggregation;
 import com.hsa.bean.Card;
 import com.hsa.bean.Deck;
 import com.hsa.bean.Formation;
@@ -132,7 +133,7 @@ public class SaveHandler{
 		
 	}
 	
-	public Deck createDeck(String name, String className){
+	public DeckDataAggregation createDeck(String name, String className){
 		SimpleDateFormat s = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		String format = s.format(new Date());
 		Deck deck = new Deck(name, className, "", format);
@@ -145,10 +146,11 @@ public class SaveHandler{
 		
 		db.insert(DeckEntry.TABLE_NAME, null, values);
 		
-		return deck;
+		return ViewHandler.getInstance(dbHelper).createDeckDataAggregation(deck);
 	}
 
-	public void deleteDeck(String deckName) {
+	public void deleteDeck() {
+		String deckName = DeckHandler.getInstance(dbHelper).getDeck().getName();
 		SQLiteDatabase db = dbHelper.getWritableDatabase();
 		String[] args = new String[]{deckName};
 		db.delete(DeckEntry.TABLE_NAME, DeckEntry.COLUMN_NAME_NAME + " = ?", args);
