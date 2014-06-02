@@ -16,6 +16,7 @@ import com.hsa.handler.DeckHandler;
 import com.hsa.handler.ViewHandler;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -136,7 +137,15 @@ public class DeckFragment extends Fragment implements SearchView.OnQueryTextList
 
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-				List<GraphicalAggregation> deckCardsGA = deckHandler.modifyDeckRequest(graphicalsAggregations.get(position).getName(), true, getActivity());
+				List<GraphicalAggregation> deckCardsGA = deckHandler.modifyDeckRequest(graphicalsAggregations.get(position).getName(), true);
+				if (deckCardsGA == null) {
+					AlertDialog.Builder dlgAlert  = new AlertDialog.Builder(getActivity());
+					
+		            dlgAlert.setMessage("Deck contains 30 cards.");
+		            dlgAlert.setTitle("WARNING");
+		            dlgAlert.setPositiveButton("OK", null);
+		            dlgAlert.create().show();
+				}
 				deleteItemList();
 				viewDeckCardsGraphicsAggregations(deckCardsGA);	
 				((DeckActivity) getActivity()).viewNumCards(deckCardsGA);
@@ -178,7 +187,7 @@ public class DeckFragment extends Fragment implements SearchView.OnQueryTextList
 				
 				@Override
 				public void onClick(View v) {
-					List<GraphicalAggregation> deckCardsGA = deckHandler.modifyDeckRequest(v.getTag().toString(), false, getActivity());
+					List<GraphicalAggregation> deckCardsGA = deckHandler.modifyDeckRequest(v.getTag().toString(), false);
 					deleteItemList();
 					viewDeckCardsGraphicsAggregations(deckCardsGA);
 					((DeckActivity) getActivity()).viewNumCards(deckCardsGA);
