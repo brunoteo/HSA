@@ -24,6 +24,7 @@ import com.hsa.adapter.MainTabsPagerAdapter;
 import com.hsa.aggregation.CompleteTextualAggregation;
 import com.hsa.aggregation.DeckDataAggregation;
 import com.hsa.aggregation.GraphicalAggregation;
+import com.hsa.bean.Deck;
 import com.hsa.bean.SearchCriterion;
 import com.hsa.database.HSADatabaseHelper;
 import com.hsa.fragment.SearchFragment;
@@ -178,7 +179,8 @@ public class MainActivity extends ActionBarActivity implements
 	    }else if (requestCode == 2){
 	    	if(resultCode == RESULT_OK){
 	            DecksFragment decksFragment = (DecksFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager + ":" + mViewPager.getCurrentItem());
-	            List<DeckDataAggregation> deckDataAggregations = viewHandler.decksRequest();
+	            List<Deck> decks = SearchHandler.getInstance(dbHelper).decksSearch();
+	            List<DeckDataAggregation> deckDataAggregations = viewHandler.generateDeckData(decks);
 	            decksFragment.viewDeckDataAggregations(deckDataAggregations);
 	            DeckDataAggregation dda = new DeckDataAggregation();
 	            dda = data.getExtras().getParcelable("deckDataAggregation");

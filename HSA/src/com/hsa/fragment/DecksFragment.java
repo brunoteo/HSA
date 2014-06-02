@@ -5,7 +5,9 @@ import java.util.List;
 import com.hsa.R;
 import com.hsa.adapter.DeckDataAggregationAdapter;
 import com.hsa.aggregation.DeckDataAggregation;
+import com.hsa.bean.Deck;
 import com.hsa.database.HSADatabaseHelper;
+import com.hsa.handler.SearchHandler;
 import com.hsa.handler.ViewHandler;
 
 import android.app.Activity;
@@ -57,13 +59,15 @@ public class DecksFragment extends Fragment{
         dbHelper = HSADatabaseHelper.getInstance(getActivity());
         viewHandler = ViewHandler.getInstance(dbHelper);
         
-        List<DeckDataAggregation> deckDataAggregations = viewHandler.decksRequest();
+        List<Deck> decks = SearchHandler.getInstance(dbHelper).decksSearch();
+        List<DeckDataAggregation> deckDataAggregations = viewHandler.generateDeckData(decks);
         viewDeckDataAggregations(deckDataAggregations);
         
 	}
 	
 	public void refreshList() {
-		List<DeckDataAggregation> deckDataAggregations = viewHandler.decksRequest();
+		List<Deck> decks = SearchHandler.getInstance(dbHelper).decksSearch();
+        List<DeckDataAggregation> deckDataAggregations = viewHandler.generateDeckData(decks);
         viewDeckDataAggregations(deckDataAggregations);
 	}
 	
