@@ -60,7 +60,7 @@ public class MainActivity extends ActionBarActivity implements
 	}
 
 	private String[] tabs = { "News", "Search", "Decks" };
-//FIXME controllare il tasto back (soprattutto nella elimina mazzo che crasha)
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
