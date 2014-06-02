@@ -1,15 +1,11 @@
 package com.hsa.handler;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
 import com.hsa.aggregation.GraphicalAggregation;
 import com.hsa.bean.Card;
 import com.hsa.bean.Deck;
 import com.hsa.bean.Formation;
-import com.hsa.bean.SearchCriterion;
 import com.hsa.database.HSADatabaseHelper;
 
 public class DeckHandler {
@@ -31,17 +27,6 @@ public class DeckHandler {
 	
 	private DeckHandler(HSADatabaseHelper dbHelper) {
 		this.dbHelper = dbHelper;
-	}
-	
-	public SearchCriterion deckCriterionRequest(String deckName) {
-		deck = SearchHandler.getInstance(dbHelper).deckSearch(deckName);
-		tmpFormations = SearchHandler.getInstance(dbHelper).formationsSearch(deckName);
-		copyFormations = new ArrayList<Formation>();
-		for(Formation f : tmpFormations){
-			copyFormations.add((Formation) f.clone());
-		}
-		//		copyFormations = SearchHandler.getInstance(dbHelper).formationsSearch(deckName);
-		return createSearchCriterion();
 	}
 	
 	public List<GraphicalAggregation> deckCardsRequest() {
@@ -74,10 +59,6 @@ public class DeckHandler {
 		return true;	
 	}
 	
-//	public void saveRequest() {
-//		SaveHandler.getInstance(dbHelper).updateDeck(tmpFormations, deck.getName());
-//	}
-	
 	public int cardNumberRequest() {
 		int cards = 0;
 		for(GraphicalAggregation ga : tmpGraphicalsAggregations){
@@ -85,16 +66,6 @@ public class DeckHandler {
 		}
 		return cards;
 	}
-	
-//	public void deckDeletionRequest() {
-//		SaveHandler.getInstance(dbHelper).deleteDeck(deck.getName());
-//		
-//	}
-
-//	public List<Card> trackDeckRequest() {
-//		List<Card> cards = TrackHandler.getInstance(dbHelper).trackDeck(tmpFormations);
-//		return cards;
-//	}
 	
 	private boolean checkNumCards() {
 		int numCards = 0;
@@ -174,15 +145,6 @@ public class DeckHandler {
 		}
 		return -1;
 	}
-	
-	private SearchCriterion createSearchCriterion() {
-		Map<String, ArrayList<String>> filters = new HashMap<String, ArrayList<String>>();
-		ArrayList<String> classFilter = new ArrayList<String>();
-		classFilter.add(deck.getClassName());
-		classFilter.add("Neutral");
-		filters.put("className", classFilter);
-		return new SearchCriterion(null, filters);
-	}
 
 	public Deck getDeck() {
 		return deck;
@@ -196,8 +158,28 @@ public class DeckHandler {
 		return tmpFormations;
 	}
 
-	public void setTmpFormations(List<Formation> tmpFormations) {
-		this.tmpFormations = tmpFormations;
+	public void setTmpFormations(List<Formation> copyFormations) {
+		tmpFormations = new ArrayList<Formation>();
+		for(Formation f : copyFormations){
+			tmpFormations.add((Formation) f.clone());
+		}
+	}
+
+	public List<Formation> getCopyFormations() {
+		return copyFormations;
+	}
+
+	public void setCopyFormations(List<Formation> copyFormations) {
+		this.copyFormations = copyFormations;
+	}
+
+	public List<GraphicalAggregation> getTmpGraphicalsAggregations() {
+		return tmpGraphicalsAggregations;
+	}
+
+	public void setTmpGraphicalsAggregations(
+			List<GraphicalAggregation> tmpGraphicalsAggregations) {
+		this.tmpGraphicalsAggregations = tmpGraphicalsAggregations;
 	}
 
 

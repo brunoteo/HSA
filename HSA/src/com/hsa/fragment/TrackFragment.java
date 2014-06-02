@@ -24,7 +24,6 @@ import android.widget.TextView;
 public class TrackFragment extends Fragment{
 	
 	private HSADatabaseHelper dbHelper;
-	private DeckHandler deckHandler;
 	private TrackHandler trackHandler;
 	
 	private ListView listView;
@@ -60,7 +59,7 @@ public class TrackFragment extends Fragment{
         super.onActivityCreated(savedInstanceState);
         setHasOptionsMenu(true);
         dbHelper = HSADatabaseHelper.getInstance(getActivity());
-        deckHandler = DeckHandler.getInstance(dbHelper);
+        DeckHandler.getInstance(dbHelper);
         trackHandler = TrackHandler.getInstance(dbHelper);
 //        List<Card> cards = deckHandler.trackDeckRequest();
         List<PartialTextualAggregation> partials = trackHandler.trackDeck();

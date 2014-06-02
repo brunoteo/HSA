@@ -10,6 +10,7 @@ import com.hsa.activity.DeckActivity;
 import com.hsa.adapter.GraphicalAggregationAdapter;
 import com.hsa.aggregation.CompleteTextualAggregation;
 import com.hsa.aggregation.GraphicalAggregation;
+import com.hsa.bean.Card;
 import com.hsa.bean.SearchCriterion;
 import com.hsa.database.HSADatabaseHelper;
 import com.hsa.handler.DeckHandler;
@@ -83,14 +84,20 @@ public class DeckFragment extends Fragment implements SearchView.OnQueryTextList
         deckHandler = DeckHandler.getInstance(dbHelper);
         viewHandler = ViewHandler.getInstance(dbHelper);
         
-        SearchCriterion criterion = deckHandler.deckCriterionRequest(((DeckActivity) getActivity()).getDeckDataAggregation().getName());
+        SearchCriterion criterion = SearchHandler.getInstance(dbHelper).deckCriterionRequest(((DeckActivity) getActivity()).getDeckDataAggregation().getName());
         List<GraphicalAggregation> graphicalsAggregations = viewHandler.generateGraphicalsAggregation(SearchHandler.getInstance(dbHelper).cardsSearch(criterion), this.getActivity());
         viewGraphicsAggregations(graphicalsAggregations);
         
-        List<GraphicalAggregation> deckCardsGA = deckHandler.deckCardsRequest();
-        if(deckCardsGA!=null)
-        	viewDeckCardsGraphicsAggregations(deckCardsGA);
-        ((DeckActivity) getActivity()).viewNumCards(deckCardsGA);
+        List<Card> deckCards = SearchHandler.getInstance(dbHelper).deckCardsSearch(deckHandler.getTmpFormations());
+        List<GraphicalAggregation> tmpGraphicalsAggregations = new ArrayList<GraphicalAggregation>();
+        if(deckCards.size()!=0) {
+        	tmpGraphicalsAggregations = ViewHandler.getInstance(dbHelper).generateDeckCardsAggregations(deckCards, deckHandler.getTmpFormations());
+        }
+        deckHandler.setTmpGraphicalsAggregations(tmpGraphicalsAggregations);
+
+        if(deckCards!=null)
+        	viewDeckCardsGraphicsAggregations(tmpGraphicalsAggregations);
+        ((DeckActivity) getActivity()).viewNumCards(tmpGraphicalsAggregations);
         
         
 	}

@@ -1,7 +1,9 @@
 package com.hsa.handler;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Map.Entry;
 
 import com.hsa.bean.Card;
@@ -302,5 +304,25 @@ public class SearchHandler{
 			if(deck.getName().equals(name)) return false;
 		}
 		return true;
+	}
+	
+	public SearchCriterion deckCriterionRequest(String deckName) {
+		Deck deck = SearchHandler.getInstance(dbHelper).deckSearch(deckName);
+		List<Formation> copyFormations = SearchHandler.getInstance(dbHelper).formationsSearch(deckName);
+		
+		DeckHandler.getInstance(dbHelper).setDeck(deck);
+		DeckHandler.getInstance(dbHelper).setCopyFormations(copyFormations);
+		DeckHandler.getInstance(dbHelper).setTmpFormations(copyFormations);
+		//		copyFormations = SearchHandler.getInstance(dbHelper).formationsSearch(deckName);
+		return createSearchCriterion(deck);
+	}
+	
+	private SearchCriterion createSearchCriterion(Deck deck) {
+		Map<String, ArrayList<String>> filters = new HashMap<String, ArrayList<String>>();
+		ArrayList<String> classFilter = new ArrayList<String>();
+		classFilter.add(deck.getClassName());
+		classFilter.add("Neutral");
+		filters.put("className", classFilter);
+		return new SearchCriterion(null, filters);
 	}
 }
