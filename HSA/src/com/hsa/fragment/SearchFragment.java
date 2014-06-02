@@ -10,6 +10,7 @@ import com.hsa.R;
 import com.hsa.adapter.GraphicalAggregationAdapter;
 import com.hsa.aggregation.CompleteTextualAggregation;
 import com.hsa.aggregation.GraphicalAggregation;
+import com.hsa.bean.Card;
 import com.hsa.bean.SearchCriterion;
 import com.hsa.database.HSADatabaseHelper;
 import com.hsa.handler.SearchHandler;
@@ -95,7 +96,8 @@ public class SearchFragment extends Fragment implements SearchView.OnQueryTextLi
 
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-				CompleteTextualAggregation completeTextualAggregation = viewHandler.completeInfoRequest(graphicalsAggregations.get(position).getName());			
+				Card card = SearchHandler.getInstance(dbHelper).cardSearch(graphicalsAggregations.get(position).getName());
+				CompleteTextualAggregation completeTextualAggregation = viewHandler.createCompleteTextualAggregation(card);		
 				onSearchListener.onCardSelected(completeTextualAggregation);
 			}
         	

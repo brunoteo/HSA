@@ -166,7 +166,8 @@ public class DeckFragment extends Fragment implements SearchView.OnQueryTextList
 
 			@Override
 			public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-				CompleteTextualAggregation completeTextualAggregation = viewHandler.completeInfoRequest(graphicalsAggregations.get(position).getName());			
+				Card card = SearchHandler.getInstance(dbHelper).cardSearch(graphicalsAggregations.get(position).getName());
+				CompleteTextualAggregation completeTextualAggregation = viewHandler.createCompleteTextualAggregation(card);			
 				onDeckListener.onCardSelected(completeTextualAggregation);
 				return true;
 			}

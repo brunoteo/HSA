@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import com.hsa.aggregation.CompleteTextualAggregation;
 import com.hsa.bean.Card;
 import com.hsa.bean.Deck;
 import com.hsa.bean.Formation;
