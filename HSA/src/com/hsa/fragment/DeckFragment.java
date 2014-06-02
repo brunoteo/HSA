@@ -145,10 +145,12 @@ public class DeckFragment extends Fragment implements SearchView.OnQueryTextList
 		            dlgAlert.setTitle("WARNING");
 		            dlgAlert.setPositiveButton("OK", null);
 		            dlgAlert.create().show();
+				} else {
+					deleteItemList();
+					viewDeckCardsGraphicsAggregations(deckCardsGA);	
+					((DeckActivity) getActivity()).viewNumCards(deckCardsGA);
 				}
-				deleteItemList();
-				viewDeckCardsGraphicsAggregations(deckCardsGA);	
-				((DeckActivity) getActivity()).viewNumCards(deckCardsGA);
+				
 			}
 		});
 
