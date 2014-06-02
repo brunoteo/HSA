@@ -155,6 +155,7 @@ ActionBar.TabListener, DeckFragment.OnDeckListener{
 	public void launchIntent(){
     	Intent intent = new Intent(this, MainActivity.class);
     	intent.putExtra("tab", "Decks");
+    	finish();
     	startActivity(intent);
 	}
 	
@@ -165,7 +166,6 @@ ActionBar.TabListener, DeckFragment.OnDeckListener{
 		// as you specify a parent activity in AndroidManifest.xml.
 		int id = item.getItemId();
 		switch(id) {
-		//FIXME non termina l'activity
 			case R.id.save:
 				if(!deckHandler.controlModifyRequest()) {
 					AlertDialog.Builder dlgAlert  = new AlertDialog.Builder(this);
