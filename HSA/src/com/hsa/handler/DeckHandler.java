@@ -28,18 +28,7 @@ public class DeckHandler {
 	private DeckHandler(HSADatabaseHelper dbHelper) {
 		this.dbHelper = dbHelper;
 	}
-	
-	public List<GraphicalAggregation> deckCardsRequest() {
-		List<Card> deckCards = SearchHandler.getInstance(dbHelper).deckCardsSearch(tmpFormations);
-		if(deckCards.size()!=0) {
-			tmpGraphicalsAggregations = ViewHandler.getInstance(dbHelper).generateDeckCardsAggregations(deckCards, tmpFormations);
-			return tmpGraphicalsAggregations;
-		} else {
-			tmpGraphicalsAggregations = new ArrayList<GraphicalAggregation>();
-			return null;
-		}
-	}
-	
+
 	public List<GraphicalAggregation> modifyDeckRequest(String cardName, boolean insert) {
 		if(insert){
 			if(checkNumCards()) {

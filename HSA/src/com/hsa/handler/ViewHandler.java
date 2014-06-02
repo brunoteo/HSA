@@ -44,15 +44,6 @@ public class ViewHandler{
 		return graphicalsAggregations;
 	}
 	
-//	public List<DeckDataAggregation> decksRequest() {
-//		List<Deck> decks = SearchHandler.getInstance(dbHelper).decksSearch();
-//		List<DeckDataAggregation> deckDataAggregations = new ArrayList<DeckDataAggregation>();
-//		for(Deck deck : decks){
-//			deckDataAggregations.add(createDeckDataAggregation(deck));
-//		}
-//		return deckDataAggregations;
-//	}
-	
 	public List<DeckDataAggregation> generateDeckData(List<Deck> decks) {
 		List<DeckDataAggregation> deckDataAggregations = new ArrayList<DeckDataAggregation>();
 		for(Deck deck : decks){
