@@ -157,7 +157,9 @@ public class SaveHandler{
 		db.delete(FormationEntry.TABLE_NAME, FormationEntry.COLUMN_NAME_DECK + " = ?", args);
 	}
 	
-	public void updateDeck(List<Formation> tmpFormations, String deckName) {
+	public void updateDeck() {
+		String deckName = DeckHandler.getInstance(dbHelper).getDeck().getName();
+		List<Formation> tmpFormations = DeckHandler.getInstance(dbHelper).getTmpFormations();
 		SQLiteDatabase db = dbHelper.getWritableDatabase();
 		String[] args = new String[]{deckName};
 		db.delete(FormationEntry.TABLE_NAME, FormationEntry.COLUMN_NAME_DECK + " = ?", args);

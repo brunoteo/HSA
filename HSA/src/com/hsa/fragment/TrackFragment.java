@@ -62,8 +62,9 @@ public class TrackFragment extends Fragment{
         dbHelper = HSADatabaseHelper.getInstance(getActivity());
         deckHandler = DeckHandler.getInstance(dbHelper);
         trackHandler = TrackHandler.getInstance(dbHelper);
-        List<Card> cards = deckHandler.trackDeckRequest();
-        List<PartialTextualAggregation> partials = trackHandler.partialTextualAggregationsRequest(cards);
+//        List<Card> cards = deckHandler.trackDeckRequest();
+        List<PartialTextualAggregation> partials = trackHandler.trackDeck();
+//        List<PartialTextualAggregation> partials = trackHandler.partialTextualAggregationsRequest(cards);
         viewPartialTextualAggregation(partials);
         viewDeckCardsNumber(partials);
         viewLastCardTracked(null);

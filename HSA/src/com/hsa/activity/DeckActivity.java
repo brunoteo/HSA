@@ -199,7 +199,7 @@ ActionBar.TabListener, DeckFragment.OnDeckListener{
 					dlgAlertSave.setPositiveButton("Ok",
 		                    new DialogInterface.OnClickListener() {
 		                        public void onClick(DialogInterface dialog, int which) {
-		                        	deckHandler.saveRequest();
+		                        	SaveHandler.getInstance(dbHelper).updateDeck();
 		                        	launchIntent();
 		                        }
 		                    });

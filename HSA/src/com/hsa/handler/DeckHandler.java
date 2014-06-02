@@ -74,9 +74,9 @@ public class DeckHandler {
 		return true;	
 	}
 	
-	public void saveRequest() {
-		SaveHandler.getInstance(dbHelper).updateDeck(tmpFormations, deck.getName());
-	}
+//	public void saveRequest() {
+//		SaveHandler.getInstance(dbHelper).updateDeck(tmpFormations, deck.getName());
+//	}
 	
 	public int cardNumberRequest() {
 		int cards = 0;
@@ -91,10 +91,10 @@ public class DeckHandler {
 //		
 //	}
 
-	public List<Card> trackDeckRequest() {
-		List<Card> cards = TrackHandler.getInstance(dbHelper).trackDeck(tmpFormations);
-		return cards;
-	}
+//	public List<Card> trackDeckRequest() {
+//		List<Card> cards = TrackHandler.getInstance(dbHelper).trackDeck(tmpFormations);
+//		return cards;
+//	}
 	
 	private boolean checkNumCards() {
 		int numCards = 0;
@@ -190,6 +190,14 @@ public class DeckHandler {
 
 	public void setDeck(Deck deck) {
 		this.deck = deck;
+	}
+
+	public List<Formation> getTmpFormations() {
+		return tmpFormations;
+	}
+
+	public void setTmpFormations(List<Formation> tmpFormations) {
+		this.tmpFormations = tmpFormations;
 	}
 
 

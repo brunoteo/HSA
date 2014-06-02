@@ -33,11 +33,10 @@ public class TrackHandler {
 		this.pile = new ArrayList<PartialTextualAggregation>();
 	}
 	
-	public List<Card> trackDeck(List<Formation> tmpFormations) {
-		this.trackFormations = tmpFormations;
-		
-		List<Card> cards = SearchHandler.getInstance(dbHelper).deckCardsSearch(tmpFormations);
-		return cards;
+	public List<PartialTextualAggregation> trackDeck() {
+		this.trackFormations = DeckHandler.getInstance(dbHelper).getTmpFormations();	
+		List<Card> cards = SearchHandler.getInstance(dbHelper).deckCardsSearch(this.trackFormations);	
+		return ViewHandler.getInstance(dbHelper).generatePartialTextualAggregations(cards, this.trackFormations);
 	}
 
 	public List<PartialTextualAggregation> partialTextualAggregationsRequest(List<Card> cards) {
