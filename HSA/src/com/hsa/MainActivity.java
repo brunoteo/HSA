@@ -171,7 +171,7 @@ public class MainActivity extends ActionBarActivity implements
 	            	if(typeFilters.size() != 0) filters.put("type", new ArrayList<String>(typeFilters));
 	            }
 	            SearchCriterion searchCriterion = new SearchCriterion(nameFilter, filters);
-	            List<GraphicalAggregation> graphicalsAggregations = viewHandler.cardsSearchRequest(searchCriterion, this);
+	            List<GraphicalAggregation> graphicalsAggregations = viewHandler.generateGraphicalsAggregation(searchHandler.cardsSearch(searchCriterion), this);
 	            SearchFragment searchFragment = (SearchFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager + ":" + mViewPager.getCurrentItem());
 	            searchFragment.viewGraphicsAggregations(graphicalsAggregations);
 	        }
@@ -220,7 +220,7 @@ public class MainActivity extends ActionBarActivity implements
 				typeFilters = null;
 				nameFilter = null;
 	            SearchFragment searchFragment = (SearchFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager + ":" + mViewPager.getCurrentItem());
-				List<GraphicalAggregation> graphicalsAggregations = viewHandler.cardsSearchRequest(null, this);
+				List<GraphicalAggregation> graphicalsAggregations = viewHandler.generateGraphicalsAggregation(searchHandler.cardsSearch(null), this);
 	            searchFragment.viewGraphicsAggregations(graphicalsAggregations);
 				return true;
 			default:

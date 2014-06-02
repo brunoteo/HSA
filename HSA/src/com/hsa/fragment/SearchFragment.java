@@ -12,6 +12,7 @@ import com.hsa.aggregation.CompleteTextualAggregation;
 import com.hsa.aggregation.GraphicalAggregation;
 import com.hsa.bean.SearchCriterion;
 import com.hsa.database.HSADatabaseHelper;
+import com.hsa.handler.SearchHandler;
 import com.hsa.handler.ViewHandler;
 
 import android.app.Activity;
@@ -69,7 +70,7 @@ public class SearchFragment extends Fragment implements SearchView.OnQueryTextLi
         dbHelper = HSADatabaseHelper.getInstance(getActivity());
         viewHandler = ViewHandler.getInstance(dbHelper);
         
-        List<GraphicalAggregation> graphicalsAggregations = viewHandler.cardsSearchRequest(null, this.getActivity());
+        List<GraphicalAggregation> graphicalsAggregations = viewHandler.generateGraphicalsAggregation(SearchHandler.getInstance(dbHelper).cardsSearch(null), this.getActivity());
         viewGraphicsAggregations(graphicalsAggregations);
 	}
 	
@@ -124,7 +125,7 @@ public class SearchFragment extends Fragment implements SearchView.OnQueryTextLi
 	      	if(((MainActivity) getActivity()).getTypeFilters().size() != 0) filters.put("type", new ArrayList<String>(((MainActivity) getActivity()).getTypeFilters()));
 	    }
 		SearchCriterion criterion = new SearchCriterion(query, filters);
-		List<GraphicalAggregation> graphicalsAggregations = ViewHandler.getInstance(dbHelper).cardsSearchRequest(criterion, getActivity());
+		List<GraphicalAggregation> graphicalsAggregations = viewHandler.generateGraphicalsAggregation(SearchHandler.getInstance(dbHelper).cardsSearch(criterion), this.getActivity());
 		viewGraphicsAggregations(graphicalsAggregations);
 		return true;
 	}

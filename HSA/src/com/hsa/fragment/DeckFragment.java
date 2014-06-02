@@ -13,6 +13,7 @@ import com.hsa.aggregation.GraphicalAggregation;
 import com.hsa.bean.SearchCriterion;
 import com.hsa.database.HSADatabaseHelper;
 import com.hsa.handler.DeckHandler;
+import com.hsa.handler.SearchHandler;
 import com.hsa.handler.ViewHandler;
 
 import android.app.Activity;
@@ -83,7 +84,7 @@ public class DeckFragment extends Fragment implements SearchView.OnQueryTextList
         viewHandler = ViewHandler.getInstance(dbHelper);
         
         SearchCriterion criterion = deckHandler.deckCriterionRequest(((DeckActivity) getActivity()).getDeckDataAggregation().getName());
-        List<GraphicalAggregation> graphicalsAggregations = viewHandler.cardsSearchRequest(criterion, this.getActivity());
+        List<GraphicalAggregation> graphicalsAggregations = viewHandler.generateGraphicalsAggregation(SearchHandler.getInstance(dbHelper).cardsSearch(criterion), this.getActivity());
         viewGraphicsAggregations(graphicalsAggregations);
         
         List<GraphicalAggregation> deckCardsGA = deckHandler.deckCardsRequest();
@@ -122,7 +123,7 @@ public class DeckFragment extends Fragment implements SearchView.OnQueryTextList
 			((DeckActivity) getActivity()).setNameFilter(null);
 			
 			SearchCriterion criterion = new SearchCriterion(null, filters);
-			List<GraphicalAggregation> graphicalsAggregations = viewHandler.cardsSearchRequest(criterion, getActivity());
+			List<GraphicalAggregation> graphicalsAggregations = viewHandler.generateGraphicalsAggregation(SearchHandler.getInstance(dbHelper).cardsSearch(criterion), this.getActivity());
             viewGraphicsAggregations(graphicalsAggregations);
 			return true;
 		default:
@@ -263,7 +264,7 @@ public class DeckFragment extends Fragment implements SearchView.OnQueryTextList
 	    	if(((DeckActivity) getActivity()).getTypeFilters().size() != 0) filters.put("type", new ArrayList<String>(((DeckActivity) getActivity()).getTypeFilters()));
 	    }
 		SearchCriterion criterion = new SearchCriterion(query, filters);
-		List<GraphicalAggregation> graphicalsAggregations = ViewHandler.getInstance(dbHelper).cardsSearchRequest(criterion, getActivity());
+		List<GraphicalAggregation> graphicalsAggregations = viewHandler.generateGraphicalsAggregation(SearchHandler.getInstance(dbHelper).cardsSearch(criterion), this.getActivity());
 		viewGraphicsAggregations(graphicalsAggregations);
 		return false;
 	}

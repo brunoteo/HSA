@@ -145,7 +145,7 @@ ActionBar.TabListener, DeckFragment.OnDeckListener{
 	            	if(typeFilters.size() != 0) filters.put("type", new ArrayList<String>(typeFilters));
 	            }
 	            SearchCriterion searchCriterion = new SearchCriterion(nameFilter, filters);
-	            List<GraphicalAggregation> graphicalsAggregations = viewHandler.cardsSearchRequest(searchCriterion, this);
+	            List<GraphicalAggregation> graphicalsAggregations = viewHandler.generateGraphicalsAggregation(SearchHandler.getInstance(dbHelper).cardsSearch(searchCriterion), this);
 	            DeckFragment deckFragment = (DeckFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager2 + ":" + mViewPager.getCurrentItem());
 	            deckFragment.viewGraphicsAggregations(graphicalsAggregations);
 	        }
