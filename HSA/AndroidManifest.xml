@@ -37,15 +37,18 @@
             android:screenOrientation="portrait" 
             android:parentActivityName="com.hsa.MainActivity" >
             <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.hsa.MainActivity" />
+        		android:name="android.support.PARENT_ACTIVITY"
+        		android:value="com.hsa.MainActivity" />
         </activity>
         
         <activity
 	        android:name="com.hsa.activity.NewDeckActivity"
 	        android:label="@string/new_deck"
 	        android:screenOrientation="portrait" 
-	        android:parentActivityName="com.hsa.MainActivity">         
+	        android:parentActivityName="com.hsa.MainActivity"> 
+	        <meta-data
+        		android:name="android.support.PARENT_ACTIVITY"
+        		android:value="com.hsa.MainActivity" />        
 		</activity>
 		
 		<activity
@@ -53,13 +56,15 @@
 	        android:label="@string/modify_deck"
 	        android:screenOrientation="portrait" 
 	        android:parentActivityName="com.hsa.MainActivity">  
+	        <meta-data
+        		android:name="android.support.PARENT_ACTIVITY"
+        		android:value="com.hsa.MainActivity" />
 		</activity>
 	
 		<activity
 	        android:name="com.hsa.activity.TrackActivity"
 	        android:label="@string/track_deck"
-	        android:screenOrientation="portrait" 
-	        android:parentActivityName="com.hsa.activity.DeckActivity">          
+	        android:screenOrientation="portrait" >       
 		</activity>
     </application>
 

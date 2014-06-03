@@ -1,11 +1,17 @@
 package com.hsa.activity;
 
+import java.util.List;
+
 import com.hsa.R;
 import com.hsa.aggregation.CompleteTextualAggregation;
+import com.hsa.aggregation.GraphicalAggregation;
+import com.hsa.fragment.SearchFragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
+import android.view.MenuItem;
 import android.widget.TextView;
 
 public class CompleteInformationActivity extends ActionBarActivity{
@@ -13,6 +19,8 @@ public class CompleteInformationActivity extends ActionBarActivity{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_complete_textual);
+		final ActionBar actionBar = getSupportActionBar();
+		actionBar.setHomeButtonEnabled(true);
 		Intent intent = getIntent();
 		CompleteTextualAggregation completeAggregation = intent.getParcelableExtra("completeAggregation");
 		viewCompleteTextualAggregation(completeAggregation);
@@ -61,4 +69,20 @@ public class CompleteInformationActivity extends ActionBarActivity{
 		else
 			textView.setText("Race: -");
 	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		// Handle action bar item clicks here. The action bar will
+		// automatically handle clicks on the Home/Up button, so long
+		// as you specify a parent activity in AndroidManifest.xml.
+		int id = item.getItemId();
+		switch(id) {
+			case android.R.id.home :			
+				finish();
+				return true;
+			default:
+	            return super.onOptionsItemSelected(item);
+		}
+	}
+
 }

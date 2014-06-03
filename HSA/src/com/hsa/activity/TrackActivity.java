@@ -20,6 +20,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
+import android.view.MenuItem;
 import android.view.View;
 
 public class TrackActivity extends ActionBarActivity implements ActionBar.TabListener, TrackFragment.OnTracksListener{
@@ -40,6 +41,7 @@ public class TrackActivity extends ActionBarActivity implements ActionBar.TabLis
 		// Set up the action bar.
 		final ActionBar actionBar = getSupportActionBar();
 		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+		actionBar.setHomeButtonEnabled(true);
 
 		// Create the adapter that will return a fragment for each of the three
 		// primary sections of the activity.
@@ -74,10 +76,6 @@ public class TrackActivity extends ActionBarActivity implements ActionBar.TabLis
 				        
         //Istanzio una volta sola gli handler
         dbHelper = HSADatabaseHelper.getInstance(this);
-        SearchHandler.getInstance(dbHelper);
-        SaveHandler.getInstance(dbHelper);
-        ViewHandler.getInstance(dbHelper);
-        DeckHandler.getInstance(dbHelper);
         trackHandler = TrackHandler.getInstance(dbHelper);   
 	}
 
@@ -172,6 +170,21 @@ public class TrackActivity extends ActionBarActivity implements ActionBar.TabLis
 	        trackFragment.viewPartialTextualAggregation(partials);
 	        trackFragment.viewDeckCardsNumber(partials);
 	        trackFragment.viewLastCardTracked(null);
+		}
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		// Handle action bar item clicks here. The action bar will
+		// automatically handle clicks on the Home/Up button, so long
+		// as you specify a parent activity in AndroidManifest.xml.
+		int id = item.getItemId();
+		switch(id) {
+			case android.R.id.home :			
+				finish();
+				return true;
+			default:
+	            return super.onOptionsItemSelected(item);
 		}
 	}
 

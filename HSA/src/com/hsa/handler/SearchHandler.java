@@ -308,13 +308,12 @@ public class SearchHandler{
 	}
 	
 	public SearchCriterion deckCriterionRequest(String deckName) {
-		Deck deck = SearchHandler.getInstance(dbHelper).deckSearch(deckName);
-		List<Formation> copyFormations = SearchHandler.getInstance(dbHelper).formationsSearch(deckName);
+		Deck deck = deckSearch(deckName);
+		List<Formation> copyFormations = formationsSearch(deckName);
 		
 		DeckHandler.getInstance(dbHelper).setDeck(deck);
 		DeckHandler.getInstance(dbHelper).setCopyFormations(copyFormations);
 		DeckHandler.getInstance(dbHelper).setTmpFormations(copyFormations);
-		//		copyFormations = SearchHandler.getInstance(dbHelper).formationsSearch(deckName);
 		return createSearchCriterion(deck);
 	}
 	
