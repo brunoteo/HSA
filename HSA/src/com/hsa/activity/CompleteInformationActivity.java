@@ -21,6 +21,7 @@ public class CompleteInformationActivity extends ActionBarActivity{
 		setContentView(R.layout.activity_complete_textual);
 		final ActionBar actionBar = getSupportActionBar();
 		actionBar.setHomeButtonEnabled(true);
+		actionBar.setDisplayHomeAsUpEnabled(true);
 		Intent intent = getIntent();
 		CompleteTextualAggregation completeAggregation = intent.getParcelableExtra("completeAggregation");
 		viewCompleteTextualAggregation(completeAggregation);

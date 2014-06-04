@@ -70,7 +70,7 @@ public class NewDeckActivity extends ActionBarActivity{
 	
 	public void onClickConfirm(View view){
 		EditText editText = (EditText) findViewById(R.id.deck_name);
-		if(classCheck()){
+		if(className != null){
 			boolean nameRight = searchHandler.nameCheck(editText.getText().toString());
 			if(nameRight){
 				
@@ -130,11 +130,4 @@ public class NewDeckActivity extends ActionBarActivity{
 		});
 	 
 	  }
-	
-	public boolean classCheck(){
-		if(className != null){
-			return true;
-		}
-		return false;
-	}
 }
