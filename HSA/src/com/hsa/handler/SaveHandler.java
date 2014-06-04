@@ -71,12 +71,12 @@ public class SaveHandler{
 				card11, card12, card13, card14, card15, card16, card17, card18, card19, card20,
 				card21, card22, card23, card24, card25, card26, card27, card28, card29, card30);
 	
+		
 		SQLiteDatabase db = dbHelper.getWritableDatabase();
 		
 		for (int i = 0; i < cards.size(); i++){
 			
 			ContentValues values = new ContentValues();
-			//values.put(CardEntry.COLUMN_NAME_ENTRY_ID, cards.get(i).get_id());
 			values.put(CardEntry.COLUMN_NAME_NAME, cards.get(i).getName());
 			values.put(CardEntry.COLUMN_NAME_TYPE, cards.get(i).getType());
 			values.put(CardEntry.COLUMN_NAME_COST, cards.get(i).getCost());
