@@ -71,7 +71,7 @@ public class SearchHandler{
 	}
 	
 	public List<Formation> formationsSearch(String deckName) {
-		String sql = "SELECT * FROM " + FormationEntry.TABLE_NAME + " WHERE deck = ?";
+		String sql = "SELECT * FROM " + FormationEntry.TABLE_NAME + " WHERE " + FormationEntry.COLUMN_NAME_DECK + " = ?";
 		List<Formation> formations = new ArrayList<Formation>();
 		SQLiteDatabase db = dbHelper.getReadableDatabase();
 		String [] selectionArgs = new String[]{deckName};

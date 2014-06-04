@@ -70,22 +70,7 @@ public class SaveHandler{
 		List<Card> cards = Arrays.asList(card1, card2, card3, card4, card5, card6, card7, card8, card9, card10,
 				card11, card12, card13, card14, card15, card16, card17, card18, card19, card20,
 				card21, card22, card23, card24, card25, card26, card27, card28, card29, card30);
-		
-		final Deck deck1 = new Deck("MyDruid", "Druid", "", "2014-05-16 11:30:00");
-		final Deck deck2 = new Deck("MyHunter", "Hunter", "", "2014-05-16 11:33:26");
-		
-		List<Deck> decks = Arrays.asList(deck1, deck2);
-		
-		final Formation formation1 = new Formation("goldshire footman", "MyDruid", 20);
-		final Formation formation2 = new Formation("ancient of war", "MyDruid", 2);
-		final Formation formation3 = new Formation("gladiator's longbow", "MyHunter", 1);
-		final Formation formation4 = new Formation("goldshire footman", "MyHunter", 2);
-		final Formation formation5 = new Formation("swipe", "MyDruid", 2);
-		final Formation formation6 = new Formation("moonfire", "MyDruid", 3);
-		final Formation formation7 = new Formation("wild growth", "MyDruid", 3);
-		
-		List<Formation> formations = Arrays.asList(formation1, formation2, formation3, formation4, formation5, formation6, formation7);
-		
+	
 		SQLiteDatabase db = dbHelper.getWritableDatabase();
 		
 		for (int i = 0; i < cards.size(); i++){
@@ -107,24 +92,6 @@ public class SaveHandler{
 			db.insert(CardEntry.TABLE_NAME, null, values);
 		}
 		
-		for (int i = 0; i < decks.size(); i++){
-			ContentValues values = new ContentValues();
-			values.put(DeckEntry.COLUMN_NAME_NAME, decks.get(i).getName());
-			values.put(DeckEntry.COLUMN_NAME_CLASS, decks.get(i).getClassName());
-			values.put(DeckEntry.COLUMN_NAME_NOTE, decks.get(i).getNote());
-			values.put(DeckEntry.COLUMN_NAME_DATE, decks.get(i).getDate());
-			
-			db.insert(DeckEntry.TABLE_NAME, null, values);
-		}
-		
-		for (int i = 0; i < formations.size(); i++){
-			ContentValues values = new ContentValues();
-			values.put(FormationEntry.COLUMN_NAME_CARD, formations.get(i).getCard());
-			values.put(FormationEntry.COLUMN_NAME_DECK, formations.get(i).getDeck());
-			values.put(FormationEntry.COLUMN_NAME_OCCURRENCE, formations.get(i).getOccurrence());
-			
-			db.insert(FormationEntry.TABLE_NAME, null, values);
-		}
 		db.close();
 		
 	}
