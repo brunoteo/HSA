@@ -1,12 +1,7 @@
 package com.hsa.activity;
 
-import java.util.List;
-
 import com.hsa.R;
 import com.hsa.aggregation.CompleteTextualAggregation;
-import com.hsa.aggregation.GraphicalAggregation;
-import com.hsa.fragment.SearchFragment;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;

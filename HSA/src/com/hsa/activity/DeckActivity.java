@@ -17,7 +17,6 @@ import com.hsa.fragment.DeckFragment;
 import com.hsa.handler.DeckHandler;
 import com.hsa.handler.SaveHandler;
 import com.hsa.handler.SearchHandler;
-import com.hsa.handler.TrackHandler;
 import com.hsa.handler.ViewHandler;
 
 import android.app.AlertDialog;
@@ -97,13 +96,9 @@ ActionBar.TabListener, DeckFragment.OnDeckListener{
         	}
         }
 		        
-        //Istanzio una volta sola gli handler
         dbHelper = HSADatabaseHelper.getInstance(this);
-        SearchHandler.getInstance(dbHelper);
-        SaveHandler.getInstance(dbHelper);
         viewHandler = ViewHandler.getInstance(dbHelper);
         deckHandler = DeckHandler.getInstance(dbHelper);
-        TrackHandler.getInstance(dbHelper);
 		
 	}
 	

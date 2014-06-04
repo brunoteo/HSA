@@ -18,10 +18,6 @@ import com.hsa.contract.FormationEntry;
 import com.hsa.database.HSADatabaseHelper;
 
 public class SaveHandler{
-
-	/**
-	 * 
-	 */
 	
 	private static SaveHandler saveInstance;
 

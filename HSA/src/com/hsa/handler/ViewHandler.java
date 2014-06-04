@@ -12,7 +12,6 @@ import com.hsa.aggregation.PartialTextualAggregation;
 import com.hsa.bean.Card;
 import com.hsa.bean.Deck;
 import com.hsa.bean.Formation;
-import com.hsa.bean.SearchCriterion;
 import com.hsa.database.HSADatabaseHelper;
 import com.hsa.aggregation.DeckDataAggregation;
 
@@ -52,6 +51,33 @@ public class ViewHandler{
 		return deckDataAggregations;
 	}
 	
+	public List<PartialTextualAggregation> generatePartialTextualAggregations(List<Card> cards, List<Formation> trackFormations) {
+		
+		List<PartialTextualAggregation> partials = new ArrayList<PartialTextualAggregation>();
+		
+		for (Card card : cards){
+			partials.add(createPartialTextualAggregation(card, trackFormations));
+			
+		}
+		
+		return partials;
+	}
+	
+	public List<GraphicalAggregation> generateDeckCardsAggregations(List<Card> cards, List<Formation> formations) {
+		List<GraphicalAggregation> graphicalsAggregations = new ArrayList<GraphicalAggregation>();
+		Formation cardFormation = null;
+		for(Card card : cards) {
+			for(Formation formation : formations) {
+				if(formation.getCard().equals(card.getName())) {
+					cardFormation = formation;
+					break;
+				}			
+			}
+			graphicalsAggregations.add(createGraphicalAggregation(card, cardFormation));
+		}
+		return graphicalsAggregations;
+	}
+	
 	public CompleteTextualAggregation createCompleteTextualAggregation(Card card) {
 		return new CompleteTextualAggregation(card);
 	}
@@ -69,7 +95,6 @@ public class ViewHandler{
 		return ga;
 	}
 	
-	
 	public DeckDataAggregation createDeckDataAggregation(Deck deck) {
 		DeckDataAggregation dda = new DeckDataAggregation();
 		dda.setName(deck.getName());
@@ -82,18 +107,6 @@ public class ViewHandler{
 		}
 		dda.setCardNumber(n);
 		return dda;
-	}
-
-	public List<PartialTextualAggregation> generatePartialTextualAggregations(List<Card> cards, List<Formation> trackFormations) {
-		
-		List<PartialTextualAggregation> partials = new ArrayList<PartialTextualAggregation>();
-		
-		for (Card card : cards){
-			partials.add(createPartialTextualAggregation(card, trackFormations));
-			
-		}
-		
-		return partials;
 	}
 	
 	private PartialTextualAggregation createPartialTextualAggregation(Card card, List<Formation> trackFormations) {
@@ -110,21 +123,6 @@ public class ViewHandler{
 			}
 		}
 		return partial;
-	}
-
-	public List<GraphicalAggregation> generateDeckCardsAggregations(List<Card> cards, List<Formation> formations) {
-		List<GraphicalAggregation> graphicalsAggregations = new ArrayList<GraphicalAggregation>();
-		Formation cardFormation = null;
-		for(Card card : cards) {
-			for(Formation formation : formations) {
-				if(formation.getCard().equals(card.getName())) {
-					cardFormation = formation;
-					break;
-				}			
-			}
-			graphicalsAggregations.add(createGraphicalAggregation(card, cardFormation));
-		}
-		return graphicalsAggregations;
 	}
 	
 }

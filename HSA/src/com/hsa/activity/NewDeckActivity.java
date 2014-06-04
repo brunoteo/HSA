@@ -5,8 +5,6 @@ import com.hsa.aggregation.DeckDataAggregation;
 import com.hsa.database.HSADatabaseHelper;
 import com.hsa.handler.SaveHandler;
 import com.hsa.handler.SearchHandler;
-import com.hsa.handler.ViewHandler;
-
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -30,8 +28,6 @@ public class NewDeckActivity extends ActionBarActivity{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_new_deck);
 		dbHelper = HSADatabaseHelper.getInstance(this);
-	    ViewHandler.getInstance(dbHelper);
-	    SaveHandler.getInstance(dbHelper);
 	    searchHandler = SearchHandler.getInstance(dbHelper);
 	}
 	

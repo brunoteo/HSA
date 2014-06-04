@@ -6,8 +6,8 @@ import android.provider.BaseColumns;
 public abstract class FormationEntry implements BaseColumns{
 	
 	public static final String TABLE_NAME = "FORMATION";
-	public static final String COLUMN_NAME_CARD = "card";
-	public static final String COLUMN_NAME_DECK = "deck";
+	public static final String COLUMN_NAME_CARD = "cardName";
+	public static final String COLUMN_NAME_DECK = "deckName";
 	public static final String COLUMN_NAME_OCCURRENCE = "occurrence";
 
 	

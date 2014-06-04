@@ -44,6 +44,22 @@ public class TrackHandler {
 		return copyPartials;
 	}
 	
+	public List<PartialTextualAggregation> trackCard(PartialTextualAggregation partial) {
+		int occ = checkCardOccurrence(partial);
+		if(occ > 1){
+			decreaseOccurrence(partial);
+		}else{
+			deleteCard(partial);
+		}
+		addCardToPile(partial);
+		calculateProbabilities();
+		if(copyPartials.size()>1){
+			copyPartials = costSort(copyPartials, 0, copyPartials.size()-1);
+			copyPartials = nameSort(copyPartials);
+		}
+		return copyPartials;
+	}
+	
 	public List<PartialTextualAggregation> trackReset(){
 		if(pile.size() == 0) return null;
 		createCardsPile();
@@ -142,21 +158,6 @@ public class TrackHandler {
 	      return ptas;
 	}
 
-	public List<PartialTextualAggregation> trackCard(PartialTextualAggregation partial) {
-		int occ = checkCardOccurrence(partial);
-		if(occ > 1){
-			decreaseOccurrence(partial);
-		}else{
-			deleteCard(partial);
-		}
-		addCardToPile(partial);
-		calculateProbabilities();
-		if(copyPartials.size()>1){
-			copyPartials = costSort(copyPartials, 0, copyPartials.size()-1);
-			copyPartials = nameSort(copyPartials);
-		}
-		return copyPartials;
-	}
 
 	private void calculateProbabilities() {
 		int total = 0;

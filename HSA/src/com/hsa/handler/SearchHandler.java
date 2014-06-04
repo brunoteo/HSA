@@ -21,9 +21,6 @@ import android.database.sqlite.SQLiteDatabase;
 
 public class SearchHandler{
 
-	/**
-	 * 
-	 */	
 	private static SearchHandler searchInstance;
 	
 	private HSADatabaseHelper dbHelper;

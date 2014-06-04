@@ -121,14 +121,6 @@ public class MainActivity extends ActionBarActivity implements
         
 	}
 	
-//	@Override
-//	protected void onResume() {
-//	    super.onResume();
-//	    final ActionBar actionBar = getSupportActionBar();
-//	    actionBar.setSelectedNavigationItem(2);
-//	    // Normal case behavior follows
-//	}
-	
 	@Override
 	protected void onRestart() {
 	    super.onResume();
@@ -140,7 +132,6 @@ public class MainActivity extends ActionBarActivity implements
 		    actionBar.setSelectedNavigationItem(2);
 	    }
 	    
-	    // Normal case behavior follows
 	}
 
 	public void onClickND(View v) {
