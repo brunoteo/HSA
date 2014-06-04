@@ -210,8 +210,8 @@ public class DeckFragment extends Fragment implements SearchView.OnQueryTextList
 				TextView tx = new TextView(getActivity());	
 			    tx.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
 			    tx.setGravity(Gravity.BOTTOM | Gravity.CENTER);
-			    tx.setBackgroundColor(Color.parseColor("#770000FF"));
-			    tx.setTextColor(Color.RED);
+			    tx.setBackgroundColor(Color.parseColor("#77000000"));
+			    tx.setTextColor(Color.GREEN);
 			    tx.setText(Integer.toString(ga.getOccurence()));
 			    fl.addView(image);	
 			    fl.addView(tx);
