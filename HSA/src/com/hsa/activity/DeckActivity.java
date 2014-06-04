@@ -40,6 +40,8 @@ ActionBar.TabListener, DeckFragment.OnDeckListener{
 
 	private ViewHandler viewHandler;
 	private DeckHandler deckHandler;
+	private SearchHandler searchHandler;
+	private SaveHandler saveHandler;
 	private DeckDataAggregation deckData;
 	
 	private ArrayList<String> classFilters;
@@ -99,7 +101,8 @@ ActionBar.TabListener, DeckFragment.OnDeckListener{
         dbHelper = HSADatabaseHelper.getInstance(this);
         viewHandler = ViewHandler.getInstance(dbHelper);
         deckHandler = DeckHandler.getInstance(dbHelper);
-		
+        searchHandler = SearchHandler.getInstance(dbHelper);
+        saveHandler = SaveHandler.getInstance(dbHelper);
 	}
 	
 	@Override
@@ -140,7 +143,7 @@ ActionBar.TabListener, DeckFragment.OnDeckListener{
 	            	if(typeFilters.size() != 0) filters.put("type", new ArrayList<String>(typeFilters));
 	            }
 	            SearchCriterion searchCriterion = new SearchCriterion(nameFilter, filters);
-	            List<GraphicalAggregation> graphicalsAggregations = viewHandler.generateGraphicalsAggregation(SearchHandler.getInstance(dbHelper).cardsSearch(searchCriterion), this);
+	            List<GraphicalAggregation> graphicalsAggregations = viewHandler.generateGraphicalsAggregation(searchHandler.cardsSearch(searchCriterion), this);
 	            DeckFragment deckFragment = (DeckFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager2 + ":" + mViewPager.getCurrentItem());
 	            deckFragment.viewGraphicsAggregations(graphicalsAggregations);
 	        }
@@ -195,7 +198,7 @@ ActionBar.TabListener, DeckFragment.OnDeckListener{
 					dlgAlertSave.setPositiveButton("Ok",
 		                    new DialogInterface.OnClickListener() {
 		                        public void onClick(DialogInterface dialog, int which) {
-		                        	SaveHandler.getInstance(dbHelper).updateDeck();
+		                        	saveHandler.updateDeck();
 		                        	launchIntent();
 		                        }
 		                    });
@@ -252,7 +255,7 @@ ActionBar.TabListener, DeckFragment.OnDeckListener{
 				dlgAlertSave.setPositiveButton("Ok",
 	                    new DialogInterface.OnClickListener() {
 	                        public void onClick(DialogInterface dialog, int which) {
-	                        	SaveHandler.getInstance(dbHelper).deleteDeck();
+	                        	saveHandler.deleteDeck();
 //	                        	deckHandler.deckDeletionRequest();
 	                        	finish();
 //	                        	launchIntent();

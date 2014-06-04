@@ -29,10 +29,8 @@ import com.hsa.bean.SearchCriterion;
 import com.hsa.database.HSADatabaseHelper;
 import com.hsa.fragment.SearchFragment;
 import com.hsa.fragment.DecksFragment;
-import com.hsa.handler.DeckHandler;
 import com.hsa.handler.SaveHandler;
 import com.hsa.handler.SearchHandler;
-import com.hsa.handler.TrackHandler;
 import com.hsa.handler.ViewHandler;
 
 public class MainActivity extends ActionBarActivity implements
@@ -111,8 +109,8 @@ public class MainActivity extends ActionBarActivity implements
         searchHandler = SearchHandler.getInstance(dbHelper);
         saveHandler = SaveHandler.getInstance(dbHelper);
         viewHandler = ViewHandler.getInstance(dbHelper);
-        DeckHandler.getInstance(dbHelper);
-        TrackHandler.getInstance(dbHelper);
+//        DeckHandler.getInstance(dbHelper);
+//        TrackHandler.getInstance(dbHelper);
        //Riempimento database
         int emptyDB = searchHandler.cardsSearch(null).size();
         if(emptyDB==0) {

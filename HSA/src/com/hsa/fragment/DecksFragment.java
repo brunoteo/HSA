@@ -25,6 +25,7 @@ public class DecksFragment extends Fragment{
 	private HSADatabaseHelper dbHelper;
 	
 	private ViewHandler viewHandler;
+	private SearchHandler searchHandler;
 	
 	private OnDecksListener onDecksListener;
 	
@@ -58,15 +59,16 @@ public class DecksFragment extends Fragment{
         setHasOptionsMenu(true);
         dbHelper = HSADatabaseHelper.getInstance(getActivity());
         viewHandler = ViewHandler.getInstance(dbHelper);
+        searchHandler = SearchHandler.getInstance(dbHelper);
         
-        List<Deck> decks = SearchHandler.getInstance(dbHelper).decksSearch();
+        List<Deck> decks = searchHandler.decksSearch();
         List<DeckDataAggregation> deckDataAggregations = viewHandler.generateDeckData(decks);
         viewDeckDataAggregations(deckDataAggregations);
         
 	}
 	
 	public void refreshList() {
-		List<Deck> decks = SearchHandler.getInstance(dbHelper).decksSearch();
+		List<Deck> decks = searchHandler.decksSearch();
         List<DeckDataAggregation> deckDataAggregations = viewHandler.generateDeckData(decks);
         viewDeckDataAggregations(deckDataAggregations);
 	}

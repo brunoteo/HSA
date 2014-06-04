@@ -48,6 +48,7 @@ public class DeckFragment extends Fragment implements SearchView.OnQueryTextList
 	
 	private ViewHandler viewHandler;
 	private DeckHandler deckHandler;
+	private SearchHandler searchHandler;
 	
 	private GridView gridView;
 	
@@ -83,15 +84,16 @@ public class DeckFragment extends Fragment implements SearchView.OnQueryTextList
         dbHelper = HSADatabaseHelper.getInstance(getActivity());
         deckHandler = DeckHandler.getInstance(dbHelper);
         viewHandler = ViewHandler.getInstance(dbHelper);
+        searchHandler = SearchHandler.getInstance(dbHelper);
         
-        SearchCriterion criterion = SearchHandler.getInstance(dbHelper).deckCriterionRequest(((DeckActivity) getActivity()).getDeckDataAggregation().getName());
-        List<GraphicalAggregation> graphicalsAggregations = viewHandler.generateGraphicalsAggregation(SearchHandler.getInstance(dbHelper).cardsSearch(criterion), this.getActivity());
+        SearchCriterion criterion = searchHandler.deckCriterionRequest(((DeckActivity) getActivity()).getDeckDataAggregation().getName());
+        List<GraphicalAggregation> graphicalsAggregations = viewHandler.generateGraphicalsAggregation(searchHandler.cardsSearch(criterion), this.getActivity());
         viewGraphicsAggregations(graphicalsAggregations);
         
-        List<Card> deckCards = SearchHandler.getInstance(dbHelper).deckCardsSearch(deckHandler.getTmpFormations());
+        List<Card> deckCards = searchHandler.deckCardsSearch(deckHandler.getTmpFormations());
         List<GraphicalAggregation> tmpGraphicalsAggregations = new ArrayList<GraphicalAggregation>();
         if(deckCards.size()!=0) {
-        	tmpGraphicalsAggregations = ViewHandler.getInstance(dbHelper).generateDeckCardsAggregations(deckCards, deckHandler.getTmpFormations());
+        	tmpGraphicalsAggregations = viewHandler.generateDeckCardsAggregations(deckCards, deckHandler.getTmpFormations());
         }
         deckHandler.setTmpGraphicalsAggregations(tmpGraphicalsAggregations);
 
@@ -130,7 +132,7 @@ public class DeckFragment extends Fragment implements SearchView.OnQueryTextList
 			((DeckActivity) getActivity()).setNameFilter(null);
 			
 			SearchCriterion criterion = new SearchCriterion(null, filters);
-			List<GraphicalAggregation> graphicalsAggregations = viewHandler.generateGraphicalsAggregation(SearchHandler.getInstance(dbHelper).cardsSearch(criterion), this.getActivity());
+			List<GraphicalAggregation> graphicalsAggregations = viewHandler.generateGraphicalsAggregation(searchHandler.cardsSearch(criterion), this.getActivity());
             viewGraphicsAggregations(graphicalsAggregations);
 			return true;
 		default:
@@ -166,7 +168,7 @@ public class DeckFragment extends Fragment implements SearchView.OnQueryTextList
 
 			@Override
 			public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-				Card card = SearchHandler.getInstance(dbHelper).cardSearch(graphicalsAggregations.get(position).getName());
+				Card card = searchHandler.cardSearch(graphicalsAggregations.get(position).getName());
 				CompleteTextualAggregation completeTextualAggregation = viewHandler.createCompleteTextualAggregation(card);			
 				onDeckListener.onCardSelected(completeTextualAggregation);
 				return true;
@@ -272,7 +274,7 @@ public class DeckFragment extends Fragment implements SearchView.OnQueryTextList
 	    	if(((DeckActivity) getActivity()).getTypeFilters().size() != 0) filters.put("type", new ArrayList<String>(((DeckActivity) getActivity()).getTypeFilters()));
 	    }
 		SearchCriterion criterion = new SearchCriterion(query, filters);
-		List<GraphicalAggregation> graphicalsAggregations = viewHandler.generateGraphicalsAggregation(SearchHandler.getInstance(dbHelper).cardsSearch(criterion), this.getActivity());
+		List<GraphicalAggregation> graphicalsAggregations = viewHandler.generateGraphicalsAggregation(searchHandler.cardsSearch(criterion), this.getActivity());
 		viewGraphicsAggregations(graphicalsAggregations);
 		return false;
 	}
