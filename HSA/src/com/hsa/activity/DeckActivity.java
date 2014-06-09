@@ -67,6 +67,7 @@ ActionBar.TabListener, DeckFragment.OnDeckListener{
 		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 		actionBar.setDisplayHomeAsUpEnabled(true);
 		actionBar.setTitle(deckData.getName());
+		actionBar.setDisplayUseLogoEnabled(false);
 		// Create the adapter that will return a fragment for each of the three
 		// primary sections of the activity.
 		deckTabsPagerAdapter = new DeckTabsPagerAdapter(
