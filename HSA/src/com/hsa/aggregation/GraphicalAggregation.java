@@ -7,6 +7,14 @@ public class GraphicalAggregation {
 	private int occurence;
 	private int image;
 	
+	public GraphicalAggregation(){};
+	
+	public GraphicalAggregation(String name, int occurrence, int image){
+		this.name = name;
+		this.occurence = occurrence;
+		this.image = image;
+	}
+	
 	public String getName() {
 		return name;
 	}
