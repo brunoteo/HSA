@@ -18,6 +18,8 @@ import android.widget.RadioButton;
 public class CreateDeckTest extends ActivityInstrumentationTestCase2<MainActivity> {
 	
 	private Solo solo;
+	private DeckActivity deckActivity;
+	private SearchHandler searchHandler;
 	
 	public CreateDeckTest() {
 		super(MainActivity.class);
@@ -29,27 +31,73 @@ public class CreateDeckTest extends ActivityInstrumentationTestCase2<MainActivit
 		solo = new Solo(getInstrumentation(), getActivity());
 		solo.scrollViewToSide(solo.getView("pager"), Solo.RIGHT);
 		solo.clickOnButton("New Deck");
+		searchHandler = SearchHandler.getInstance(HSADatabaseHelper.getInstance(getActivity()));
 	}
 	
 	protected void tearDown() throws Exception {
+		solo.finishOpenedActivities();
 		super.tearDown();
-//		solo.finishOpenedActivities();
 	}
 	
-//	public void testError1() {
-//		//Arrange
-//		RadioButton rb = (RadioButton) solo.getView(com.hsa.R.id.radio_priest);
-//		solo.clickOnView(rb);
-//		EditText et = (EditText) solo.getView(com.hsa.R.id.deck_name);
-//		solo.clearEditText(et);
-//		solo.enterText(et, "");
-//		
-//		//Act
-//		solo.clickOnButton("Create");
-//		
-//		//Assume
-//		assertTrue("Name already exist or is void.", solo.searchText("WARNING"));
-//	}
+	public void testError1() {
+		//Arrange
+		RadioButton rb = (RadioButton) solo.getView(com.hsa.R.id.radio_priest);
+		solo.clickOnView(rb);
+		EditText et = (EditText) solo.getView(com.hsa.R.id.deck_name);
+		solo.clearEditText(et);
+		solo.enterText(et, "");
+		
+		//Act
+		solo.clickOnButton("Create");
+		solo.sleep(5000);
+		//Assume
+		assertTrue("Name already exist or is unvalid.", solo.searchText("WARNING"));
+	}
+	
+	public void testError2() {
+		//Arrange
+		RadioButton rb = (RadioButton) solo.getView(com.hsa.R.id.radio_priest);
+		solo.clickOnView(rb);
+		EditText et = (EditText) solo.getView(com.hsa.R.id.deck_name);
+		solo.clearEditText(et);
+		solo.enterText(et, "   ");
+		
+		//Act
+		solo.clickOnButton("Create");
+		solo.sleep(5000);
+		//Assume
+		assertTrue("Name already exist or is unvalid.", solo.searchText("WARNING"));
+	}
+	
+	public void testError3() {
+		//Arrange
+		RadioButton rb = (RadioButton) solo.getView(com.hsa.R.id.radio_priest);
+		solo.clickOnView(rb);
+		EditText et = (EditText) solo.getView(com.hsa.R.id.deck_name);
+		solo.clearEditText(et);
+		solo.enterText(et, " deckError3");
+		
+		//Act
+		solo.clickOnButton("Create");
+		solo.sleep(5000);
+		//Assume
+		assertTrue("Name already exist or is unvalid.", solo.searchText("WARNING"));
+	}
+	
+	public void testError4() {
+		//Arrange
+		RadioButton rb = (RadioButton) solo.getView(com.hsa.R.id.radio_priest);
+		solo.clickOnView(rb);
+		EditText et = (EditText) solo.getView(com.hsa.R.id.deck_name);
+		solo.clearEditText(et);
+		solo.enterText(et, "deckError4 ");
+		
+		//Act
+		solo.clickOnButton("Create");
+		solo.sleep(5000);
+		//Assume
+		assertTrue("Name already exist or is unvalid.", solo.searchText("WARNING"));
+	}
 	
 	public void testValid1() {
 		//Arrange
@@ -58,13 +106,14 @@ public class CreateDeckTest extends ActivityInstrumentationTestCase2<MainActivit
 		EditText et = (EditText) solo.getView(com.hsa.R.id.deck_name);
 		solo.clearEditText(et);
 		solo.enterText(et, "deckValid1");
-		
+
 		//Act
 		solo.clickOnButton("Create");
-		
-//		solo.scrollViewToSide(solo.getView("pager2"), Solo.RIGHT);
+		solo.sleep(5000);
+
 		//Assume
-		assertTrue(solo.waitForActivity(DeckActivity.class));
-//		solo.assertCurrentActivity("string", DeckActivity.class.getName());
+//		assertTrue(solo.waitForActivity(DeckActivity.class.getName(), 10000));
+		assertNotNull(searchHandler.deckSearch("deckValid1"));
+		
 	}
 }

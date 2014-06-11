@@ -80,7 +80,7 @@ public class NewDeckActivity extends ActionBarActivity{
 			}else{
 				AlertDialog.Builder dlgAlert  = new AlertDialog.Builder(this);
 				
-	            dlgAlert.setMessage("Name already exist or is void.");
+	            dlgAlert.setMessage("Name already exist or is unvalid.");
 	            dlgAlert.setTitle("WARNING");
 	            dlgAlert.setPositiveButton("OK", null);
 	            dlgAlert.create().show();

@@ -291,6 +291,16 @@ public class SearchHandler{
 
 	public boolean nameCheck(String name) {
 		if (name != null && !name.isEmpty() && !name.trim().isEmpty()){
+			boolean space = false;
+			for(int i = 0; i < name.length(); i++){
+				if(i == 0){
+					if(name.charAt(i) == ' ') space = true;
+				}else{
+					if(name.charAt(i) == ' ' && name.charAt(i-1) == ' ') space = true;
+				}
+				if(i == name.length()-1 && name.charAt(i) == ' ') space = true;
+			}
+			if(space) return false;
 			List<Deck> decks = decksSearch();
 			return nameCheck(name, decks);
 		}

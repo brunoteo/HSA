@@ -3,7 +3,6 @@ package com.hsa.test;
 import com.hsa.MainActivity;
 import com.hsa.activity.NewDeckActivity;
 import com.hsa.contract.DeckEntry;
-import com.hsa.contract.FormationEntry;
 import com.hsa.database.HSADatabaseHelper;
 import com.hsa.handler.SearchHandler;
 
@@ -36,7 +35,7 @@ public class NewDeckTest extends ActivityInstrumentationTestCase2<MainActivity> 
 		MainActivity mainActivity = getActivity();
 		mainActivity.onClickND(null);
 		
-		nda = (NewDeckActivity) getInstrumentation().waitForMonitorWithTimeout(activityMonitor, 5000);
+		nda = (NewDeckActivity) getInstrumentation().waitForMonitorWithTimeout(activityMonitor, 30000);
 		btn = (Button) nda.findViewById(com.hsa.R.id.buttonConfirm);
 		rb = (RadioButton)nda.findViewById(com.hsa.R.id.radio_priest);
 		et = (EditText) nda.findViewById(com.hsa.R.id.deck_name);
