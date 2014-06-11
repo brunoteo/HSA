@@ -2,10 +2,13 @@ package com.hsa.test;
 
 import com.hsa.MainActivity;
 import com.hsa.activity.NewDeckActivity;
+import com.hsa.contract.DeckEntry;
+import com.hsa.contract.FormationEntry;
 import com.hsa.database.HSADatabaseHelper;
 import com.hsa.handler.SearchHandler;
 
 import android.app.Instrumentation.ActivityMonitor;
+import android.database.sqlite.SQLiteDatabase;
 import android.test.ActivityInstrumentationTestCase2;
 import android.test.UiThreadTest;
 import android.widget.Button;
@@ -42,14 +45,10 @@ public class NewDeckTest extends ActivityInstrumentationTestCase2<MainActivity> 
 
 	protected void tearDown() throws Exception {
 		super.tearDown();
+		SQLiteDatabase db = HSADatabaseHelper.getInstance(getActivity()).getWritableDatabase();
+		String[] args = new String[]{"deckValid1"};
+		db.delete(DeckEntry.TABLE_NAME, DeckEntry.COLUMN_NAME_NAME + " = ?", args);
 	}
-	
-	public void testPreconditions() { 
-        assertNotNull(btn);
-        assertNotNull(rb);
-        assertNotNull(et);
-        assertNotNull(nda);
-      }
 	
 	@UiThreadTest
 	public void testValid1(){
@@ -58,7 +57,7 @@ public class NewDeckTest extends ActivityInstrumentationTestCase2<MainActivity> 
 			      new Runnable() {
 			        public void run() {
 			          et.requestFocus();
-			          et.setText("deck");
+			          et.setText("deckValid1");
 			          rb.requestFocus();
 			          rb.performClick();
 			          btn.requestFocus();
@@ -69,7 +68,7 @@ public class NewDeckTest extends ActivityInstrumentationTestCase2<MainActivity> 
 		nda.setClassName("Priest");
 
 		//Assume
-		assertNotNull(searchHandler.deckSearch("deck"));
+		assertNotNull(searchHandler.deckSearch("deckValid1"));
 	}
 
 }
