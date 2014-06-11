@@ -32,7 +32,7 @@ public class NewDeckActivity extends ActionBarActivity{
 	    searchHandler = SearchHandler.getInstance(dbHelper);
 	    saveHandler = SaveHandler.getInstance(dbHelper);
 	}
-	
+
 	public void onRadioButtonClicked(View view){
 		// Check which radio button was clicked
 	    switch(view.getId()) {
@@ -125,4 +125,12 @@ public class NewDeckActivity extends ActionBarActivity{
 		});
 	 
 	  }
+	
+	public String getClassName() {
+		return className;
+	}
+
+	public void setClassName(String className) {
+		this.className = className;
+	}
 }
