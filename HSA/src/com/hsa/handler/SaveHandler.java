@@ -109,6 +109,8 @@ public class SaveHandler{
 		
 		db.insert(DeckEntry.TABLE_NAME, null, values);
 		
+		db.close();
+		
 		return ViewHandler.getInstance(dbHelper).createDeckDataAggregation(deck);
 	}
 
