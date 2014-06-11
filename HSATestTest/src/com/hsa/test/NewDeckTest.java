@@ -53,6 +53,7 @@ public class NewDeckTest extends ActivityInstrumentationTestCase2<MainActivity> 
 	@UiThreadTest
 	public void testValid1(){
 		//Arrange
+		nda.setClassName("Priest");
 		nda.runOnUiThread(
 			      new Runnable() {
 			        public void run() {
@@ -60,12 +61,14 @@ public class NewDeckTest extends ActivityInstrumentationTestCase2<MainActivity> 
 			          et.setText("deckValid1");
 			          rb.requestFocus();
 			          rb.performClick();
+			          
+			          //Act
 			          btn.requestFocus();
 			          btn.performClick();
 			        } // end of run() method definition
 			      } // end of anonymous Runnable object instantiation
 			    ); // end of invocation of runOnUiThread
-		nda.setClassName("Priest");
+		
 
 		//Assume
 		assertNotNull(searchHandler.deckSearch("deckValid1"));
