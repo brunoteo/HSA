@@ -32,24 +32,24 @@ public class CreateDeckTest extends ActivityInstrumentationTestCase2<MainActivit
 	}
 	
 	protected void tearDown() throws Exception {
-		super.tearDown();
-//		solo.finishOpenedActivities();
+		solo.finishOpenedActivities();
+		super.tearDown();	
 	}
 	
-//	public void testError1() {
-//		//Arrange
-//		RadioButton rb = (RadioButton) solo.getView(com.hsa.R.id.radio_priest);
-//		solo.clickOnView(rb);
-//		EditText et = (EditText) solo.getView(com.hsa.R.id.deck_name);
-//		solo.clearEditText(et);
-//		solo.enterText(et, "");
-//		
-//		//Act
-//		solo.clickOnButton("Create");
-//		
-//		//Assume
-//		assertTrue("Name already exist or is void.", solo.searchText("WARNING"));
-//	}
+	public void testError1() {
+		//Arrange
+		RadioButton rb = (RadioButton) solo.getView(com.hsa.R.id.radio_priest);
+		solo.clickOnView(rb);
+		EditText et = (EditText) solo.getView(com.hsa.R.id.deck_name);
+		solo.clearEditText(et);
+		solo.enterText(et, "");
+		
+		//Act
+		solo.clickOnButton("Create");
+		
+		//Assume
+		assertTrue("Name already exist or is void.", solo.searchText("WARNING"));
+	}
 	
 	public void testValid1() {
 		//Arrange
