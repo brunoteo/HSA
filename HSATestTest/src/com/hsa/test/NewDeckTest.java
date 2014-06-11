@@ -51,12 +51,74 @@ public class NewDeckTest extends ActivityInstrumentationTestCase2<MainActivity> 
 	}
 	
 	@UiThreadTest
+	public void testError1(){
+		
+		nda.runOnUiThread(
+			      new Runnable() {
+			        public void run() {
+			        	//Arrange
+			          et.requestFocus();
+			          et.setText("");
+			          rb.requestFocus();
+			          rb.performClick();
+			          
+			        //Act
+			          btn.requestFocus();
+			          btn.performClick();
+			        } // end of run() method definition
+			      } // end of anonymous Runnable object instantiation
+			    ); // end of invocation of runOnUiThread
+
+		//Assume
+		assertNull(searchHandler.deckSearch(""));
+	}
+	
+//	public void testError2(){
+//		//Arrange
+//		nda.runOnUiThread(
+//			      new Runnable() {
+//			        public void run() {
+//			          et.requestFocus();
+//			          et.setText("   ");
+//			        } // end of run() method definition
+//			      } // end of anonymous Runnable object instantiation
+//			    ); // end of invocation of runOnUiThread
+//		nda.setClassName("Priest");
+//		
+//		//Act
+//		nda.onClickConfirm(null);
+//
+//		//Assume
+//		assertNull(searchHandler.deckSearch("   "));
+//	}
+//	
+//	public void testError3(){
+//		//Arrange
+//		nda.runOnUiThread(
+//			      new Runnable() {
+//			        public void run() {
+//			          et.requestFocus();
+//			          et.setText(" deck1");
+//			        } // end of run() method definition
+//			      } // end of anonymous Runnable object instantiation
+//			    ); // end of invocation of runOnUiThread
+//		nda.setClassName("Priest");
+//		
+//		//Act
+//		nda.onClickConfirm(null);
+//
+//		//Assume
+//		assertNull(searchHandler.deckSearch(" deck1"));
+//	}
+	
+	@UiThreadTest
 	public void testValid1(){
-		//Arrange
+		
 		nda.setClassName("Priest");
 		nda.runOnUiThread(
 			      new Runnable() {
 			        public void run() {
+			        	//Arrange
 			          et.requestFocus();
 			          et.setText("deckValid1");
 			          rb.requestFocus();
