@@ -65,11 +65,53 @@ public class SaveHandler{
 		final Card card28 = new Card("savage roar", "Spell", 3, "Basic", "Give your characters +2 Attack this turn.", "Druid", null, null, null, null, "savage_roar");
 		final Card card29 = new Card("swipe", "Spell", 4, "Basic", "Deal 4 damage to an enemy and 1 damage to all other enemies.", "Druid", null, null, null, null, "swipe");
 		final Card card30 = new Card("wild growth", "Spell", 2, "Basic", "Gain an empty Mana Crystal.", "Druid", null, null, null, null, "wild_growth");
-
+		final Card card31 = new Card("ancestral healing", "Spell", 0, "Basic", "Restore a minion to full Health and give it Taunt.", "Shaman", null, null, null, null, "ancestral_healing");
+		final Card card32 = new Card("backstab", "Spell", 0, "Basic", "Deal 2 damage to an undamaged minion.", "Rogue", null, null, null, null, "backstab");
+		final Card card33 = new Card("bloodlust", "Spell", 5, "Basic", "Give your minions +3 Attack this turn.", "Shaman", null, null, null, null, "bloodlust");
+		final Card card34 = new Card("cold blood", "Spell", 1, "Common", "Give a minion +2 Attack. Combo: +4 Attack instead.", "Rogue", null, null, null, null, "cold_blood");
+		final Card card35 = new Card("corruption", "Spell", 1, "Basic", "Choose an enemy minion. At the start of your turn, destroy it.", "Warlock", null, null, null, null, "corruption");
+		final Card card36 = new Card("drain life", "Spell", 3, "Basic", "Deal 2 damage. Restore 2 Health to your hero.", "Warlock", null, null, null, null, "drain_life");
+		final Card card37 = new Card("dread infernal", "Minion", 6, "Basic", "Battlecry: Deal 1 damage to ALL other characters.", "Warlock", 6, 6, null, "Demon", "dread_infernal");
+		final Card card38 = new Card("far sight", "Spell", 3, "Epic", "Draw a card. That card costs (3) less.", "Shaman", null, null, null, null, "far_sight");
+		final Card card39 = new Card("fire elemental", "Minion", 6, "Basic", "Battlecry: Deal 3 damage.", "Shaman", 6, 5, null, null, "fire_elemental");
+		final Card card40 = new Card("flamestrike", "Spell", 7, "Basic", "Deal 4 damage to all enemy minions.", "Mage", null, null, null, null, "flamestrike");
+		final Card card41 = new Card("frost shock", "Spell", 1, "Basic", "Deal 1 damage to an enemy character and Freeze it.", "Shaman", null, null, null, null, "frost_shock");
+		final Card card42 = new Card("hellfire", "Spell", 4, "Basic", "Deal 3 damage to all characters.", "Warlock", null, null, null, null, "hellfire");
+		final Card card43 = new Card("ice lance", "Spell", 1, "Basic", "Freeze a character. If it was already Frozen, deal 4 damage instead.", "Mage", null, null, null, null, "ice_lance");
+		final Card card44 = new Card("rockbiter weapon", "Spell", 1, "Basic", "Give a friendly character +3 Attack this turn.", "Shaman", null, null, null, null, "rockbiter_weapon");
+		final Card card45 = new Card("shadow bolt", "Spell", 3, "Basic", "Deal 4 damage to a minion.", "Warlock", null, null, null, null, "shadow_bolt");
+		final Card card46 = new Card("voidwalker", "Minion", 1, "Basic", "Taunt.", "Warlock", 1, 3, null, "Demon", "voidwalker");
+		final Card card47 = new Card("water elemental", "Minion", 4, "Basic", "Freeze any character damaged by this minion.", "Mage", 3, 6, null, null, "water_elemental");
+		final Card card48 = new Card("windfury", "Spell", 2, "Basic", "Give a minion Windfury.", "Shaman", null, null, null, null, "windfury");
+		final Card card49 = new Card("arcanite reaper", "Weapon", 5, "Basic", null, "Warrior", 5, null, 2, null, "arcanite_reaper");
+		final Card card50 = new Card("assassinate", "Spell", 5, "Basic", "Destroy an enemy minion.", "Rogue", null, null, null, null, "assassinate");
+		final Card card51 = new Card("assassin's blade", "Weapon", 5, "Basic", null, "Rogue", 5, null, 4, null, "assassins_blade");
+		final Card card52 = new Card("blessing of kings", "Spell", 4, "Basic", "Give a minion +4/+4. (+4 Attack/+4 Health)", "Paladin", null, null, null, null, "blessing_of_kings");
+		final Card card53 = new Card("charge", "Spell", 3, "Basic", "Give a friendly minion +2 Attack and Charge.", "Warrior", null, null, null, null, "charge");
+		final Card card54 = new Card("blessings of might", "Spell", 1, "Basic", "Give a minion +3 Attack.", "Paladin", null, null, null, null, "blessing_of_might");
+		final Card card55 = new Card("consecration", "Spell", 4, "Basic", "Deal 2 damage to all enemies.", "Paladin", null, null, null, null, "consecration");
+		final Card card56 = new Card("deadly poison", "Spell", 1, "Basic", "Give your weapon +2 Attack.", "Rogue", null, null, null, null, "deadly_poison");
+		final Card card57 = new Card("execute", "Spell", 1, "Basic", "Destroy a damaged enemy minion.", "Warrior", null, null, null, null, "execute");
+		final Card card58 = new Card("fiery war axe", "Weapon", 2, "Basic", null, "Warrior", 3, null, 2, null, "fiery_war_axe");
+		final Card card59 = new Card("guardian of kings", "Minion", 7, "Basic", "Battlecry: Restore 6 Health to your hero.", "Paladin", 5, 6, null, null, "guardian_of_kings");
+		final Card card60 = new Card("hammer of wrath", "Spell", 4, "Basic", "Deal 3 damage. Draw a card.", "Paladin", null, null, null, null, "hammer_of_wrath");
+		final Card card61 = new Card("heroic strike", "Spell", 2, "Basic", "Give your hero +4 Attack this turn.", "Warrior", null, null, null, null, "heroic_strike");
+		final Card card62 = new Card("holy light", "Spell", 2, "Basic", "Restore 6 Health.", "Paladin", null, null, null, null, "holy_light");
+		final Card card63 = new Card("hunter's mark", "Spell", 0, "Basic", "Change a minion's Health to 1.", "Hunter", null, null, null, null, "hunters_mark");
+		final Card card64 = new Card("light's justice", "Weapon", 1, "Basic", null, "Paladin", 1, null, 4, null, "lights_justice");
+		final Card card65 = new Card("rampage", "Spell", 2, "Basic", "Give a damaged minion +3/+3.", "Warrior", null, null, null, null, "rampage");
+		final Card card66 = new Card("sinister strike", "Spell", 1, "Basic", "Deal 3 damage to the enemy hero.", "Rogue", null, null, null, null, "sinister_strike");
+		final Card card67 = new Card("sprint", "Spell", 7, "Basic", "Draw 4 cards.", "Rogue", null, null, null, null, "sprint");
+		final Card card68 = new Card("truesilver champion", "Weapon", 4, "Basic", "Whenever your hero attacks, restore 2 Health to it.", "Paladin", 4, null, 2, null, "truesilver_champion");
+		
 		
 		List<Card> cards = Arrays.asList(card1, card2, card3, card4, card5, card6, card7, card8, card9, card10,
 				card11, card12, card13, card14, card15, card16, card17, card18, card19, card20,
-				card21, card22, card23, card24, card25, card26, card27, card28, card29, card30);
+				card21, card22, card23, card24, card25, card26, card27, card28, card29, card30,
+				card31, card32, card33, card34, card35, card36, card37, card38, card39, card40,
+				card41, card42, card43, card44, card45, card46, card47, card48, card49, card50,
+				card51, card52, card53, card54, card55, card56, card57, card58, card59, card60,
+				card61, card62, card63, card64, card65, card66, card67, card68);
 	
 		
 		SQLiteDatabase db = dbHelper.getWritableDatabase();
