@@ -111,29 +111,29 @@ public class NewDeckTest extends ActivityInstrumentationTestCase2<MainActivity> 
 //		assertNull(searchHandler.deckSearch(" deck1"));
 //	}
 	
-	@UiThreadTest
-	public void testValid1(){
-		
-		nda.setClassName("Priest");
-		nda.runOnUiThread(
-			      new Runnable() {
-			        public void run() {
-			        	//Arrange
-			          et.requestFocus();
-			          et.setText("deckValid1");
-			          rb.requestFocus();
-			          rb.performClick();
-			          
-			          //Act
-			          btn.requestFocus();
-			          btn.performClick();
-			        } // end of run() method definition
-			      } // end of anonymous Runnable object instantiation
-			    ); // end of invocation of runOnUiThread
-		
-
-		//Assume
-		assertNotNull(searchHandler.deckSearch("deckValid1"));
-	}
+//	@UiThreadTest
+//	public void testValid1(){
+//		
+//		nda.setClassName("Priest");
+//		nda.runOnUiThread(
+//			      new Runnable() {
+//			        public void run() {
+//			        	//Arrange
+//			          et.requestFocus();
+//			          et.setText("deckValid1");
+//			          rb.requestFocus();
+//			          rb.performClick();
+//			          
+//			          //Act
+//			          btn.requestFocus();
+//			          btn.performClick();
+//			        } // end of run() method definition
+//			      } // end of anonymous Runnable object instantiation
+//			    ); // end of invocation of runOnUiThread
+//		
+//
+//		//Assume
+//		assertNotNull(searchHandler.deckSearch("deckValid1"));
+//	}
 
 }
