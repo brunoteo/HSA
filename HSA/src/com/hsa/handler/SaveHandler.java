@@ -103,6 +103,26 @@ public class SaveHandler{
 		final Card card66 = new Card("sinister strike", "Spell", 1, "Basic", "Deal 3 damage to the enemy hero.", "Rogue", null, null, null, null, "sinister_strike");
 		final Card card67 = new Card("sprint", "Spell", 7, "Basic", "Draw 4 cards.", "Rogue", null, null, null, null, "sprint");
 		final Card card68 = new Card("truesilver champion", "Weapon", 4, "Basic", "Whenever your hero attacks, restore 2 Health to it.", "Paladin", 4, null, 2, null, "truesilver_champion");
+//		final Card card59 = new Card("guardian of kings", "Minion", 7, "Basic", "Battlecry: Restore 6 Health to your hero.", "Paladin", 5, 6, null, null, "guardian_of_kings");
+//		final Card card60 = new Card("hammer of wrath", "Spell", 4, "Basic", "Deal 3 damage. Draw a card.", "Paladin", null, null, null, null, "hammer_of_wrath");
+//		final Card card61 = new Card("heroic strike", "Spell", 2, "Basic", "Give your hero +4 Attack this turn.", "Warrior", null, null, null, null, "heroic_strike");
+//		final Card card62 = new Card("holy light", "Spell", 2, "Basic", "Restore 6 Health.", "Paladin", null, null, null, null, "holy_light");
+//		final Card card63 = new Card("hunter's mark", "Spell", 0, "Basic", "Change a minion's Health to 1.", "Hunter", null, null, null, null, "hunters_mark");
+//		final Card card64 = new Card("light's justice", "Weapon", 1, "Basic", null, "Paladin", 1, null, 4, null, "lights_justice");
+//		final Card card65 = new Card("rampage", "Spell", 2, "Basic", "Give a damaged minion +3/+3.", "Warrior", null, null, null, null, "rampage");
+//		final Card card66 = new Card("sinister strike", "Spell", 1, "Basic", "Deal 3 damage to the enemy hero.", "Rogue", null, null, null, null, "sinister_strike");
+//		final Card card67 = new Card("sprint", "Spell", 7, "Basic", "Draw 4 cards.", "Rogue", null, null, null, null, "sprint");
+//		final Card card68 = new Card("truesilver champion", "Weapon", 4, "Basic", "Whenever your hero attacks, restore 2 Health to it.", "Paladin", 4, null, 2, null, "truesilver_champion");
+//		final Card card59 = new Card("guardian of kings", "Minion", 7, "Basic", "Battlecry: Restore 6 Health to your hero.", "Paladin", 5, 6, null, null, "guardian_of_kings");
+//		final Card card60 = new Card("hammer of wrath", "Spell", 4, "Basic", "Deal 3 damage. Draw a card.", "Paladin", null, null, null, null, "hammer_of_wrath");
+//		final Card card61 = new Card("heroic strike", "Spell", 2, "Basic", "Give your hero +4 Attack this turn.", "Warrior", null, null, null, null, "heroic_strike");
+//		final Card card62 = new Card("holy light", "Spell", 2, "Basic", "Restore 6 Health.", "Paladin", null, null, null, null, "holy_light");
+//		final Card card63 = new Card("hunter's mark", "Spell", 0, "Basic", "Change a minion's Health to 1.", "Hunter", null, null, null, null, "hunters_mark");
+//		final Card card64 = new Card("light's justice", "Weapon", 1, "Basic", null, "Paladin", 1, null, 4, null, "lights_justice");
+//		final Card card65 = new Card("rampage", "Spell", 2, "Basic", "Give a damaged minion +3/+3.", "Warrior", null, null, null, null, "rampage");
+//		final Card card66 = new Card("sinister strike", "Spell", 1, "Basic", "Deal 3 damage to the enemy hero.", "Rogue", null, null, null, null, "sinister_strike");
+//		final Card card67 = new Card("sprint", "Spell", 7, "Basic", "Draw 4 cards.", "Rogue", null, null, null, null, "sprint");
+//		final Card card68 = new Card("truesilver champion", "Weapon", 4, "Basic", "Whenever your hero attacks, restore 2 Health to it.", "Paladin", 4, null, 2, null, "truesilver_champion");
 		
 		
 		List<Card> cards = Arrays.asList(card1, card2, card3, card4, card5, card6, card7, card8, card9, card10,
