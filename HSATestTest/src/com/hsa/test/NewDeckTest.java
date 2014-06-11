@@ -7,6 +7,7 @@ import com.hsa.handler.SearchHandler;
 
 import android.app.Instrumentation.ActivityMonitor;
 import android.test.ActivityInstrumentationTestCase2;
+import android.test.UiThreadTest;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
@@ -43,6 +44,14 @@ public class NewDeckTest extends ActivityInstrumentationTestCase2<MainActivity> 
 		super.tearDown();
 	}
 	
+	public void testPreconditions() { 
+        assertNotNull(btn);
+        assertNotNull(rb);
+        assertNotNull(et);
+        assertNotNull(nda);
+      }
+	
+	@UiThreadTest
 	public void testValid1(){
 		//Arrange
 		nda.runOnUiThread(
@@ -58,12 +67,9 @@ public class NewDeckTest extends ActivityInstrumentationTestCase2<MainActivity> 
 			      } // end of anonymous Runnable object instantiation
 			    ); // end of invocation of runOnUiThread
 		nda.setClassName("Priest");
-		
-		//Act
-//		nda.onClickConfirm(null);
 
 		//Assume
-//		assertNotNull(searchHandler.deckSearch("deck"));
+		assertNotNull(searchHandler.deckSearch("deck"));
 	}
 
 }
