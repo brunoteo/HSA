@@ -135,6 +135,50 @@ public class ViewDeckCardsTest extends ActivityInstrumentationTestCase2<MainActi
 		assertTrue(chkClass.isChecked());
 		assertTrue(chkNeutral.isChecked());
 	}
+	
+	public void testValid3() {
+		//Arrange
+		ActivityMonitor activityMonitor = getInstrumentation().addMonitor(DeckActivity.class.getName(), null, false);
+		solo.scrollViewToSide(solo.getView("pager"), Solo.RIGHT);
+		solo.clickOnText("MyRogue");
+		DeckActivity da = (DeckActivity) getInstrumentation().waitForMonitorWithTimeout(activityMonitor, 50000);
+		
+		
+		//Act
+		activityMonitor = getInstrumentation().addMonitor(FilterActivity.class.getName(), null, false);
+		Intent intent = new Intent(da, FilterActivity.class);
+		intent.putExtra("classDeck", da.getDeckDataAggregation().getClassName());
+		intent.putStringArrayListExtra("classResult", da.getClassFilters());
+		intent.putStringArrayListExtra("costResult", da.getCostFilters());
+		intent.putStringArrayListExtra("rarityResult", da.getRarityFilters());
+		intent.putStringArrayListExtra("typeResult", da.getTypeFilters());
+		da.startActivityForResult(intent, 1);
+		FilterActivity fa = (FilterActivity) getInstrumentation().waitForMonitorWithTimeout(activityMonitor, 50000);
+		
+		//Assume
+		CheckBox chkClass = (CheckBox) solo.getView(com.hsa.R.id.chkRogue);
+		CheckBox chkNeutral = (CheckBox) solo.getView(com.hsa.R.id.chkNeutral);
+		View chkDruid = fa.findViewById(com.hsa.R.id.chkDruid);
+		View chkPaladin = fa.findViewById(com.hsa.R.id.chkPaladin);
+		View chkMage = fa.findViewById(com.hsa.R.id.chkMage);
+		View chkWarlock = fa.findViewById(com.hsa.R.id.chkWarlock);
+		View chkWarrior = fa.findViewById(com.hsa.R.id.chkWarrior);
+		View chkPriest = fa.findViewById(com.hsa.R.id.chkPriest);
+		View chkHunter = fa.findViewById(com.hsa.R.id.chkHunter);
+		View chkShaman = fa.findViewById(com.hsa.R.id.chkShaman);
+		assertNull(chkDruid);
+		assertNull(chkPaladin);
+		assertNull(chkMage);
+		assertNull(chkWarlock);
+		assertNull(chkWarrior);
+		assertNull(chkPriest);
+		assertNull(chkHunter);
+		assertNull(chkShaman);
+		assertNotNull(chkClass);
+		assertNotNull(chkNeutral);
+		assertTrue(chkClass.isChecked());
+		assertTrue(chkNeutral.isChecked());
+	}
 
 	public void testValid4() {
 		//Arrange
@@ -180,49 +224,7 @@ public class ViewDeckCardsTest extends ActivityInstrumentationTestCase2<MainActi
 		assertTrue(chkNeutral.isChecked());
 	}
 
-	public void testValid3() {
-		//Arrange
-		ActivityMonitor activityMonitor = getInstrumentation().addMonitor(DeckActivity.class.getName(), null, false);
-		solo.scrollViewToSide(solo.getView("pager"), Solo.RIGHT);
-		solo.clickOnText("MyRogue");
-		DeckActivity da = (DeckActivity) getInstrumentation().waitForMonitorWithTimeout(activityMonitor, 50000);
-		
-		
-		//Act
-		activityMonitor = getInstrumentation().addMonitor(FilterActivity.class.getName(), null, false);
-		Intent intent = new Intent(da, FilterActivity.class);
-		intent.putExtra("classDeck", da.getDeckDataAggregation().getClassName());
-		intent.putStringArrayListExtra("classResult", da.getClassFilters());
-		intent.putStringArrayListExtra("costResult", da.getCostFilters());
-		intent.putStringArrayListExtra("rarityResult", da.getRarityFilters());
-		intent.putStringArrayListExtra("typeResult", da.getTypeFilters());
-		da.startActivityForResult(intent, 1);
-		FilterActivity fa = (FilterActivity) getInstrumentation().waitForMonitorWithTimeout(activityMonitor, 50000);
-		
-		//Assume
-		CheckBox chkClass = (CheckBox) solo.getView(com.hsa.R.id.chkRogue);
-		CheckBox chkNeutral = (CheckBox) solo.getView(com.hsa.R.id.chkNeutral);
-		View chkDruid = fa.findViewById(com.hsa.R.id.chkDruid);
-		View chkPaladin = fa.findViewById(com.hsa.R.id.chkPaladin);
-		View chkMage = fa.findViewById(com.hsa.R.id.chkMage);
-		View chkWarlock = fa.findViewById(com.hsa.R.id.chkWarlock);
-		View chkWarrior = fa.findViewById(com.hsa.R.id.chkWarrior);
-		View chkPriest = fa.findViewById(com.hsa.R.id.chkPriest);
-		View chkHunter = fa.findViewById(com.hsa.R.id.chkHunter);
-		View chkShaman = fa.findViewById(com.hsa.R.id.chkShaman);
-		assertNull(chkDruid);
-		assertNull(chkPaladin);
-		assertNull(chkMage);
-		assertNull(chkWarlock);
-		assertNull(chkWarrior);
-		assertNull(chkPriest);
-		assertNull(chkHunter);
-		assertNull(chkShaman);
-		assertNotNull(chkClass);
-		assertNotNull(chkNeutral);
-		assertTrue(chkClass.isChecked());
-		assertTrue(chkNeutral.isChecked());
-	}
+	
 	
 	public void testValid5() {
 		//Arrange
@@ -302,6 +304,50 @@ public class ViewDeckCardsTest extends ActivityInstrumentationTestCase2<MainActi
 		assertNull(chkPaladin);
 		assertNull(chkMage);
 		assertNull(chkWarlock);
+		assertNull(chkWarrior);
+		assertNull(chkHunter);
+		assertNull(chkRogue);
+		assertNull(chkShaman);
+		assertNotNull(chkClass);
+		assertNotNull(chkNeutral);
+		assertTrue(chkClass.isChecked());
+		assertTrue(chkNeutral.isChecked());
+	}
+	
+	public void testValid7() {
+		//Arrange
+		ActivityMonitor activityMonitor = getInstrumentation().addMonitor(DeckActivity.class.getName(), null, false);
+		solo.scrollViewToSide(solo.getView("pager"), Solo.RIGHT);
+		solo.clickOnText("MyWarlock");
+		DeckActivity da = (DeckActivity) getInstrumentation().waitForMonitorWithTimeout(activityMonitor, 50000);
+		
+		
+		//Act
+		activityMonitor = getInstrumentation().addMonitor(FilterActivity.class.getName(), null, false);
+		Intent intent = new Intent(da, FilterActivity.class);
+		intent.putExtra("classDeck", da.getDeckDataAggregation().getClassName());
+		intent.putStringArrayListExtra("classResult", da.getClassFilters());
+		intent.putStringArrayListExtra("costResult", da.getCostFilters());
+		intent.putStringArrayListExtra("rarityResult", da.getRarityFilters());
+		intent.putStringArrayListExtra("typeResult", da.getTypeFilters());
+		da.startActivityForResult(intent, 1);
+		FilterActivity fa = (FilterActivity) getInstrumentation().waitForMonitorWithTimeout(activityMonitor, 50000);
+		
+		//Assume
+		CheckBox chkClass = (CheckBox) solo.getView(com.hsa.R.id.chkWarlock);
+		CheckBox chkNeutral = (CheckBox) solo.getView(com.hsa.R.id.chkNeutral);
+		View chkDruid = fa.findViewById(com.hsa.R.id.chkDruid);
+		View chkPaladin = fa.findViewById(com.hsa.R.id.chkPaladin);
+		View chkMage = fa.findViewById(com.hsa.R.id.chkMage);
+		View chkPriest = fa.findViewById(com.hsa.R.id.chkPriest);
+		View chkWarrior = fa.findViewById(com.hsa.R.id.chkWarrior);
+		View chkHunter = fa.findViewById(com.hsa.R.id.chkHunter);
+		View chkRogue = fa.findViewById(com.hsa.R.id.chkRogue);
+		View chkShaman = fa.findViewById(com.hsa.R.id.chkShaman);
+		assertNull(chkDruid);
+		assertNull(chkPaladin);
+		assertNull(chkMage);
+		assertNull(chkPriest);
 		assertNull(chkWarrior);
 		assertNull(chkHunter);
 		assertNull(chkRogue);
@@ -400,48 +446,4 @@ public class ViewDeckCardsTest extends ActivityInstrumentationTestCase2<MainActi
 		assertTrue(chkNeutral.isChecked());
 	}
 	
-	public void testValid7() {
-		//Arrange
-		ActivityMonitor activityMonitor = getInstrumentation().addMonitor(DeckActivity.class.getName(), null, false);
-		solo.scrollViewToSide(solo.getView("pager"), Solo.RIGHT);
-		solo.clickOnText("MyWarlock");
-		DeckActivity da = (DeckActivity) getInstrumentation().waitForMonitorWithTimeout(activityMonitor, 50000);
-		
-		
-		//Act
-		activityMonitor = getInstrumentation().addMonitor(FilterActivity.class.getName(), null, false);
-		Intent intent = new Intent(da, FilterActivity.class);
-		intent.putExtra("classDeck", da.getDeckDataAggregation().getClassName());
-		intent.putStringArrayListExtra("classResult", da.getClassFilters());
-		intent.putStringArrayListExtra("costResult", da.getCostFilters());
-		intent.putStringArrayListExtra("rarityResult", da.getRarityFilters());
-		intent.putStringArrayListExtra("typeResult", da.getTypeFilters());
-		da.startActivityForResult(intent, 1);
-		FilterActivity fa = (FilterActivity) getInstrumentation().waitForMonitorWithTimeout(activityMonitor, 50000);
-		
-		//Assume
-		CheckBox chkClass = (CheckBox) solo.getView(com.hsa.R.id.chkWarlock);
-		CheckBox chkNeutral = (CheckBox) solo.getView(com.hsa.R.id.chkNeutral);
-		View chkDruid = fa.findViewById(com.hsa.R.id.chkDruid);
-		View chkPaladin = fa.findViewById(com.hsa.R.id.chkPaladin);
-		View chkMage = fa.findViewById(com.hsa.R.id.chkMage);
-		View chkPriest = fa.findViewById(com.hsa.R.id.chkPriest);
-		View chkWarrior = fa.findViewById(com.hsa.R.id.chkWarrior);
-		View chkHunter = fa.findViewById(com.hsa.R.id.chkHunter);
-		View chkRogue = fa.findViewById(com.hsa.R.id.chkRogue);
-		View chkShaman = fa.findViewById(com.hsa.R.id.chkShaman);
-		assertNull(chkDruid);
-		assertNull(chkPaladin);
-		assertNull(chkMage);
-		assertNull(chkPriest);
-		assertNull(chkWarrior);
-		assertNull(chkHunter);
-		assertNull(chkRogue);
-		assertNull(chkShaman);
-		assertNotNull(chkClass);
-		assertNotNull(chkNeutral);
-		assertTrue(chkClass.isChecked());
-		assertTrue(chkNeutral.isChecked());
-	}
-
 }
