@@ -27,6 +27,16 @@ public class ViewDeckCardsTest extends ActivityInstrumentationTestCase2<MainActi
 		super.setUp();
 		solo = new Solo(getInstrumentation(), getActivity());
 		saveHandler = SaveHandler.getInstance(HSADatabaseHelper.getInstance(getActivity()));
+		saveHandler.createDeck("MyDruid", "Druid");
+		saveHandler.createDeck("MyMage", "Mage");
+		saveHandler.createDeck("MyRogue", "Rogue");
+		saveHandler.createDeck("MyPaladin", "Paladin");
+		saveHandler.createDeck("MyHunter", "Hunter");
+		saveHandler.createDeck("MyPriest", "Priest");
+		saveHandler.createDeck("MyWarlock", "Warlock");
+		saveHandler.createDeck("MyWarrior", "Warrior");
+		saveHandler.createDeck("MyShaman", "Shaman");
+
 	}
 	
 	protected void tearDown() throws Exception {
@@ -34,10 +44,12 @@ public class ViewDeckCardsTest extends ActivityInstrumentationTestCase2<MainActi
 		super.tearDown();	
 	}
 	
+	public void testInit() {
+		assertNotNull(solo);
+	}
+	
 	public void testValid1() {
 		//Arrange
-		saveHandler.createDeck("MyDruid", "Druid");
-		solo.sleep(5000);
 		ActivityMonitor activityMonitor = getInstrumentation().addMonitor(DeckActivity.class.getName(), null, false);
 		solo.scrollViewToSide(solo.getView("pager"), Solo.RIGHT);
 		solo.clickOnText("MyDruid");
@@ -82,8 +94,6 @@ public class ViewDeckCardsTest extends ActivityInstrumentationTestCase2<MainActi
 	
 	public void testValid2() {
 		//Arrange
-		saveHandler.createDeck("MyMage", "Mage");
-		solo.sleep(5000);
 		ActivityMonitor activityMonitor = getInstrumentation().addMonitor(DeckActivity.class.getName(), null, false);
 		solo.scrollViewToSide(solo.getView("pager"), Solo.RIGHT);
 		solo.clickOnText("MyMage");
@@ -128,8 +138,6 @@ public class ViewDeckCardsTest extends ActivityInstrumentationTestCase2<MainActi
 
 	public void testValid4() {
 		//Arrange
-		saveHandler.createDeck("MyPaladin", "Paladin");
-		solo.sleep(5000);
 		ActivityMonitor activityMonitor = getInstrumentation().addMonitor(DeckActivity.class.getName(), null, false);
 		solo.scrollViewToSide(solo.getView("pager"), Solo.RIGHT);
 		solo.clickOnText("MyPaladin");
@@ -174,8 +182,6 @@ public class ViewDeckCardsTest extends ActivityInstrumentationTestCase2<MainActi
 
 	public void testValid3() {
 		//Arrange
-		saveHandler.createDeck("MyRogue", "Rogue");
-		solo.sleep(5000);
 		ActivityMonitor activityMonitor = getInstrumentation().addMonitor(DeckActivity.class.getName(), null, false);
 		solo.scrollViewToSide(solo.getView("pager"), Solo.RIGHT);
 		solo.clickOnText("MyRogue");
@@ -220,8 +226,6 @@ public class ViewDeckCardsTest extends ActivityInstrumentationTestCase2<MainActi
 	
 	public void testValid5() {
 		//Arrange
-		saveHandler.createDeck("MyHunter", "Hunter");
-		solo.sleep(5000);
 		ActivityMonitor activityMonitor = getInstrumentation().addMonitor(DeckActivity.class.getName(), null, false);
 		solo.scrollViewToSide(solo.getView("pager"), Solo.RIGHT);
 		solo.clickOnText("MyHunter");
@@ -266,8 +270,6 @@ public class ViewDeckCardsTest extends ActivityInstrumentationTestCase2<MainActi
 	
 	public void testValid6() {
 		//Arrange
-		saveHandler.createDeck("MyPriest", "Priest");
-		solo.sleep(5000);
 		ActivityMonitor activityMonitor = getInstrumentation().addMonitor(DeckActivity.class.getName(), null, false);
 		solo.scrollViewToSide(solo.getView("pager"), Solo.RIGHT);
 		solo.clickOnText("MyPriest");
@@ -312,8 +314,6 @@ public class ViewDeckCardsTest extends ActivityInstrumentationTestCase2<MainActi
 	
 	public void testValid8() {
 		//Arrange
-		saveHandler.createDeck("MyWarrior", "Warrior");
-		solo.sleep(5000);
 		ActivityMonitor activityMonitor = getInstrumentation().addMonitor(DeckActivity.class.getName(), null, false);
 		solo.scrollViewToSide(solo.getView("pager"), Solo.RIGHT);
 		solo.clickOnText("MyWarrior");
@@ -358,8 +358,6 @@ public class ViewDeckCardsTest extends ActivityInstrumentationTestCase2<MainActi
 	
 	public void testValid9() {
 		//Arrange
-		saveHandler.createDeck("MyShaman", "Shaman");
-		solo.sleep(5000);
 		ActivityMonitor activityMonitor = getInstrumentation().addMonitor(DeckActivity.class.getName(), null, false);
 		solo.scrollViewToSide(solo.getView("pager"), Solo.RIGHT);
 		solo.clickOnText("MyShaman");
@@ -404,8 +402,6 @@ public class ViewDeckCardsTest extends ActivityInstrumentationTestCase2<MainActi
 	
 	public void testValid7() {
 		//Arrange
-		saveHandler.createDeck("MyWarlock", "Warlock");
-		solo.sleep(5000);
 		ActivityMonitor activityMonitor = getInstrumentation().addMonitor(DeckActivity.class.getName(), null, false);
 		solo.scrollViewToSide(solo.getView("pager"), Solo.RIGHT);
 		solo.clickOnText("MyWarlock");
