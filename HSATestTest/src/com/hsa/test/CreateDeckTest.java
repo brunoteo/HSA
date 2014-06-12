@@ -36,7 +36,9 @@ public class CreateDeckTest extends ActivityInstrumentationTestCase2<MainActivit
 	
 	protected void tearDown() throws Exception {
 		solo.finishOpenedActivities();
+
 		super.tearDown();
+
 	}
 	
 	public void testError1() {
@@ -49,6 +51,7 @@ public class CreateDeckTest extends ActivityInstrumentationTestCase2<MainActivit
 		
 		//Act
 		solo.clickOnButton("Create");
+
 		solo.sleep(5000);
 		//Assume
 		assertTrue("Name already exist or is unvalid.", solo.searchText("WARNING"));
@@ -97,6 +100,7 @@ public class CreateDeckTest extends ActivityInstrumentationTestCase2<MainActivit
 		solo.sleep(5000);
 		//Assume
 		assertTrue("Name already exist or is unvalid.", solo.searchText("WARNING"));
+
 	}
 	
 	public void testValid1() {
