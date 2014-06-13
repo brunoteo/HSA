@@ -55,7 +55,6 @@ public class ViewDeckCardsTest extends ActivityInstrumentationTestCase2<MainActi
 		solo.clickOnText("MyDruid");
 		DeckActivity da = (DeckActivity) getInstrumentation().waitForMonitorWithTimeout(activityMonitor, 50000);
 		
-		
 		//Act
 		activityMonitor = getInstrumentation().addMonitor(FilterActivity.class.getName(), null, false);
 		Intent intent = new Intent(da, FilterActivity.class);

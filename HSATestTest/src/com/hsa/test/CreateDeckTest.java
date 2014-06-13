@@ -38,7 +38,6 @@ public class CreateDeckTest extends ActivityInstrumentationTestCase2<MainActivit
 	
 	protected void tearDown() throws Exception {
 		SQLiteDatabase db = HSADatabaseHelper.getInstance(getActivity()).getWritableDatabase();
-//		String[] args = new String[]{"deckValid1", "deck Error 7"};
 		db.delete(DeckEntry.TABLE_NAME, null, null);
 		solo.finishOpenedActivities();
 		super.tearDown();
@@ -58,7 +57,7 @@ public class CreateDeckTest extends ActivityInstrumentationTestCase2<MainActivit
 		solo.sleep(5000);
 		//Assume
 		assertNull(searchHandler.deckSearch(""));
-//		assertTrue("Name already exist or is unvalid.", solo.searchText("WARNING"));
+
 	}
 	
 	public void testError2() {
@@ -72,9 +71,10 @@ public class CreateDeckTest extends ActivityInstrumentationTestCase2<MainActivit
 		//Act
 		solo.clickOnButton("Create");
 		solo.sleep(5000);
+		
 		//Assume
 		assertNull(searchHandler.deckSearch("   "));
-//		assertTrue("Name already exist or is unvalid.", solo.searchText("WARNING"));
+		
 	}
 	
 	public void testError3() {
@@ -88,9 +88,10 @@ public class CreateDeckTest extends ActivityInstrumentationTestCase2<MainActivit
 		//Act
 		solo.clickOnButton("Create");
 		solo.sleep(5000);
+		
 		//Assume
 		assertNull(searchHandler.deckSearch(" deckError3"));
-//		assertTrue("Name already exist or is unvalid.", solo.searchText("WARNING"));
+
 	}
 	
 	public void testError4() {
@@ -104,10 +105,11 @@ public class CreateDeckTest extends ActivityInstrumentationTestCase2<MainActivit
 		//Act
 		solo.clickOnButton("Create");
 		solo.sleep(5000);
+		
 		//Assume
 		assertNull(searchHandler.deckSearch("deckError4 "));
-//		assertTrue("Name already exist or is unvalid.", solo.searchText("WARNING"));
 
+		
 	}
 	
 	public void testError5() {
@@ -121,16 +123,14 @@ public class CreateDeckTest extends ActivityInstrumentationTestCase2<MainActivit
 		//Act
 		solo.clickOnButton("Create");
 		solo.sleep(5000);
+		
 		//Assume
 		assertNull(searchHandler.deckSearch("deck   Error5"));
-//		assertTrue("Name already exist or is unvalid.", solo.searchText("WARNING"));
 
 	}
 	
 	public void testError6() {
 		//Arrange
-//		RadioButton rb = (RadioButton) solo.getView(com.hsa.R.id.radio_priest);
-//		solo.clickOnView(rb);
 		EditText et = (EditText) solo.getView(com.hsa.R.id.deck_name);
 		solo.clearEditText(et);
 		solo.enterText(et, "deck Error 6");
@@ -138,9 +138,9 @@ public class CreateDeckTest extends ActivityInstrumentationTestCase2<MainActivit
 		//Act
 		solo.clickOnButton("Create");
 		solo.sleep(5000);
+		
 		//Assume
 		assertNull(searchHandler.deckSearch("deck Error 6"));
-//		assertTrue("Class empty.", solo.searchText("WARNING"));
 
 	}
 	
@@ -153,10 +153,9 @@ public class CreateDeckTest extends ActivityInstrumentationTestCase2<MainActivit
 		solo.clearEditText(et);
 		solo.enterText(et, "deck Error 7");
 		
-		//date boundary
 		solo.sleep(1000);
 		SimpleDateFormat s = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		String dateString1 = s.format(new Date());
+		String dateString1 = s.format(new Date()); //date boundary
 		Date date1 = s.parse(dateString1);
 		solo.sleep(1000);
 		
@@ -165,10 +164,10 @@ public class CreateDeckTest extends ActivityInstrumentationTestCase2<MainActivit
 		solo.sleep(5000);
 		String dateString2 = searchHandler.deckSearch("deck Error 7").getDate();
 		Date date2 = s.parse(dateString2);
+		
 		//Assume
 		assertTrue(date2.compareTo(date1)<0);
-//		assertNull(searchHandler.deckSearch("deck Error 7"));
-//		assertTrue("Name already exist or is unvalid.", solo.searchText("WARNING"));
+
 	}
 	
 	public void testSingol1() {
