@@ -304,7 +304,7 @@ ActionBar.TabListener, DeckFragment.OnDeckListener{
 		int numCards = 0;
 		if(graphicalsAggregations!=null) {
 			for(GraphicalAggregation ga : graphicalsAggregations) {
-				numCards += ga.getOccurence();
+				numCards += ga.getOccurrence();
 			}
 		}	
 		final ActionBar actionBar = getSupportActionBar();

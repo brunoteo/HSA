@@ -88,9 +88,9 @@ public class ViewHandler{
 		GraphicalAggregation ga = new GraphicalAggregation();
 		ga.setName(card.getName());
 		if(formation==null)
-			ga.setOccurence(1);
+			ga.setOccurrence(1);
 		else
-			ga.setOccurence(formation.getOccurrence());
+			ga.setOccurrence(formation.getOccurrence());
 		ga.setImage(image);
 		return ga;
 	}

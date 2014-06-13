@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import com.hsa.MainActivity;
+import com.hsa.bean.Deck;
 import com.hsa.contract.DeckEntry;
 import com.hsa.database.HSADatabaseHelper;
 import com.hsa.handler.SaveHandler;
@@ -183,7 +184,11 @@ public class CreateDeckTest extends ActivityInstrumentationTestCase2<MainActivit
 		solo.sleep(5000);
 
 		//Assert
-		assertNotNull(searchHandler.deckSearch("Z"));
+		Deck deck = searchHandler.deckSearch("Z");
+		assertNotNull(deck);
+		if(deck!= null){
+			assertTrue(deck.getClassName().equals("Priest"));
+		}
 		
 	}
 	
@@ -200,7 +205,11 @@ public class CreateDeckTest extends ActivityInstrumentationTestCase2<MainActivit
 		solo.sleep(5000);
 
 		//Assert
-		assertNotNull(searchHandler.deckSearch("deckValid1"));
+		Deck deck = searchHandler.deckSearch("deckValid1");
+		assertNotNull(deck);
+		if(deck!= null){
+			assertTrue(deck.getClassName().equals("Priest"));
+		}
 		
 	}
 	
@@ -217,7 +226,11 @@ public class CreateDeckTest extends ActivityInstrumentationTestCase2<MainActivit
 		solo.sleep(5000);
 
 		//Assert
-		assertNotNull(searchHandler.deckSearch("deck Valid 2"));
+		Deck deck = searchHandler.deckSearch("deck Valid 2");
+		assertNotNull(deck);
+		if(deck!= null){
+			assertTrue(deck.getClassName().equals("Priest"));
+		}
 		
 	}
 }

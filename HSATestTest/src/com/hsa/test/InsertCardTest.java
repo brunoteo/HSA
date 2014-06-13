@@ -44,7 +44,10 @@ public class InsertCardTest extends ActivityInstrumentationTestCase2<MainActivit
 		//Assert
 		assertTrue(deckHandler.getTmpGraphicalsAggregations().size() == 1);
 		assertTrue(deckHandler.getTmpGraphicalsAggregations().get(0).getName().equals("frostbolt"));
-		assertTrue(deckHandler.getTmpGraphicalsAggregations().get(0).getOccurence() == 30);
+		assertTrue(deckHandler.getTmpGraphicalsAggregations().get(0).getOccurrence() == 30);
+		assertTrue(deckHandler.getTmpFormations().size() == 1);
+		assertTrue(deckHandler.getTmpFormations().get(0).getCard().equals("frostbolt"));
+		assertTrue(deckHandler.getTmpFormations().get(0).getOccurrence() == 30);
 	}
 	
 	public void testSingle1() {
@@ -64,6 +67,13 @@ public class InsertCardTest extends ActivityInstrumentationTestCase2<MainActivit
 		assertTrue(deckHandler.getTmpGraphicalsAggregations().size() == 2);
 		assertTrue(deckHandler.getTmpGraphicalsAggregations().get(0).getName().equals("frostbolt"));
 		assertTrue(deckHandler.getTmpGraphicalsAggregations().get(1).getName().equals("arcane intellect"));
+		assertTrue(deckHandler.getTmpGraphicalsAggregations().get(0).getOccurrence() == 1);
+		assertTrue(deckHandler.getTmpGraphicalsAggregations().get(1).getOccurrence() == 1);
+		assertTrue(deckHandler.getTmpFormations().size() == 2);
+		assertTrue(deckHandler.getTmpFormations().get(0).getCard().equals("frostbolt"));
+		assertTrue(deckHandler.getTmpFormations().get(1).getCard().equals("arcane intellect"));
+		assertTrue(deckHandler.getTmpFormations().get(0).getOccurrence() == 1);
+		assertTrue(deckHandler.getTmpFormations().get(1).getOccurrence() == 1);
 	}
 	
 	public void testSingle2(){
@@ -86,6 +96,16 @@ public class InsertCardTest extends ActivityInstrumentationTestCase2<MainActivit
 		assertTrue(deckHandler.getTmpGraphicalsAggregations().get(0).getName().equals("frostbolt"));
 		assertTrue(deckHandler.getTmpGraphicalsAggregations().get(1).getName().equals("blizzard"));
 		assertTrue(deckHandler.getTmpGraphicalsAggregations().get(2).getName().equals("arcane intellect"));
+		assertTrue(deckHandler.getTmpGraphicalsAggregations().get(0).getOccurrence() == 10);
+		assertTrue(deckHandler.getTmpGraphicalsAggregations().get(1).getOccurrence() == 19);
+		assertTrue(deckHandler.getTmpGraphicalsAggregations().get(2).getOccurrence() == 1);
+		assertTrue(deckHandler.getTmpFormations().size() == 3);
+		assertTrue(deckHandler.getTmpFormations().get(0).getCard().equals("frostbolt"));
+		assertTrue(deckHandler.getTmpFormations().get(1).getCard().equals("blizzard"));
+		assertTrue(deckHandler.getTmpFormations().get(2).getCard().equals("arcane intellect"));
+		assertTrue(deckHandler.getTmpFormations().get(0).getOccurrence() == 10);
+		assertTrue(deckHandler.getTmpFormations().get(1).getOccurrence() == 19);
+		assertTrue(deckHandler.getTmpFormations().get(2).getOccurrence() == 1);
 	}
 	
 	public void testSingle3(){
@@ -107,7 +127,13 @@ public class InsertCardTest extends ActivityInstrumentationTestCase2<MainActivit
 		assertTrue(deckHandler.getTmpGraphicalsAggregations().size() == 2);
 		assertTrue(deckHandler.getTmpGraphicalsAggregations().get(0).getName().equals("frostbolt"));
 		assertTrue(deckHandler.getTmpGraphicalsAggregations().get(1).getName().equals("blizzard"));
-		assertTrue(deckHandler.getTmpGraphicalsAggregations().get(1).getOccurence() == 2);
+		assertTrue(deckHandler.getTmpGraphicalsAggregations().get(0).getOccurrence() == 10);
+		assertTrue(deckHandler.getTmpGraphicalsAggregations().get(1).getOccurrence() == 2);
+		assertTrue(deckHandler.getTmpFormations().size() == 2);
+		assertTrue(deckHandler.getTmpFormations().get(0).getCard().equals("frostbolt"));
+		assertTrue(deckHandler.getTmpFormations().get(1).getCard().equals("blizzard"));
+		assertTrue(deckHandler.getTmpFormations().get(0).getOccurrence() == 10);
+		assertTrue(deckHandler.getTmpFormations().get(1).getOccurrence() == 2);
 	}
 	
 	public void testSingle4(){
@@ -126,7 +152,10 @@ public class InsertCardTest extends ActivityInstrumentationTestCase2<MainActivit
 		//Assert
 		assertTrue(deckHandler.getTmpGraphicalsAggregations().size() == 1);
 		assertTrue(deckHandler.getTmpGraphicalsAggregations().get(0).getName().equals("frostbolt"));
-		assertTrue(deckHandler.getTmpGraphicalsAggregations().get(0).getOccurence() == 30);
+		assertTrue(deckHandler.getTmpGraphicalsAggregations().get(0).getOccurrence() == 30);
+		assertTrue(deckHandler.getTmpFormations().size() == 1);
+		assertTrue(deckHandler.getTmpFormations().get(0).getCard().equals("frostbolt"));
+		assertTrue(deckHandler.getTmpFormations().get(0).getOccurrence() == 30);
 	}
 	
 	public void testValid1(){
@@ -143,7 +172,10 @@ public class InsertCardTest extends ActivityInstrumentationTestCase2<MainActivit
 		//Assert
 		assertTrue(deckHandler.getTmpGraphicalsAggregations().size() == 1);
 		assertTrue(deckHandler.getTmpGraphicalsAggregations().get(0).getName().equals("frostbolt"));
-		assertTrue(deckHandler.getTmpGraphicalsAggregations().get(0).getOccurence() == 1);
+		assertTrue(deckHandler.getTmpGraphicalsAggregations().get(0).getOccurrence() == 1);
+		assertTrue(deckHandler.getTmpFormations().size() == 1);
+		assertTrue(deckHandler.getTmpFormations().get(0).getCard().equals("frostbolt"));
+		assertTrue(deckHandler.getTmpFormations().get(0).getOccurrence() == 1);
 	}
 	
 	public void testValid2(){
@@ -163,7 +195,14 @@ public class InsertCardTest extends ActivityInstrumentationTestCase2<MainActivit
 		assertTrue(deckHandler.getTmpGraphicalsAggregations().size() == 2);
 		assertTrue(deckHandler.getTmpGraphicalsAggregations().get(0).getName().equals("frostbolt"));
 		assertTrue(deckHandler.getTmpGraphicalsAggregations().get(1).getName().equals("blizzard"));
-		assertTrue(deckHandler.getTmpGraphicalsAggregations().get(1).getOccurence() == 1);
+		assertTrue(deckHandler.getTmpGraphicalsAggregations().get(0).getOccurrence() == 24);
+		assertTrue(deckHandler.getTmpGraphicalsAggregations().get(1).getOccurrence() == 1);
+		assertTrue(deckHandler.getTmpFormations().size() == 2);
+		assertTrue(deckHandler.getTmpFormations().get(0).getCard().equals("frostbolt"));
+		assertTrue(deckHandler.getTmpFormations().get(1).getCard().equals("blizzard"));
+		assertTrue(deckHandler.getTmpFormations().get(0).getOccurrence() == 24);
+		assertTrue(deckHandler.getTmpFormations().get(1).getOccurrence() == 1);
+		
 	}
 	
 	public void testValid3(){
@@ -185,7 +224,13 @@ public class InsertCardTest extends ActivityInstrumentationTestCase2<MainActivit
 		assertTrue(deckHandler.getTmpGraphicalsAggregations().size() == 2);
 		assertTrue(deckHandler.getTmpGraphicalsAggregations().get(0).getName().equals("frostbolt"));
 		assertTrue(deckHandler.getTmpGraphicalsAggregations().get(1).getName().equals("blizzard"));
-		assertTrue(deckHandler.getTmpGraphicalsAggregations().get(0).getOccurence() == 11);
+		assertTrue(deckHandler.getTmpGraphicalsAggregations().get(0).getOccurrence() == 11);
+		assertTrue(deckHandler.getTmpGraphicalsAggregations().get(1).getOccurrence() == 1);
+		assertTrue(deckHandler.getTmpFormations().size() == 2);
+		assertTrue(deckHandler.getTmpFormations().get(0).getCard().equals("frostbolt"));
+		assertTrue(deckHandler.getTmpFormations().get(1).getCard().equals("blizzard"));
+		assertTrue(deckHandler.getTmpFormations().get(0).getOccurrence() == 11);
+		assertTrue(deckHandler.getTmpFormations().get(1).getOccurrence() == 1);
 	}
 
 }

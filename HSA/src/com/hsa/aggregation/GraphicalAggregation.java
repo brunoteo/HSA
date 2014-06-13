@@ -4,14 +4,14 @@ package com.hsa.aggregation;
 public class GraphicalAggregation {
 	
 	private String name;
-	private int occurence;
+	private int occurrence;
 	private int image;
 	
 	public GraphicalAggregation(){};
 	
 	public GraphicalAggregation(String name, int occurrence, int image){
 		this.name = name;
-		this.occurence = occurrence;
+		this.occurrence = occurrence;
 		this.image = image;
 	}
 	
@@ -21,11 +21,11 @@ public class GraphicalAggregation {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public int getOccurence() {
-		return occurence;
+	public int getOccurrence() {
+		return occurrence;
 	}
-	public void setOccurence(int occurence) {
-		this.occurence = occurence;
+	public void setOccurrence(int occurence) {
+		this.occurrence = occurence;
 	}
 	public int getImage() {
 		return image;
