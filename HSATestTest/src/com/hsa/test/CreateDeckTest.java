@@ -53,9 +53,9 @@ public class CreateDeckTest extends ActivityInstrumentationTestCase2<MainActivit
 		
 		//Act
 		solo.clickOnButton("Create");
-
 		solo.sleep(5000);
-		//Assume
+		
+		//Assert
 		assertNull(searchHandler.deckSearch(""));
 
 	}
@@ -72,7 +72,7 @@ public class CreateDeckTest extends ActivityInstrumentationTestCase2<MainActivit
 		solo.clickOnButton("Create");
 		solo.sleep(5000);
 		
-		//Assume
+		//Assert
 		assertNull(searchHandler.deckSearch("   "));
 		
 	}
@@ -89,7 +89,7 @@ public class CreateDeckTest extends ActivityInstrumentationTestCase2<MainActivit
 		solo.clickOnButton("Create");
 		solo.sleep(5000);
 		
-		//Assume
+		//Assert
 		assertNull(searchHandler.deckSearch(" deckError3"));
 
 	}
@@ -106,7 +106,7 @@ public class CreateDeckTest extends ActivityInstrumentationTestCase2<MainActivit
 		solo.clickOnButton("Create");
 		solo.sleep(5000);
 		
-		//Assume
+		//Assert
 		assertNull(searchHandler.deckSearch("deckError4 "));
 
 		
@@ -124,7 +124,7 @@ public class CreateDeckTest extends ActivityInstrumentationTestCase2<MainActivit
 		solo.clickOnButton("Create");
 		solo.sleep(5000);
 		
-		//Assume
+		//Assert
 		assertNull(searchHandler.deckSearch("deck   Error5"));
 
 	}
@@ -139,7 +139,7 @@ public class CreateDeckTest extends ActivityInstrumentationTestCase2<MainActivit
 		solo.clickOnButton("Create");
 		solo.sleep(5000);
 		
-		//Assume
+		//Assert
 		assertNull(searchHandler.deckSearch("deck Error 6"));
 
 	}
@@ -165,7 +165,7 @@ public class CreateDeckTest extends ActivityInstrumentationTestCase2<MainActivit
 		String dateString2 = searchHandler.deckSearch("deck Error 7").getDate();
 		Date date2 = s.parse(dateString2);
 		
-		//Assume
+		//Assert
 		assertTrue(date2.compareTo(date1)<0);
 
 	}
@@ -182,7 +182,7 @@ public class CreateDeckTest extends ActivityInstrumentationTestCase2<MainActivit
 		solo.clickOnButton("Create");
 		solo.sleep(5000);
 
-		//Assume
+		//Assert
 		assertNotNull(searchHandler.deckSearch("Z"));
 		
 	}
@@ -199,7 +199,7 @@ public class CreateDeckTest extends ActivityInstrumentationTestCase2<MainActivit
 		solo.clickOnButton("Create");
 		solo.sleep(5000);
 
-		//Assume
+		//Assert
 		assertNotNull(searchHandler.deckSearch("deckValid1"));
 		
 	}
@@ -216,7 +216,7 @@ public class CreateDeckTest extends ActivityInstrumentationTestCase2<MainActivit
 		solo.clickOnButton("Create");
 		solo.sleep(5000);
 
-		//Assume
+		//Assert
 		assertNotNull(searchHandler.deckSearch("deck Valid 2"));
 		
 	}

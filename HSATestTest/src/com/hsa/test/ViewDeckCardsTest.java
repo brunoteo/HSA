@@ -66,7 +66,7 @@ public class ViewDeckCardsTest extends ActivityInstrumentationTestCase2<MainActi
 		da.startActivityForResult(intent, 1);
 		FilterActivity fa = (FilterActivity) getInstrumentation().waitForMonitorWithTimeout(activityMonitor, 50000);
 		
-		//Assume
+		//Assert
 		CheckBox chkClass = (CheckBox) solo.getView(com.hsa.R.id.chkDruid);
 		CheckBox chkNeutral = (CheckBox) solo.getView(com.hsa.R.id.chkNeutral);
 		View chkMage = fa.findViewById(com.hsa.R.id.chkMage);
@@ -110,7 +110,7 @@ public class ViewDeckCardsTest extends ActivityInstrumentationTestCase2<MainActi
 		da.startActivityForResult(intent, 1);
 		FilterActivity fa = (FilterActivity) getInstrumentation().waitForMonitorWithTimeout(activityMonitor, 50000);
 		
-		//Assume
+		//Assert
 		CheckBox chkClass = (CheckBox) solo.getView(com.hsa.R.id.chkMage);
 		CheckBox chkNeutral = (CheckBox) solo.getView(com.hsa.R.id.chkNeutral);
 		View chkDruid = fa.findViewById(com.hsa.R.id.chkDruid);
@@ -154,7 +154,7 @@ public class ViewDeckCardsTest extends ActivityInstrumentationTestCase2<MainActi
 		da.startActivityForResult(intent, 1);
 		FilterActivity fa = (FilterActivity) getInstrumentation().waitForMonitorWithTimeout(activityMonitor, 50000);
 		
-		//Assume
+		//Assert
 		CheckBox chkClass = (CheckBox) solo.getView(com.hsa.R.id.chkRogue);
 		CheckBox chkNeutral = (CheckBox) solo.getView(com.hsa.R.id.chkNeutral);
 		View chkDruid = fa.findViewById(com.hsa.R.id.chkDruid);
@@ -198,7 +198,7 @@ public class ViewDeckCardsTest extends ActivityInstrumentationTestCase2<MainActi
 		da.startActivityForResult(intent, 1);
 		FilterActivity fa = (FilterActivity) getInstrumentation().waitForMonitorWithTimeout(activityMonitor, 50000);
 		
-		//Assume
+		//Assert
 		CheckBox chkClass = (CheckBox) solo.getView(com.hsa.R.id.chkPaladin);
 		CheckBox chkNeutral = (CheckBox) solo.getView(com.hsa.R.id.chkNeutral);
 		View chkDruid = fa.findViewById(com.hsa.R.id.chkDruid);
@@ -244,7 +244,7 @@ public class ViewDeckCardsTest extends ActivityInstrumentationTestCase2<MainActi
 		da.startActivityForResult(intent, 1);
 		FilterActivity fa = (FilterActivity) getInstrumentation().waitForMonitorWithTimeout(activityMonitor, 50000);
 		
-		//Assume
+		//Assert
 		CheckBox chkClass = (CheckBox) solo.getView(com.hsa.R.id.chkHunter);
 		CheckBox chkNeutral = (CheckBox) solo.getView(com.hsa.R.id.chkNeutral);
 		View chkDruid = fa.findViewById(com.hsa.R.id.chkDruid);
@@ -288,7 +288,7 @@ public class ViewDeckCardsTest extends ActivityInstrumentationTestCase2<MainActi
 		da.startActivityForResult(intent, 1);
 		FilterActivity fa = (FilterActivity) getInstrumentation().waitForMonitorWithTimeout(activityMonitor, 50000);
 		
-		//Assume
+		//Assert
 		CheckBox chkClass = (CheckBox) solo.getView(com.hsa.R.id.chkPriest);
 		CheckBox chkNeutral = (CheckBox) solo.getView(com.hsa.R.id.chkNeutral);
 		View chkDruid = fa.findViewById(com.hsa.R.id.chkDruid);
@@ -332,7 +332,7 @@ public class ViewDeckCardsTest extends ActivityInstrumentationTestCase2<MainActi
 		da.startActivityForResult(intent, 1);
 		FilterActivity fa = (FilterActivity) getInstrumentation().waitForMonitorWithTimeout(activityMonitor, 50000);
 		
-		//Assume
+		//Assert
 		CheckBox chkClass = (CheckBox) solo.getView(com.hsa.R.id.chkWarlock);
 		CheckBox chkNeutral = (CheckBox) solo.getView(com.hsa.R.id.chkNeutral);
 		View chkDruid = fa.findViewById(com.hsa.R.id.chkDruid);
@@ -376,7 +376,7 @@ public class ViewDeckCardsTest extends ActivityInstrumentationTestCase2<MainActi
 		da.startActivityForResult(intent, 1);
 		FilterActivity fa = (FilterActivity) getInstrumentation().waitForMonitorWithTimeout(activityMonitor, 50000);
 		
-		//Assume
+		//Assert
 		CheckBox chkClass = (CheckBox) solo.getView(com.hsa.R.id.chkWarrior);
 		CheckBox chkNeutral = (CheckBox) solo.getView(com.hsa.R.id.chkNeutral);
 		View chkDruid = fa.findViewById(com.hsa.R.id.chkDruid);
@@ -420,7 +420,7 @@ public class ViewDeckCardsTest extends ActivityInstrumentationTestCase2<MainActi
 		da.startActivityForResult(intent, 1);
 		FilterActivity fa = (FilterActivity) getInstrumentation().waitForMonitorWithTimeout(activityMonitor, 50000);
 		
-		//Assume
+		//Assert
 		CheckBox chkClass = (CheckBox) solo.getView(com.hsa.R.id.chkShaman);
 		CheckBox chkNeutral = (CheckBox) solo.getView(com.hsa.R.id.chkNeutral);
 		View chkDruid = fa.findViewById(com.hsa.R.id.chkDruid);
