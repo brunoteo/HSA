@@ -123,6 +123,26 @@ public class SaveHandler{
 		final Card card86 = new Card("stormpike commando", "Minion", 5, "Basic", "Battlecry: Deal 2 damage.", "Neutral", 4, 2, null, null, "stormpike_commando");
 		final Card card87 = new Card("stormwind knight", "Minion", 4, "Basic", "Charge", "Neutral", 2, 5, null, null, "stormwind_knight");
 		final Card card88 = new Card("wolfrider", "Minion", 3, "Basic", "Charge", "Neutral", 3, 1, null, null, "wolfrider");
+		final Card card89 = new Card("abusive sergeant", "Minion", 1, "Common", "Battlecry: Give a minion +2 Attack this turn.", "Neutral", 2, 1, null, null, "abusive_sergeant");
+		final Card card90 = new Card("bloodfen raptor", "Minion", 2, "Basic", null, "Neutral", 3, 2, null, "Beast", "bloodfen_raptor");
+		final Card card91 = new Card("bluegill warrior", "Minion", 2, "Basic", "Charge", "Neutral", 2, 1, null, "Murloc", "bluegill_warrior");
+		final Card card92 = new Card("booty bay bodyguard", "Minion", 5, "Basic", "Taunt", "Neutral", 5, 4, null, null, "booty_bay_bodyguard");
+		final Card card93 = new Card("boulderfist ogre", "Minion", 6, "Basic", null, "Neutral", 6, 7, null, null, "boulderfist_ogre");
+		final Card card94 = new Card("chillwind yeti", "Minion", 4, "Basic", null, "Neutral", 4, 5, null, null, "chillwind_yeti");
+		final Card card95 = new Card("core hound", "Minion", 7, "Basic", null, "Neutral", 9, 5, null, null, "core_hound");
+		final Card card96 = new Card("elven archer", "Minion", 1, "Basic", "Battlecry: Deal 1 damage.", "Neutral", 1, 1, null, null, "elven_archer");
+		final Card card97 = new Card("injured blademaster", "Minion", 3, "Rare", "Battlecry: Deal 4 damage to HIMSELF.", "Neutral", 4, 7, null, null, "injured_blademaster");
+		final Card card98 = new Card("ironbeak owl", "Minion", 2, "Common", "Battlecry: Silence a minion.", "Neutral", 2, 1, null, "Beast", "ironbeak_owl");
+		final Card card99 = new Card("murloc raider", "Minion", 1, "Basic", null, "Neutral", 2, 1, null, "Murloc", "murloc_raider");
+		final Card card100 = new Card("ogre magi", "Minion", 4, "Basic", "Spell Damage +1", "Neutral", 4, 4, null, null, "ogre_magi");
+		final Card card101 = new Card("razorfen hunter", "Minion", 3, "Basic", "Battlecry: Summon a 1/1 Boar.", "Neutral", 2, 3, null, null, "razorfen_hunter");
+		final Card card102 = new Card("reckless rocketeer", "Minion", 6, "Basic", "Charge", "Neutral", 5, 3, null, null, "reckless_rocketeer");
+		final Card card103 = new Card("sen'jin shieldmasta", "Minion", 4, "Basic", "Taunt", "Neutral", 3, 5, null, null, "senjin_shieldmasta");
+		final Card card104 = new Card("spiteful smith", "Minion", 5, "Common", "Enrage: Your weapon has +2 Attack.", "Neutral", 4, 6, null, null, "spiteful_smith");
+		final Card card105 = new Card("stonetusk boar", "Minion", 1, "Basic", "Charge", "Neutral", 1, 1, null, "Beast", "stonetusk_boar");
+		final Card card106 = new Card("stormwind champion", "Minion", 7, "Basic", "Your other minions have +1/+1.", "Neutral", 6, 6, null, null, "stormwind_champion");
+		final Card card107 = new Card("war golem", "Minion", 7, "Basic", null, "Neutral", 7, 7, null, null, "war_golem");
+		final Card card108 = new Card("young dragonhawk", "Minion", 1, "Common", "Windfury", "Neutral", 1, 1, null, null, "young_dragonhawk");
 		
 		
 		List<Card> cards = Arrays.asList(card1, card2, card3, card4, card5, card6, card7, card8, card9, card10,
@@ -133,7 +153,9 @@ public class SaveHandler{
 				card51, card52, card53, card54, card55, card56, card57, card58, card59, card60,
 				card61, card62, card63, card64, card65, card66, card67, card68, card69, card70,
 				card71, card72, card73, card74, card75, card76, card77, card78, card79, card80,
-				card81, card82, card83, card84, card85, card86, card87, card88);
+				card81, card82, card83, card84, card85, card86, card87, card88, card89, card90,
+				card91, card92, card93, card94, card95, card96, card97, card98, card99, card100,
+				card101, card102, card103, card104, card105, card106, card107, card108);
 	
 		
 		SQLiteDatabase db = dbHelper.getWritableDatabase();
