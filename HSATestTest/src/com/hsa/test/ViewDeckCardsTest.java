@@ -26,6 +26,18 @@ public class ViewDeckCardsTest extends ActivityInstrumentationTestCase2<MainActi
 	protected void setUp() throws Exception {
 		super.setUp();
 		solo = new Solo(getInstrumentation(), getActivity());
+		
+
+	}
+	
+	protected void tearDown() throws Exception {
+		solo.sleep(5000);
+		solo.finishOpenedActivities();
+		super.tearDown();	
+	}
+	
+	public void testInit() {
+		assertNotNull(solo);
 		saveHandler = SaveHandler.getInstance(HSADatabaseHelper.getInstance(getActivity()));
 		saveHandler.createDeck("MyDruid", "Druid");
 		saveHandler.createDeck("MyMage", "Mage");
@@ -36,16 +48,6 @@ public class ViewDeckCardsTest extends ActivityInstrumentationTestCase2<MainActi
 		saveHandler.createDeck("MyWarlock", "Warlock");
 		saveHandler.createDeck("MyWarrior", "Warrior");
 		saveHandler.createDeck("MyShaman", "Shaman");
-
-	}
-	
-	protected void tearDown() throws Exception {
-		solo.finishOpenedActivities();
-		super.tearDown();	
-	}
-	
-	public void testInit() {
-		assertNotNull(solo);
 	}
 	
 	public void testValid1() {
