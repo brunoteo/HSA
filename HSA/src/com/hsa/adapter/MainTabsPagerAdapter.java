@@ -19,10 +19,8 @@ public class MainTabsPagerAdapter extends FragmentPagerAdapter{
 		
 		switch (index) {
         case 0:
-            return new NewsFragment();
-        case 1:
             return new SearchFragment();
-        case 2:
+        case 1:
             return new DecksFragment();
         }
  
@@ -32,7 +30,7 @@ public class MainTabsPagerAdapter extends FragmentPagerAdapter{
 	@Override
 	public int getCount() {
 
-		return 3;
+		return 2;
 	}
 
 }

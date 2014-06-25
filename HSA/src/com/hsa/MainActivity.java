@@ -58,7 +58,7 @@ public class MainActivity extends ActionBarActivity implements
 		this.dbHelper = dbHelper;
 	}
 
-	private String[] tabs = { "News", "Search", "Decks" };
+	private String[] tabs = {"Search", "Decks" };
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -102,7 +102,7 @@ public class MainActivity extends ActionBarActivity implements
         	}
         }
         if(intent.getStringExtra("tab")!=null)
-        	actionBar.setSelectedNavigationItem(2);
+        	actionBar.setSelectedNavigationItem(1);
         
         //Istanzio una volta sola gli handler
         dbHelper = HSADatabaseHelper.getInstance(this);
@@ -127,7 +127,7 @@ public class MainActivity extends ActionBarActivity implements
 	    if(s instanceof DecksFragment) {
 	    	DecksFragment deckFragment = (DecksFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager + ":" + mViewPager.getCurrentItem());
 		    deckFragment.refreshList();
-		    actionBar.setSelectedNavigationItem(2);
+		    actionBar.setSelectedNavigationItem(1);
 	    }
 	    
 	}
